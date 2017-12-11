@@ -1,0 +1,16 @@
+GENERAL CONFIG (location of files inside ore.xml):
+conventions.xml: C:\dev\Engine\OREData\ored\configuration\conventions.cpp, Conventions::fromXML, in OREApp::run > OREApp::getConventions > conventions_.fromFile
+todaysmarkets.xml: C:\dev\Engine\OREData\ored\marketdata\todaysmarketparameters.cpp, TodaysMarketParameters::fromXML, in OREApp::run > OREApp::getMarketParameters > marketParameters_.fromFile
+curveconfig.xml: C:\dev\Engine\OREData\ored\configuration\curveconfigurations.cpp, CurveConfigurations::fromXML, in OREApp::run > OREApp::buildMarket > curveConfigs.fromFile
+pricingengine.xml: C:\dev\Engine\OREData\ored\portfolio\enginedata.cpp, EngineData::fromXML in OREApp::run > OREApp::buildEngineFactory > engineData->fromFile ODER OREApp::run > OREApp::runSensitivityAnalysis > OREApp::sensiInputInitialize > engineData->fromFile(sensiPricingEnginesFile) ODER OREApp::run > OREApp::runStressTest > engineData->fromFile(pricingEnginesFile)
+market.txt & fixing.txt: C:\dev\Engine\OREData\ored\marketdata\csvloader.cpp, void CSVLoader::loadFile in OREApp::run > OREApp::buildMarket > CSVLoader loader(marketFile, fixingFile, implyTodaysFixings)
+
+TRADES, NETTINGSETS & ANALYSIS CONFIG (location of files inside ore.xml):
+portfolio.xml: C:\dev\Engine\OREData\ored\portfolio\portfolio.cpp, Portfolio::load, in OREApp::run > OREApp::buildPortfolio
+sensitivity.xml: C:\dev\Engine\OREAnalytics\orea\scenario\sensitivityscenariodata.cpp, SensitivityScenarioData::fromXML, in OREApp::run > OREApp::runSensitivityAnalysis > OREApp::sensiInputInitialize > sensiData->fromFile(sensitivityConfigFile)
+simulation.xml: C:\dev\Engine\OREAnalytics\orea\scenario\scenariosimmarketparameters.cpp, ScenarioSimMarketParameters::fromXML, in OREApp::run > OREApp::generateNPVCube > OREApp::getSimMarketData > simMarketData->fromFile(simulationConfigFile) ODER OREApp::run > OREApp::runSensitivityAnalysis > OREApp::sensiInputInitialize > simMarketData->fromFile(marketConfigFile) ODER OREApp::run > OREApp::runStressTest > simMarketData->fromFile(marketConfigFile)
+stresstest.xml: C:\dev\Engine\OREAnalytics\orea\scenario\stressscenariodata.cpp, StressTestScenarioData::fromXML, in OREApp::run > OREApp::runStressTest > stressData->fromFile(stressConfigFile)
+netting.xml: C:\dev\Engine\OREData\ored\portfolio\nettingsetmanager.cpp, NettingSetManager::fromXML, in OREApp::run > OREApp::runPostProcessor > OREApp::initNettingSetManager > netting->fromFile(csaFile)
+
+MAIN CONFIG (passed to ORE.exe):
+ore.xml: C:\dev\Engine\OREAnalytics\orea\app\parameters.cpp, Parameters::fromXML, in C:\dev\Engine\App\ore.cpp main > params->fromFile

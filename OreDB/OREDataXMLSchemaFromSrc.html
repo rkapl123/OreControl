@@ -1,0 +1,1116 @@
+<a href="file:///C:/dev/Engine/OREData/ored/configuration">dir:C:/dev/Engine/OREData/ored/configuration</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/capfloorvolcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/capfloorvolcurveconfig.cpp</a></br>
+---> CapFloorVolatilityCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "CapFloorVolatility");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+1,DoublesCompact,Strikes,true.    strikes_ = XMLUtils::getChildrenValuesAsDoublesCompact(node, "Strikes", true);.</br>
+,,VolatilityType,true.    string volType = XMLUtils::getChildValue(node, "VolatilityType", true);.</br>
+,Bool,IncludeAtm,true.    includeAtm_ = XMLUtils::getChildValueAsBool(node, "IncludeAtm", true);.</br>
+,Bool,Extrapolation,true.    extrapolate_ = XMLUtils::getChildValueAsBool(node, "Extrapolation", true);.</br>
+1,Periods,Tenors,true.    tenors_ = XMLUtils::getChildrenValuesAsPeriods(node, "Tenors", true);.</br>
+,,Calendar,true.    calendar_ = parseCalendar(XMLUtils::getChildValue(node, "Calendar", true));.</br>
+,,DayCounter,true.    dayCounter_ = parseDayCounter(XMLUtils::getChildValue(node, "DayCounter", true));.</br>
+,,BusinessDayConvention,true.    businessDayConvention_ = parseBusinessDayConvention(XMLUtils::getChildValue(node, "BusinessDayConvention", true));.</br>
+,,IborIndex,true.    iborIndex_ = XMLUtils::getChildValue(node, "IborIndex", true);.</br>
+,,DiscountCurve,true.    discountCurve_ = XMLUtils::getChildValue(node, "DiscountCurve", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/conventions.cpp">file:C:/dev/Engine/OREData/ored/configuration/conventions.cpp</a></br>
+---> ZeroRateConvention</br>
+,,,.    XMLUtils::checkNode(node, "Zero");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,Bool,TenorBased,true.    tenorBased_ = XMLUtils::getChildValueAsBool(node, "TenorBased", true);.</br>
+,,DayCounter,true.    strDayCounter_ = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,CompoundingFrequency,false.    strCompoundingFrequency_ = XMLUtils::getChildValue(node, "CompoundingFrequency", false);.</br>
+,,Compounding,false.    strCompounding_ = XMLUtils::getChildValue(node, "Compounding", false);.</br>
+,,TenorCalendar,true.        strTenorCalendar_ = XMLUtils::getChildValue(node, "TenorCalendar", true);.</br>
+,,SpotLag,false.        strSpotLag_ = XMLUtils::getChildValue(node, "SpotLag", false);.</br>
+,,SpotCalendar,false.        strSpotCalendar_ = XMLUtils::getChildValue(node, "SpotCalendar", false);.</br>
+,,RollConvention,false.        strRollConvention_ = XMLUtils::getChildValue(node, "RollConvention", false);.</br>
+,,EOM,false.        strEom_ = XMLUtils::getChildValue(node, "EOM", false);.</br>
+</br>
+---> DepositConvention</br>
+,,,.    XMLUtils::checkNode(node, "Deposit");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,Bool,IndexBased,true.    indexBased_ = XMLUtils::getChildValueAsBool(node, "IndexBased", true);.</br>
+,,Index,true.        index_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,,Calendar,true.        strCalendar_ = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,Convention,true.        strConvention_ = XMLUtils::getChildValue(node, "Convention", true);.</br>
+,,EOM,true.        strEom_ = XMLUtils::getChildValue(node, "EOM", true);.</br>
+,,DayCounter,true.        strDayCounter_ = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+</br>
+---> FutureConvention</br>
+,,,.    XMLUtils::checkNode(node, "Future");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,Index,true.    strIndex_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+</br>
+---> FraConvention</br>
+,,,.    XMLUtils::checkNode(node, "FRA");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,Index,true.    strIndex_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+</br>
+---> OisConvention</br>
+,,,.    XMLUtils::checkNode(node, "OIS");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,SpotLag,true.    strSpotLag_ = XMLUtils::getChildValue(node, "SpotLag", true);.</br>
+,,Index,true.    strIndex_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,,FixedDayCounter,true.    strFixedDayCounter_ = XMLUtils::getChildValue(node, "FixedDayCounter", true);.</br>
+,,PaymentLag,false.    strPaymentLag_ = XMLUtils::getChildValue(node, "PaymentLag", false);.</br>
+,,EOM,false.    strEom_ = XMLUtils::getChildValue(node, "EOM", false);.</br>
+,,FixedFrequency,false.    strFixedFrequency_ = XMLUtils::getChildValue(node, "FixedFrequency", false);.</br>
+,,FixedConvention,false.    strFixedConvention_ = XMLUtils::getChildValue(node, "FixedConvention", false);.</br>
+,,FixedPaymentConvention,false.    strFixedPaymentConvention_ = XMLUtils::getChildValue(node, "FixedPaymentConvention", false);.</br>
+,,Rule,false.    strRule_ = XMLUtils::getChildValue(node, "Rule", false);.</br>
+</br>
+---> SwapIndexConvention</br>
+,,,.    XMLUtils::checkNode(node, "SwapIndex");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,Conventions,true.    strConventions_ = XMLUtils::getChildValue(node, "Conventions", true);.</br>
+</br>
+---> IRSwapConvention</br>
+,,,.    XMLUtils::checkNode(node, "Swap");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,FixedCalendar,true.    strFixedCalendar_ = XMLUtils::getChildValue(node, "FixedCalendar", true);.</br>
+,,FixedFrequency,true.    strFixedFrequency_ = XMLUtils::getChildValue(node, "FixedFrequency", true);.</br>
+,,FixedConvention,true.    strFixedConvention_ = XMLUtils::getChildValue(node, "FixedConvention", true);.</br>
+,,FixedDayCounter,true.    strFixedDayCounter_ = XMLUtils::getChildValue(node, "FixedDayCounter", true);.</br>
+,,Index,true.    strIndex_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,,FloatFrequency,false.    strFloatFrequency_ = XMLUtils::getChildValue(node, "FloatFrequency", false);.</br>
+,,SubPeriodsCouponType,false.    strSubPeriodsCouponType_ = XMLUtils::getChildValue(node, "SubPeriodsCouponType", false);.</br>
+</br>
+---> AverageOisConvention</br>
+,,,.    XMLUtils::checkNode(node, "AverageOIS");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,SpotLag,true.    strSpotLag_ = XMLUtils::getChildValue(node, "SpotLag", true);.</br>
+,,FixedTenor,true.    strFixedTenor_ = XMLUtils::getChildValue(node, "FixedTenor", true);.</br>
+,,FixedDayCounter,true.    strFixedDayCounter_ = XMLUtils::getChildValue(node, "FixedDayCounter", true);.</br>
+,,FixedCalendar,true.    strFixedCalendar_ = XMLUtils::getChildValue(node, "FixedCalendar", true);.</br>
+,,FixedConvention,true.    strFixedConvention_ = XMLUtils::getChildValue(node, "FixedConvention", true);.</br>
+,,FixedPaymentConvention,true.    strFixedPaymentConvention_ = XMLUtils::getChildValue(node, "FixedPaymentConvention", true);.</br>
+,,Index,true.    strIndex_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,,OnTenor,true.    strOnTenor_ = XMLUtils::getChildValue(node, "OnTenor", true);.</br>
+,,RateCutoff,true.    strRateCutoff_ = XMLUtils::getChildValue(node, "RateCutoff", true);.</br>
+</br>
+---> TenorBasisSwapConvention</br>
+,,,.    XMLUtils::checkNode(node, "TenorBasisSwap");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,LongIndex,true.    strLongIndex_ = XMLUtils::getChildValue(node, "LongIndex", true);.</br>
+,,ShortIndex,true.    strShortIndex_ = XMLUtils::getChildValue(node, "ShortIndex", true);.</br>
+,,ShortPayTenor,false.    strShortPayTenor_ = XMLUtils::getChildValue(node, "ShortPayTenor", false);.</br>
+,,SpreadOnShort,false.    strSpreadOnShort_ = XMLUtils::getChildValue(node, "SpreadOnShort", false);.</br>
+,,IncludeSpread,false.    strIncludeSpread_ = XMLUtils::getChildValue(node, "IncludeSpread", false);.</br>
+,,SubPeriodsCouponType,false.    strSubPeriodsCouponType_ = XMLUtils::getChildValue(node, "SubPeriodsCouponType", false);.</br>
+</br>
+---> TenorBasisTwoSwapConvention</br>
+,,,.    XMLUtils::checkNode(node, "TenorBasisTwoSwap");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,Calendar,true.    strCalendar_ = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,LongFixedFrequency,true.    strLongFixedFrequency_ = XMLUtils::getChildValue(node, "LongFixedFrequency", true);.</br>
+,,LongFixedConvention,true.    strLongFixedConvention_ = XMLUtils::getChildValue(node, "LongFixedConvention", true);.</br>
+,,LongFixedDayCounter,true.    strLongFixedDayCounter_ = XMLUtils::getChildValue(node, "LongFixedDayCounter", true);.</br>
+,,LongIndex,true.    strLongIndex_ = XMLUtils::getChildValue(node, "LongIndex", true);.</br>
+,,ShortFixedFrequency,true.    strShortFixedFrequency_ = XMLUtils::getChildValue(node, "ShortFixedFrequency", true);.</br>
+,,ShortFixedConvention,true.    strShortFixedConvention_ = XMLUtils::getChildValue(node, "ShortFixedConvention", true);.</br>
+,,ShortFixedDayCounter,true.    strShortFixedDayCounter_ = XMLUtils::getChildValue(node, "ShortFixedDayCounter", true);.</br>
+,,ShortIndex,true.    strShortIndex_ = XMLUtils::getChildValue(node, "ShortIndex", true);.</br>
+,,LongMinusShort,false.    strLongMinusShort_ = XMLUtils::getChildValue(node, "LongMinusShort", false);.</br>
+</br>
+---> FXConvention</br>
+,,,.    XMLUtils::checkNode(node, "FX");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,SpotDays,true.    strSpotDays_ = XMLUtils::getChildValue(node, "SpotDays", true);.</br>
+,,SourceCurrency,true.    strSourceCurrency_ = XMLUtils::getChildValue(node, "SourceCurrency", true);.</br>
+,,TargetCurrency,true.    strTargetCurrency_ = XMLUtils::getChildValue(node, "TargetCurrency", true);.</br>
+,,PointsFactor,true.    strPointsFactor_ = XMLUtils::getChildValue(node, "PointsFactor", true);.</br>
+,,AdvanceCalendar,false.    strAdvanceCalendar_ = XMLUtils::getChildValue(node, "AdvanceCalendar", false);.</br>
+,,SpotRelative,false.    strSpotRelative_ = XMLUtils::getChildValue(node, "SpotRelative", false);.</br>
+</br>
+---> CrossCcyBasisSwapConvention</br>
+,,,.    XMLUtils::checkNode(node, "CrossCurrencyBasis");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,SettlementDays,true.    strSettlementDays_ = XMLUtils::getChildValue(node, "SettlementDays", true);.</br>
+,,SettlementCalendar,true.    strSettlementCalendar_ = XMLUtils::getChildValue(node, "SettlementCalendar", true);.</br>
+,,RollConvention,true.    strRollConvention_ = XMLUtils::getChildValue(node, "RollConvention", true);.</br>
+,,FlatIndex,true.    strFlatIndex_ = XMLUtils::getChildValue(node, "FlatIndex", true);.</br>
+,,SpreadIndex,true.    strSpreadIndex_ = XMLUtils::getChildValue(node, "SpreadIndex", true);.</br>
+,,EOM,false.    strEom_ = XMLUtils::getChildValue(node, "EOM", false);.</br>
+</br>
+---> CdsConvention</br>
+,,,.    XMLUtils::checkNode(node, "CDS");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,SettlementDays,true.    strSettlementDays_ = XMLUtils::getChildValue(node, "SettlementDays", true);.</br>
+,,Calendar,true.    strCalendar_ = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,Frequency,true.    strFrequency_ = XMLUtils::getChildValue(node, "Frequency", true);.</br>
+,,PaymentConvention,true.    strPaymentConvention_ = XMLUtils::getChildValue(node, "PaymentConvention", true);.</br>
+,,Rule,true.    strRule_ = XMLUtils::getChildValue(node, "Rule", true);.</br>
+,,DayCounter,true.    strDayCounter_ = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,SettlesAccrual,true.    strSettlesAccrual_ = XMLUtils::getChildValue(node, "SettlesAccrual", true);.</br>
+,,PaysAtDefaultTime,true.    strPaysAtDefaultTime_ = XMLUtils::getChildValue(node, "PaysAtDefaultTime", true);.</br>
+</br>
+---> InflationSwapConvention</br>
+,,,.    XMLUtils::checkNode(node, "InflationSwap");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,,FixCalendar,true.    strFixCalendar_ = XMLUtils::getChildValue(node, "FixCalendar", true);.</br>
+,,FixConvention,true.    strFixConvention_ = XMLUtils::getChildValue(node, "FixConvention", true);.</br>
+,,DayCounter,true.    strDayCounter_ = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,Index,true.    strIndex_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,,Interpolated,true.    strInterpolated_ = XMLUtils::getChildValue(node, "Interpolated", true);.</br>
+,,ObservationLag,true.    strObservationLag_ = XMLUtils::getChildValue(node, "ObservationLag", true);.</br>
+,,AdjustInflationObservationDates,true.    strAdjustInfObsDates_ = XMLUtils::getChildValue(node, "AdjustInflationObservationDates", true);.</br>
+,,InflationCalendar,true.    strInfCalendar_ = XMLUtils::getChildValue(node, "InflationCalendar", true);.</br>
+,,InflationConvention,true.    strInfConvention_ = XMLUtils::getChildValue(node, "InflationConvention", true);.</br>
+</br>
+---> SecuritySpreadConvention</br>
+,,,.    XMLUtils::checkNode(node, "BondSpread");.</br>
+,,Id,true.    id_ = XMLUtils::getChildValue(node, "Id", true);.</br>
+,Bool,TenorBased,true.    tenorBased_ = XMLUtils::getChildValueAsBool(node, "TenorBased", true);.</br>
+,,DayCounter,true.    strDayCounter_ = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,CompoundingFrequency,false.    strCompoundingFrequency_ = XMLUtils::getChildValue(node, "CompoundingFrequency", false);.</br>
+,,Compounding,false.    strCompounding_ = XMLUtils::getChildValue(node, "Compounding", false);.</br>
+,,TenorCalendar,true.        strTenorCalendar_ = XMLUtils::getChildValue(node, "TenorCalendar", true);.</br>
+,,SpotLag,false.        strSpotLag_ = XMLUtils::getChildValue(node, "SpotLag", false);.</br>
+,,SpotCalendar,false.        strSpotCalendar_ = XMLUtils::getChildValue(node, "SpotCalendar", false);.</br>
+,,RollConvention,false.        strRollConvention_ = XMLUtils::getChildValue(node, "RollConvention", false);.</br>
+,,EOM,false.        strEom_ = XMLUtils::getChildValue(node, "EOM", false);.</br>
+</br>
+---> Conventions</br>
+,,,.    XMLUtils::checkNode(node, "Conventions");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(node); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string childName = XMLUtils::getNodeName(child);.</br>
+,,Id,true.        string id = XMLUtils::getChildValue(child, "Id", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/curveconfigurations.cpp">file:C:/dev/Engine/OREData/ored/configuration/curveconfigurations.cpp</a></br>
+---> CurveConfigurations</br>
+,,,.    XMLUtils::checkNode(node, "CurveConfiguration");.</br>
+,,,.    XMLNode* yieldCurvesNode = XMLUtils::getChildNode(node, "YieldCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(yieldCurvesNode, "YieldCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "YieldCurve")) {.</br>
+,,,.    XMLNode* fxVolsNode = XMLUtils::getChildNode(node, "FXVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(fxVolsNode, "FXVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "FXVolatility")) {.</br>
+,,,.    XMLNode* swaptionVolsNode = XMLUtils::getChildNode(node, "SwaptionVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(swaptionVolsNode, "SwaptionVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "SwaptionVolatility")) {.</br>
+,,,.    XMLNode* capFloorVolsNode = XMLUtils::getChildNode(node, "CapFloorVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(capFloorVolsNode, "CapFloorVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "CapFloorVolatility")) {.</br>
+,,,.    XMLNode* defaultCurvesNode = XMLUtils::getChildNode(node, "DefaultCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(defaultCurvesNode, "DefaultCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "DefaultCurve")) {.</br>
+,,,.    XMLNode* equityCurvesNode = XMLUtils::getChildNode(node, "EquityCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(equityCurvesNode, "EquityCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "EquityCurve")) {.</br>
+,,,.    XMLNode* equityVolsNode = XMLUtils::getChildNode(node, "EquityVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(equityVolsNode, "EquityVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "EquityVolatility")) {.</br>
+,,,.    XMLNode* inflationCurvesNode = XMLUtils::getChildNode(node, "InflationCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(inflationCurvesNode, "InflationCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "InflationCurve")) {.</br>
+,,,.    XMLNode* inflationCapFloorPriceSurfaceNode = XMLUtils::getChildNode(node, "InflationCapFloorPriceSurfaces");.</br>
+,,,.                 XMLUtils::getChildNode(inflationCapFloorPriceSurfaceNode, "InflationCapFloorPriceSurface");.</br>
+,,,.             child; child = XMLUtils::getNextSibling(child, "InflationCapFloorPriceSurface")) {.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/defaultcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/defaultcurveconfig.cpp</a></br>
+---> DefaultCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "DefaultCurve");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Currency,true.    currency_ = XMLUtils::getChildValue(node, "Currency", true);.</br>
+,,Type,true.    string type = XMLUtils::getChildValue(node, "Type", true);.</br>
+,,DiscountCurve,false.    discountCurveID_ = XMLUtils::getChildValue(node, "DiscountCurve", false);.</br>
+,,BenchmarkCurve,false.    benchmarkCurveID_ = XMLUtils::getChildValue(node, "BenchmarkCurve", false);.</br>
+,,RecoveryRate,false.    recoveryRateQuote_ = XMLUtils::getChildValue(node, "RecoveryRate", false);.</br>
+,,DayCounter,true.    string dc = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,Conventions,true.    conventionID_ = XMLUtils::getChildValue(node, "Conventions", true);.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,Bool,,.    extrapolation_ = XMLUtils::getChildValueAsBool(node, "Extrapolation"); // defaults to true.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/equitycurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/equitycurveconfig.cpp</a></br>
+---> EquityCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "EquityCurve");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Currency,true.    currency_ = XMLUtils::getChildValue(node, "Currency", true);.</br>
+,,Type,true.    string type = XMLUtils::getChildValue(node, "Type", true);.</br>
+,,SpotQuote,true.    equitySpotQuoteID_ = XMLUtils::getChildValue(node, "SpotQuote", true);.</br>
+,,DayCounter,false.    dayCountID_ = XMLUtils::getChildValue(node, "DayCounter", false);.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,Bool,,.    extrapolation_ = XMLUtils::getChildValueAsBool(node, "Extrapolation"); // defaults to true.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/equityvolcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/equityvolcurveconfig.cpp</a></br>
+---> EquityVolatilityCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "EquityVolatility");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Currency,true.    ccy_ = XMLUtils::getChildValue(node, "Currency", true);.</br>
+,,Dimension,true.    string dim = XMLUtils::getChildValue(node, "Dimension", true);.</br>
+1,Strings,Expiries,true.    expiries_ = XMLUtils::getChildrenValuesAsStrings(node, "Expiries", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/fxvolcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/fxvolcurveconfig.cpp</a></br>
+---> FXVolatilityCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "FXVolatility");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Dimension,true.    string dim = XMLUtils::getChildValue(node, "Dimension", true);.</br>
+1,Periods,Expiries,true.    expiries_ = XMLUtils::getChildrenValuesAsPeriods(node, "Expiries", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/inflationcapfloorpricesurfaceconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/inflationcapfloorpricesurfaceconfig.cpp</a></br>
+---> InflationCapFloorPriceSurfaceConfig</br>
+,,,.    XMLUtils::checkNode(node, "InflationCapFloorPriceSurface");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Type,true.    string type = XMLUtils::getChildValue(node, "Type", true);.</br>
+,,StartRate,true.    string startRt = XMLUtils::getChildValue(node, "StartRate", true);.</br>
+,,ObservationLag,true.    string lag = XMLUtils::getChildValue(node, "ObservationLag", true);.</br>
+,,Calendar,true.    string cal = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,BusinessDayConvention,true.    string bdc = XMLUtils::getChildValue(node, "BusinessDayConvention", true);.</br>
+,,DayCounter,true.    string dc = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,Index,true.    index_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,,IndexCurve,true.    indexCurve_ = XMLUtils::getChildValue(node, "IndexCurve", true);.</br>
+,,YieldTermStructure,true.    yieldTermStructure_ = XMLUtils::getChildValue(node, "YieldTermStructure", true);.</br>
+1,DoublesCompact,CapStrikes,true.    capStrikes_ = XMLUtils::getChildrenValuesAsDoublesCompact(node, "CapStrikes", true);.</br>
+1,DoublesCompact,FloorStrikes,true.    floorStrikes_ = XMLUtils::getChildrenValuesAsDoublesCompact(node, "FloorStrikes", true);.</br>
+1,Periods,Maturities,true.    maturities_ = XMLUtils::getChildrenValuesAsPeriods(node, "Maturities", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/inflationcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/inflationcurveconfig.cpp</a></br>
+---> InflationCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "InflationCurve");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,NominalTermStructure,true.    nominalTermStructure_ = XMLUtils::getChildValue(node, "NominalTermStructure", true);.</br>
+,,Type,true.    string type = XMLUtils::getChildValue(node, "Type", true);.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,,Conventions,true.    conventions_ = XMLUtils::getChildValue(node, "Conventions", true);.</br>
+,Bool,Extrapolation,false.    extrapolate_ = XMLUtils::getChildValueAsBool(node, "Extrapolation", false);.</br>
+,,Calendar,true.    string cal = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,DayCounter,true.    string dc = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,Lag,true.    string lag = XMLUtils::getChildValue(node, "Lag", true);.</br>
+,,Frequency,true.    string freq = XMLUtils::getChildValue(node, "Frequency", true);.</br>
+,,BaseRate,false.    string baseZr = XMLUtils::getChildValue(node, "BaseRate", false);.</br>
+,,Tolerance,true.    string tol = XMLUtils::getChildValue(node, "Tolerance", true);.</br>
+,,,.    XMLNode* seasonalityNode = XMLUtils::getChildNode(node, "Seasonality");.</br>
+,,BaseDate,true.        seasonalityBaseDate_ = parseDate(XMLUtils::getChildValue(seasonalityNode, "BaseDate", true));.</br>
+,,Frequency,true.        seasonalityFrequency_ = parseFrequency(XMLUtils::getChildValue(seasonalityNode, "Frequency", true));.</br>
+1,,Factors", "Factor,true.        seasonalityFactors_ = XMLUtils::getChildrenValues(seasonalityNode, "Factors", "Factor", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/marketconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/marketconfig.cpp</a></br>
+---> MarketConfiguration</br>
+,,,.    XMLUtils::checkNode(node, "MarketConfiguration");.</br>
+,,BaseCurrency,true.    baseCurrency_ = XMLUtils::getChildValue(node, "BaseCurrency", true);.</br>
+1,,FxRates", "FxRate", "CurrencyPair", "Spec,true.    fxSpec_ = XMLUtils::getChildrenValues(node, "FxRates", "FxRate", "CurrencyPair", "Spec", true);.</br>
+1,,FxVolatilities", "FxVolatility", "CurrencyPair", "Spec,true.    fxVolSpec_ = XMLUtils::getChildrenValues(node, "FxVolatilities", "FxVolatility", "CurrencyPair", "Spec", true);.</br>
+1,,CapVolatilities", "CapVolatility", "Currency", "Spec,true.    capVolSpec_ = XMLUtils::getChildrenValues(node, "CapVolatilities", "CapVolatility", "Currency", "Spec", true);.</br>
+1,,SwaptionVolatilities", "SwaptionVolatility", "Currency", "Spec,true.        XMLUtils::getChildrenValues(node, "SwaptionVolatilities", "SwaptionVolatility", "Currency", "Spec", true);.</br>
+1,,IborIndices", "IborIndex", "Name", "Spec,true.    iborIndexSpecs_ = XMLUtils::getChildrenValues(node, "IborIndices", "IborIndex", "Name", "Spec", true);.</br>
+,,,.    XMLNode* discountNodes = XMLUtils::getChildNode(node, "DiscountCurves");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(discountNodes); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,Currency,true.        string currency = XMLUtils::getChildValue(child, "Currency", true);.</br>
+,,Spec,true.        string spec = XMLUtils::getChildValue(child, "Spec", true);.</br>
+,,,.    XMLNode* yieldNodes = XMLUtils::getChildNode(node, "YieldCurves");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(yieldNodes); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,Name,true.        string name = XMLUtils::getChildValue(child, "Name", true);.</br>
+,,Spec,true.        string spec = XMLUtils::getChildValue(child, "Spec", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/swaptionvolcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/swaptionvolcurveconfig.cpp</a></br>
+---> SwaptionVolatilityCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "SwaptionVolatility");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Dimension,true.    string dim = XMLUtils::getChildValue(node, "Dimension", true);.</br>
+,,VolatilityType,true.    string volType = XMLUtils::getChildValue(node, "VolatilityType", true);.</br>
+,,Extrapolation,true.    string extr = XMLUtils::getChildValue(node, "Extrapolation", true);.</br>
+1,Periods,OptionTenors,true.    optionTenors_ = XMLUtils::getChildrenValuesAsPeriods(node, "OptionTenors", true);.</br>
+1,Periods,SwapTenors,true.    swapTenors_ = XMLUtils::getChildrenValuesAsPeriods(node, "SwapTenors", true);.</br>
+,,Calendar,true.    string cal = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,DayCounter,true.    string dc = XMLUtils::getChildValue(node, "DayCounter", true);.</br>
+,,BusinessDayConvention,true.    string bdc = XMLUtils::getChildValue(node, "BusinessDayConvention", true);.</br>
+,,ShortSwapIndexBase,true.    shortSwapIndexBase_ = XMLUtils::getChildValue(node, "ShortSwapIndexBase", true);.</br>
+,,SwapIndexBase,true.    swapIndexBase_ = XMLUtils::getChildValue(node, "SwapIndexBase", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/configuration/yieldcurveconfig.cpp">file:C:/dev/Engine/OREData/ored/configuration/yieldcurveconfig.cpp</a></br>
+---> YieldCurveConfig</br>
+,,,.    XMLUtils::checkNode(node, "YieldCurve");.</br>
+,,CurveId,true.    curveID_ = XMLUtils::getChildValue(node, "CurveId", true);.</br>
+,,CurveDescription,true.    curveDescription_ = XMLUtils::getChildValue(node, "CurveDescription", true);.</br>
+,,Currency,true.    currency_ = XMLUtils::getChildValue(node, "Currency", true);.</br>
+,,DiscountCurve,true.    discountCurveID_ = XMLUtils::getChildValue(node, "DiscountCurve", true);.</br>
+,,,.    XMLNode* segmentsNode = XMLUtils::getChildNode(node, "Segments");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(segmentsNode); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string childName = XMLUtils::getNodeName(child);.</br>
+,,InterpolationVariable,false.    interpolationVariable_ = XMLUtils::getChildValue(node, "InterpolationVariable", false);.</br>
+,,InterpolationMethod,false.    interpolationMethod_ = XMLUtils::getChildValue(node, "InterpolationMethod", false);.</br>
+,,YieldCurveDayCounter,false.    zeroDayCounter_ = XMLUtils::getChildValue(node, "YieldCurveDayCounter", false);.</br>
+,,,.    XMLNode* nodeToTest = XMLUtils::getChildNode(node, "Extrapolation");.</br>
+,Bool,Extrapolation,false.        extrapolation_ = XMLUtils::getChildValueAsBool(node, "Extrapolation", false);.</br>
+,,,.    nodeToTest = XMLUtils::getChildNode(node, "Tolerance");.</br>
+,Double,Tolerance,false.        tolerance_ = XMLUtils::getChildValueAsDouble(node, "Tolerance", false);.</br>
+</br>
+---> YieldCurveSegment</br>
+,,Type,true.    typeID_ = XMLUtils::getChildValue(node, "Type", true);.</br>
+,,Conventions,false.    conventionsID_ = XMLUtils::getChildValue(node, "Conventions", false);.</br>
+</br>
+---> DirectYieldCurveSegment</br>
+,,,.    XMLUtils::checkNode(node, "Direct");.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+</br>
+---> SimpleYieldCurveSegment</br>
+,,,.    XMLUtils::checkNode(node, "Simple");.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,,ProjectionCurve,false.    projectionCurveID_ = XMLUtils::getChildValue(node, "ProjectionCurve", false);.</br>
+</br>
+---> AverageOISYieldCurveSegment</br>
+,,,.    XMLUtils::checkNode(node, "AverageOIS");.</br>
+,,ProjectionCurve,false.    projectionCurveID_ = XMLUtils::getChildValue(node, "ProjectionCurve", false);.</br>
+,,,.    XMLNode* quotesNode = XMLUtils::getChildNode(node, "Quotes");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(quotesNode, "CompositeQuote"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,RateQuote,true.            string rateQuote = XMLUtils::getChildValue(child, "RateQuote", true);.</br>
+,,SpreadQuote,true.            string spreadQuote = XMLUtils::getChildValue(child, "SpreadQuote", true);.</br>
+</br>
+---> TenorBasisYieldCurveSegment</br>
+,,,.    XMLUtils::checkNode(node, "TenorBasis");.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,,ProjectionCurveShort,false.    shortProjectionCurveID_ = XMLUtils::getChildValue(node, "ProjectionCurveShort", false);.</br>
+,,ProjectionCurveLong,false.    longProjectionCurveID_ = XMLUtils::getChildValue(node, "ProjectionCurveLong", false);.</br>
+</br>
+---> CrossCcyYieldCurveSegment</br>
+,,,.    XMLUtils::checkNode(node, "CrossCurrency");.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,,SpotRate,true.    spotRateID_ = XMLUtils::getChildValue(node, "SpotRate", true);.</br>
+,,DiscountCurve,true.    foreignDiscountCurveID_ = XMLUtils::getChildValue(node, "DiscountCurve", true);.</br>
+,,ProjectionCurveDomestic,false.    domesticProjectionCurveID_ = XMLUtils::getChildValue(node, "ProjectionCurveDomestic", false);.</br>
+,,ProjectionCurveForeign,false.    foreignProjectionCurveID_ = XMLUtils::getChildValue(node, "ProjectionCurveForeign", false);.</br>
+</br>
+---> ZeroSpreadedYieldCurveSegment</br>
+,,,.    XMLUtils::checkNode(node, "ZeroSpread");.</br>
+1,,Quotes", "Quote,true.    quotes_ = XMLUtils::getChildrenValues(node, "Quotes", "Quote", true);.</br>
+,,ReferenceCurve,false.    referenceCurveID_ = XMLUtils::getChildValue(node, "ReferenceCurve", false);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata">dir:C:/dev/Engine/OREData/ored/marketdata</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/capfloorvolcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/capfloorvolcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/csvloader.cpp">file:C:/dev/Engine/OREData/ored/marketdata/csvloader.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/curveloader.cpp">file:C:/dev/Engine/OREData/ored/marketdata/curveloader.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/curvespec.cpp">file:C:/dev/Engine/OREData/ored/marketdata/curvespec.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/curvespecparser.cpp">file:C:/dev/Engine/OREData/ored/marketdata/curvespecparser.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/defaultcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/defaultcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/equitycurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/equitycurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/equityvolcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/equityvolcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/fixings.cpp">file:C:/dev/Engine/OREData/ored/marketdata/fixings.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/fxspot.cpp">file:C:/dev/Engine/OREData/ored/marketdata/fxspot.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/fxtriangulation.cpp">file:C:/dev/Engine/OREData/ored/marketdata/fxtriangulation.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/fxvolcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/fxvolcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/inflationcapfloorpricesurface.cpp">file:C:/dev/Engine/OREData/ored/marketdata/inflationcapfloorpricesurface.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/inflationcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/inflationcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/market.cpp">file:C:/dev/Engine/OREData/ored/marketdata/market.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/marketdatum.cpp">file:C:/dev/Engine/OREData/ored/marketdata/marketdatum.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/marketdatumparser.cpp">file:C:/dev/Engine/OREData/ored/marketdata/marketdatumparser.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/marketimpl.cpp">file:C:/dev/Engine/OREData/ored/marketdata/marketimpl.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/securityrecoveryrate.cpp">file:C:/dev/Engine/OREData/ored/marketdata/securityrecoveryrate.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/securityspread.cpp">file:C:/dev/Engine/OREData/ored/marketdata/securityspread.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/swaptionvolcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/swaptionvolcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/todaysmarket.cpp">file:C:/dev/Engine/OREData/ored/marketdata/todaysmarket.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/todaysmarketparameters.cpp">file:C:/dev/Engine/OREData/ored/marketdata/todaysmarketparameters.cpp</a></br>
+---> TodaysMarketParameters</br>
+,,,.    XMLUtils::checkNode(node, "TodaysMarket");.</br>
+,,,.    XMLNode* n = XMLUtils::getChildNode(node);.</br>
+,,,.        if (XMLUtils::getNodeName(n) == "Configuration") {.</br>
+,,DiscountingCurvesId,false.            tmp.discountingCurvesId = XMLUtils::getChildValue(n, "DiscountingCurvesId", false);.</br>
+,,YieldCurvesId,false.            tmp.yieldCurvesId = XMLUtils::getChildValue(n, "YieldCurvesId", false);.</br>
+,,IndexForwardingCurvesId,false.            tmp.indexForwardingCurvesId = XMLUtils::getChildValue(n, "IndexForwardingCurvesId", false),.</br>
+,,SwapIndexCurvesId,false.            tmp.swapIndexCurvesId = XMLUtils::getChildValue(n, "SwapIndexCurvesId", false),.</br>
+,,FxSpotsId,false.            tmp.fxSpotsId = XMLUtils::getChildValue(n, "FxSpotsId", false);.</br>
+,,FxVolatilitiesId,false.            tmp.fxVolatilitiesId = XMLUtils::getChildValue(n, "FxVolatilitiesId", false);.</br>
+,,SwaptionVolatilitiesId,false.            tmp.swaptionVolatilitiesId = XMLUtils::getChildValue(n, "SwaptionVolatilitiesId", false);.</br>
+,,DefaultCurvesId,false.            tmp.defaultCurvesId = XMLUtils::getChildValue(n, "DefaultCurvesId", false);.</br>
+,,CapFloorVolatilitiesId,false.            tmp.capFloorVolatilitiesId = XMLUtils::getChildValue(n, "CapFloorVolatilitiesId", false);.</br>
+,,ZeroInflationIndexCurvesId,false.            tmp.zeroInflationIndexCurvesId = XMLUtils::getChildValue(n, "ZeroInflationIndexCurvesId", false);.</br>
+,,YYInflationIndexCurvesId,false.            tmp.yoyInflationIndexCurvesId = XMLUtils::getChildValue(n, "YYInflationIndexCurvesId", false);.</br>
+,,InflationCapFloorPriceSurfaceId,false.            tmp.inflationCapFloorPriceSurfacesId = XMLUtils::getChildValue(n, "InflationCapFloorPriceSurfaceId", false);.</br>
+,,EquityCurvesId,false.            tmp.equityCurvesId = XMLUtils::getChildValue(n, "EquityCurvesId", false);.</br>
+,,EquityVolatilitiesId,false.            tmp.equityVolatilitiesId = XMLUtils::getChildValue(n, "EquityVolatilitiesId", false);.</br>
+,,SecuritySpreadsId,false.            tmp.securitySpreadsId = XMLUtils::getChildValue(n, "SecuritySpreadsId", false);.</br>
+,,SecurityRecoveryRatesId,false.            tmp.securityRecoveryRatesId = XMLUtils::getChildValue(n, "SecurityRecoveryRatesId", false);.</br>
+,,,.            addConfiguration(XMLUtils::getAttribute(n, "id"), tmp);.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "DiscountingCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,DiscountingCurve", "currency,true.            addDiscountingCurves(id, XMLUtils::getChildrenAttributesAndValues(n, "DiscountingCurve", "currency", true));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "YieldCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,YieldCurve", "name,false.            addYieldCurves(id, XMLUtils::getChildrenAttributesAndValues(n, "YieldCurve", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "IndexForwardingCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,Index", "name,false.            addIndexForwardingCurves(id, XMLUtils::getChildrenAttributesAndValues(n, "Index", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "SwapIndexCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,,.            vector<XMLNode*> nodes = XMLUtils::getChildrenNodes(n, "SwapIndex");.</br>
+,,,.                string name = XMLUtils::getAttribute(xn, "name");.</br>
+,,Discounting,true.                string disc = XMLUtils::getChildValue(xn, "Discounting", true);.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "FxSpots") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,FxSpot", "pair,false.            addFxSpots(id, XMLUtils::getChildrenAttributesAndValues(n, "FxSpot", "pair", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "FxVolatilities") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,FxVolatility", "pair,false.            addFxVolatilities(id, XMLUtils::getChildrenAttributesAndValues(n, "FxVolatility", "pair", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "SwaptionVolatilities") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,SwaptionVolatility", "currency,false.                id, XMLUtils::getChildrenAttributesAndValues(n, "SwaptionVolatility", "currency", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "CapFloorVolatilities") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,CapFloorVolatility", "currency,false.                id, XMLUtils::getChildrenAttributesAndValues(n, "CapFloorVolatility", "currency", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "DefaultCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,DefaultCurve", "name,false.            addDefaultCurves(id, XMLUtils::getChildrenAttributesAndValues(n, "DefaultCurve", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "ZeroInflationIndexCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,ZeroInflationIndexCurve", "name,false.                id, XMLUtils::getChildrenAttributesAndValues(n, "ZeroInflationIndexCurve", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "YYInflationIndexCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,YYInflationIndexCurve", "name,false.                id, XMLUtils::getChildrenAttributesAndValues(n, "YYInflationIndexCurve", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "InflationCapFloorPriceSurfaces") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,InflationCapFloorPriceSurface", "name,false.                id, XMLUtils::getChildrenAttributesAndValues(n, "InflationCapFloorPriceSurface", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "EquityCurves") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,EquityCurve", "name,false.            addEquityCurves(id, XMLUtils::getChildrenAttributesAndValues(n, "EquityCurve", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "EquityVolatilities") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,EquityVolatility", "name,false.            addEquityVolatilities(id, XMLUtils::getChildrenAttributesAndValues(n, "EquityVolatility", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "SecuritySpreads") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,SecuritySpread", "name,false.            addSecuritySpreads(id, XMLUtils::getChildrenAttributesAndValues(n, "SecuritySpread", "name", false));.</br>
+,,,.        } else if (XMLUtils::getNodeName(n) == "SecurityRecoveryRates") {.</br>
+,,,.            string id = XMLUtils::getAttribute(n, "id");.</br>
+,,SecurityRecoveryRate", "name,false.                id, XMLUtils::getChildrenAttributesAndValues(n, "SecurityRecoveryRate", "name", false));.</br>
+,,,.            QL_FAIL("TodaysMarketParameters::fromXML(): node not recognized: " << XMLUtils::getNodeName(n));.</br>
+,,,.        n = XMLUtils::getNextSibling(n);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/marketdata/yieldcurve.cpp">file:C:/dev/Engine/OREData/ored/marketdata/yieldcurve.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/model">dir:C:/dev/Engine/OREData/ored/model</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/crossassetmodelbuilder.cpp">file:C:/dev/Engine/OREData/ored/model/crossassetmodelbuilder.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/crossassetmodeldata.cpp">file:C:/dev/Engine/OREData/ored/model/crossassetmodeldata.cpp</a></br>
+---> CrossAssetModelData</br>
+,,,.    XMLNode* modelNode = XMLUtils::getChildNode(sim, "CrossAssetModel");.</br>
+,,,.    XMLUtils::checkNode(modelNode, "CrossAssetModel");.</br>
+,,DomesticCcy,true.    domesticCurrency_ = XMLUtils::getChildValue(modelNode, "DomesticCcy", true); // mandatory.</br>
+1,,Currencies", "Currency,true.    currencies_ = XMLUtils::getChildrenValues(modelNode, "Currencies", "Currency", true);.</br>
+1,,,.    equities_ = XMLUtils::getChildrenValues(modelNode, "Equities", "Equity");.</br>
+,Double,BootstrapTolerance,true.    bootstrapTolerance_ = XMLUtils::getChildValueAsDouble(modelNode, "BootstrapTolerance", true);.</br>
+,,,.    XMLNode* irNode = XMLUtils::getChildNode(modelNode, "InterestRateModels");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(irNode, "LGM"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "LGM")) {.</br>
+,,,.        } // end of  for (XMLNode* child = XMLUtils::getChildNode(irNode, "LGM"); child;.</br>
+,,,.    XMLNode* fxNode = XMLUtils::getChildNode(modelNode, "ForeignExchangeModels");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(fxNode, "CrossCcyLGM"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "CrossCcyLGM")) {.</br>
+,,,.    XMLNode* eqNode = XMLUtils::getChildNode(modelNode, "EquityModels");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(eqNode, "CrossAssetLGM"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child, "CrossAssetLGM")) {.</br>
+,,,.    XMLNode* correlationNode = XMLUtils::getChildNode(modelNode, "InstantaneousCorrelations");.</br>
+,,,.        vector<XMLNode*> nodes = XMLUtils::getChildrenNodes(correlationNode, "Correlation");.</br>
+,,,.            string f1 = XMLUtils::getAttribute(nodes[i], "factor1");.</br>
+,,,.            string f2 = XMLUtils::getAttribute(nodes[i], "factor2");.</br>
+,,,.            string v = XMLUtils::getNodeValue(nodes[i]);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/eqbsbuilder.cpp">file:C:/dev/Engine/OREData/ored/model/eqbsbuilder.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/eqbsdata.cpp">file:C:/dev/Engine/OREData/ored/model/eqbsdata.cpp</a></br>
+---> EqBsData</br>
+,,,.    name_ = XMLUtils::getAttribute(node, "name");.</br>
+,,Currency,true.    ccy_ = XMLUtils::getChildValue(node, "Currency", true);.</br>
+,,CalibrationType,true.    std::string calibTypeString = XMLUtils::getChildValue(node, "CalibrationType", true);.</br>
+,,,.    XMLNode* sigmaNode = XMLUtils::getChildNode(node, "Sigma");.</br>
+,Bool,Calibrate,true.    calibrateSigma_ = XMLUtils::getChildValueAsBool(sigmaNode, "Calibrate", true);.</br>
+,,ParamType,true.    std::string sigmaTypeString = XMLUtils::getChildValue(sigmaNode, "ParamType", true);.</br>
+1,DoublesCompact,TimeGrid,true.    sigmaTimes_ = XMLUtils::getChildrenValuesAsDoublesCompact(sigmaNode, "TimeGrid", true);.</br>
+1,DoublesCompact,InitialValue,true.    sigmaValues_ = XMLUtils::getChildrenValuesAsDoublesCompact(sigmaNode, "InitialValue", true);.</br>
+,,,.    XMLNode* optionsNode = XMLUtils::getChildNode(node, "CalibrationOptions");.</br>
+1,Strings,Expiries,true.    optionExpiries_ = XMLUtils::getChildrenValuesAsStrings(optionsNode, "Expiries", true);.</br>
+1,Strings,Strikes,false.    optionStrikes_ = XMLUtils::getChildrenValuesAsStrings(optionsNode, "Strikes", false);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/fxbsbuilder.cpp">file:C:/dev/Engine/OREData/ored/model/fxbsbuilder.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/fxbsdata.cpp">file:C:/dev/Engine/OREData/ored/model/fxbsdata.cpp</a></br>
+---> FxBsData</br>
+,,,.    foreignCcy_ = XMLUtils::getAttribute(node, "foreignCcy");.</br>
+,,DomesticCcy,true.    domesticCcy_ = XMLUtils::getChildValue(node, "DomesticCcy", true);.</br>
+,,CalibrationType,true.    std::string calibTypeString = XMLUtils::getChildValue(node, "CalibrationType", true);.</br>
+,,,.    XMLNode* sigmaNode = XMLUtils::getChildNode(node, "Sigma");.</br>
+,Bool,Calibrate,true.    calibrateSigma_ = XMLUtils::getChildValueAsBool(sigmaNode, "Calibrate", true);.</br>
+,,ParamType,true.    std::string sigmaTypeString = XMLUtils::getChildValue(sigmaNode, "ParamType", true);.</br>
+1,DoublesCompact,TimeGrid,true.    sigmaTimes_ = XMLUtils::getChildrenValuesAsDoublesCompact(sigmaNode, "TimeGrid", true);.</br>
+1,DoublesCompact,InitialValue,true.    sigmaValues_ = XMLUtils::getChildrenValuesAsDoublesCompact(sigmaNode, "InitialValue", true);.</br>
+,,,.    XMLNode* optionsNode = XMLUtils::getChildNode(node, "CalibrationOptions");.</br>
+1,Strings,Expiries,true.    optionExpiries_ = XMLUtils::getChildrenValuesAsStrings(optionsNode, "Expiries", true);.</br>
+1,Strings,Strikes,false.    optionStrikes_ = XMLUtils::getChildrenValuesAsStrings(optionsNode, "Strikes", false);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/lgmbuilder.cpp">file:C:/dev/Engine/OREData/ored/model/lgmbuilder.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/lgmdata.cpp">file:C:/dev/Engine/OREData/ored/model/lgmdata.cpp</a></br>
+---> LgmData</br>
+,,,.    // XMLUtils::checkNode(node, "Models");.</br>
+,,,.    // XMLNode* modelNode = XMLUtils::getChildNode(node, "LGM");.</br>
+,,,.    ccy_ = XMLUtils::getAttribute(node, "ccy");.</br>
+,,CalibrationType,true.    std::string calibTypeString = XMLUtils::getChildValue(node, "CalibrationType", true);.</br>
+,,,.    XMLNode* volNode = XMLUtils::getChildNode(node, "Volatility");.</br>
+,Bool,Calibrate,true.    calibrateA_ = XMLUtils::getChildValueAsBool(volNode, "Calibrate", true);.</br>
+,,VolatilityType,true.    std::string volTypeString = XMLUtils::getChildValue(volNode, "VolatilityType", true);.</br>
+,,ParamType,true.    std::string alphaTypeString = XMLUtils::getChildValue(volNode, "ParamType", true);.</br>
+1,DoublesCompact,TimeGrid,true.    aTimes_ = XMLUtils::getChildrenValuesAsDoublesCompact(volNode, "TimeGrid", true);.</br>
+1,DoublesCompact,InitialValue,true.    aValues_ = XMLUtils::getChildrenValuesAsDoublesCompact(volNode, "InitialValue", true);.</br>
+,,,.    XMLNode* revNode = XMLUtils::getChildNode(node, "Reversion");.</br>
+,Bool,Calibrate,true.    calibrateH_ = XMLUtils::getChildValueAsBool(revNode, "Calibrate", true);.</br>
+,,ReversionType,true.    std::string revTypeString = XMLUtils::getChildValue(revNode, "ReversionType", true);.</br>
+,,ParamType,true.    std::string hTypeString = XMLUtils::getChildValue(revNode, "ParamType", true);.</br>
+1,DoublesCompact,TimeGrid,true.    hTimes_ = XMLUtils::getChildrenValuesAsDoublesCompact(revNode, "TimeGrid", true);.</br>
+1,DoublesCompact,InitialValue,true.    hValues_ = XMLUtils::getChildrenValuesAsDoublesCompact(revNode, "InitialValue", true);.</br>
+,,,.    XMLNode* tranformNode = XMLUtils::getChildNode(node, "ParameterTransformation");.</br>
+,Double,ShiftHorizon,true.    shiftHorizon_ = XMLUtils::getChildValueAsDouble(tranformNode, "ShiftHorizon", true);.</br>
+,Double,Scaling,true.    scaling_ = XMLUtils::getChildValueAsDouble(tranformNode, "Scaling", true);.</br>
+,,,.    XMLNode* swaptionsNode = XMLUtils::getChildNode(node, "CalibrationSwaptions");.</br>
+,,CalibrationStrategy,false.    string calibrationStrategyStr = XMLUtils::getChildValue(swaptionsNode, "CalibrationStrategy", false);.</br>
+1,Strings,Expiries,false.    swaptionExpiries_ = XMLUtils::getChildrenValuesAsStrings(swaptionsNode, "Expiries", false);.</br>
+1,Strings,Terms,false.    swaptionTerms_ = XMLUtils::getChildrenValuesAsStrings(swaptionsNode, "Terms", false);.</br>
+1,Strings,Strikes,false.    swaptionStrikes_ = XMLUtils::getChildrenValuesAsStrings(swaptionsNode, "Strikes", false);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/model/utilities.cpp">file:C:/dev/Engine/OREData/ored/model/utilities.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio">dir:C:/dev/Engine/OREData/ored/portfolio</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/bond.cpp">file:C:/dev/Engine/OREData/ored/portfolio/bond.cpp</a></br>
+---> Bond</br>
+,,,.    XMLNode* bondNode = XMLUtils::getChildNode(node, "BondData");.</br>
+,,IssuerId,true.    issuerId_ = XMLUtils::getChildValue(bondNode, "IssuerId", true);.</br>
+,,CreditCurveId,true.    creditCurveId_ = XMLUtils::getChildValue(bondNode, "CreditCurveId", true);.</br>
+,,SecurityId,true.    securityId_ = XMLUtils::getChildValue(bondNode, "SecurityId", true);.</br>
+,,ReferenceCurveId,true.    referenceCurveId_ = XMLUtils::getChildValue(bondNode, "ReferenceCurveId", true);.</br>
+,,SettlementDays,true.    settlementDays_ = XMLUtils::getChildValue(bondNode, "SettlementDays", true);.</br>
+,,Calendar,true.    calendar_ = XMLUtils::getChildValue(bondNode, "Calendar", true);.</br>
+,,IssueDate,true.    issueDate_ = XMLUtils::getChildValue(bondNode, "IssueDate", true);.</br>
+,,,.    XMLNode* legNode = XMLUtils::getChildNode(bondNode, "LegData");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/builders">dir:C:/dev/Engine/OREData/ored/portfolio/builders</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/builders/capfloor.cpp">file:C:/dev/Engine/OREData/ored/portfolio/builders/capfloor.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/builders/capfloorediborleg.cpp">file:C:/dev/Engine/OREData/ored/portfolio/builders/capfloorediborleg.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/builders/swaption.cpp">file:C:/dev/Engine/OREData/ored/portfolio/builders/swaption.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/capfloor.cpp">file:C:/dev/Engine/OREData/ored/portfolio/capfloor.cpp</a></br>
+---> CapFloor</br>
+,,,.    XMLNode* capFloorNode = XMLUtils::getChildNode(node, "CapFloorData");.</br>
+,,LongShort,true.    longShort_ = XMLUtils::getChildValue(capFloorNode, "LongShort", true);.</br>
+,,,.    legData_.fromXML(XMLUtils::getChildNode(capFloorNode, "LegData"));.</br>
+1,Doubles,,.    caps_ = XMLUtils::getChildrenValuesAsDoubles(capFloorNode, "CapRates", "Rate");.</br>
+1,Doubles,,.    floors_ = XMLUtils::getChildrenValuesAsDoubles(capFloorNode, "FloorRates", "Rate");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/enginedata.cpp">file:C:/dev/Engine/OREData/ored/portfolio/enginedata.cpp</a></br>
+---> EngineData</br>
+,,,.    XMLUtils::checkNode(root, "PricingEngines");.</br>
+,,,.    for (XMLNode* node = XMLUtils::getChildNode(root, "Product"); node;.</br>
+,,,.         node = XMLUtils::getNextSibling(node, "Product")) {.</br>
+,,,.        std::string productName = XMLUtils::getAttribute(node, "type");.</br>
+,,,.        model_[productName] = XMLUtils::getChildValue(node, "Model");.</br>
+,,,.        XMLNode* modelParams = XMLUtils::getChildNode(node, "ModelParameters");.</br>
+,,,.        for (XMLNode* paramNode = XMLUtils::getChildNode(modelParams, "Parameter"); paramNode;.</br>
+,,,.             paramNode = XMLUtils::getNextSibling(paramNode, "Parameter")) {.</br>
+,,,.            string paramName = XMLUtils::getAttribute(paramNode, "name");.</br>
+,,,.            string paramValue = XMLUtils::getNodeValue(paramNode);.</br>
+,,,.        engine_[productName] = XMLUtils::getChildValue(node, "Engine");.</br>
+,,,.        XMLNode* engineParams = XMLUtils::getChildNode(node, "EngineParameters");.</br>
+,,,.        for (XMLNode* paramNode = XMLUtils::getChildNode(engineParams, "Parameter"); paramNode;.</br>
+,,,.             paramNode = XMLUtils::getNextSibling(paramNode, "Parameter")) {.</br>
+,,,.            string paramName = XMLUtils::getAttribute(paramNode, "name");.</br>
+,,,.            string paramValue = XMLUtils::getNodeValue(paramNode);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/enginefactory.cpp">file:C:/dev/Engine/OREData/ored/portfolio/enginefactory.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/envelope.cpp">file:C:/dev/Engine/OREData/ored/portfolio/envelope.cpp</a></br>
+---> Envelope</br>
+,,,.    XMLUtils::checkNode(node, "Envelope");.</br>
+,,CounterParty,true.    counterparty_ = XMLUtils::getChildValue(node, "CounterParty", true);.</br>
+,,NettingSetId,false.    nettingSetId_ = XMLUtils::getChildValue(node, "NettingSetId", false);.</br>
+,,,.    XMLNode* additionalNode = XMLUtils::getChildNode(node, "AdditionalFields");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(additionalNode); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            additionalFields_[XMLUtils::getNodeName(child)] = XMLUtils::getNodeValue(child);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/equityforward.cpp">file:C:/dev/Engine/OREData/ored/portfolio/equityforward.cpp</a></br>
+---> EquityForward</br>
+,,,.    XMLNode* eNode = XMLUtils::getChildNode(node, "EquityForwardData");.</br>
+,,LongShort,true.    longShort_ = XMLUtils::getChildValue(eNode, "LongShort", true);.</br>
+,,Name,true.    eqName_ = XMLUtils::getChildValue(eNode, "Name", true);.</br>
+,,Currency,true.    currency_ = XMLUtils::getChildValue(eNode, "Currency", true);.</br>
+,Double,Quantity,true.    quantity_ = XMLUtils::getChildValueAsDouble(eNode, "Quantity", true);.</br>
+,,Maturity,true.    maturityDate_ = XMLUtils::getChildValue(eNode, "Maturity", true);.</br>
+,Double,Strike,true.    strike_ = XMLUtils::getChildValueAsDouble(eNode, "Strike", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/equityoption.cpp">file:C:/dev/Engine/OREData/ored/portfolio/equityoption.cpp</a></br>
+---> EquityOption</br>
+,,,.    XMLNode* eqNode = XMLUtils::getChildNode(node, "EquityOptionData");.</br>
+,,,.    option_.fromXML(XMLUtils::getChildNode(eqNode, "OptionData"));.</br>
+,,Name,true.    eqName_ = XMLUtils::getChildValue(eqNode, "Name", true);.</br>
+,,Currency,true.    currency_ = XMLUtils::getChildValue(eqNode, "Currency", true);.</br>
+,Double,Strike,true.    strike_ = XMLUtils::getChildValueAsDouble(eqNode, "Strike", true);.</br>
+,Double,Quantity,true.    quantity_ = XMLUtils::getChildValueAsDouble(eqNode, "Quantity", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/fxforward.cpp">file:C:/dev/Engine/OREData/ored/portfolio/fxforward.cpp</a></br>
+---> FxForward</br>
+,,,.    XMLNode* fxNode = XMLUtils::getChildNode(node, "FxForwardData");.</br>
+,,ValueDate,true.    maturityDate_ = XMLUtils::getChildValue(fxNode, "ValueDate", true);.</br>
+,,BoughtCurrency,true.    boughtCurrency_ = XMLUtils::getChildValue(fxNode, "BoughtCurrency", true);.</br>
+,,SoldCurrency,true.    soldCurrency_ = XMLUtils::getChildValue(fxNode, "SoldCurrency", true);.</br>
+,Double,BoughtAmount,true.    boughtAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "BoughtAmount", true);.</br>
+,Double,SoldAmount,true.    soldAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "SoldAmount", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/fxoption.cpp">file:C:/dev/Engine/OREData/ored/portfolio/fxoption.cpp</a></br>
+---> FxOption</br>
+,,,.    XMLNode* fxNode = XMLUtils::getChildNode(node, "FxOptionData");.</br>
+,,,.    option_.fromXML(XMLUtils::getChildNode(fxNode, "OptionData"));.</br>
+,,BoughtCurrency,true.    boughtCurrency_ = XMLUtils::getChildValue(fxNode, "BoughtCurrency", true);.</br>
+,,SoldCurrency,true.    soldCurrency_ = XMLUtils::getChildValue(fxNode, "SoldCurrency", true);.</br>
+,Double,BoughtAmount,true.    boughtAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "BoughtAmount", true);.</br>
+,Double,SoldAmount,true.    soldAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "SoldAmount", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/fxswap.cpp">file:C:/dev/Engine/OREData/ored/portfolio/fxswap.cpp</a></br>
+---> FxSwap</br>
+,,,.    XMLNode* fxNode = XMLUtils::getChildNode(node, "FxSwapData");.</br>
+,,NearDate,true.    nearDate_ = XMLUtils::getChildValue(fxNode, "NearDate", true);.</br>
+,,FarDate,true.    farDate_ = XMLUtils::getChildValue(fxNode, "FarDate", true);.</br>
+,,NearBoughtCurrency,true.    nearBoughtCurrency_ = XMLUtils::getChildValue(fxNode, "NearBoughtCurrency", true);.</br>
+,,NearSoldCurrency,true.    nearSoldCurrency_ = XMLUtils::getChildValue(fxNode, "NearSoldCurrency", true);.</br>
+,Double,NearBoughtAmount,true.    nearBoughtAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "NearBoughtAmount", true);.</br>
+,Double,NearSoldAmount,true.    nearSoldAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "NearSoldAmount", true);.</br>
+,Double,FarBoughtAmount,true.    farBoughtAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "FarBoughtAmount", true);.</br>
+,Double,FarSoldAmount,true.    farSoldAmount_ = XMLUtils::getChildValueAsDouble(fxNode, "FarSoldAmount", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/legdata.cpp">file:C:/dev/Engine/OREData/ored/portfolio/legdata.cpp</a></br>
+---> CashflowData</br>
+,,,.    XMLUtils::checkNode(node, "CashflowData");.</br>
+1,DoublesWithAttributes,,.    amounts_ = XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Cashflow", "Amount", "Date", dates_);.</br>
+</br>
+---> FixedLegData</br>
+,,,.    XMLUtils::checkNode(node, "FixedLegData");.</br>
+1,DoublesWithAttributes,,.    rates_ = XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Rates", "Rate", "startDate", rateDates_, true);.</br>
+</br>
+---> FloatingLegData</br>
+,,,.    XMLUtils::checkNode(node, "FloatingLegData");.</br>
+,,Index,true.    index_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+1,DoublesWithAttributes,,.        XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Spreads", "Spread", "startDate", spreadDates_, true);.</br>
+,,,.    XMLNode* arrNode = XMLUtils::getChildNode(node, "IsInArrears");.</br>
+,Bool,IsInArrears,true.        isInArrears_ = XMLUtils::getChildValueAsBool(node, "IsInArrears", true);.</br>
+,Int,,.    fixingDays_ = XMLUtils::getChildValueAsInt(node, "FixingDays"); // defaults to 0.</br>
+1,DoublesWithAttributes,,.    caps_ = XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Caps", "Cap", "startDate", capDates_);.</br>
+1,DoublesWithAttributes,,.    floors_ = XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Floors", "Floor", "startDate", floorDates_);.</br>
+1,DoublesWithAttributes,,.        XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Gearings", "Gearing", "startDate", gearingDates_);.</br>
+</br>
+---> CPILegData</br>
+,,,.    XMLUtils::checkNode(node, "CPILegData");.</br>
+,,Index,true.    index_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,Double,BaseCPI,true.    baseCPI_ = XMLUtils::getChildValueAsDouble(node, "BaseCPI", true);.</br>
+,,ObservationLag,true.    observationLag_ = XMLUtils::getChildValue(node, "ObservationLag", true);.</br>
+,Bool,Interpolated,true.    interpolated_ = XMLUtils::getChildValueAsBool(node, "Interpolated", true);.</br>
+1,DoublesWithAttributes,,.    rates_ = XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Rates", "Rate", "startDate", rateDates_, true);.</br>
+</br>
+---> YoYLegData</br>
+,,,.    XMLUtils::checkNode(node, "YYLegData");.</br>
+,,Index,true.    index_ = XMLUtils::getChildValue(node, "Index", true);.</br>
+,Int,FixingDays,true.    fixingDays_ = XMLUtils::getChildValueAsInt(node, "FixingDays", true);.</br>
+,,ObservationLag,true.    observationLag_ = XMLUtils::getChildValue(node, "ObservationLag", true);.</br>
+,Bool,Interpolated,true.    interpolated_ = XMLUtils::getChildValueAsBool(node, "Interpolated", true);.</br>
+1,DoublesWithAttributes,,.        XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Gearings", "Gearing", "startDate", gearingDates_);.</br>
+1,DoublesWithAttributes,,.    spreads_ = XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Spreads", "Spread", "startDate", spreadDates_);.</br>
+</br>
+---> LegData</br>
+,,,.    XMLUtils::checkNode(node, "LegData");.</br>
+,,LegType,true.    legType_ = XMLUtils::getChildValue(node, "LegType", true);.</br>
+,Bool,,.    isPayer_ = XMLUtils::getChildValueAsBool(node, "Payer");.</br>
+,,Currency,true.    currency_ = XMLUtils::getChildValue(node, "Currency", true);.</br>
+,,,.    dayCounter_ = XMLUtils::getChildValue(node, "DayCounter");.</br>
+,,,.    paymentConvention_ = XMLUtils::getChildValue(node, "PaymentConvention");.</br>
+1,DoublesWithAttributes,,.        XMLUtils::getChildrenValuesAsDoublesWithAttributes(node, "Notionals", "Notional", "startDate", notionalDates_);.</br>
+,,,.    XMLNode* tmp = XMLUtils::getChildNode(node, "Notionals");.</br>
+,,,.        XMLNode* fxResetNode = XMLUtils::getChildNode(tmp, "FXReset");.</br>
+,,,.            foreignCurrency_ = XMLUtils::getChildValue(fxResetNode, "ForeignCurrency");.</br>
+,Double,,.            foreignAmount_ = XMLUtils::getChildValueAsDouble(fxResetNode, "ForeignAmount");.</br>
+,,,.            fxIndex_ = XMLUtils::getChildValue(fxResetNode, "FXIndex");.</br>
+,Int,,.            fixingDays_ = XMLUtils::getChildValueAsInt(fxResetNode, "FixingDays");.</br>
+,,,.        XMLNode* exchangeNode = XMLUtils::getChildNode(tmp, "Exchanges");.</br>
+,Bool,,.            notionalInitialExchange_ = XMLUtils::getChildValueAsBool(exchangeNode, "NotionalInitialExchange");.</br>
+,Bool,,.            notionalFinalExchange_ = XMLUtils::getChildValueAsBool(exchangeNode, "NotionalFinalExchange");.</br>
+,,,.            if (XMLUtils::getChildNode(exchangeNode, "NotionalAmortizingExchange")).</br>
+,Bool,,.                notionalAmortizingExchange_ = XMLUtils::getChildValueAsBool(exchangeNode, "NotionalAmortizingExchange");.</br>
+,,,.    tmp = XMLUtils::getChildNode(node, "ScheduleData");.</br>
+,,,.        fixedLegData_.fromXML(XMLUtils::getChildNode(node, "FixedLegData"));.</br>
+,,,.        floatingLegData_.fromXML(XMLUtils::getChildNode(node, "FloatingLegData"));.</br>
+,,,.        cashflowData_.fromXML(XMLUtils::getChildNode(node, "CashflowData"));.</br>
+,,,.        cpiLegData_.fromXML(XMLUtils::getChildNode(node, "CPILegData"));.</br>
+,,,.        yoyLegData_.fromXML(XMLUtils::getChildNode(node, "YYLegData"));.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/nettingsetdefinition.cpp">file:C:/dev/Engine/OREData/ored/portfolio/nettingsetdefinition.cpp</a></br>
+---> NettingSetDefinition</br>
+,,,.    XMLUtils::checkNode(node, "NettingSet");.</br>
+,,NettingSetId,true.    nettingSetId_ = XMLUtils::getChildValue(node, "NettingSetId", true);.</br>
+,,Counterparty,true.    ctp_ = XMLUtils::getChildValue(node, "Counterparty", true);.</br>
+,Bool,ActiveCSAFlag,true.    activeCsaFlag_ = XMLUtils::getChildValueAsBool(node, "ActiveCSAFlag", true);.</br>
+,,,.        XMLNode* csaChild = XMLUtils::getChildNode(node, "CSADetails");.</br>
+,,,.        XMLUtils::checkNode(csaChild, "CSADetails");.</br>
+,,Bilateral,true.        csaTypeStr_ = XMLUtils::getChildValue(csaChild, "Bilateral", true);.</br>
+,,CSACurrency,true.        csaCurrency_ = XMLUtils::getChildValue(csaChild, "CSACurrency", true);.</br>
+,,Index,true.        index_ = XMLUtils::getChildValue(csaChild, "Index", true);.</br>
+,Double,ThresholdPay,true.        thresholdPay_ = XMLUtils::getChildValueAsDouble(csaChild, "ThresholdPay", true);.</br>
+,Double,ThresholdReceive,true.        thresholdRcv_ = XMLUtils::getChildValueAsDouble(csaChild, "ThresholdReceive", true);.</br>
+,Double,MinimumTransferAmountPay,true.        mtaPay_ = XMLUtils::getChildValueAsDouble(csaChild, "MinimumTransferAmountPay", true);.</br>
+,Double,MinimumTransferAmountReceive,true.        mtaRcv_ = XMLUtils::getChildValueAsDouble(csaChild, "MinimumTransferAmountReceive", true);.</br>
+,,MarginPeriodOfRisk,true.        mprStr_ = XMLUtils::getChildValue(csaChild, "MarginPeriodOfRisk", true);.</br>
+,Double,CollateralCompoundingSpreadReceive,true.        collatSpreadRcv_ = XMLUtils::getChildValueAsDouble(csaChild, "CollateralCompoundingSpreadReceive", true);.</br>
+,Double,CollateralCompoundingSpreadPay,true.        collatSpreadPay_ = XMLUtils::getChildValueAsDouble(csaChild, "CollateralCompoundingSpreadPay", true);.</br>
+,,,.        XMLNode* freqChild = XMLUtils::getChildNode(csaChild, "MarginingFrequency");.</br>
+,,,.        XMLUtils::checkNode(freqChild, "MarginingFrequency");.</br>
+,,CallFrequency,true.        marginCallFreqStr_ = XMLUtils::getChildValue(freqChild, "CallFrequency", true);.</br>
+,,PostFrequency,true.        marginPostFreqStr_ = XMLUtils::getChildValue(freqChild, "PostFrequency", true);.</br>
+,,,.        XMLNode* iaChild = XMLUtils::getChildNode(csaChild, "IndependentAmount");.</br>
+,,,.        XMLUtils::checkNode(iaChild, "IndependentAmount");.</br>
+,Double,IndependentAmountHeld,true.        iaHeld_ = XMLUtils::getChildValueAsDouble(iaChild, "IndependentAmountHeld", true);.</br>
+,,IndependentAmountType,true.        iaType_ = XMLUtils::getChildValue(iaChild, "IndependentAmountType", true);.</br>
+,,,.        XMLNode* collatChild = XMLUtils::getChildNode(csaChild, "EligibleCollaterals");.</br>
+,,,.        XMLUtils::checkNode(collatChild, "EligibleCollaterals");.</br>
+1,,Currencies", "Currency,true.        eligCollatCcys_ = XMLUtils::getChildrenValues(collatChild, "Currencies", "Currency", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/nettingsetmanager.cpp">file:C:/dev/Engine/OREData/ored/portfolio/nettingsetmanager.cpp</a></br>
+---> NettingSetManager</br>
+,,,.    XMLUtils::checkNode(node, "NettingSetDefinitions");.</br>
+,,,.    vector<XMLNode*> nettingSetNodes = XMLUtils::getChildrenNodes(node, "NettingSet");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/optiondata.cpp">file:C:/dev/Engine/OREData/ored/portfolio/optiondata.cpp</a></br>
+---> OptionData</br>
+,,,.    XMLUtils::checkNode(node, "OptionData");.</br>
+,,LongShort,true.    longShort_ = XMLUtils::getChildValue(node, "LongShort", true);.</br>
+,,OptionType,true.    callPut_ = XMLUtils::getChildValue(node, "OptionType", true);.</br>
+,,,.    style_ = XMLUtils::getChildValue(node, "Style");.</br>
+,Bool,PayOffAtExpiry,false.    payoffAtExpiry_ = XMLUtils::getChildValueAsBool(node, "PayOffAtExpiry", false);.</br>
+1,,,.    exerciseDates_ = XMLUtils::getChildrenValues(node, "ExerciseDates", "ExerciseDate");.</br>
+,,NoticePeriod,false.    noticePeriod_ = XMLUtils::getChildValue(node, "NoticePeriod", false);.</br>
+,,Settlement,false.    settlement_ = XMLUtils::getChildValue(node, "Settlement", false);.</br>
+,Double,PremiumAmount,false.    premium_ = XMLUtils::getChildValueAsDouble(node, "PremiumAmount", false);.</br>
+,,PremiumCurrency,false.    premiumCcy_ = XMLUtils::getChildValue(node, "PremiumCurrency", false);.</br>
+,,PremiumPayDate,false.    premiumPayDate_ = XMLUtils::getChildValue(node, "PremiumPayDate", false);.</br>
+1,Doubles,ExerciseFees", "ExerciseFee,false.    exerciseFees_ = XMLUtils::getChildrenValuesAsDoubles(node, "ExerciseFees", "ExerciseFee", false);.</br>
+1,Doubles,ExercisePrices", "ExercisePrice,false.    exercisePrices_ = XMLUtils::getChildrenValuesAsDoubles(node, "ExercisePrices", "ExercisePrice", false);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/optionwrapper.cpp">file:C:/dev/Engine/OREData/ored/portfolio/optionwrapper.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/portfolio.cpp">file:C:/dev/Engine/OREData/ored/portfolio/portfolio.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/schedule.cpp">file:C:/dev/Engine/OREData/ored/portfolio/schedule.cpp</a></br>
+---> ScheduleRules</br>
+,,,.    XMLUtils::checkNode(node, "Rules");.</br>
+,,,.    startDate_ = XMLUtils::getChildValue(node, "StartDate");.</br>
+,,,.    endDate_ = XMLUtils::getChildValue(node, "EndDate");.</br>
+,,,.    tenor_ = XMLUtils::getChildValue(node, "Tenor");.</br>
+,,,.    calendar_ = XMLUtils::getChildValue(node, "Calendar");.</br>
+,,,.    convention_ = XMLUtils::getChildValue(node, "Convention");.</br>
+,,,.    termConvention_ = XMLUtils::getChildValue(node, "TermConvention");.</br>
+,,,.    rule_ = XMLUtils::getChildValue(node, "Rule");.</br>
+,,,.    endOfMonth_ = XMLUtils::getChildValue(node, "EndOfMonth");.</br>
+,,,.    firstDate_ = XMLUtils::getChildValue(node, "FirstDate");.</br>
+,,,.    lastDate_ = XMLUtils::getChildValue(node, "LastDate");.</br>
+</br>
+---> ScheduleDates</br>
+,,,.    XMLUtils::checkNode(node, "Dates");.</br>
+,,,.    calendar_ = XMLUtils::getChildValue(node, "Calendar");.</br>
+1,,,.    dates_ = XMLUtils::getChildrenValues(node, "Dates", "Date");.</br>
+</br>
+---> ScheduleData</br>
+,,,.    for (auto& r : XMLUtils::getChildrenNodes(node, "Rules")) {.</br>
+,,,.    for (auto& d : XMLUtils::getChildrenNodes(node, "Dates")) {.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/swap.cpp">file:C:/dev/Engine/OREData/ored/portfolio/swap.cpp</a></br>
+---> Swap</br>
+,,,.    XMLNode* swapNode = XMLUtils::getChildNode(node, "SwapData");.</br>
+,,,.    vector<XMLNode*> nodes = XMLUtils::getChildrenNodes(swapNode, "LegData");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/swaption.cpp">file:C:/dev/Engine/OREData/ored/portfolio/swaption.cpp</a></br>
+---> Swaption</br>
+,,,.    XMLNode* swapNode = XMLUtils::getChildNode(node, "SwaptionData");.</br>
+,,,.    option_.fromXML(XMLUtils::getChildNode(swapNode, "OptionData"));.</br>
+,,,.    vector<XMLNode*> nodes = XMLUtils::getChildrenNodes(swapNode, "LegData");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/trade.cpp">file:C:/dev/Engine/OREData/ored/portfolio/trade.cpp</a></br>
+---> Trade</br>
+,,,.    XMLUtils::checkNode(node, "Trade");.</br>
+,,TradeType,true.    tradeType_ = XMLUtils::getChildValue(node, "TradeType", true);.</br>
+,,,.    envelope_.fromXML(XMLUtils::getChildNode(node, "Envelope"));.</br>
+,,,.    XMLNode* taNode = XMLUtils::getChildNode(node, "TradeActions");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/tradeactions.cpp">file:C:/dev/Engine/OREData/ored/portfolio/tradeactions.cpp</a></br>
+---> TradeAction</br>
+,,,.    XMLUtils::checkNode(node, "TradeAction");.</br>
+,,Type,true.    type_ = XMLUtils::getChildValue(node, "Type", true);.</br>
+,,Owner,true.    owner_ = XMLUtils::getChildValue(node, "Owner", true);.</br>
+,,,.    schedule_.fromXML(XMLUtils::getChildNode(node, "Schedule"));.</br>
+</br>
+---> TradeActions</br>
+,,,.    XMLUtils::checkNode(node, "TradeActions");.</br>
+,,,.    for (auto& action : XMLUtils::getChildrenNodes(node, "TradeAction")) {.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREData/ored/portfolio/tradefactory.cpp">file:C:/dev/Engine/OREData/ored/portfolio/tradefactory.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/report">dir:C:/dev/Engine/OREData/ored/report</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/report/csvreport.cpp">file:C:/dev/Engine/OREData/ored/report/csvreport.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities">dir:C:/dev/Engine/OREData/ored/utilities</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/correlationmatrix.cpp">file:C:/dev/Engine/OREData/ored/utilities/correlationmatrix.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/currencycheck.cpp">file:C:/dev/Engine/OREData/ored/utilities/currencycheck.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/flowanalysis.cpp">file:C:/dev/Engine/OREData/ored/utilities/flowanalysis.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/indexparser.cpp">file:C:/dev/Engine/OREData/ored/utilities/indexparser.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/log.cpp">file:C:/dev/Engine/OREData/ored/utilities/log.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/osutils.cpp">file:C:/dev/Engine/OREData/ored/utilities/osutils.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/parsers.cpp">file:C:/dev/Engine/OREData/ored/utilities/parsers.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/progressbar.cpp">file:C:/dev/Engine/OREData/ored/utilities/progressbar.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/strike.cpp">file:C:/dev/Engine/OREData/ored/utilities/strike.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/to_string.cpp">file:C:/dev/Engine/OREData/ored/utilities/to_string.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREData/ored/utilities/xmlutils.cpp">file:C:/dev/Engine/OREData/ored/utilities/xmlutils.cpp</a></br>
+---> XMLDocument</br>
+</br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/aggregation">dir:C:/dev/Engine/OREAnalytics/orea/aggregation</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/aggregation/collateralaccount.cpp">file:C:/dev/Engine/OREAnalytics/orea/aggregation/collateralaccount.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/aggregation/collatexposurehelper.cpp">file:C:/dev/Engine/OREAnalytics/orea/aggregation/collatexposurehelper.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/aggregation/postprocess.cpp">file:C:/dev/Engine/OREAnalytics/orea/aggregation/postprocess.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/app">dir:C:/dev/Engine/OREAnalytics/orea/app</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/app/oreapp.cpp">file:C:/dev/Engine/OREAnalytics/orea/app/oreapp.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/app/parameters.cpp">file:C:/dev/Engine/OREAnalytics/orea/app/parameters.cpp</a></br>
+---> Parameters</br>
+,,,.    XMLUtils::checkNode(node, "ORE");.</br>
+,,,.    XMLNode* setupNode = XMLUtils::getChildNode(node, "Setup");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(setupNode); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string key = XMLUtils::getAttribute(child, "name");.</br>
+,,,.        string value = XMLUtils::getNodeValue(child);.</br>
+,,,.    XMLNode* marketsNode = XMLUtils::getChildNode(node, "Markets");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(marketsNode); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string key = XMLUtils::getAttribute(child, "name");.</br>
+,,,.            string value = XMLUtils::getNodeValue(child);.</br>
+,,,.    XMLNode* analyticsNode = XMLUtils::getChildNode(node, "Analytics");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(analyticsNode); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string groupName = XMLUtils::getAttribute(child, "type");.</br>
+,,,.            for (XMLNode* paramNode = XMLUtils::getChildNode(child); paramNode;.</br>
+,,,.                 paramNode = XMLUtils::getNextSibling(paramNode)) {.</br>
+,,,.                string key = XMLUtils::getAttribute(paramNode, "name");.</br>
+,,,.                string value = XMLUtils::getNodeValue(paramNode);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/app/reportwriter.cpp">file:C:/dev/Engine/OREAnalytics/orea/app/reportwriter.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/cube">dir:C:/dev/Engine/OREAnalytics/orea/cube</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/cube/cubewriter.cpp">file:C:/dev/Engine/OREAnalytics/orea/cube/cubewriter.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/engine">dir:C:/dev/Engine/OREAnalytics/orea/engine</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/engine/sensitivityanalysis.cpp">file:C:/dev/Engine/OREAnalytics/orea/engine/sensitivityanalysis.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/engine/stresstest.cpp">file:C:/dev/Engine/OREAnalytics/orea/engine/stresstest.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/engine/valuationcalculator.cpp">file:C:/dev/Engine/OREAnalytics/orea/engine/valuationcalculator.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/engine/valuationengine.cpp">file:C:/dev/Engine/OREAnalytics/orea/engine/valuationengine.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario">dir:C:/dev/Engine/OREAnalytics/orea/scenario</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/clonescenariofactory.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/clonescenariofactory.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/crossassetmodelscenariogenerator.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/crossassetmodelscenariogenerator.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/lgmscenariogenerator.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/lgmscenariogenerator.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/scenario.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/scenario.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/scenariogeneratorbuilder.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/scenariogeneratorbuilder.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/scenariogeneratordata.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/scenariogeneratordata.cpp</a></br>
+---> ScenarioGeneratorData</br>
+,,,.    XMLNode* node = XMLUtils::getChildNode(sim, "Parameters");.</br>
+,,,.    XMLUtils::checkNode(node, "Parameters");.</br>
+,,Discretization,true.    std::string discString = XMLUtils::getChildValue(node, "Discretization", true); // mandatory.</br>
+,,Calendar,true.    std::string calString = XMLUtils::getChildValue(node, "Calendar", true);.</br>
+,,Grid,true.    std::string gridString = XMLUtils::getChildValue(node, "Grid", true);.</br>
+1,Periods,Grid,true.        std::vector<Period> gridTenors = XMLUtils::getChildrenValuesAsPeriods(node, "Grid", true);.</br>
+,,Sequence,true.    std::string sequenceTypeString = XMLUtils::getChildValue(node, "Sequence", true);.</br>
+,Int,Seed,true.    seed_ = XMLUtils::getChildValueAsInt(node, "Seed", true);.</br>
+,Int,Samples,true.    samples_ = XMLUtils::getChildValueAsInt(node, "Samples", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/scenariosimmarket.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/scenariosimmarket.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/scenariosimmarketparameters.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/scenariosimmarketparameters.cpp</a></br>
+---> ScenarioSimMarketParameters</br>
+,,,.    XMLNode* node = XMLUtils::getChildNode(sim, "Market");.</br>
+,,,.    XMLUtils::checkNode(node, "Market");.</br>
+,,,.    baseCcy_ = XMLUtils::getChildValue(node, "BaseCurrency");.</br>
+1,,,.    ccys_ = XMLUtils::getChildrenValues(node, "Currencies", "Currency");.</br>
+,,,.    XMLNode* nodeChild = XMLUtils::getChildNode(node, "BenchmarkCurves");.</br>
+1,,,.        yieldCurveNames_ = XMLUtils::getChildrenValues(nodeChild, "BenchmarkCurve", "Name");.</br>
+1,,,.        yieldCurveCurrencies_ = XMLUtils::getChildrenValues(nodeChild, "BenchmarkCurve", "Currency");.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "YieldCurves");.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(nodeChild, "Configuration");.</br>
+1,Periods,Tenors,true.    yieldCurveTenors_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Tenors", true);.</br>
+,,Interpolation,true.    interpolation_ = XMLUtils::getChildValue(nodeChild, "Interpolation", true);.</br>
+,Bool,,.    extrapolate_ = XMLUtils::getChildValueAsBool(nodeChild, "Extrapolate");.</br>
+1,,,.    indices_ = XMLUtils::getChildrenValues(node, "Indices", "Index");.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "SwapIndices");.</br>
+,,,.        for (XMLNode* n = XMLUtils::getChildNode(nodeChild, "SwapIndex"); n != nullptr;.</br>
+,,,.             n = XMLUtils::getNextSibling(n, "SwapIndex")) {.</br>
+,,,.            string name = XMLUtils::getChildValue(n, "Name");.</br>
+,,,.            string disc = XMLUtils::getChildValue(n, "DiscountingIndex");.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "FxRates");.</br>
+1,,CurrencyPairs", "CurrencyPair,true.        fxCcyPairs_ = XMLUtils::getChildrenValues(nodeChild, "CurrencyPairs", "CurrencyPair", true);.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "SwaptionVolatilities");.</br>
+,,,.    XMLNode* swapVolSimNode = XMLUtils::getChildNode(nodeChild, "Simulate");.</br>
+,,,.        swapVolSimulate_ = ore::data::parseBool(XMLUtils::getNodeValue(swapVolSimNode));.</br>
+1,Periods,Terms,true.    swapVolTerms_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Terms", true);.</br>
+1,Periods,Expiries,true.    swapVolExpiries_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Expiries", true);.</br>
+1,,Currencies", "Currency,true.    swapVolCcys_ = XMLUtils::getChildrenValues(nodeChild, "Currencies", "Currency", true);.</br>
+,,,.    swapVolDecayMode_ = XMLUtils::getChildValue(nodeChild, "ReactionToTimeDecay");.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "CapFloorVolatilities");.</br>
+,,,.        XMLNode* capVolSimNode = XMLUtils::getChildNode(nodeChild, "Simulate");.</br>
+,,,.            capFloorVolSimulate_ = ore::data::parseBool(XMLUtils::getNodeValue(capVolSimNode));.</br>
+1,Periods,Expiries,true.        capFloorVolExpiries_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Expiries", true);.</br>
+1,DoublesCompact,Strikes,true.        capFloorVolStrikes_ = XMLUtils::getChildrenValuesAsDoublesCompact(nodeChild, "Strikes", true);.</br>
+1,,Currencies", "Currency,true.        capFloorVolCcys_ = XMLUtils::getChildrenValues(nodeChild, "Currencies", "Currency", true);.</br>
+,,,.        capFloorVolDecayMode_ = XMLUtils::getChildValue(nodeChild, "ReactionToTimeDecay");.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "DefaultCurves");.</br>
+1,,Names", "Name,true.    defaultNames_ = XMLUtils::getChildrenValues(nodeChild, "Names", "Name", true);.</br>
+1,Periods,Tenors,true.    defaultTenors_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Tenors", true);.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "Equities");.</br>
+1,,Names", "Name,true.        eqNames_ = XMLUtils::getChildrenValues(nodeChild, "Names", "Name", true);.</br>
+1,Periods,Tenors,true.        eqTenors_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Tenors", true);.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "FxVolatilities");.</br>
+,,,.    XMLNode* fxVolSimNode = XMLUtils::getChildNode(nodeChild, "Simulate");.</br>
+,,,.        fxVolSimulate_ = ore::data::parseBool(XMLUtils::getNodeValue(fxVolSimNode));.</br>
+1,Periods,Expiries,true.    fxVolExpiries_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Expiries", true);.</br>
+,,,.    fxVolDecayMode_ = XMLUtils::getChildValue(nodeChild, "ReactionToTimeDecay");.</br>
+1,,CurrencyPairs", "CurrencyPair,true.    fxVolCcyPairs_ = XMLUtils::getChildrenValues(nodeChild, "CurrencyPairs", "CurrencyPair", true);.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "EquityVolatilities");.</br>
+,Bool,Simulate,true.        eqVolSimulate_ = XMLUtils::getChildValueAsBool(nodeChild, "Simulate", true);.</br>
+1,Periods,Expiries,true.        eqVolExpiries_ = XMLUtils::getChildrenValuesAsPeriods(nodeChild, "Expiries", true);.</br>
+,,,.        eqVolDecayMode_ = XMLUtils::getChildValue(nodeChild, "ReactionToTimeDecay");.</br>
+1,,Names", "Name,true.        eqVolNames_ = XMLUtils::getChildrenValues(nodeChild, "Names", "Name", true);.</br>
+1,,,.    additionalScenarioDataIndices_ = XMLUtils::getChildrenValues(node, "AggregationScenarioDataIndices", "Index");.</br>
+1,,AggregationScenarioDataCurrencies", "Currency,true.        XMLUtils::getChildrenValues(node, "AggregationScenarioDataCurrencies", "Currency", true);.</br>
+,,,.    nodeChild = XMLUtils::getChildNode(node, "Securities");.</br>
+1,,,.        securities_ = XMLUtils::getChildrenValues(node, "Securities", "Security");.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/scenariowriter.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/scenariowriter.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/sensitivityscenariodata.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/sensitivityscenariodata.cpp</a></br>
+---> SensitivityScenarioData</br>
+,,,.    XMLUtils::checkNode(node, "SensitivityAnalysis");.</br>
+,,,.    XMLNode* parNode = XMLUtils::getChildNode(node, "ParConversion");.</br>
+,Bool,,.        parConversion_ = XMLUtils::getChildValueAsBool(node, "ParConversion");.</br>
+,,,.    XMLNode* discountCurves = XMLUtils::getChildNode(node, "DiscountCurves");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(discountCurves, "DiscountCurve"); child;.</br>
+,,,.         child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string ccy = XMLUtils::getAttribute(child, "ccy");.</br>
+,,ShiftType,true.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+1,Periods,ShiftTenors,true.        data.shiftTenors = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTenors", true);.</br>
+,,,.        XMLNode* par = XMLUtils::getChildNode(child, "ParConversion");.</br>
+1,Strings,Instruments,true.            data.parInstruments = XMLUtils::getChildrenValuesAsStrings(par, "Instruments", true);.</br>
+,Bool,SingleCurve,true.            data.parInstrumentSingleCurve = XMLUtils::getChildValueAsBool(par, "SingleCurve", true);.</br>
+,,,.            XMLNode* conventionsNode = XMLUtils::getChildNode(par, "Conventions");.</br>
+,,Convention", "id,true.                XMLUtils::getChildrenAttributesAndValues(conventionsNode, "Convention", "id", true);.</br>
+,,,.    XMLNode* indexCurves = XMLUtils::getChildNode(node, "IndexCurves");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(indexCurves, "IndexCurve"); child;.</br>
+,,,.         child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string index = XMLUtils::getAttribute(child, "index");.</br>
+,,ShiftType,true.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+1,Periods,ShiftTenors,true.        data.shiftTenors = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTenors", true);.</br>
+,,,.        XMLNode* par = XMLUtils::getChildNode(child, "ParConversion");.</br>
+1,Strings,Instruments,true.            data.parInstruments = XMLUtils::getChildrenValuesAsStrings(par, "Instruments", true);.</br>
+,Bool,SingleCurve,true.            data.parInstrumentSingleCurve = XMLUtils::getChildValueAsBool(par, "SingleCurve", true);.</br>
+,,,.            XMLNode* conventionsNode = XMLUtils::getChildNode(par, "Conventions");.</br>
+,,Convention", "id,true.                XMLUtils::getChildrenAttributesAndValues(conventionsNode, "Convention", "id", true);.</br>
+,,,.    XMLNode* yieldCurves = XMLUtils::getChildNode(node, "YieldCurves");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(yieldCurves, "YieldCurve"); child;.</br>
+,,,.         child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string curveName = XMLUtils::getAttribute(child, "name");.</br>
+,,ShiftType,true.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+1,Periods,ShiftTenors,true.        data.shiftTenors = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTenors", true);.</br>
+,,,.        XMLNode* par = XMLUtils::getChildNode(child, "ParConversion");.</br>
+1,Strings,Instruments,true.            data.parInstruments = XMLUtils::getChildrenValuesAsStrings(par, "Instruments", true);.</br>
+,Bool,SingleCurve,true.            data.parInstrumentSingleCurve = XMLUtils::getChildValueAsBool(par, "SingleCurve", true);.</br>
+,,,.            XMLNode* conventionsNode = XMLUtils::getChildNode(par, "Conventions");.</br>
+,,Convention", "id,true.                XMLUtils::getChildrenAttributesAndValues(conventionsNode, "Convention", "id", true);.</br>
+,,,.    XMLNode* fxSpots = XMLUtils::getChildNode(node, "FxSpots");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(fxSpots, "FxSpot"); child; child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string ccypair = XMLUtils::getAttribute(child, "ccypair");.</br>
+,,ShiftType,true.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+,,,.    XMLNode* swaptionVols = XMLUtils::getChildNode(node, "SwaptionVolatilities");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(swaptionVols, "SwaptionVolatility"); child;.</br>
+,,,.         child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string ccy = XMLUtils::getAttribute(child, "ccy");.</br>
+,,ShiftType,true.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+1,Periods,ShiftTerms,true.        data.shiftTerms = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTerms", true);.</br>
+1,Periods,ShiftExpiries,true.        data.shiftExpiries = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftExpiries", true);.</br>
+1,DoublesCompact,ShiftStrikes,true.        data.shiftStrikes = XMLUtils::getChildrenValuesAsDoublesCompact(child, "ShiftStrikes", true);.</br>
+,,,.    XMLNode* capVols = XMLUtils::getChildNode(node, "CapFloorVolatilities");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(capVols, "CapFloorVolatility"); child;.</br>
+,,,.         child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string ccy = XMLUtils::getAttribute(child, "ccy");.</br>
+,,ShiftType,true.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+1,Periods,ShiftExpiries,true.        data.shiftExpiries = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftExpiries", true);.</br>
+1,DoublesCompact,ShiftStrikes,true.        data.shiftStrikes = XMLUtils::getChildrenValuesAsDoublesCompact(child, "ShiftStrikes", true);.</br>
+,,Index,true.        data.indexName = XMLUtils::getChildValue(child, "Index", true);.</br>
+,,,.    XMLNode* fxVols = XMLUtils::getChildNode(node, "FxVolatilities");.</br>
+,,,.    for (XMLNode* child = XMLUtils::getChildNode(fxVols, "FxVolatility"); child;.</br>
+,,,.         child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.        string ccypair = XMLUtils::getAttribute(child, "ccypair");.</br>
+,,,.        data.shiftType = XMLUtils::getChildValue(child, "ShiftType");.</br>
+,Double,ShiftSize,true.        data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+1,Periods,ShiftExpiries,true.        data.shiftExpiries = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftExpiries", true);.</br>
+1,Doubles,ShiftStrikes", "Strike,true.        data.shiftStrikes = XMLUtils::getChildrenValuesAsDoubles(child, "ShiftStrikes", "Strike", true);.</br>
+1,,CrossGammaFilter", "Pair,true.    vector<string> filter = XMLUtils::getChildrenValues(node, "CrossGammaFilter", "Pair", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/sensitivityscenariogenerator.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/sensitivityscenariogenerator.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/shiftscenariogenerator.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/shiftscenariogenerator.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/simplescenario.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/simplescenario.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/stressscenariodata.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/stressscenariodata.cpp</a></br>
+---> StressTestScenarioData</br>
+,,,.    XMLUtils::checkNode(node, "StressTesting");.</br>
+,,,.    for (XMLNode* testCase = XMLUtils::getChildNode(node, "StressTest"); testCase;.</br>
+,,,.         testCase = XMLUtils::getNextSibling(testCase)) {.</br>
+,,,.        test.label = XMLUtils::getAttribute(testCase, "id");.</br>
+,,Label,true.        // XMLUtils::getChildValue(testCase, "Label", true);.</br>
+,,,.        XMLNode* discountCurves = XMLUtils::getChildNode(testCase, "DiscountCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(discountCurves, "DiscountCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string ccy = XMLUtils::getAttribute(child, "ccy");.</br>
+,,ShiftType,true.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+1,DoublesCompact,Shifts,true.            data.shifts = XMLUtils::getChildrenValuesAsDoublesCompact(child, "Shifts", true);.</br>
+1,Periods,ShiftTenors,true.            data.shiftTenors = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTenors", true);.</br>
+,,,.        XMLNode* indexCurves = XMLUtils::getChildNode(testCase, "IndexCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(indexCurves, "IndexCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string index = XMLUtils::getAttribute(child, "index");.</br>
+,,ShiftType,true.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+1,DoublesCompact,Shifts,true.            data.shifts = XMLUtils::getChildrenValuesAsDoublesCompact(child, "Shifts", true);.</br>
+1,Periods,ShiftTenors,true.            data.shiftTenors = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTenors", true);.</br>
+,,,.        XMLNode* yieldCurves = XMLUtils::getChildNode(testCase, "YieldCurves");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(yieldCurves, "YieldCurve"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string name = XMLUtils::getAttribute(child, "name");.</br>
+,,ShiftType,true.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+1,DoublesCompact,Shifts,true.            data.shifts = XMLUtils::getChildrenValuesAsDoublesCompact(child, "Shifts", true);.</br>
+1,Periods,ShiftTenors,true.            data.shiftTenors = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTenors", true);.</br>
+,,,.        XMLNode* fxSpots = XMLUtils::getChildNode(testCase, "FxSpots");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(fxSpots, "FxSpot"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string ccypair = XMLUtils::getAttribute(child, "ccypair");.</br>
+,,ShiftType,true.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+,Double,ShiftSize,true.            data.shiftSize = XMLUtils::getChildValueAsDouble(child, "ShiftSize", true);.</br>
+,,,.        XMLNode* fxVols = XMLUtils::getChildNode(testCase, "FxVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(fxVols, "FxVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string ccypair = XMLUtils::getAttribute(child, "ccypair");.</br>
+,,,.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType");.</br>
+1,DoublesCompact,Shifts,true.            data.shifts = XMLUtils::getChildrenValuesAsDoublesCompact(child, "Shifts", true);.</br>
+1,Periods,ShiftExpiries,true.            data.shiftExpiries = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftExpiries", true);.</br>
+,,,.        XMLNode* swaptionVols = XMLUtils::getChildNode(testCase, "SwaptionVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(swaptionVols, "SwaptionVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string ccy = XMLUtils::getAttribute(child, "ccy");.</br>
+,,ShiftType,true.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+1,Periods,ShiftTerms,true.            data.shiftTerms = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftTerms", true);.</br>
+1,Periods,ShiftExpiries,true.            data.shiftExpiries = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftExpiries", true);.</br>
+,,,.            XMLNode* shiftSizes = XMLUtils::getChildNode(child, "Shifts");.</br>
+,,,.            for (XMLNode* child2 = XMLUtils::getChildNode(shiftSizes, "Shift"); child2;.</br>
+,,,.                 child2 = XMLUtils::getNextSibling(child2)) {.</br>
+,,,.                string expiry = XMLUtils::getAttribute(child2, "expiry");.</br>
+,,,.                string term = XMLUtils::getAttribute(child2, "term");.</br>
+,,,.                    data.parallelShiftSize = ore::data::parseReal(XMLUtils::getNodeValue(child2));.</br>
+,,,.                    Real value = ore::data::parseReal(XMLUtils::getNodeValue(child2));.</br>
+,,,.        XMLNode* capVols = XMLUtils::getChildNode(testCase, "CapFloorVolatilities");.</br>
+,,,.        for (XMLNode* child = XMLUtils::getChildNode(capVols, "CapFloorVolatility"); child;.</br>
+,,,.             child = XMLUtils::getNextSibling(child)) {.</br>
+,,,.            string ccy = XMLUtils::getAttribute(child, "ccy");.</br>
+,,ShiftType,true.            data.shiftType = XMLUtils::getChildValue(child, "ShiftType", true);.</br>
+1,Periods,ShiftExpiries,true.            data.shiftExpiries = XMLUtils::getChildrenValuesAsPeriods(child, "ShiftExpiries", true);.</br>
+1,DoublesCompact,Shifts,true.            data.shifts = XMLUtils::getChildrenValuesAsDoublesCompact(child, "Shifts", true);.</br>
+</br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/scenario/stressscenariogenerator.cpp">file:C:/dev/Engine/OREAnalytics/orea/scenario/stressscenariogenerator.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/simulation">dir:C:/dev/Engine/OREAnalytics/orea/simulation</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/simulation/dategrid.cpp">file:C:/dev/Engine/OREAnalytics/orea/simulation/dategrid.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/simulation/fixingmanager.cpp">file:C:/dev/Engine/OREAnalytics/orea/simulation/fixingmanager.cpp</a></br>
+<a href="file:///C:/dev/Engine/OREAnalytics/orea/simulation/simmarket.cpp">file:C:/dev/Engine/OREAnalytics/orea/simulation/simmarket.cpp</a></br>

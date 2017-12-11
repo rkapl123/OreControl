@@ -1,0 +1,12 @@
+open questions:
+
+XSD schema completeness (types)
+empty elements really required: DiscountCurves, CurveDescriptions in curveconfig.xml
+empty modelparameters in pricingengine.xml required!
+
+ordering of segements important in yield curve definitions (could this be done heuristically ?)
+
+empty elements should be recognized in simulation.xml (and in general) before going for child nodes.
+other elements that may be empty should be ignored if not available...
+
+ordering of currencies in simulation.xml should not be important (should be ordered internally)

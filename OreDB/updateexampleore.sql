@@ -1,0 +1,11 @@
+update OreParametersSetup set Parameter = 'conventions.xml' where name = 'conventionsFile' and OreConfigId = 'Example_2'
+update OreParametersSetup set Parameter = 'curveconfig.xml' where name = 'curveConfigFile' and OreConfigId = 'Example_2'
+update OreParametersSetup set Parameter = 'fixingdata.txt' where name = 'fixingDataFile' and OreConfigId = 'Example_2'
+update OreParametersSetup set Parameter = 'todaysmarket.xml' where name = 'marketConfigFile' and OreConfigId = 'Example_2'
+update OreParametersSetup set Parameter = 'marketdata.txt' where name = 'marketDataFile' and OreConfigId = 'Example_2'
+update OreParametersSetup set Parameter = 'portfolio.xml' where name = 'portfolioFile' and OreConfigId = 'Example_2'
+update OreParametersSetup set Parameter = 'pricingengine.xml' where name = 'pricingEnginesFile' and OreConfigId = 'Example_2'
+--update OreParametersSetup set Parameter = '255' where name = 'logMask' and OreConfigId = 'Example_2'
+insert OreParametersSetup (Parameter,name,OreConfigId) values ('255','logMask','Example_2')
+update OreParametersSetup set Parameter = 'OREDB' where name = 'inputPath' and OreConfigId = 'Example_2'
+update OreParametersAnalytics set Parameter = 'pricingengine.xml' where type = 'simulation' and name = 'pricingEnginesFile' and OreConfigId = 'Example_2'
