@@ -1,271 +1,175 @@
 use ORE
 
 CREATE TABLE ResultsFlows (
-	addColumn("ID", string())
-        .addColumn("Type", string())
-        .addColumn("LegNo", Size())
-        .addColumn("PayDate", Date())
-        .addColumn("Amount", double(), 4)
-        .addColumn("Currency", string())
-        .addColumn("Coupon", double(), 10)
-        .addColumn("Accrual", double(), 10)
-        .addColumn("fixingDate", Date())
-        .addColumn("fixingValue", double(), 10);
-AnalysisID varchar(30),
-TradeID,
-TradeType,
-LegNo,
-PayDate,
-Amount,
-Currency,
-Coupon,
-Accrual,
-FixingDate,
-FixingValue
+	AnalysisID varchar(30) not null,
+	TradeID varchar(40) null,
+	TradeType varchar(30) null,
+	LegNo int null,
+	PayDate datetime null,
+	Amount decimal(18,4) null,
+	Currency varchar(3) null,
+	Coupon decimal(18,9) null,
+	Accrual decimal(18,4) null,
+	FixingDate datetime null,
+	FixingValue decimal(18,9) null
 )
 
 CREATE TABLE ResultsNPV (
-	addColumn("TradeId", string())
-        .addColumn("TradeType", string())
-        .addColumn("Maturity", Date())
-        .addColumn("MaturityTime", double(), 6)
-        .addColumn("NPV", double(), 6)
-        .addColumn("NpvCurrency", string())
-        .addColumn("NPV(Base)", double(), 6)
-        .addColumn("BaseCurrency", string())
-        .addColumn("Notional", double(), 2)
-        .addColumn("Notional(Base)", double(), 2);
-AnalysisID varchar(30),
-TradeID,
-TradeType,
-Maturity,
-MaturityTime,
-NPV,
-NpvCurrency,
-NPVBase,
-BaseCurrency,
-Notional,
-NotionalBase
+	AnalysisID varchar(30) not null,
+	TradeID varchar(40) null,
+	TradeType varchar(30) null,
+	Maturity datetime null,
+	MaturityTime decimal(18,9) null,
+	NPV decimal(18,4) null,
+	NpvCurrency varchar(3) null,
+	NPVBase decimal(18,4) null,
+	BaseCurrency varchar(3) null,
+	Notional decimal(18,4) null,
+	NotionalBase decimal(18,4) null
 )
 
 CREATE TABLE ResultsCurves (
-AnalysisID varchar(30),
-Tenor, varchar(5)
-HorizonDate, date
-Name, varchar(20)
-Value double(), 15)
+	AnalysisID varchar(30) not null,
+	Tenor varchar(5) null,
+	HorizonDate datetime null,
+	Name varchar(20) null,
+	Value decimal(18,9) null
 )
 
 CREATE TABLE ResultsXVA (
-	addColumn("TradeId", string())
-        .addColumn("NettingSetId", string())
-        .addColumn("CVA", double(), 2)
-        .addColumn("DVA", double(), 2)
-        .addColumn("FBA", double(), 2)
-        .addColumn("FCA", double(), 2)
-        .addColumn("COLVA", double(), 2)
-        .addColumn("MVA", double(), 2)
-        .addColumn("CollateralFloor", double(), 2)
-        .addColumn("AllocatedCVA", double(), 2)
-        .addColumn("AllocatedDVA", double(), 2)
-        .addColumn("AllocationMethod", string())
-        .addColumn("BaselEPE", double(), 2)
-        .addColumn("BaselEEPE", double(), 2);
-AnalysisID varchar(30),
-TradeID,
-NettingSetId,
-CVA,
-DVA,
-FBA,
-FCA,
-COLVA,
-MVA,
-CollateralFloor,
-AllocatedCVA,
-AllocatedDVA,
-AllocationMethod,
-BaselEPE,
-BaselEEPE
+	AnalysisID varchar(30) not null,
+	TradeID varchar(40) null,
+	NettingSetId varchar(10) null,
+	CVA decimal(18,4) null,
+	DVA decimal(18,4) null,
+	FBA decimal(18,4) null,
+	FCA decimal(18,4) null,
+	FBAexOwn decimal(18,4) null,
+	FCAexOwn decimal(18,4) null,
+	FBAexAll decimal(18,4) null,
+	FCAexAll decimal(18,4) null,
+	COLVA decimal(18,4) null,
+	MVA decimal(18,4) null,
+	KVACCR decimal(18,4) null,
+	CollateralFloor decimal(18,4) null,
+	AllocatedCVA decimal(18,4) null,
+	AllocatedDVA decimal(18,4) null,
+	AllocationMethod  varchar(10) null,
+	BaselEPE decimal(18,4) null,
+	BaselEEPE decimal(18,4) null
 )
 
 CREATE TABLE ResultsColVA (
-	addColumn("NettingSet", string())
-        .addColumn("Date", Date())
-        .addColumn("Time", double(), 4)
-        .addColumn("CollateralBalance", double(), 4)
-        .addColumn("COLVA Increment", double(), 4)
-        .addColumn("COLVA", double(), 4)
-        .addColumn("CollateralFloor Increment", double(), 4)
-        .addColumn("CollateralFloor", double(), 4);
-AnalysisID varchar(30),
-NettingSet,
-HorizonDate,
-HorizonTime,
-CollateralBalance,
-COLVAIncrement,
-COLVA,
-CollateralFloorIncrement,
-CollateralFloor
+	AnalysisID varchar(30) not null,
+	NettingSet varchar(10) null,
+	HorizonDate datetime null,
+	HorizonTime decimal(18,6) null,
+	CollateralBalance decimal(18,4) null,
+	COLVAIncrement decimal(18,4) null,
+	COLVA decimal(18,4) null,
+	CollateralFloorIncrement decimal(18,4) null,
+	CollateralFloor decimal(18,4) null
 )
 
 CREATE TABLE ResultsExposureNettingSet (
-	addColumn("NettingSet", string())
-        .addColumn("Date", Date())
-        .addColumn("Time", double(), 6)
-        .addColumn("EPE", double(), 2)
-        .addColumn("ENE", double(), 2)
-        .addColumn("PFE", double(), 2)
-        .addColumn("ExpectedCollateral", double(), 2)
-        .addColumn("BaselEE", double(), 2)
-        .addColumn("BaselEEE", double(), 2);
-AnalysisID varchar(30),
-NettingSet,
-HorizonDate,
-HorizonTime,
-EPE,
-ENE,
-PFE,
-ExpectedCollateral,
-BaselEE,
-BaselEEE
+	AnalysisID varchar(30) not null,
+	NettingSet varchar(10) null,
+	HorizonDate datetime null,
+	HorizonTime decimal(18,6) null,
+	EPE decimal(18,4) null,
+	ENE decimal(18,4) null,
+	PFE decimal(18,4) null,
+	ExpectedCollateral decimal(18,4) null,
+	BaselEE decimal(18,4) null,
+	BaselEEE decimal(18,4) null
 )
 
 CREATE TABLE ResultsExposureTrade (
-	addColumn("TradeId", string())
-        .addColumn("Date", Date())
-        .addColumn("Time", double(), 6)
-        .addColumn("EPE", double())
-        .addColumn("ENE", double())
-        .addColumn("AllocatedEPE", double())
-        .addColumn("AllocatedENE", double())
-        .addColumn("PFE", double())
-        .addColumn("BaselEE", double())
-        .addColumn("BaselEEE", double());
-AnalysisID varchar(30),
-TradeId,
-HorizonDate,
-HorizonTime,
-EPE,
-ENE,
-AllocatedEPE,
-AllocatedENE,
-PFE,
-BaselEE,
-BaselEEE
+	AnalysisID varchar(30) not null,
+	TradeID varchar(40) null,
+	HorizonDate datetime null,
+	HorizonTime decimal(18,6) null,
+	EPE decimal(18,4) null,
+	ENE decimal(18,4) null,
+	AllocatedEPE decimal(18,4) null,
+	AllocatedENE decimal(18,4) null,
+	PFE decimal(18,4) null,
+	BaselEE decimal(18,4) null,
+	BaselEEE decimal(18,4) null
 )
 
 CREATE TABLE ResultsCube (
-
-AnalysisID varchar(30),
-NetOrRaw varchar(3),
-	"%s,%s,%lu,%s,%lu,%lu,%.4f\n";
-ID,
-NettingSet,
-DateIndex,
-HorizonDate,
-Sample,
-Depth,
-Value
+	AnalysisID varchar(30) not null,
+	NetOrRaw varchar(3) null,
+	ID varchar(40) null,
+	NettingSet varchar(10) null,
+	DateIndex int null,
+	HorizonDate datetime null,
+	Sample int null,
+	Depth int null,
+	Value decimal(18,4) null
 )
 
 CREATE TABLE ResultsStresstest (
-	    report->addColumn("TradeId", string());
-    report->addColumn("ScenarioLabel", string());
-    report->addColumn("Base NPV", double(), 2);
-    report->addColumn("Scenario NPV", double(), 2);
-    report->addColumn("Sensitivity", double(), 2);
-AnalysisID varchar(30),
-TradeId,
-ScenarioLabel,
-BaseNPV,
-ScenarioNPV,
-Sensitivity
+	AnalysisID varchar(30) not null,
+	TradeId varchar(40) null,
+	ScenarioLabel varchar(20) null,
+	BaseNPV decimal(18,4) null,
+	ScenarioNPV decimal(18,4) null,
+	Sensitivity decimal(18,4) null
 )
 
 CREATE TABLE ResultsSensitivity (
-	    report->addColumn("TradeId", string());
-    report->addColumn("Factor", string());
-    report->addColumn("ShiftSize", double(), 6);
-    report->addColumn("Base NPV", double(), 2);
-    report->addColumn("Delta*Shift", double(), 2);
-    report->addColumn("Gamma*Shift^2", double(), 2);
-AnalysisID varchar(30),
-TradeId,
-Factor,
-ShiftSize,
-BaseNPV,
-DeltaTimesShift,
-GammaTimesShiftSquare
+	AnalysisID varchar(30) not null,
+	TradeId varchar(40) null,
+	Factor varchar(30) null,
+	ShiftSize decimal(18,4) null,
+	BaseNPV decimal(18,4) null,
+	DeltaTimesShift decimal(18,4) null,
+	GammaTimesShiftSquare decimal(18,4) null
 )
 
 CREATE TABLE ResultsScenario (
-	    report->addColumn("TradeId", string());
-    report->addColumn("Factor", string());
-    report->addColumn("Up/Down", string());
-    report->addColumn("Base NPV", double(), 2);
-    report->addColumn("Scenario NPV", double(), 2);
-    report->addColumn("Difference", double(), 2);
-AnalysisID varchar(30),
-TradeId,
-Factor,
-UpDown,
-BaseNPV,
-ScenarioNPV,
-Difference
+	AnalysisID varchar(30) not null,
+	TradeId varchar(40) null,
+	Factor varchar(30) null,
+	UpDown varchar(5) null,
+	BaseNPV decimal(18,4) null,
+	ScenarioNPV decimal(18,4) null,
+	Difference decimal(18,4) null
 )
 
 CREATE TABLE ResultsCrossGamma (
-	    report->addColumn("TradeId", string());
-    report->addColumn("Factor 1", string());
-    report->addColumn("ShiftSize1", double(), 6);
-    report->addColumn("Factor 2", string());
-    report->addColumn("ShiftSize2", double(), 6);
-    report->addColumn("Base NPV", double(), 2);
-    report->addColumn("CrossGamma*Shift^2", double(), 2);
-AnalysisID varchar(30),
-TradeId,
-Factor1,
-ShiftSize1,
-Factor2,
-ShiftSize2,
-BaseNPV,
-CrossGammaTimesShiftSquare
+	AnalysisID varchar(30) not null,
+	TradeId varchar(40) null,
+	Factor1 varchar(20) null,
+	ShiftSize1 decimal(18,4) null,
+	Factor2 varchar(20) null,
+	ShiftSize2 decimal(18,4) null,
+	BaseNPV decimal(18,4) null,
+	CrossGammaTimesShiftSquare decimal(18,4) null
 )
 
 CREATE TABLE ResultsDimEvolution (
-	addColumn("TimeStep", Size())
-        .addColumn("Date", Date())
-        .addColumn("DaysInPeriod", Size())
-        .addColumn("ZeroOrderDIM", Real(), 6)
-        .addColumn("AverageDIM", Real(), 6)
-        .addColumn("AverageFLOW", Real(), 6)
-        .addColumn("SimpleDIM", Real(), 6);
-AnalysisID varchar(30),
-TimeStep,
-HorizonDate,
-DaysInPeriod,
-ZeroOrderDIM,
-AverageDIM,
-AverageFLOW,
-SimpleDIM
+	AnalysisID varchar(30) not null,
+	TimeStep int null,
+	HorizonDate datetime null,
+	DaysInPeriod int null,
+	ZeroOrderDIM decimal(18,4) null,
+	AverageDIM decimal(18,4) null,
+	AverageFLOW decimal(18,4) null,
+	SimpleDIM decimal(18,4) null
 )
 
 CREATE TABLE ResultsDimRegression (
-	regReport->addColumn("Sample", Size());
-	addColumn("RegressionDIM", Real(), 6)
-            .addColumn("LocalDIM", Real(), 6)
-            .addColumn("ExpectedDIM", Real(), 6)
-            .addColumn("ZeroOrderDIM", Real(), 6)
-            .addColumn("DeltaNPV", Real(), 6)
-            .addColumn("SimpleDIM", Real(), 6);
-AnalysisID varchar(30),
-Sample,
-RegressorName,
-RegressorValue,
-RegressionDIM,
-LocalDIM,
-ExpectedDIM,
-ZeroOrderDIM,
-DeltaNPV,
-SimpleDIM
+	AnalysisID varchar(30) not null,
+	Sample int null,
+	RegressorName varchar(30) null,
+	RegressorValue decimal(18,4) null,
+	RegressionDIM decimal(18,4) null,
+	LocalDIM decimal(18,4) null,
+	ExpectedDIM decimal(18,4) null,
+	ZeroOrderDIM decimal(18,4) null,
+	DeltaNPV decimal(18,4) null,
+	SimpleDIM decimal(18,4) null
 )

@@ -10,12 +10,12 @@ CREATE TABLE MarketDataDefinitions (
 	CurveId varchar(30),
 	DayCounter varchar(10),
 	Tenor varchar(10),
-	ZeroDate date,
-	DiscountDate date,
+	ZeroDate datetime,
+	DiscountDate datetime,
 	ForwardStart varchar(10),
 	Term varchar(10),
 	Expiry varchar(10),
-	ExpiryDate date,
+	ExpiryDate datetime,
 	StrikeType varchar(10),
 	Contract varchar(10),
 	FlatTenor varchar(10),
@@ -30,7 +30,7 @@ CREATE TABLE MarketDataDefinitions (
 	Dimension varchar(10),
 	Name varchar(30),
 	Maturity varchar(10),
-	MaturityDate date,
+	MaturityDate datetime,
 	IndexName varchar(30),
 	CapFloor varchar(1),
 	StrikeRate decimal(18,6),
@@ -86,7 +86,7 @@ REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE FixingData (
 	IndexId int not null,
-	FixingDate date not null,
+	FixingDate datetime not null,
 	IndexValue decimal(18,6) not null
 
 CONSTRAINT PK_FixingData PRIMARY KEY CLUSTERED 

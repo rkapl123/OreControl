@@ -25,6 +25,7 @@ call runSingleScript.cmd Tables\sensitivityTables.sql
 call runSingleScript.cmd Data\sensitivity.sql
 call runSingleScript.cmd Tables\marketdataTables.sql
 call runSingleScript.cmd Data\marketfixingdata.sql
+call runSingleScript.cmd Tables\resultsTables.sql
 call runSingleScript.cmd XMLselectionViews\conventions.sql
 call runSingleScript.cmd XMLselectionViews\curveconfig.sql
 call runSingleScript.cmd XMLselectionViews\netting.sql
