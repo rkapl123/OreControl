@@ -1,7 +1,9 @@
 use strict;
 
-my $marketdataFile = "../Examples/Input/market_20160205.txt";
-my $fixingdataFile = "../Examples/Input/fixings_20160205.txt";
+my $oreRoot='../../Engine';
+
+my $marketdataFile = "$oreRoot/Examples/Input/market_20160205.txt";
+my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
 
 open SQLOUT, ">Data/marketfixingdata.sql";
 print SQLOUT "use ORE\n\n";

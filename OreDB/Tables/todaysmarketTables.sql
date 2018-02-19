@@ -20,12 +20,13 @@ CREATE TABLE TodaysMarketConfiguration (
 	FxVolatilitiesId varchar(16),
 	SwaptionVolatilitiesId varchar(16),
 	CapFloorVolatilitiesId varchar(16),
+	CDSVolatilitiesId varchar(16),
 	DefaultCurvesId varchar(16),
 	InflationCapFloorPriceSurfacesId varchar(16),
 	EquityCurvesId varchar(16),
 	EquityVolatilitiesId varchar(16),
-	SecuritySpreadsId varchar(16),
-	SecurityRecoveryRatesId varchar(16)
+	SecuritiesId varchar(16),
+	BaseCorrelationsId varchar(16)
 CONSTRAINT PK_TodaysMarketConfiguration PRIMARY KEY CLUSTERED (
 	id ASC
 ))
@@ -176,6 +177,15 @@ CONSTRAINT PK_TodaysMarketEquityCurves PRIMARY KEY CLUSTERED (
 	id ASC
 ))
 
+CREATE TABLE TodaysMarketCDSVolatilities (
+	CDSVolatility varchar(70) NOT NULL,
+	name varchar(20) NOT NULL,
+	id varchar(16) NOT NULL
+CONSTRAINT PK_TodaysMarketCDSVolatilities PRIMARY KEY CLUSTERED (
+	CDSVolatility ASC,
+	id ASC
+))
+
 CREATE TABLE TodaysMarketEquityVolatilities (
 	EquityVolatility varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
@@ -185,21 +195,21 @@ CONSTRAINT PK_TodaysMarketEquityVolatilities PRIMARY KEY CLUSTERED (
 	id ASC
 ))
 
-CREATE TABLE TodaysMarketSecuritySpreads (
-	SecuritySpread varchar(70) NOT NULL,
+CREATE TABLE TodaysMarketSecurities (
+	Security varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
 	id varchar(16) NOT NULL
 CONSTRAINT PK_TodaysMarketSecuritySpreads PRIMARY KEY CLUSTERED (
-	SecuritySpread ASC,
+	Security ASC,
 	id ASC
 ))
 
-CREATE TABLE TodaysMarketSecurityRecoveryRates (
-	SecurityRecoveryRate varchar(70) NOT NULL,
+CREATE TABLE TodaysMarketBaseCorrelations (
+	BaseCorrelation varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
 	id varchar(16) NOT NULL
-CONSTRAINT PK_TodaysMarketSecurityRecoveryRates PRIMARY KEY CLUSTERED (
-	SecurityRecoveryRate ASC,
+CONSTRAINT PK_TodaysMarketBaseCorrelations PRIMARY KEY CLUSTERED (
+	BaseCorrelation ASC,
 	id ASC
 ))
 

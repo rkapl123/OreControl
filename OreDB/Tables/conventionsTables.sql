@@ -69,7 +69,8 @@ CREATE TABLE ConventionsDeposit (
 	Calendar varchar(20),
 	Convention varchar(20) COLLATE Latin1_General_CS_AS,
 	EOM varchar(5) COLLATE Latin1_General_CS_AS,
-	DayCounter varchar(30)
+	DayCounter varchar(30),
+	SettlementDays int
 CONSTRAINT PK_ConventionsDeposit PRIMARY KEY CLUSTERED (
 	Id ASC
 ))

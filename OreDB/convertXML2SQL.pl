@@ -2,10 +2,12 @@ use strict;
 use XML::LibXML; use Data::Dumper;
 use Scalar::Util qw(looks_like_number);
 
+my $oreRoot='../../Engine';
+
 my %data;
-my $configDir = "../Examples/Input";
-my $xsdDir = "../xsd";
-my $inputDir = "../Examples/Example_1/Input";
+my $configDir = "$oreRoot/Examples/Input";
+my $xsdDir = "$oreRoot/xsd";
+my $inputDir = "$oreRoot/Examples/Example_1/Input";
 
 ################################
 # process conventions data
@@ -35,18 +37,20 @@ if (-e $configDir.'/pricingengine.xml') {
 	print "processing pricingengine.xml\n";
 	my @firstlevel = $xmldata->firstChild->childNodes;
 	foreach my $record (@firstlevel) {
-		$record->setAttribute("GroupingId", 'ExampleInput');
-		printInsert($record, "PricingEngine", "Products");
-		my $typeAtt = $record->getAttribute("type");
-		my @subrecordData = $record->findnodes('EngineParameters/Parameter');
-		foreach my $subrecord (@subrecordData) {
-			$subrecord->setAttribute("type", $typeAtt);
-			printInsert($subrecord, "PricingEngine", "EngineParameters");
-		}
-		my @subrecordData = $record->findnodes('ModelParameters/Parameter');
-		foreach my $subrecord (@subrecordData) {
-			$subrecord->setAttribute("type", $typeAtt);
-			printInsert($subrecord, "PricingEngine", "ModelParameters");
+		if (ref($record) eq "XML::LibXML::Element") {
+			$record->setAttribute("GroupingId", 'ExampleInput');
+			printInsert($record, "PricingEngine", "Products");
+			my $typeAtt = $record->getAttribute("type");
+			my @subrecordData = $record->findnodes('EngineParameters/Parameter');
+			foreach my $subrecord (@subrecordData) {
+				$subrecord->setAttribute("type", $typeAtt);
+				printInsert($subrecord, "PricingEngine", "EngineParameters");
+			}
+			my @subrecordData = $record->findnodes('ModelParameters/Parameter');
+			foreach my $subrecord (@subrecordData) {
+				$subrecord->setAttribute("type", $typeAtt);
+				printInsert($subrecord, "PricingEngine", "ModelParameters");
+			}
 		}
 	}
 	close SQLOUT;
@@ -299,19 +303,23 @@ unlink "Data/simulation.sql";
 unlink "Data/portfolio.sql";
 unlink "Data/sensitivity.sql";
 unlink "Data/stresstest.sql";
-#doInputXMLs ($inputDir,"SimulationId","OreConfigId","NettingSetGroupingId","SensitivityAnalysisId","StresstestGroupingId","");
 
-# example inputs...
-for my $i (1 .. 30) {
-	if ($i == 1) {
-		unlink "Data/ore.sql";
-		unlink "Data/netting.sql";
-		unlink "Data/simulation.sql";
-		unlink "Data/portfolio.sql";
-		unlink "Data/sensitivity.sql";
-		unlink "Data/stresstest.sql";
+# given analyses/portfolio datat input Dir;
+if ($inputDir) {
+	doInputXMLs ($inputDir,"SimulationId","OreConfigId","NettingSetGroupingId","SensitivityAnalysisId","StresstestGroupingId","");
+} else {
+	# example inputs...
+	for my $i (1 .. 30) {
+		if ($i == 1) {
+			unlink "Data/ore.sql";
+			unlink "Data/netting.sql";
+			unlink "Data/simulation.sql";
+			unlink "Data/portfolio.sql";
+			unlink "Data/sensitivity.sql";
+			unlink "Data/stresstest.sql";
+		}
+		doInputXMLs("$oreRoot/Examples/Example_$i/Input","Example_$i","Example_$i","Example_$i","Example_$i","Example_$i",$i)
 	}
-	doInputXMLs("../Examples/Example_$i/Input","Example_$i","Example_$i","Example_$i","Example_$i","Example_$i",$i)
 }
 
 # need these 2 global for counting in sub doTradeTypeData
