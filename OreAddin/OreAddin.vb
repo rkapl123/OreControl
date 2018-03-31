@@ -61,7 +61,7 @@ Public Module OREAddin
         Return vbNullString
     End Function
 
-    ' gets defined named ranges for R script invocation in the current workbook 
+    ' gets defined named ranges for ORE invocation in the current workbook 
     Public Function getORENames() As String
         ReDim Preserve OREcalldefnames(-1)
         ReDim Preserve OREcalldefs(-1)
