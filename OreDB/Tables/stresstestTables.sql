@@ -28,7 +28,7 @@ REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE StresstestIndexCurve (
 	StresstestId varchar(40) not null,
-	IndexName varchar(20) not null,
+	IndexName varchar(30) not null,
 	ShiftType varchar(8),
 	ShiftTenors varchar(100),
 	Shifts varchar(200)

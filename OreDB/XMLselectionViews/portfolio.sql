@@ -3,11 +3,11 @@ GO
 
 CREATE VIEW PortfolioSelection
 AS
-SELECT DISTINCT paf.GroupingId, (SELECT 
+SELECT DISTINCT paf.AdditionalId, (SELECT 
 	(SELECT Id [@id], TradeType, 
 		(SELECT 
-			ti.CounterParty, ti.NettingSetId,
-			(SELECT af.GroupingId
+			ti.EnvelopeCounterParty CounterParty, ti.EnvelopeNettingSetId NettingSetId,
+			(SELECT af.AdditionalId
 			FROM PortfolioAdditionalFields af WHERE af.TradeId = t.id
 			FOR XML PATH (''), TYPE) AdditionalFields
 		FROM PortfolioTrades ti WHERE ti.id = t.id
@@ -563,7 +563,7 @@ SELECT DISTINCT paf.GroupingId, (SELECT
 			FOR XML PATH (''), TYPE) IndexCreditDefaultSwapData
 		FROM PortfolioIndexCreditDefaultSwapOptionData iod WHERE iod.TradeId = t.id
 		FOR XML PATH (''), TYPE) IndexCreditDefaultSwapOptionData
-	FROM PortfolioTrades t INNER JOIN PortfolioAdditionalFields pa ON pa.TradeId = t.Id AND pa.GroupingId = paf.GroupingId
+	FROM PortfolioTrades t INNER JOIN PortfolioAdditionalFields pa ON pa.TradeId = t.Id AND pa.AdditionalId = paf.AdditionalId
 	FOR XML PATH ('Trade'), TYPE)
 FOR XML PATH ('Portfolio')) XMLData
 FROM PortfolioAdditionalFields paf

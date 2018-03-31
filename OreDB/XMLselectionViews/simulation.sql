@@ -82,9 +82,9 @@ SELECT o.Id, o.SimulationDescription,
 				(SELECT Currency 
 				FROM SimulationMarketSwaptionVolatilitiesCurrencies i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) Currencies,
-				SwaptionVolatilitiesExpiries Expiries,
-				SwaptionVolatilitiesTerms Terms,
-				SwaptionVolatilitiesStrikes Strikes
+				SwaptionVolatilitiesExpiries Expiries, SwaptionVolatilitiesTerms Terms,
+				(SELECT SwaptionVolatilitiesCubeSimulateATMOnly SimulateATMOnly, SwaptionVolatilitiesCubeStrikeSpreads StrikeSpreads
+				FOR XML PATH (''), TYPE) Cube
 			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT SwaptionVolatilitiesSimulate IS NULL
 			FOR XML PATH (''), ROOT('SwaptionVolatilities'), TYPE),
 			(SELECT CapFloorVolatilitiesSimulate Simulate,
@@ -102,7 +102,8 @@ SELECT o.Id, o.SimulationDescription,
 				FROM SimulationMarketFxVolatilitiesCurrencyPairs i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) CurrencyPairs,
 				FxVolatilitiesExpiries Expiries,
-				FxVolatilitiesStrikes Strikes
+				(SELECT FxVolatilitiesSurfaceMoneyness Moneyness
+				FOR XML PATH (''), TYPE) Surface
 			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT FxVolatilitiesSimulate IS NULL
 			FOR XML PATH (''), ROOT('FxVolatilities'), TYPE),
 			(SELECT Currency, Name
@@ -115,8 +116,9 @@ SELECT o.Id, o.SimulationDescription,
 				(SELECT Name
 				FROM SimulationMarketEquitiesNames i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) Names,
-				EquitiesTenors Tenors
-			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT EquitiesTenors IS NULL
+				EquitiesDividendTenors DividendTenors,
+				EquitiesForecastTenors ForecastTenors
+			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT EquitiesDividendTenors IS NULL AND NOT EquitiesForecastTenors IS NULL
 			FOR XML PATH (''), ROOT('Equities'), TYPE),
 			(SELECT EquityVolatilitiesSimulate Simulate,
 				EquityVolatilitiesReactionToTimeDecay ReactionToTimeDecay,
@@ -124,7 +126,8 @@ SELECT o.Id, o.SimulationDescription,
 				FROM SimulationMarketEquityVolatilitiesEquityNames i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) Names,
 				EquityVolatilitiesExpiries Expiries,
-				EquityVolatilitiesStrikes Strikes
+				(SELECT EquityVolatilitiesSurfaceSimulateATMOnly SimulateATMOnly, EquityVolatilitiesSurfaceMoneyness Moneyness
+				FOR XML PATH (''), TYPE) Surface
 			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT EquityVolatilitiesSimulate IS NULL
 			FOR XML PATH (''), ROOT('EquityVolatilities'), TYPE),
 			(SELECT Currency

@@ -3,22 +3,30 @@ use ORE
 CREATE TABLE PortfolioTrades (
 	Id varchar(40) not null,
 	TradeType varchar(30),
-	CounterParty varchar(30),
-	NettingSetId varchar(10)
+	EnvelopeCounterParty varchar(30),
+	EnvelopeNettingSetId varchar(10)
 CONSTRAINT PK_PortfolioTrades PRIMARY KEY CLUSTERED 
 (
 	Id ASC
 ))
 ALTER TABLE PortfolioTrades WITH CHECK ADD CONSTRAINT FK_PortfolioTrades_TradeType FOREIGN KEY(TradeType)
-REFERENCES TypesTradeType (value)
-ALTER TABLE PortfolioTrades WITH CHECK ADD CONSTRAINT FK_PortfolioTrades_CounterParty FOREIGN KEY(CounterParty)
+REFERENCES TypesOreTradeType (value)
+ALTER TABLE PortfolioTrades WITH CHECK ADD CONSTRAINT FK_PortfolioTrades_EnvelopeCounterParty FOREIGN KEY(EnvelopeCounterParty)
 REFERENCES TypesParties (value)
-ALTER TABLE PortfolioTrades WITH CHECK ADD CONSTRAINT FK_PortfolioTrades_NettingSetId FOREIGN KEY(NettingSetId)
+ALTER TABLE PortfolioTrades WITH CHECK ADD CONSTRAINT FK_PortfolioTrades_EnvelopeNettingSetId FOREIGN KEY(EnvelopeNettingSetId)
 REFERENCES NettingSet (NettingSetId)
+
+CREATE TABLE PortfolioTradePortfolioIds (
+	TradeId varchar(40) not null,
+	PortfolioId varchar(70),
+CONSTRAINT PK_PortfolioTradePortfolioIds PRIMARY KEY CLUSTERED 
+(
+	TradeId ASC
+))
 
 CREATE TABLE PortfolioAdditionalFields (
 	TradeId varchar(40) not null,
-	GroupingId varchar(70),
+	AdditionalId varchar(70),
 CONSTRAINT PK_PortfolioAdditionalFields PRIMARY KEY CLUSTERED 
 (
 	TradeId ASC
@@ -59,8 +67,8 @@ CONSTRAINT PK_PortfolioScheduleDataRules PRIMARY KEY CLUSTERED
 (
 	Id ASC
 ))
-ALTER TABLE PortfolioScheduleDataRules WITH CHECK ADD CONSTRAINT FK_PortfolioScheduleDataRules_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE PortfolioScheduleDataRules WITH CHECK ADD CONSTRAINT FK_PortfolioScheduleDataRules_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE PortfolioScheduleDataRules WITH CHECK ADD CONSTRAINT FK_PortfolioScheduleDataRules_Convention FOREIGN KEY(Convention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE PortfolioScheduleDataRules WITH CHECK ADD CONSTRAINT FK_PortfolioScheduleDataRules_TermConvention FOREIGN KEY(TermConvention)
@@ -74,12 +82,15 @@ CREATE TABLE PortfolioScheduleDataDates (
 	Id int not null,
 	TradeActionId int,
 	LegDataId int,
+	Calendar varchar(20),
 	ScheduleDate date
 CONSTRAINT PK_PortfolioScheduleDataDates PRIMARY KEY CLUSTERED 
 (
 	Id ASC,
 	ScheduleDate ASC
 ))
+--ALTER TABLE PortfolioScheduleDataDates WITH CHECK ADD CONSTRAINT FK_PortfolioScheduleDataDates_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 
 CREATE TABLE PortfolioSwapData (
 	TradeId varchar(40) not null,
@@ -205,8 +216,6 @@ ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData WITH CHECK ADD CONSTRA
 REFERENCES TypesBool (value)
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData WITH CHECK ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_PaysAtDefaultTime FOREIGN KEY(PaysAtDefaultTime)
 REFERENCES TypesBool (value)
-
-
 
 CREATE TABLE PortfolioBaskets (
 	TradeId varchar(40) not null,
@@ -363,9 +372,9 @@ REFERENCES TypesParties (value)
 ALTER TABLE PortfolioBondData WITH CHECK ADD CONSTRAINT FK_PortfolioBondData_CreditCurveId FOREIGN KEY(CreditCurveId)
 REFERENCES TypesParties (value)
 ALTER TABLE PortfolioBondData WITH CHECK ADD CONSTRAINT FK_PortfolioBondData_SecurityId FOREIGN KEY(SecurityId)
-REFERENCES CurveConfigurationSecuritySpreads (CurveId)
-ALTER TABLE PortfolioBondData WITH CHECK ADD CONSTRAINT FK_PortfolioBondData_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+REFERENCES CurveConfigurationSecurities (CurveId)
+--ALTER TABLE PortfolioBondData WITH CHECK ADD CONSTRAINT FK_PortfolioBondData_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 
 -- relates to SwapData, SwaptionData, BondData. ALSO INCLUDES LegData_capfloor
 CREATE TABLE PortfolioLegData (
@@ -381,17 +390,20 @@ CREATE TABLE PortfolioLegData (
 	NotionalAmortizingExchange varchar(5) COLLATE Latin1_General_CS_AS,
 	FXResetForeignCurrency varchar(7),
 	FXResetForeignAmount decimal(18,3),
-	FXResetFXIndex varchar(20),
+	FXResetFXIndex varchar(30),
 	FXResetFixingDays int,
-	FloatingLegIndexName varchar(20),
+	FloatingLegIndexName varchar(30),
 	FloatingLegIsInArrears varchar(5) COLLATE Latin1_General_CS_AS,
 	FloatingLegFixingDays int,
+	FloatingLegIsAveraged varchar(5) COLLATE Latin1_General_CS_AS,
 	FloatingLegIsNotResettingXCCY varchar(5) COLLATE Latin1_General_CS_AS,
-	CPILegIndexName varchar(20),
+	FloatingLegNakedOption varchar(5) COLLATE Latin1_General_CS_AS,
+	CPILegIndexName varchar(30),
 	CPILegBaseCPI decimal(18,10),
 	CPILegObservationLag varchar(5),
 	CPILegInterpolated varchar(5) COLLATE Latin1_General_CS_AS,
-	YYLegIndexName varchar(20),
+	CPILegSubtractInflationNotional varchar(5) COLLATE Latin1_General_CS_AS,
+	YYLegIndexName varchar(30),
 	YYLegFixingDays int,
 	YYLegObservationLag varchar(5),
 	YYLegInterpolated varchar(5) COLLATE Latin1_General_CS_AS
@@ -425,11 +437,17 @@ ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_Float
 REFERENCES TypesIndexName (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_FloatingLegIsInArrears FOREIGN KEY(FloatingLegIsInArrears)
 REFERENCES TypesBool (value)
+ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_FloatingLegIsAveraged FOREIGN KEY(FloatingLegIsAveraged)
+REFERENCES TypesBool (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_FloatingLegIsNotResettingXCCY FOREIGN KEY(FloatingLegIsNotResettingXCCY)
+REFERENCES TypesBool (value)
+ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_FloatingLegNakedOption FOREIGN KEY(FloatingLegNakedOption)
 REFERENCES TypesBool (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_CPILegIndexName FOREIGN KEY(CPILegIndexName)
 REFERENCES TypesIndexName (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_CPILegInterpolated FOREIGN KEY(CPILegInterpolated)
+REFERENCES TypesBool (value)
+ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_CPILegSubtractInflationNotional FOREIGN KEY(CPILegSubtractInflationNotional)
 REFERENCES TypesBool (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_YYLegIndexName FOREIGN KEY(YYLegIndexName)
 REFERENCES TypesIndexName (value)
@@ -546,7 +564,8 @@ REFERENCES PortfolioTrades (Id)
 CREATE TABLE PortfolioCapRates (
 	TradeId varchar(40) not null,
 	SeqId int not null,
-	Rate decimal(18,10) not null
+	Rate decimal(18,10) not null,
+	StartDate date
 CONSTRAINT PK_PortfolioCapRates PRIMARY KEY CLUSTERED 
 (
 	TradeId ASC,
@@ -558,7 +577,8 @@ REFERENCES PortfolioTrades (Id)
 CREATE TABLE PortfolioFloorRates (
 	TradeId varchar(40) not null,
 	SeqId int not null,
-	Rate decimal(18,10) not null
+	Rate decimal(18,10) not null,
+	StartDate date
 CONSTRAINT PK_PortfolioFloorRates PRIMARY KEY CLUSTERED 
 (
 	TradeId ASC,

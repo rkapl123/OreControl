@@ -63,8 +63,8 @@ SELECT DISTINCT g.GroupingId,
 			(SELECT Quote [data()] 
 			FROM CurveConfigurationQuotes q WHERE q.CurveId = c.CurveId ORDER by Seq
 			FOR XML PATH ('Quote'), TYPE) Quotes
-		FROM CurveConfigurationSecuritySpreads c
-		FOR XML PATH ('SecuritySpread'), TYPE) SecuritySpreads
+		FROM CurveConfigurationSecurities c
+		FOR XML PATH ('Security'), TYPE) Securities
 	FOR XML PATH ('CurveConfiguration'))) XMLData
 FROM
 (SELECT GroupingId FROM CurveConfigurationFXVolatilities
@@ -85,4 +85,4 @@ SELECT GroupingId FROM CurveConfigurationEquityCurves
 UNION
 SELECT GroupingId FROM CurveConfigurationEquityVolatilities
 UNION
-SELECT GroupingId FROM CurveConfigurationSecuritySpreads) g
+SELECT GroupingId FROM CurveConfigurationSecurities) g

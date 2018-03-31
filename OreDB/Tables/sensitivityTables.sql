@@ -27,7 +27,7 @@ REFERENCES TypesShiftType (value)
 
 CREATE TABLE SensitivityanalysisIndexCurve (
 	AnalysisId varchar(40) not null,
-	IndexName varchar(20) not null,
+	IndexName varchar(30) not null,
 	ShiftType varchar(8),
 	ShiftSize decimal(18,5),
 	ShiftTenors varchar(100)
@@ -120,7 +120,7 @@ REFERENCES TypesShiftType (value)
 CREATE TABLE SensitivityanalysisCapFloorVolatility (
 	AnalysisId varchar(40) not null,
 	ccy varchar(7) not null,
-	IndexName varchar(20) not null,
+	IndexName varchar(30) not null,
 	ShiftType varchar(8),
 	ShiftSize decimal(18,5),
 	ShiftExpiries varchar(100),

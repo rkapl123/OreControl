@@ -8,8 +8,17 @@ market.txt & fixing.txt: C:\dev\Engine\OREData\ored\marketdata\csvloader.cpp, vo
 TRADES, NETTINGSETS & ANALYSIS CONFIG (location of files inside ore.xml):
 portfolio.xml: C:\dev\Engine\OREData\ored\portfolio\portfolio.cpp, Portfolio::load, in OREApp::run > OREApp::buildPortfolio
 sensitivity.xml: C:\dev\Engine\OREAnalytics\orea\scenario\sensitivityscenariodata.cpp, SensitivityScenarioData::fromXML, in OREApp::run > OREApp::runSensitivityAnalysis > OREApp::sensiInputInitialize > sensiData->fromFile(sensitivityConfigFile)
-simulation.xml: C:\dev\Engine\OREAnalytics\orea\scenario\scenariosimmarketparameters.cpp, ScenarioSimMarketParameters::fromXML, in OREApp::run > OREApp::generateNPVCube > OREApp::getSimMarketData > simMarketData->fromFile(simulationConfigFile) ODER OREApp::run > OREApp::runSensitivityAnalysis > OREApp::sensiInputInitialize > simMarketData->fromFile(marketConfigFile) ODER OREApp::run > OREApp::runStressTest > simMarketData->fromFile(marketConfigFile)
-stresstest.xml: C:\dev\Engine\OREAnalytics\orea\scenario\stressscenariodata.cpp, StressTestScenarioData::fromXML, in OREApp::run > OREApp::runStressTest > stressData->fromFile(stressConfigFile)
+simulation.xml: 
+	scenariogeneratorsimmarketparameters: C:\dev\Engine\OREAnalytics\orea\scenario\scenariosimmarketparameters.cpp, ScenarioSimMarketParameters::fromXML, in OREApp::run > OREApp::generateNPVCube > OREApp::getSimMarketData > simMarketData->fromFile(simulationConfigFile) ODER OREApp::run > OREApp::runSensitivityAnalysis > OREApp::sensiInputInitialize > simMarketData->fromFile(marketConfigFile) ODER OREApp::run > OREApp::runStressTest > simMarketData->fromFile(marketConfigFile)
+	scenariogeneratordata: C:\dev\Engine\OREAnalytics\orea\scenario\scenariogeneratordata.cpp, ScenarioGeneratorData::fromXML, in OREApp::run > OREApp::generateNPVCube > OREApp::getScenarioGeneratorData() > sgd->fromFile(simulationConfigFile)
+	crossassetmodeldata: C:\dev\Engine\OREData\ored\model\crossassetmodeldata.cpp CrossAssetModelData::fromXML, in OREApp::run > OREApp::generateNPVCube > OREApp::buildScenarioGenerator() > modelData->fromFile(simulationConfigFile)
+		lgmdata: C:\dev\Engine\OREData\ored\model\lgmdata.cpp LgmData::fromXML in IrLgmData::fromXML resp. InfDkData::fromXML
+		irlgmdata: C:\dev\Engine\OREData\ored\model\irlgmdata.cpp IrLgmData::fromXML in CrossAssetModelData::fromXML > config->fromXML(child) 
+		fxbsdata: C:\dev\Engine\OREData\ored\model\fxbsdata.cpp FxBsData::fromXML in CrossAssetModelData::fromXML > config->fromXML(child) 
+		eqbsdata: C:\dev\Engine\OREData\ored\model\eqbsdata.cpp EqBsData::fromXML in CrossAssetModelData::fromXML > config->fromXML(child) 
+		infdkdata: C:\dev\Engine\OREData\ored\model\infdkdata.cpp InfDkData::fromXML in n CrossAssetModelData::fromXML > config->fromXML(child) 
+
+stresstest.xml: C:\dev\Engine\OREAnalytics\orea\scenario\stressscenariodata.cpp, StressTestScenarioData::fromXML, in OREApp::run > OREApp::generateNPVCube > OREApp::buildScenarioGenerator > modelData->fromFile(simulationConfigFile)
 netting.xml: C:\dev\Engine\OREData\ored\portfolio\nettingsetmanager.cpp, NettingSetManager::fromXML, in OREApp::run > OREApp::runPostProcessor > OREApp::initNettingSetManager > netting->fromFile(csaFile)
 
 MAIN CONFIG (passed to ORE.exe):

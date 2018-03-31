@@ -1,8 +1,9 @@
 use strict;
 
 open SCHEMA, ">OREDataXMLSchemaFromSrc.html";
-process_files ('C:/dev/Engine/OREData/ored');
-process_files ('C:/dev/Engine/OREAnalytics/orea');
+my $oreRoot='../../Engine';
+process_files ($oreRoot.'/OREData/ored');
+process_files ($oreRoot.'/OREAnalytics/orea');
 
 sub process_files {
 	my $path = shift;
@@ -24,17 +25,17 @@ sub process_files {
 				chomp;
 				if (!$funcName) {
 					($funcName) = /void (.*?)::fromXML/;
-					do {print SCHEMA "---> $funcName</br>\n"; next} if $funcName;
+					do {print SCHEMA "<h2>$funcName</h2>\n"; next} if $funcName;
 				}
 				if (/^}$/ && $funcName) {
 					print SCHEMA "</br>\n";
 					$funcName="";
 				}
-				next if !/XMLUtils::checkNode/ && !/XMLUtils::get/;
+				next if !/XMLUtils::get/;
 				my $plural = 1 if /ChildrenValues/;
 				my ($type) = /As(.*?)\(/;
 				my ($nodeName,$mandatory) = /"(.*?)", *(true|false).*/;
-				print SCHEMA "$plural,$type,$nodeName,$mandatory.$_.</br>\n" if $funcName;
+				print SCHEMA "<h5>$plural,$type,$nodeName,$mandatory.$_.</h5>\n" if $funcName;
 			}
 			close FH_DF;
 		}

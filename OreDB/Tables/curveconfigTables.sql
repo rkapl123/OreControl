@@ -1,7 +1,7 @@
 use ORE
 
 CREATE TABLE CurveConfigurationFXSpots (
-	CurveId varchar(20) NOT NULL,
+	CurveId varchar(6) NOT NULL,
 	GroupingId varchar(70),
 	CurveDescription varchar(70)
 CONSTRAINT PK_CurveConfigurationFXSpots PRIMARY KEY CLUSTERED (
@@ -20,11 +20,11 @@ CREATE TABLE CurveConfigurationSwaptionVolatilities (
 	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS,
 	OptionTenors varchar(70),
 	SwapTenors varchar(70),
-	ShortSwapIndexBase varchar(20),
-	SwapIndexBase varchar(20),
+	ShortSwapIndexBase varchar(30),
+	SwapIndexBase varchar(30),
 	SmileOptionTenors varchar(70),
-    SmileSwapTenors varchar(70),
-    SmileSpreads varchar(70)
+	SmileSwapTenors varchar(70),
+	SmileSpreads varchar(70)
 CONSTRAINT PK_CurveConfigurationSwaptionVolatilities PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
@@ -57,7 +57,7 @@ CREATE TABLE CurveConfigurationCapFloorVolatilities (
 	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS,
 	Tenors varchar(70),
 	Strikes varchar(130),
-	IborIndex varchar(20),
+	IborIndex varchar(30),
 	DiscountCurve varchar(70)
 CONSTRAINT PK_CurveConfigurationCapFloorVolatilities PRIMARY KEY CLUSTERED (
 	CurveId ASC
@@ -70,48 +70,14 @@ ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_
 REFERENCES TypesBool (value)
 ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_DayCounter FOREIGN KEY(DayCounter)
 REFERENCES TypesDayCounter (value)
-ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_BusinessDayConvention FOREIGN KEY(BusinessDayConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_IborIndex FOREIGN KEY(IborIndex)
 REFERENCES TypesIndexName (value)
-
-CREATE TABLE CurveConfigurationDefaultCurves (
-	CurveId varchar(20) NOT NULL,
-	GroupingId varchar(70),
-	CurveDescription varchar(70),
-	Currency varchar(7),
-	Type varchar(20),
-	DiscountCurve varchar(70),
-	DayCounter varchar(30),
-	RecoveryRate varchar(70),
-	Conventions varchar(70),
-	BenchmarkCurve varchar(20),
-	SourceCurve varchar(20),
-	Pillars varchar(70),
-	SpotLag decimal(6,2),
-	Calendar varchar(20),
-	Extrapolation varchar(5) COLLATE Latin1_General_CS_AS
-CONSTRAINT PK_CurveConfigurationDefaultCurves PRIMARY KEY CLUSTERED (
-	CurveId ASC
-))
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Currency FOREIGN KEY(Currency)
-REFERENCES TypesCurrencyCode (value)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Type FOREIGN KEY(Type)
-REFERENCES TypesDefaultCurveType (value)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_DayCounter FOREIGN KEY(DayCounter)
-REFERENCES TypesDayCounter (value)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Conventions FOREIGN KEY(Conventions)
-REFERENCES ConventionsCDS (Id)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_BenchmarkCurve FOREIGN KEY(BenchmarkCurve)
-REFERENCES CurveConfigurationYieldCurves (CurveId)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_SourceCurve FOREIGN KEY(SourceCurve)
-REFERENCES CurveConfigurationYieldCurves (CurveId)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
-ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Extrapolation FOREIGN KEY(Extrapolation)
-REFERENCES TypesBool (value)
+ALTER TABLE CurveConfigurationCapFloorVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_DiscountCurve FOREIGN KEY(DiscountCurve)
+REFERENCES TodaysMarketCurveSpecs (id)
 
 CREATE TABLE CurveConfigurationYieldCurves (
 	CurveId varchar(20) NOT NULL,
@@ -138,15 +104,53 @@ REFERENCES TypesDayCounter (value)
 ALTER TABLE CurveConfigurationYieldCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationYieldCurves_Extrapolation FOREIGN KEY(Extrapolation)
 REFERENCES TypesBool (value)
 
+CREATE TABLE CurveConfigurationDefaultCurves (
+	CurveId varchar(30) NOT NULL,
+	GroupingId varchar(70),
+	CurveDescription varchar(70),
+	Currency varchar(7),
+	Type varchar(20),
+	DiscountCurve varchar(70),
+	DayCounter varchar(30),
+	RecoveryRate varchar(70),
+	Conventions varchar(70),
+	BenchmarkCurve varchar(70),
+	SourceCurve varchar(70),
+	Pillars varchar(70),
+	SpotLag decimal(6,2),
+	Calendar varchar(20),
+	Extrapolation varchar(5) COLLATE Latin1_General_CS_AS
+CONSTRAINT PK_CurveConfigurationDefaultCurves PRIMARY KEY CLUSTERED (
+	CurveId ASC
+))
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Currency FOREIGN KEY(Currency)
+REFERENCES TypesCurrencyCode (value)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Type FOREIGN KEY(Type)
+REFERENCES TypesDefaultCurveType (value)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_DiscountCurve FOREIGN KEY(DiscountCurve)
+REFERENCES TodaysMarketCurveSpecs (id)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_DayCounter FOREIGN KEY(DayCounter)
+REFERENCES TypesDayCounter (value)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Conventions FOREIGN KEY(Conventions)
+REFERENCES ConventionsCDS (Id)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_BenchmarkCurve FOREIGN KEY(BenchmarkCurve)
+REFERENCES TodaysMarketCurveSpecs (id)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_SourceCurve FOREIGN KEY(SourceCurve)
+REFERENCES TodaysMarketCurveSpecs (id)
+--ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
+ALTER TABLE CurveConfigurationDefaultCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationDefaultCurves_Extrapolation FOREIGN KEY(Extrapolation)
+REFERENCES TypesBool (value)
+
 CREATE TABLE CurveConfigurationFXVolatilities (
 	CurveId varchar(20) NOT NULL,
 	GroupingId varchar(70),
 	CurveDescription varchar(70),
 	Dimension varchar(5),
 	Expiries varchar(70),
-	FXSpotID varchar(20)
-    FXForeignCurveID varchar(20),
-    FXDomesticCurveID varchar(20)
+	FXSpotID varchar(6),
+	FXForeignCurveID varchar(70),
+	FXDomesticCurveID varchar(70)
 CONSTRAINT PK_CurveConfigurationFXVolatilities PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
@@ -155,9 +159,9 @@ REFERENCES TypesDimensionType (value)
 ALTER TABLE CurveConfigurationFXVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXSpotID FOREIGN KEY(FXSpotID)
 REFERENCES CurveConfigurationFxSpots (CurveId)
 ALTER TABLE CurveConfigurationFXVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXForeignCurveID FOREIGN KEY(FXForeignCurveID)
-REFERENCES CurveConfigurationYieldCurves (CurveId)
+REFERENCES TodaysMarketCurveSpecs (id)
 ALTER TABLE CurveConfigurationFXVolatilities WITH CHECK ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXDomesticCurveID FOREIGN KEY(FXDomesticCurveID)
-REFERENCES CurveConfigurationYieldCurves (CurveId)
+REFERENCES TodaysMarketCurveSpecs (id)
 
 CREATE TABLE CurveConfigurationCDSVolatilities (
 	CurveId varchar(20) NOT NULL,
@@ -187,14 +191,16 @@ CREATE TABLE CurveConfigurationInflationCurves (
 CONSTRAINT PK_CurveConfigurationInflationCurves PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
+ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_NominalTermStructure FOREIGN KEY(NominalTermStructure)
+REFERENCES TodaysMarketCurveSpecs (id)
 ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_Type FOREIGN KEY(Type)
 REFERENCES TypesInflationType (value)
 ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_Conventions FOREIGN KEY(Conventions)
 REFERENCES ConventionsInflationSwap (Id)
 ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_Extrapolation FOREIGN KEY(Extrapolation)
 REFERENCES TypesBool (value)
-ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_DayCounter FOREIGN KEY(DayCounter)
 REFERENCES TypesDayCounter (value)
 ALTER TABLE CurveConfigurationInflationCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCurves_Frequency FOREIGN KEY(Frequency)
@@ -220,7 +226,7 @@ CREATE TABLE CurveConfigurationInflationCapFloorPriceSurfaces (
 	Calendar varchar(20) NOT NULL,
 	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
 	DayCounter varchar(30) NOT NULL,
-	IndexName varchar(20) NOT NULL,
+	IndexName varchar(30) NOT NULL,
 	IndexCurve varchar(70) NOT NULL,
 	IndexInterpolated varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
 	YieldTermStructure varchar(70) NOT NULL,
@@ -232,16 +238,21 @@ CONSTRAINT PK_CurveConfigurationInflationCapFloorPriceSurfaces PRIMARY KEY CLUST
 ))
 ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_Type FOREIGN KEY(Type)
 REFERENCES TypesInflationType (value)
-ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_BusinessDayConvention FOREIGN KEY(BusinessDayConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_DayCounter FOREIGN KEY(DayCounter)
 REFERENCES TypesDayCounter (value)
 ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_IndexName FOREIGN KEY(IndexName)
 REFERENCES TypesIndexName (value)
+ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_IndexCurve FOREIGN KEY(IndexCurve)
+REFERENCES TodaysMarketCurveSpecs (id)
 ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_IndexInterpolated FOREIGN KEY(IndexInterpolated)
 REFERENCES TypesBool (value)
+ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces WITH CHECK ADD CONSTRAINT FK_CurveConfigurationInflationCapFloorPriceSurfaces_YieldTermStructure FOREIGN KEY(YieldTermStructure)
+REFERENCES TodaysMarketCurveSpecs (id)
+ALTER TABLE CurveConfigurationInflationCapFloorPriceSurfaces ADD  CONSTRAINT DF_CurveConfigurationInflationCapFloorPriceSurfaces_CapStrikes  DEFAULT ('') FOR CapStrikes
 
 CREATE TABLE CurveConfigurationEquityCurves (
 	CurveId varchar(20) NOT NULL,
@@ -259,13 +270,15 @@ CONSTRAINT PK_CurveConfigurationEquityCurves PRIMARY KEY CLUSTERED (
 ))
 ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_Currency FOREIGN KEY(Currency)
 REFERENCES TypesCurrencyCode (value)
+ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_ForecastingCurve FOREIGN KEY(ForecastingCurve)
+REFERENCES CurveConfigurationYieldCurves (CurveId)
 ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_Type FOREIGN KEY(Type)
 REFERENCES TypesEquityType (value)
 ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_DayCounter FOREIGN KEY(DayCounter)
 REFERENCES TypesDayCounter (value)
-ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_DividendInterpolationVariable FOREIGN KEY(InterpolationVariable)
+ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_DividendInterpolationVariable FOREIGN KEY(DividendInterpolationVariable)
 REFERENCES TypesInterpolationVariableType (value)
-ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_DividendInterpolationMethod FOREIGN KEY(InterpolationMethod)
+ALTER TABLE CurveConfigurationEquityCurves WITH CHECK ADD CONSTRAINT FK_CurveConfigurationEquityCurves_DividendInterpolationMethod FOREIGN KEY(DividendInterpolationMethod)
 REFERENCES TypesInterpolationMethodType (value)
 
 CREATE TABLE CurveConfigurationEquityVolatilities (
@@ -376,8 +389,8 @@ CREATE TABLE CurveConfigurationBaseCorrelation (
 CONSTRAINT PK_CurveConfigurationBaseCorrelation PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
-ALTER TABLE CurveConfigurationBaseCorrelation WITH CHECK ADD CONSTRAINT FK_CurveConfigurationBaseCorrelation_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE CurveConfigurationBaseCorrelation WITH CHECK ADD CONSTRAINT FK_CurveConfigurationBaseCorrelation_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE CurveConfigurationBaseCorrelation WITH CHECK ADD CONSTRAINT FK_CurveConfigurationBaseCorrelation_BusinessDayConvention FOREIGN KEY(BusinessDayConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE CurveConfigurationBaseCorrelation WITH CHECK ADD CONSTRAINT FK_CurveConfigurationBaseCorrelation_DayCounter FOREIGN KEY(DayCounter)

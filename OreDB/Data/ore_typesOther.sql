@@ -42,7 +42,7 @@ INSERT INTO TypesIndexName (value) VALUES ('ZAR-JIBAR')
 
 INSERT INTO TypesIndexName
 SELECT t1.[value]+'-'+t2.tenor
-  FROM TypesIndexName t1, (select '1M' tenor UNION select '3M' UNION select '6M' UNION select '9M' UNION select '12M') t2
+  FROM TypesIndexName t1, (select '1M' tenor UNION select '3M' UNION select '6M' UNION select '9M' UNION select '12M' UNION select '28D') t2
 
 -- CMS Indexes: CCY-CMS-TENOR
 INSERT INTO TypesIndexName
@@ -123,6 +123,7 @@ INSERT TypesParties (value) VALUES ('CPTY_C')
 INSERT TypesParties (value) VALUES ('CPTY_1')
 INSERT TypesParties (value) VALUES ('CPTY_2')
 INSERT TypesParties (value) VALUES ('CPTY_3')
+INSERT TypesParties (value) VALUES ('BOND_YIELD_EUR_OVER_OIS')
 
 INSERT TypesOptionStyle (value) VALUES ('European')
 INSERT TypesOptionStyle (value) VALUES ('American')

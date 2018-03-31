@@ -18,7 +18,7 @@ CREATE TABLE NettingCSADetails (
 	NettingSetId varchar(10) NOT NULL,
 	Bilateral varchar(10),
 	CSACurrency varchar(7),
-	IndexName varchar(20),
+	IndexName varchar(30),
 	ThresholdPay decimal(18,3),
 	ThresholdReceive decimal(18,3),
 	MinimumTransferAmountPay decimal(18,3),

@@ -2,6 +2,7 @@ use strict;
 use XML::LibXML; use Data::Dumper;
 use Scalar::Util qw(looks_like_number);
 
+# set this to your ORE Root folder
 my $oreRoot='../../Engine';
 
 my %data;
@@ -150,7 +151,7 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 	  # </xs:simpleType>
 	my @firstlevel = $xmldata->firstChild->findnodes('xs:simpleType');
 	foreach my $record (@firstlevel) {
-		if ($record->getAttribute("name") =~ /TypeType$/) {
+		if ($record->getAttribute("name") =~ /TypeType$/ || $record->getAttribute("name") =~ /CurveType$/) {
 			# <xs:simpleType name="simpleSegmentTypeType">
 			#   <xs:restriction base="xs:string">
 			#     <xs:enumeration value="Deposit"/>
@@ -158,6 +159,19 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 			my @subrecordData = $record->firstChild->childNodes;
 			foreach my $subrecord (@subrecordData) {
 				printInsert($subrecord, "Types", "SegmentTypeType", 1);
+			}
+		}
+	}
+	foreach my $record (@firstlevel) {
+		my $tableName = $record->getAttribute("name");
+		if ($tableName =~ /defaultCurveType$/) {
+			# <xs:simpleType name="defaultCurveType">
+			#   <xs:restriction base="xs:string">
+			#     <xs:enumeration value="SpreadCDS"/>
+			# .........
+			my @subrecordData = $record->firstChild->childNodes;
+			foreach my $subrecord (@subrecordData) {
+				printInsert($subrecord, "Types", $tableName, 1);
 			}
 		}
 	}
@@ -345,8 +359,8 @@ sub doInputXMLs {
 				my $TradeId = $record->getAttribute("id");
 				my $TradeType = $record->findvalue("TradeType");
 				$record->setAttribute("id", $UniqueIdPrefix.$TradeId);
-				$record->setAttribute("CounterParty", $record->findvalue("Envelope/CounterParty"));
-				$record->setAttribute("NettingSetId", $UniqueIdPrefix.$record->findvalue("Envelope/NettingSetId")) if $record->findvalue("Envelope/NettingSetId");
+				$record->setAttribute("EnvelopeCounterParty", $record->findvalue("Envelope/CounterParty"));
+				$record->setAttribute("EnvelopeNettingSetId", $UniqueIdPrefix.$record->findvalue("Envelope/NettingSetId")) if $record->findvalue("Envelope/NettingSetId");
 				printInsert($record, "Portfolio", "Trades");
 				if ($UniqueIdPrefix) {
 					my $node = XML::LibXML::Element->new("AdditionalFields");

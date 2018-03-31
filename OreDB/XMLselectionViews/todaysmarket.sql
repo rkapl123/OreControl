@@ -22,8 +22,7 @@ SELECT DISTINCT tmc.GroupingId,
 			InflationCapFloorPriceSurfacesId,
 			EquityCurvesId,
 			EquityVolatilitiesId,
-			SecuritySpreadsId,
-			SecurityRecoveryRatesId
+			SecuritiesId
 		FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId
 		FOR XML PATH ('Configuration'), TYPE),
 		(SELECT
@@ -156,19 +155,19 @@ SELECT DISTINCT tmc.GroupingId,
 			id [@id],
 			(SELECT 
 				c.name [@name], 
-				c.SecuritySpread [data()] 
-			FROM TodaysMarketSecuritySpreads c WHERE c.id = co.id
-			FOR XML PATH ('SecuritySpread'), TYPE)
-		FROM (SELECT DISTINCT ISNULL(SecuritySpreadsId,'default') id FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId) co
-		FOR XML PATH ('SecuritySpreads'), TYPE),
+				c.Security [data()] 
+			FROM TodaysMarketSecurities c WHERE c.id = co.id
+			FOR XML PATH ('Security'), TYPE)
+		FROM (SELECT DISTINCT ISNULL(SecuritiesId,'default') id FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId) co
+		FOR XML PATH ('Securities'), TYPE),
 		(SELECT
 			id [@id],
 			(SELECT 
 				c.name [@name], 
-				c.SecurityRecoveryRate [data()] 
-			FROM TodaysMarketSecurityRecoveryRates c WHERE c.id = co.id
-			FOR XML PATH ('SecurityRecoveryRate'), TYPE)
-		FROM (SELECT DISTINCT ISNULL(SecurityRecoveryRatesId,'default') id FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId) co
-		FOR XML PATH ('SecurityRecoveryRates'), TYPE)
+				c.BaseCorrelation [data()] 
+			FROM TodaysMarketBaseCorrelations c WHERE c.id = co.id
+			FOR XML PATH ('BaseCorrelation'), TYPE)
+		FROM (SELECT DISTINCT ISNULL(BaseCorrelationsId,'default') id FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId) co
+		FOR XML PATH ('BaseCorrelations'), TYPE)
 	FOR XML PATH('TodaysMarket'))) XMLData
 FROM TodaysMarketConfiguration tmc

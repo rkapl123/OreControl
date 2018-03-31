@@ -23,10 +23,10 @@ ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_Compoun
 REFERENCES TypesCompounding (value)
 ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_CompoundingFrequency FOREIGN KEY(CompoundingFrequency)
 REFERENCES TypesFrequencyType (value)
-ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_TenorCalendar FOREIGN KEY(TenorCalendar)
-REFERENCES TypesCalendar (value)
-ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_SpotCalendar FOREIGN KEY(SpotCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_TenorCalendar FOREIGN KEY(TenorCalendar)
+--REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_SpotCalendar FOREIGN KEY(SpotCalendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_RollConvention FOREIGN KEY(RollConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE ConventionsZero WITH CHECK ADD CONSTRAINT FK_ConventionsZero_EOM FOREIGN KEY(EOM)
@@ -46,8 +46,8 @@ CREATE TABLE ConventionsCDS (
 CONSTRAINT PK_ConventionsCDS PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
-ALTER TABLE ConventionsCDS WITH CHECK ADD CONSTRAINT FK_ConventionsCDS_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsCDS WITH CHECK ADD CONSTRAINT FK_ConventionsCDS_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsCDS WITH CHECK ADD CONSTRAINT FK_ConventionsCDS_Frequency FOREIGN KEY(Frequency)
 REFERENCES TypesFrequencyType (value)
 ALTER TABLE ConventionsCDS WITH CHECK ADD CONSTRAINT FK_ConventionsCDS_PaymentConvention FOREIGN KEY(PaymentConvention)
@@ -65,7 +65,7 @@ CREATE TABLE ConventionsDeposit (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
 	IndexBased varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
-	IndexName varchar(20),
+	IndexName varchar(30),
 	Calendar varchar(20),
 	Convention varchar(20) COLLATE Latin1_General_CS_AS,
 	EOM varchar(5) COLLATE Latin1_General_CS_AS,
@@ -78,8 +78,8 @@ ALTER TABLE ConventionsDeposit WITH CHECK ADD CONSTRAINT FK_ConventionsDeposit_I
 REFERENCES TypesBool (value)
 ALTER TABLE ConventionsDeposit WITH CHECK ADD CONSTRAINT FK_ConventionsDeposit_IndexName FOREIGN KEY(IndexName)
 REFERENCES TypesIndexName (value)
-ALTER TABLE ConventionsDeposit WITH CHECK ADD CONSTRAINT FK_ConventionsDeposit_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsDeposit WITH CHECK ADD CONSTRAINT FK_ConventionsDeposit_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsDeposit WITH CHECK ADD CONSTRAINT FK_ConventionsDeposit_Convention FOREIGN KEY(Convention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE ConventionsDeposit WITH CHECK ADD CONSTRAINT FK_ConventionsDeposit_EOM FOREIGN KEY(EOM)
@@ -90,7 +90,7 @@ REFERENCES TypesDayCounter (value)
 CREATE TABLE ConventionsFuture (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
-	IndexName varchar(20) NOT NULL
+	IndexName varchar(30) NOT NULL
 CONSTRAINT PK_ConventionsFuture PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
@@ -100,7 +100,7 @@ REFERENCES TypesIndexName (value)
 CREATE TABLE ConventionsFRA (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
-	IndexName varchar(20) NOT NULL
+	IndexName varchar(30) NOT NULL
 CONSTRAINT PK_ConventionsFRA PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
@@ -111,7 +111,7 @@ CREATE TABLE ConventionsOIS (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
 	SpotLag int NOT NULL,
-	IndexName varchar(20) NOT NULL,
+	IndexName varchar(30) NOT NULL,
 	FixedDayCounter varchar(30) NOT NULL,
 	PaymentLag int,
 	EOM varchar(5) COLLATE Latin1_General_CS_AS,
@@ -144,14 +144,14 @@ CREATE TABLE ConventionsSwap (
 	FixedFrequency varchar(20) NOT NULL,
 	FixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
 	FixedDayCounter varchar(30) NOT NULL,
-	IndexName varchar(20) NOT NULL,
+	IndexName varchar(30) NOT NULL,
 	FloatFrequency varchar(20),
 	SubPeriodsCouponType varchar(20)
 CONSTRAINT PK_ConventionsSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
-ALTER TABLE ConventionsSwap WITH CHECK ADD CONSTRAINT FK_ConventionsSwap_FixedCalendar FOREIGN KEY(FixedCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsSwap WITH CHECK ADD CONSTRAINT FK_ConventionsSwap_FixedCalendar FOREIGN KEY(FixedCalendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsSwap WITH CHECK ADD CONSTRAINT FK_ConventionsSwap_FixedFrequency FOREIGN KEY(FixedFrequency)
 REFERENCES TypesFrequencyType (value)
 ALTER TABLE ConventionsSwap WITH CHECK ADD CONSTRAINT FK_ConventionsSwap_FixedConvention FOREIGN KEY(FixedConvention)
@@ -174,7 +174,7 @@ CREATE TABLE ConventionsAverageOIS (
 	FixedCalendar varchar(20) NOT NULL,
 	FixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
 	FixedPaymentConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
-	IndexName varchar(20) NOT NULL,
+	IndexName varchar(30) NOT NULL,
 	OnTenor varchar(8) NOT NULL,
 	RateCutoff varchar(8) NOT NULL
 CONSTRAINT PK_ConventionsAverageOIS PRIMARY KEY CLUSTERED (
@@ -182,8 +182,8 @@ CONSTRAINT PK_ConventionsAverageOIS PRIMARY KEY CLUSTERED (
 ))
 ALTER TABLE ConventionsAverageOIS WITH CHECK ADD CONSTRAINT FK_ConventionsAverageOIS_FixedDayCounter FOREIGN KEY(FixedDayCounter)
 REFERENCES TypesDayCounter (value)
-ALTER TABLE ConventionsAverageOIS WITH CHECK ADD CONSTRAINT FK_ConventionsAverageOIS_FixedCalendar FOREIGN KEY(FixedCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsAverageOIS WITH CHECK ADD CONSTRAINT FK_ConventionsAverageOIS_FixedCalendar FOREIGN KEY(FixedCalendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsAverageOIS WITH CHECK ADD CONSTRAINT FK_ConventionsAverageOIS_FixedConvention FOREIGN KEY(FixedConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE ConventionsAverageOIS WITH CHECK ADD CONSTRAINT FK_ConventionsAverageOIS_FixedPaymentConvention FOREIGN KEY(FixedPaymentConvention)
@@ -195,8 +195,8 @@ REFERENCES TypesIndexName (value)
 CREATE TABLE ConventionsTenorBasisSwap (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
-	LongIndex varchar(20) NOT NULL,
-	ShortIndex varchar(20) NOT NULL,
+	LongIndex varchar(30) NOT NULL,
+	ShortIndex varchar(30) NOT NULL,
 	ShortPayTenor varchar(8),
 	SpreadOnShort varchar(5) COLLATE Latin1_General_CS_AS,
 	IncludeSpread varchar(5) COLLATE Latin1_General_CS_AS,
@@ -222,17 +222,17 @@ CREATE TABLE ConventionsTenorBasisTwoSwap (
 	LongFixedFrequency varchar(20) NOT NULL,
 	LongFixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
 	LongFixedDayCounter varchar(30) NOT NULL,
-	LongIndex varchar(20) NOT NULL,
+	LongIndex varchar(30) NOT NULL,
 	ShortFixedFrequency varchar(20) NOT NULL,
 	ShortFixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
 	ShortFixedDayCounter varchar(30) NOT NULL,
-	ShortIndex varchar(20) NOT NULL,
+	ShortIndex varchar(30) NOT NULL,
 	LongMinusShort varchar(5) COLLATE Latin1_General_CS_AS
 CONSTRAINT PK_ConventionsTenorBasisTwoSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
-ALTER TABLE ConventionsTenorBasisTwoSwap WITH CHECK ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_Calendar FOREIGN KEY(Calendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsTenorBasisTwoSwap WITH CHECK ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_Calendar FOREIGN KEY(Calendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsTenorBasisTwoSwap WITH CHECK ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_LongFixedFrequency FOREIGN KEY(LongFixedFrequency)
 REFERENCES TypesFrequencyType (value)
 ALTER TABLE ConventionsTenorBasisTwoSwap WITH CHECK ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_LongFixedConvention FOREIGN KEY(LongFixedConvention)
@@ -269,12 +269,12 @@ ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_SourceCurre
 REFERENCES TypesCurrencyCode (value)
 ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_TargetCurrency FOREIGN KEY(TargetCurrency)
 REFERENCES TypesCurrencyCode (value)
-ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_AdvanceCalendar FOREIGN KEY(AdvanceCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_AdvanceCalendar FOREIGN KEY(AdvanceCalendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_SpotRelative FOREIGN KEY(SpotRelative)
 REFERENCES TypesBool (value)
-ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_AdditionalSettleCalendar FOREIGN KEY(AdditionalSettleCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsFX WITH CHECK ADD CONSTRAINT FK_ConventionsFX_AdditionalSettleCalendar FOREIGN KEY(AdditionalSettleCalendar)
+--REFERENCES TypesCalendar (value)
 
 CREATE TABLE ConventionsCrossCurrencyBasis (
 	Id varchar(70) NOT NULL,
@@ -282,14 +282,14 @@ CREATE TABLE ConventionsCrossCurrencyBasis (
 	SettlementDays int NOT NULL,
 	SettlementCalendar varchar(20),
 	RollConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
-	FlatIndex varchar(20) NOT NULL,
-	SpreadIndex varchar(20) NOT NULL,
+	FlatIndex varchar(30) NOT NULL,
+	SpreadIndex varchar(30) NOT NULL,
 	EOM varchar(5) COLLATE Latin1_General_CS_AS
 CONSTRAINT PK_ConventionsCrossCurrencyBasis PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
-ALTER TABLE ConventionsCrossCurrencyBasis WITH CHECK ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_SettlementCalendar FOREIGN KEY(SettlementCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsCrossCurrencyBasis WITH CHECK ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_SettlementCalendar FOREIGN KEY(SettlementCalendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsCrossCurrencyBasis WITH CHECK ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_RollConvention FOREIGN KEY(RollConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE ConventionsCrossCurrencyBasis WITH CHECK ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_FlatIndex FOREIGN KEY(FlatIndex)
@@ -315,7 +315,7 @@ CREATE TABLE ConventionsInflationSwap (
 	FixCalendar varchar(20) NOT NULL,
 	FixConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
 	DayCounter varchar(30) NOT NULL,
-	IndexName varchar(20) NOT NULL,
+	IndexName varchar(30) NOT NULL,
 	Interpolated varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
 	ObservationLag varchar(8) NOT NULL,
 	AdjustInflationObservationDates varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
@@ -324,8 +324,8 @@ CREATE TABLE ConventionsInflationSwap (
 CONSTRAINT PK_ConventionsInflationSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
-ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_FixCalendar FOREIGN KEY(FixCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_FixCalendar FOREIGN KEY(FixCalendar)
+--REFERENCES TypesCalendar (value)
 ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_FixConvention FOREIGN KEY(FixConvention)
 REFERENCES TypesBusinessDayConvention (value)
 ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_DayCounter FOREIGN KEY(DayCounter)
@@ -336,5 +336,5 @@ ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInf
 REFERENCES TypesBool (value)
 ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_AdjustInflationObservationDates FOREIGN KEY(AdjustInflationObservationDates)
 REFERENCES TypesBool (value)
-ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_InflationCalendar FOREIGN KEY(InflationCalendar)
-REFERENCES TypesCalendar (value)
+--ALTER TABLE ConventionsInflationSwap WITH CHECK ADD CONSTRAINT FK_ConventionsInflationSwap_InflationCalendar FOREIGN KEY(InflationCalendar)
+--REFERENCES TypesCalendar (value)
