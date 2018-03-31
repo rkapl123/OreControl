@@ -91,9 +91,12 @@ SELECT 'FX:'+t1.[value]+t2.value currencypair
   WHERE t1.value <> t2.value
   ORDER BY currencypair
 
-INSERT INTO TypesFactors (value) VALUES ('EQ:SP5')
-INSERT INTO TypesFactors (value) VALUES ('EQ:Lufthansa')
-
+INSERT INTO TypesFactors
+SELECT 'INF:'+t1.[value]
+  FROM [dbo].[TypesIndexName] t1
+  WHERE t1.[value] not like '%-%'
+  ORDER BY value
+  
 -- other inserts into Types tables
 INSERT INTO TypesCurrencyCode (value) VALUES ('default')
 INSERT INTO TypesCurrencyPair (value) VALUES ('default')
@@ -114,8 +117,6 @@ INSERT Typescalendar (value) VALUES ('US,UK')
 INSERT Typescalendar (value) VALUES ('EUR,USD,GBP,CHF')
 INSERT Typescalendar (value) VALUES ('EUR,GBP')
 
-INSERT TypesDiscretizationType (value) VALUES ('Euler')
-
 INSERT TypesParties (value) VALUES ('BANK')
 INSERT TypesParties (value) VALUES ('CPTY_A')
 INSERT TypesParties (value) VALUES ('CPTY_B')
@@ -133,7 +134,11 @@ INSERT TypesOptionSettlement (value) VALUES ('Physical')
 INSERT TypesOptionType (value) VALUES ('Call')
 INSERT TypesOptionType (value) VALUES ('Put')
 
+INSERT TypesDiscretizationType (value) VALUES ('Euler')
+
 INSERT TypesShiftType (value) VALUES ('Absolute')
 INSERT TypesShiftType (value) VALUES ('Relative')
 
 INSERT TypesSegmentTypeType (value) VALUES ('Average OIS')
+
+INSERT TypesCurveType (value) VALUES ('EquityForecast')

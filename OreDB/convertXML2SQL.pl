@@ -8,9 +8,16 @@ my $oreRoot='../../Engine';
 my %data;
 my $configDir = "$oreRoot/Examples/Input";
 my $xsdDir = "$oreRoot/xsd";
-my $inputDir = "$oreRoot/Examples/Example_1/Input";
 
-################################
+# set this to your analysis input folder (to translate portfolio, ore parameters, netting sets and simulation/stresstest/sensitivity parameters)
+my $inputDir = "$oreRoot/Examples/Example_1/Input";
+# leave empty to process standard examples
+#$inputDir = "";
+
+
+###############################################################################################################################
+# First convert common settings (conventions, curveconfig, pricingengine, ore types and todaysmarket)
+
 # process conventions data
 if (-e $configDir.'/conventions.xml') {
 	print "processing conventions.xml\n";
@@ -28,8 +35,6 @@ if (-e $configDir.'/conventions.xml') {
 	close SQLOUT;
 }
 
-
-################################
 # process pricingengine data
 if (-e $configDir.'/pricingengine.xml') {
 	open SQLOUT, ">Data/pricingengine.sql";
@@ -57,7 +62,6 @@ if (-e $configDir.'/pricingengine.xml') {
 	close SQLOUT;
 }
 
-################################
 # process ore_types data
 if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 	open SQLOUT, ">Data/ore_types.sql";
@@ -192,7 +196,6 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 	close SQLOUT;
 }
 
-################################
 # process todaysmarket data
 if (-e $configDir.'/todaysmarket.xml') {
 	open SQLOUT, ">Data/todaysmarket.sql";
@@ -232,7 +235,6 @@ if (-e $configDir.'/todaysmarket.xml') {
 	close SQLOUT;
 }
 
-################################
 # process curveconfig data
 if (-e $configDir.'/curveconfig.xml') {
 	open SQLOUT, ">Data/curveconfig.sql";
@@ -311,14 +313,17 @@ if (-e $configDir.'/curveconfig.xml') {
 	close SQLOUT;
 }
 
+###############################################################################################################################
+# Now convert the analyses input folder
+#
 unlink "Data/ore.sql";
 unlink "Data/netting.sql";
 unlink "Data/simulation.sql";
 unlink "Data/portfolio.sql";
-unlink "Data/sensitivity.sql";
-unlink "Data/stresstest.sql";
+#unlink "Data/sensitivity.sql";
+#unlink "Data/stresstest.sql";
 
-# given analyses/portfolio datat input Dir;
+# given analyses/portfolio data input Dir;
 if ($inputDir) {
 	doInputXMLs ($inputDir,"SimulationId","OreConfigId","NettingSetGroupingId","SensitivityAnalysisId","StresstestGroupingId","");
 } else {
@@ -342,7 +347,6 @@ my $ScheduleId;
 sub doInputXMLs {
 	my ($xmlInputDir,$SimulationId,$OreConfigId,$NettingSetGrouping,$SensitivityAnalysisId,$StresstestGroupingId,$UniqueIdPrefix) = @_;
 	
-	################################
 	# process portfolio data
 	if (-e $xmlInputDir.'/portfolio.xml') {
 		open SQLOUT, ">>Data/portfolio.sql";
@@ -364,7 +368,7 @@ sub doInputXMLs {
 				printInsert($record, "Portfolio", "Trades");
 				if ($UniqueIdPrefix) {
 					my $node = XML::LibXML::Element->new("AdditionalFields");
-					my $subnode = XML::LibXML::Element->new("GroupingId");
+					my $subnode = XML::LibXML::Element->new("AdditionalId");
 					my $subnodevalue = XML::LibXML::Text->new("Example_".$UniqueIdPrefix);
 					$subnode->addChild($subnodevalue);
 					$node->addChild($subnode);
@@ -429,7 +433,7 @@ sub doInputXMLs {
 		}
 		close SQLOUT;
 	}
-	################################
+
 	# process ORE.xml data
 	if (-e $xmlInputDir.'/ore.xml') {
 		open SQLOUT, ">>Data/ore.sql";
@@ -464,7 +468,6 @@ sub doInputXMLs {
 		}
 	}
 
-	################################
 	# process nettingsetdefinitions data
 	if (-e $xmlInputDir.'/netting.xml') {
 		open SQLOUT, ">>Data/netting.sql";
@@ -496,7 +499,6 @@ sub doInputXMLs {
 		close SQLOUT;
 	}
 
-	################################
 	# process simulation data
 	if (-e $xmlInputDir.'/simulation.xml') {
 		open SQLOUT, ">>Data/simulation.sql";
@@ -674,11 +676,10 @@ sub doInputXMLs {
 		close SQLOUT;
 	}
 	
-	################################
 	# process sensitivity data
 	if (-e $xmlInputDir.'/sensitivity.xml') {
 		open SQLOUT, ">>Data/sensitivity.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix);
+		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has sensitivity.xml
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/sensitivity.xml', no_blanks => 1);
 		print "processing sensitivity.xml\n";
 		my $record = $xmldata->firstChild;
@@ -688,20 +689,21 @@ sub doInputXMLs {
 		foreach $record (@firstlevel) {
 			my @subelemData = $record->childNodes;
 			foreach my $subrecord (@subelemData) {
-				my $tableName = $subrecord->nodeName;
-				$tableName = "CrossGammaFilter" if $record->nodeName eq "CrossGammaFilter";
-				$subrecord->setAttribute("AnalysisId", $SensitivityAnalysisId);
-				printInsert($subrecord, "Sensitivityanalysis", $tableName);
+				if (ref($subrecord) eq "XML::LibXML::Element") {
+					my $tableName = $subrecord->nodeName;
+					$tableName = "CrossGammaFilter" if $record->nodeName eq "CrossGammaFilter";
+					$subrecord->setAttribute("AnalysisId", $SensitivityAnalysisId);
+					printInsert($subrecord, "Sensitivityanalysis", $tableName);
+				}
 			}
 		}
 		close SQLOUT;
 	}
 	
-	################################
 	# process stresstest data
 	if (-e $xmlInputDir.'/stresstest.xml') {
 		open SQLOUT, ">>Data/stresstest.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix);
+		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has stresstest.xml
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/stresstest.xml', no_blanks => 1);
 		print "processing stresstest.xml\n";
 		my @firstlevel = $xmldata->firstChild->childNodes;

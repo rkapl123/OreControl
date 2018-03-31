@@ -76,6 +76,8 @@ ALTER TABLE StresstestFxSpot WITH CHECK ADD CONSTRAINT FK_StresstestFxSpot_Stres
 REFERENCES Stresstest (Id)
 ALTER TABLE StresstestFxSpot WITH CHECK ADD CONSTRAINT FK_StresstestFxSpot_ShiftType FOREIGN KEY(ShiftType)
 REFERENCES TypesShiftType (value)
+ALTER TABLE StresstestFxSpot WITH CHECK ADD CONSTRAINT FK_StresstestFxSpot_ccypair FOREIGN KEY(ccypair)
+REFERENCES TypesCurrencyPair (value)
 
 CREATE TABLE StresstestFxVolatility (
 	StresstestId varchar(40) not null,
@@ -110,6 +112,8 @@ ALTER TABLE StresstestSwaptionVolatility WITH CHECK ADD CONSTRAINT FK_Stresstest
 REFERENCES Stresstest (Id)
 ALTER TABLE StresstestSwaptionVolatility WITH CHECK ADD CONSTRAINT FK_StresstestSwaptionVolatility_ShiftType FOREIGN KEY(ShiftType)
 REFERENCES TypesShiftType (value)
+ALTER TABLE StresstestSwaptionVolatility WITH CHECK ADD CONSTRAINT FK_StresstestSwaptionVolatility_ccy FOREIGN KEY(ccy)
+REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE StresstestCapFloorVolatility (
 	StresstestId varchar(40) not null,
@@ -145,4 +149,79 @@ CONSTRAINT PK_StresstestSwaptionShift PRIMARY KEY CLUSTERED
 ))
 ALTER TABLE StresstestSwaptionShift WITH CHECK ADD CONSTRAINT FK_StresstestSwaptionShift_StresstestId FOREIGN KEY(StresstestId, ccy)
 REFERENCES StresstestSwaptionVolatility (StresstestId, ccy)
+ALTER TABLE StresstestSwaptionShift WITH CHECK ADD CONSTRAINT FK_StresstestSwaptionShift_ccy FOREIGN KEY(ccy)
+REFERENCES TypesCurrencyCode (value)
 
+CREATE TABLE StresstestEquitySpot (
+	StresstestId varchar(40) not null,
+	equity varchar(20) not null,
+	ShiftType varchar(8),
+	ShiftSize decimal(18,5),
+	Shifts varchar(200)
+CONSTRAINT PK_StresstestEquitySpot PRIMARY KEY CLUSTERED 
+(
+	StresstestId ASC,
+	equity ASC
+))
+ALTER TABLE StresstestEquitySpot WITH CHECK ADD CONSTRAINT FK_StresstestEquitySpot_StresstestId FOREIGN KEY(StresstestId)
+REFERENCES Stresstest (Id)
+ALTER TABLE StresstestEquitySpot WITH CHECK ADD CONSTRAINT FK_StresstestEquitySpot_ShiftType FOREIGN KEY(ShiftType)
+REFERENCES TypesShiftType (value)
+ALTER TABLE StresstestEquitySpot WITH CHECK ADD CONSTRAINT FK_StresstestEquitySpot_equity FOREIGN KEY(equity)
+REFERENCES CurveConfigurationEquityCurves (CurveId)
+
+CREATE TABLE StresstestEquityVolatility (
+	StresstestId varchar(40) not null,
+	equity varchar(20) not null,
+	ShiftType varchar(8),
+	ShiftSize decimal(18,5),
+	Shifts varchar(200),
+	ShiftExpiries varchar(100),
+	ShiftStrikes varchar(100)
+CONSTRAINT PK_StresstestEquityVolatility PRIMARY KEY CLUSTERED 
+(
+	StresstestId ASC,
+	equity ASC
+))
+ALTER TABLE StresstestEquityVolatility WITH CHECK ADD CONSTRAINT FK_StresstestEquityVolatility_StresstestId FOREIGN KEY(StresstestId)
+REFERENCES Stresstest (Id)
+ALTER TABLE StresstestEquityVolatility WITH CHECK ADD CONSTRAINT FK_StresstestEquityVolatility_ShiftType FOREIGN KEY(ShiftType)
+REFERENCES TypesShiftType (value)
+ALTER TABLE StresstestEquityVolatility WITH CHECK ADD CONSTRAINT FK_StresstestEquityVolatility_equity FOREIGN KEY(equity)
+REFERENCES CurveConfigurationEquityCurves (CurveId)
+
+CREATE TABLE StresstestZeroInflationIndexCurve (
+	StresstestId varchar(40) not null,
+	IndexName varchar(30) not null,
+	ShiftType varchar(8),
+	ShiftSize decimal(18,5),
+	ShiftTenors varchar(100)
+CONSTRAINT PK_StresstestZeroInflationIndexCurve PRIMARY KEY CLUSTERED 
+(
+	StresstestId ASC,
+	IndexName ASC
+))
+ALTER TABLE StresstestZeroInflationIndexCurve WITH CHECK ADD CONSTRAINT FK_StresstestZeroInflationIndexCurve_AnalysisId FOREIGN KEY(StresstestId)
+REFERENCES Stresstest (Id)
+ALTER TABLE StresstestZeroInflationIndexCurve WITH CHECK ADD CONSTRAINT FK_StresstestZeroInflationIndexCurve_Name FOREIGN KEY(IndexName)
+REFERENCES TypesIndexName (value)
+ALTER TABLE StresstestZeroInflationIndexCurve WITH CHECK ADD CONSTRAINT FK_StresstestZeroInflationIndexCurve_ShiftType FOREIGN KEY(ShiftType)
+REFERENCES TypesShiftType (value)
+
+CREATE TABLE StresstestYYInflationIndexCurve (
+	StresstestId varchar(40) not null,
+	IndexName varchar(30) not null,
+	ShiftType varchar(8),
+	ShiftSize decimal(18,5),
+	ShiftTenors varchar(100)
+CONSTRAINT PK_StresstestYYInflationIndexCurve PRIMARY KEY CLUSTERED 
+(
+	StresstestId ASC,
+	IndexName ASC
+))
+ALTER TABLE StresstestYYInflationIndexCurve WITH CHECK ADD CONSTRAINT FK_StresstestYYInflationIndexCurve_AnalysisId FOREIGN KEY(StresstestId)
+REFERENCES Stresstest (Id)
+ALTER TABLE StresstestYYInflationIndexCurve WITH CHECK ADD CONSTRAINT FK_StresstestYYInflationIndexCurve_Name FOREIGN KEY(IndexName)
+REFERENCES TypesIndexName (value)
+ALTER TABLE StresstestYYInflationIndexCurve WITH CHECK ADD CONSTRAINT FK_StresstestYYInflationIndexCurve_ShiftType FOREIGN KEY(ShiftType)
+REFERENCES TypesShiftType (value)

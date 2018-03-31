@@ -56,6 +56,12 @@ CONSTRAINT PK_TypesCurrencyPair PRIMARY KEY CLUSTERED (
 	value ASC
 ))
 
+CREATE TABLE TypesCurveType (
+	value varchar(20)  NOT NULL,
+CONSTRAINT PK_TypesCurveType PRIMARY KEY CLUSTERED (
+	value ASC
+))
+
 CREATE TABLE TypesCsaType (
 	value varchar(10)  NOT NULL,
 CONSTRAINT PK_TypesCsaType PRIMARY KEY CLUSTERED (
