@@ -212,6 +212,10 @@ if (-e $configDir.'/todaysmarket.xml') {
 				$ConfigurationTypeRecord->setAttribute("id",$tableId);
 				printInsert($ConfigurationTypeRecord, "TodaysMarket", "ConfigurationTypes", 1);
 				$record->setAttribute("GroupingId",'ExampleInput');
+#				# DONT DO THIS, as it causes problems: always enter the configuration id for a block in case there is none set explicitly
+#				foreach my $block ("DiscountingCurvesId","YieldCurvesId","IndexForwardingCurvesId","SwapIndexCurvesId","ZeroInflationIndexCurvesId","YYInflationIndexCurvesId","FxSpotsId","FxVolatilitiesId","SwaptionVolatilitiesId","CapFloorVolatilitiesId","CDSVolatilitiesId","DefaultCurvesId","InflationCapFloorPriceSurfacesId","EquityCurvesId","EquityVolatilitiesId","SecuritiesId","BaseCorrelationsId") {
+#					$record->setAttribute($block,$tableId) if !$record->findnodes($block);
+#				}
 				printInsert($record, "TodaysMarket", $tableName, 1);
 			} elsif ($tableName eq "SwapIndexCurves") {
 				my @subrecordData = $record->childNodes;
