@@ -8,12 +8,12 @@ ORE DB is
 ## SQL DDL scripts
 
 ### Tables
-The main rationale was to
-- follow the structure set up by the xml schemata
-- have relational intgrity where possible
-
+The main rationale was to  
+a) follow the structure set up by the xml schemata  
+b) have relational intgrity where possible  
 Following tables have been set up (grouped by usage/prefix) in the Tables folder:
-##### Types
+
+#### Types
 * TypesAmortizationType
 * TypesBool
 * TypesBusinessDayConvention
@@ -59,12 +59,12 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * TypesVolatilityTypeType
 * TypesYcInterpolation
 
-##### Pricingengine
+#### Pricingengine
 * PricingEngineEngineParameters
 * PricingEngineModelParameters
 * PricingEngineProducts
 
-##### Conventions
+#### Conventions
 * ConventionsAverageOIS
 * ConventionsCDS
 * ConventionsCrossCurrencyBasis
@@ -80,7 +80,7 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * ConventionsTenorBasisTwoSwap
 * ConventionsZero
 
-##### Todaysmarket
+#### Todaysmarket
 * TodaysMarketBaseCorrelations
 * TodaysMarketCapFloorVolatilities
 * TodaysMarketCDSVolatilities
@@ -102,7 +102,7 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * TodaysMarketYYInflationIndexCurves
 * TodaysMarketZeroInflationIndexCurves
 
-##### CurveConfiguration
+#### CurveConfiguration
 * CurveConfigurationBaseCorrelation
 * CurveConfigurationCapFloorVolatilities
 * CurveConfigurationCDSVolatilities
@@ -121,18 +121,18 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * CurveConfigurationYieldCurves
 * CurveConfigurationYieldCurveSegments
 
-##### OreParameters
+#### OreParameters
 * OreParametersAnalytics
 * OreParametersConfigs
 * OreParametersMarkets
 * OreParametersSetup
 
-##### Netting
+#### Netting
 * NettingCSADetails
 * NettingEligibleCollateralsCurrencies
 * NettingSet
 
-##### Simulation
+#### Simulation
 * SimulationCrossAssetModel
 * SimulationCrossAssetModelCurrencies
 * SimulationCrossAssetModelEquities
@@ -167,7 +167,7 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * SimulationMarketZeroInflationIndexCurves
 * SimulationParameters
 
-##### Portfolio
+#### Portfolio
 * PortfolioAdditionalFields
 * PortfolioBaskets
 * PortfolioBondData
@@ -199,7 +199,7 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * PortfolioTradePortfolioIds
 * PortfolioTrades
 
-##### Stresstest
+#### Stresstest
 * Stresstest
 * StresstestCapFloorVolatility
 * StresstestDiscountCurve
@@ -214,7 +214,7 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * StresstestYYInflationIndexCurve
 * StresstestZeroInflationIndexCurve
 
-##### Sensitivityanalysis
+#### Sensitivityanalysis
 * Sensitivityanalysis
 * SensitivityanalysisBaseCorrelation
 * SensitivityanalysisCapFloorVolatility
@@ -232,13 +232,13 @@ Following tables have been set up (grouped by usage/prefix) in the Tables folder
 * SensitivityanalysisYYInflationIndexCurve
 * SensitivityanalysisZeroInflationIndexCurve
 
-##### Marketdata
+#### Marketdata
 * FixingData
 * FixingDataDefinitions
 * MarketData
 * MarketDataDefinitions
 
-##### Results
+#### Results
 * ResultsColVA
 * ResultsCrossGamma
 * ResultsCube
@@ -278,15 +278,16 @@ my $inputDir = "$oreRoot/Examples/Example_1/Input";
 ```
 The convertXML2SQL.pl script requires following packages to be installed: ```XML::LibXML; Scalar::Util```
 
-### Market- and Fixing data
-The cmd shell script runConvertMarketdata2SQL.cmd (calls the perl script convertMarketdata2SQL.pl) is used for the extraction of text from ORE marketdata/fixingdata and conversion into DDL.
+### Market-, Covariance- and Fixing data
+The cmd shell script runConvertMarketdata2SQL.cmd (calls the perl script convertMarketdata2SQL.pl) is used for the extraction of text from ORE marketdata/covariancedata/fixingdata and conversion into DDL.
 This can be either done for the provided Examples (as is preconfigured) or for other files. Configuration of the files to be taken is done in convertXML2SQL.pl:
 ```perl
 # set this to your ORE Root folder
 my $oreRoot='../../Engine';
-# set this to the folder where marketdata/fixingdata files are located
+# set this to the folder where marketdata/fixingdata/covariance files are located
 my $marketdataFile = "$oreRoot/Examples/Input/market_20160205.txt";
 my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
+my $covarianceFile = "$oreRoot/Examples/Example_15/Input/covariance.csv";
 ```
 
 ## Database creation and filling

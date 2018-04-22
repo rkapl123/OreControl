@@ -3,7 +3,7 @@ my %Quotehash; my %Quotevaluehash; my $maxQuoteId;
 
 # set this to your ORE Root folder
 my $oreRoot='../../Engine';
-# set this to the folder where marketdata/fixingdata files are located
+# set this to the folder where marketdata/fixingdata/covariance files are located
 my $marketdataFile = "$oreRoot/Examples/Input/market_20160205.txt";
 my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
 my $covarianceFile = "$oreRoot/Examples/Example_15/Input/covariance.csv";
