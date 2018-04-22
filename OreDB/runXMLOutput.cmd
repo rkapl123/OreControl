@@ -10,8 +10,10 @@ sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from NettingSetS
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from PortfolioSelection where GroupingId = 'Example_2'" -y0 -o OREDB\portfolio.xml
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from SimulationSelection where Id = 'Example_2'" -y0 -o OREDB\simulation.xml
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from SensitivityanalysisSelection where Id = 'Example_15'" -y0 -o OREDB\sensitivity.xml
+sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from StresstestSelection where Id = 'Example_15'" -y0 -o OREDB\stresstest.xml
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT f.FixingDate,fd.FixingIndex,f.IndexValue FROM FixingData f INNER JOIN FixingDataDefinitions fd ON f.IndexId = fd.IndexId ORDER BY f.FixingDate" -y0 -o OREDB\fixingdata.txt
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT m.QuoteDate,md.Quote,m.QuoteValue FROM MarketData m INNER JOIN MarketDataDefinitions md ON m.QuoteId = md.QuoteId" -y0 -o OREDB\marketdata.txt
+sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT QuoteId1,QuoteId2,QuoteValue FROM CovarianceData" -y0 -o OREDB\covariancedata.txt
 rem start ORE with generated xml
-C:\dev\ORE-1.8.2\App\bin\x64\Release\ore.exe OREDB\ore.xml
+..\..\Engine\App\bin\x64\Release\ore.exe OREDB\ore.xml
 pause

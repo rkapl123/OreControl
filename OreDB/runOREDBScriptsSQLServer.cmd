@@ -1,18 +1,18 @@
 echo starting ORE DB Creation scripts > sql.log
 call runSingleScript.cmd oreDBCreate.sql
-call runSingleScript.cmd Tables\ore_typesTables.sql
-call runSingleScript.cmd Tables\pricingengineTables.sql
-call runSingleScript.cmd Tables\conventionsTables.sql
-call runSingleScript.cmd Tables\todaysmarketTables.sql
-call runSingleScript.cmd Tables\curveconfigTables.sql
-call runSingleScript.cmd Tables\oreTables.sql
-call runSingleScript.cmd Tables\nettingTables.sql
-call runSingleScript.cmd Tables\simulationTables.sql
-call runSingleScript.cmd Tables\portfolioTables.sql
-call runSingleScript.cmd Tables\stresstestTables.sql
-call runSingleScript.cmd Tables\sensitivityTables.sql
-call runSingleScript.cmd Tables\marketdataTables.sql
-call runSingleScript.cmd Tables\resultsTables.sql
+call runSingleScript.cmd Tables\TypesTables.sql
+call runSingleScript.cmd Tables\PricingengineTables.sql
+call runSingleScript.cmd Tables\ConventionsTables.sql
+call runSingleScript.cmd Tables\TodaysmarketTables.sql
+call runSingleScript.cmd Tables\CurveConfigurationTables.sql
+call runSingleScript.cmd Tables\OreParametersTables.sql
+call runSingleScript.cmd Tables\NettingTables.sql
+call runSingleScript.cmd Tables\SimulationTables.sql
+call runSingleScript.cmd Tables\PortfolioTables.sql
+call runSingleScript.cmd Tables\StresstestTables.sql
+call runSingleScript.cmd Tables\SensitivityanalysisTables.sql
+call runSingleScript.cmd Tables\MarketdataTables.sql
+call runSingleScript.cmd Tables\ResultsTables.sql
 
 call runSingleScript.cmd XMLselectionViews\conventions.sql
 call runSingleScript.cmd XMLselectionViews\curveconfig.sql
@@ -38,6 +38,8 @@ call runSingleScript.cmd Data\simulation.sql
 call runSingleScript.cmd Data\portfolio.sql
 call runSingleScript.cmd Data\stresstest.sql
 call runSingleScript.cmd Data\sensitivity.sql
-call runSingleScript.cmd Data\marketfixingdata.sql
+call runSingleScript.cmd Data\marketdata.sql
+call runSingleScript.cmd Data\covariancedata.sql
+call runSingleScript.cmd Data\fixingdata.sql
 
 pause

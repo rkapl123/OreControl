@@ -60,6 +60,8 @@ CONSTRAINT PK_MarketData PRIMARY KEY CLUSTERED
 	QuoteId ASC,
 	QuoteDate ASC
 ))
+ALTER TABLE MarketData WITH CHECK ADD CONSTRAINT FK_MarketData_QuoteId FOREIGN KEY(QuoteId)
+REFERENCES MarketDataDefinitions (QuoteId)
 
 CREATE TABLE FixingDataDefinitions (
 	IndexId int not null,
@@ -93,4 +95,15 @@ CONSTRAINT PK_FixingData PRIMARY KEY CLUSTERED
 (
 	IndexId ASC,
 	FixingDate ASC
+))
+
+CREATE TABLE CovarianceData (
+	QuoteId1 varchar(100) not null,
+	QuoteId2 varchar(100) not null,
+	QuoteValue decimal(18,6) not null
+
+CONSTRAINT PK_CovarianceDataData PRIMARY KEY CLUSTERED 
+(
+	QuoteId1 ASC,
+	QuoteId2 ASC
 ))

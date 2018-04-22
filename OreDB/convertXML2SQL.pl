@@ -1,18 +1,18 @@
 use strict;
 use XML::LibXML; use Data::Dumper;
 use Scalar::Util qw(looks_like_number);
+my %data;
 
 # set this to your ORE Root folder
 my $oreRoot='../../Engine';
-
-my %data;
+# set this to the folder where configuration files are located (named as the example configurations)
 my $configDir = "$oreRoot/Examples/Input";
+# set this to the xsd schema definitions (should be the ones from the ORE Engine)
 my $xsdDir = "$oreRoot/xsd";
-
 # set this to your analysis input folder (to translate portfolio, ore parameters, netting sets and simulation/stresstest/sensitivity parameters)
 my $inputDir = "$oreRoot/Examples/Example_1/Input";
 # leave empty to process standard examples
-#$inputDir = "";
+$inputDir = "";
 
 
 ###############################################################################################################################
@@ -212,7 +212,8 @@ if (-e $configDir.'/todaysmarket.xml') {
 				$ConfigurationTypeRecord->setAttribute("id",$tableId);
 				printInsert($ConfigurationTypeRecord, "TodaysMarket", "ConfigurationTypes", 1);
 				$record->setAttribute("GroupingId",'ExampleInput');
-#				# DONT DO THIS, as it causes problems: always enter the configuration id for a block in case there is none set explicitly
+#				DONT DO THIS, as it causes problems with XML generation: 
+# 				# enter the configuration id for a block in case there is none set explicitly
 #				foreach my $block ("DiscountingCurvesId","YieldCurvesId","IndexForwardingCurvesId","SwapIndexCurvesId","ZeroInflationIndexCurvesId","YYInflationIndexCurvesId","FxSpotsId","FxVolatilitiesId","SwaptionVolatilitiesId","CapFloorVolatilitiesId","CDSVolatilitiesId","DefaultCurvesId","InflationCapFloorPriceSurfacesId","EquityCurvesId","EquityVolatilitiesId","SecuritiesId","BaseCorrelationsId") {
 #					$record->setAttribute($block,$tableId) if !$record->findnodes($block);
 #				}
@@ -324,8 +325,8 @@ unlink "Data/ore.sql";
 unlink "Data/netting.sql";
 unlink "Data/simulation.sql";
 unlink "Data/portfolio.sql";
-#unlink "Data/sensitivity.sql";
-#unlink "Data/stresstest.sql";
+unlink "Data/sensitivity.sql";
+unlink "Data/stresstest.sql";
 
 # given analyses/portfolio data input Dir;
 if ($inputDir) {
