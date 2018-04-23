@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>StresstestEquitySpot - ORE Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+  <!-- Fonts -->
+  <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+  <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="../schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../bower/html5shiv/html5shiv.min.js"></script>
+  <script src="../bower/respond/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../index.html" class="navbar-brand"><b>ORE</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>            
+			<!--<li><a href="../components.html" title="List of system components">Components</a></li>-->
+			<li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>StresstestEquitySpot</h1></br>
+		      </section>
+      <!-- Main content -->
+      <section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+			  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <h3 id="Columns" class="box-title">Columns</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+            <div class="box-body">
+				<table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead align='left'>
+				<tr>
+				  <th>Column</th>
+				  <th>Type</th>
+				  <th>Size</th>
+				  <th title='Are nulls allowed?'>Nulls</th>
+				  <th title='Is column automatically updated?'>Auto</th>
+				  <th title='Default value'>Default</th>
+				  <th title='Columns in tables that reference this column'>Children</th>
+				  <th title='Columns in tables that are referenced by this column'>Parents</th>
+				  <th title='Comments' class="toggle"><span>Comments</span></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="StresstestId">StresstestId</span></td>
+				 <td>varchar</td>
+				 <td>40</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="StresstestEquitySpot.StresstestId references dbo.Stresstest.Id via FK_StresstestEquitySpot_StresstestId">
+						<a href='../../dbo/tables/Stresstest.html'>Stresstest</a><span class='relatedKey'>.Id</span>
+					</td>
+					<td class="constraint detail">
+						FK_StresstestEquitySpot_StresstestId <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="equity">equity</span></td>
+				 <td>varchar</td>
+				 <td>20</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="StresstestEquitySpot.equity references dbo.CurveConfigurationEquityCurves.CurveId via FK_StresstestEquitySpot_equity">
+						<a href='../../dbo/tables/CurveConfigurationEquityCurves.html'>CurveConfigurationEquityCurves</a><span class='relatedKey'>.CurveId</span>
+					</td>
+					<td class="constraint detail">
+						FK_StresstestEquitySpot_equity <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ShiftType">ShiftType</span></td>
+				 <td>varchar</td>
+				 <td>8</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="StresstestEquitySpot.ShiftType references dbo.TypesShiftType.value via FK_StresstestEquitySpot_ShiftType">
+						<a href='../../dbo/tables/TypesShiftType.html'>TypesShiftType</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_StresstestEquitySpot_ShiftType <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="ShiftSize">ShiftSize</span></td>
+				 <td>decimal</td>
+				 <td>20,5</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="Shifts">Shifts</span></td>
+				 <td>varchar</td>
+				 <td>200</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+								</tbody>
+				</table>
+				<p title='5 columns'>Table contained <span id="recordNumber">6</span> rows<p/>
+			</div>
+		</div>
+		<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-sitemap"></i>
+
+              <h3 id="Indexes" class="box-title">Indexes</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">
+				<table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead>
+				 <tr>
+				  <th>Constraint Name</th>
+				  <th>Type</th>
+				  <th>Sort</th>
+				  <th>Column(s)</th>
+				 </tr>
+				</thead>
+				<tbody>
+				 <tr>
+				  <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> PK_StresstestEquitySpot</td>
+				  <td>Primary key</td>
+				  <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+				  <td>StresstestId + equity</td>
+				 </tr>				 
+				</tbody>
+				</table>   			  
+			</div><!-- /.box-body -->
+		</div>
+				<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-code-fork"></i>
+
+              <h3 id="Relationships" class="box-title">Relationships</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">	
+			<div class="nav-tabs-custom" style="cursor: move;">
+            <!-- Tabs within a box -->
+			<h5>Close relationships within degrees of separation</h5>
+            <ul class="nav nav-tabs pull-left ui-sortable-handle">
+			  			              <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>			  			 
+			  			              <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>			  			 
+            </ul>
+            <div class="tab-content no-padding">            
+				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
+<area shape="rect" id="node1" href="StresstestEquitySpot.html" title="StresstestEquitySpot" alt="" coords="399,132,711,348">
+<area shape="rect" id="node2" title="dbo.CurveConfigurationEquityCurves" alt="" coords="5,111,355,316">
+<area shape="rect" id="node3" title="dbo.TypesShiftType" alt="" coords="69,333,291,421">
+<area shape="rect" id="node4" title="dbo.Stresstest" alt="" coords="87,5,273,93">
+</map>
+
+					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/StresstestEquitySpot.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
+<area shape="rect" id="node1" title="dbo.CurveConfigurationEquityCurves" alt="" coords="692,599,1041,804">
+<area shape="rect" id="node2" title="dbo.TypesCurrencyCode" alt="" coords="5,953,263,1041">
+<area shape="rect" id="node3" title="dbo.TypesDayCounter" alt="" coords="15,804,253,892">
+<area shape="rect" id="node4" title="dbo.CurveConfigurationYieldCurves" alt="" coords="307,867,648,955">
+<area shape="rect" id="node5" title="dbo.TypesEquityType" alt="" coords="361,675,594,763">
+<area shape="rect" id="node6" href="PortfolioEquityForwardData.html" title="PortfolioEquityForwardData" alt="" coords="1154,5,1430,93">
+<area shape="rect" id="node7" href="PortfolioEquityOptionData.html" title="PortfolioEquityOptionData" alt="" coords="1159,111,1425,199">
+<area shape="rect" id="node8" href="SensitivityanalysisBaseCorrelation.html" title="SensitivityanalysisBaseCorrelation" alt="" coords="1129,637,1455,725">
+<area shape="rect" id="node9" title="dbo.TypesShiftType" alt="" coords="755,1863,978,1951">
+<area shape="rect" id="node10" href="SensitivityanalysisCapFloorVolatility.html" title="SensitivityanalysisCapFloorVolatility" alt="" coords="1125,1059,1459,1147">
+<area shape="rect" id="node11" href="SensitivityanalysisCreditCurve.html" title="SensitivityanalysisCreditCurve" alt="" coords="1143,1164,1441,1252">
+<area shape="rect" id="node12" href="SensitivityanalysisDiscountCurve.html" title="SensitivityanalysisDiscountCurve" alt="" coords="1133,1269,1451,1357">
+<area shape="rect" id="node13" href="SensitivityanalysisDividendYieldCurve.html" title="SensitivityanalysisDividendYieldCurve" alt="" coords="1115,743,1469,831">
+<area shape="rect" id="node14" href="SensitivityanalysisEquitySpot.html" title="SensitivityanalysisEquitySpot" alt="" coords="1148,848,1436,936">
+<area shape="rect" id="node15" href="SensitivityanalysisEquityVolatility.html" title="SensitivityanalysisEquityVolatility" alt="" coords="1135,532,1449,620">
+<area shape="rect" id="node16" href="SensitivityanalysisFxSpot.html" title="SensitivityanalysisFxSpot" alt="" coords="1161,1375,1423,1463">
+<area shape="rect" id="node17" href="SensitivityanalysisFxVolatility.html" title="SensitivityanalysisFxVolatility" alt="" coords="1149,1480,1435,1568">
+<area shape="rect" id="node18" href="SensitivityanalysisIndexCurve.html" title="SensitivityanalysisIndexCurve" alt="" coords="1145,1585,1439,1673">
+<area shape="rect" id="node19" href="SensitivityanalysisSwaptionVolatility.html" title="SensitivityanalysisSwaptionVolatility" alt="" coords="1125,953,1459,1041">
+<area shape="rect" id="node20" href="SensitivityanalysisYieldCurve.html" title="SensitivityanalysisYieldCurve" alt="" coords="1147,1691,1437,1779">
+<area shape="rect" id="node21" href="SensitivityanalysisYYInflationIndexCurve.html" title="SensitivityanalysisYYInflationIndexCurve" alt="" coords="1107,2135,1477,2223">
+<area shape="rect" id="node22" href="SensitivityanalysisZeroInflationIndexCurve.html" title="SensitivityanalysisZeroInflationIndexCurve" alt="" coords="1101,2240,1483,2328">
+<area shape="rect" id="node23" href="SimulationCrossAssetModelEquities.html" title="SimulationCrossAssetModelEquities" alt="" coords="1123,321,1461,409">
+<area shape="rect" id="node24" href="SimulationMarketEquitiesNames.html" title="SimulationMarketEquitiesNames" alt="" coords="1137,427,1447,515">
+<area shape="rect" id="node25" href="SimulationMarketEquityVolatilitiesEquityNames.html" title="SimulationMarketEquityVolatilitiesEquityNames" alt="" coords="1085,216,1499,304">
+<area shape="rect" id="node26" href="StresstestCapFloorVolatility.html" title="StresstestCapFloorVolatility" alt="" coords="1153,3148,1431,3236">
+<area shape="rect" id="node27" title="dbo.Stresstest" alt="" coords="774,2769,959,2857">
+<area shape="rect" id="node28" href="StresstestDiscountCurve.html" title="StresstestDiscountCurve" alt="" coords="1161,3253,1423,3341">
+<area shape="rect" id="node29" href="StresstestEquitySpot.html" title="StresstestEquitySpot" alt="" coords="1136,1796,1448,2012">
+<area shape="rect" id="node30" href="StresstestEquityVolatility.html" title="StresstestEquityVolatility" alt="" coords="1163,2029,1421,2117">
+<area shape="rect" id="node31" href="StresstestFxSpot.html" title="StresstestFxSpot" alt="" coords="1190,2661,1394,2749">
+<area shape="rect" id="node32" href="StresstestFxVolatility.html" title="StresstestFxVolatility" alt="" coords="1177,2767,1407,2855">
+<area shape="rect" id="node33" href="StresstestIndexCurve.html" title="StresstestIndexCurve" alt="" coords="1173,2872,1411,2960">
+<area shape="rect" id="node34" href="StresstestSwaptionVolatility.html" title="StresstestSwaptionVolatility" alt="" coords="1153,2345,1431,2433">
+<area shape="rect" id="node36" href="StresstestYieldCurve.html" title="StresstestYieldCurve" alt="" coords="1175,3043,1409,3131">
+<area shape="rect" id="node37" href="StresstestYYInflationIndexCurve.html" title="StresstestYYInflationIndexCurve" alt="" coords="1135,2451,1449,2539">
+<area shape="rect" id="node38" href="StresstestZeroInflationIndexCurve.html" title="StresstestZeroInflationIndexCurve" alt="" coords="1129,2556,1455,2644">
+</map>
+
+					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/StresstestEquitySpot.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+			  			</div>
+			</div>
+		  </div><!-- /.box-body -->
+		</div>
+	      </section>
+    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.0.0-rc2</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+<script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+<script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="../bower/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="../bower/anchor-js/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="../bower/codemirror/codemirror.js"></script>
+<script src="../bower/codemirror/sql.js"></script>
+<!-- AdminLTE App -->
+<script src="../bower/admin-lte/dist/js/app.min.js"></script>
+<script src="table.js"></script>
+<script src="../schemaSpy.js"></script>
+</body>
+</html>

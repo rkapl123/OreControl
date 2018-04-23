@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SimulationMarketDefaultCurvesNames - ORE Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+  <!-- Fonts -->
+  <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+  <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="../schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../bower/html5shiv/html5shiv.min.js"></script>
+  <script src="../bower/respond/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../index.html" class="navbar-brand"><b>ORE</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>            
+			<!--<li><a href="../components.html" title="List of system components">Components</a></li>-->
+			<li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>SimulationMarketDefaultCurvesNames</h1></br>
+		      </section>
+      <!-- Main content -->
+      <section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+			  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <h3 id="Columns" class="box-title">Columns</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+            <div class="box-body">
+				<table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead align='left'>
+				<tr>
+				  <th>Column</th>
+				  <th>Type</th>
+				  <th>Size</th>
+				  <th title='Are nulls allowed?'>Nulls</th>
+				  <th title='Is column automatically updated?'>Auto</th>
+				  <th title='Default value'>Default</th>
+				  <th title='Columns in tables that reference this column'>Children</th>
+				  <th title='Columns in tables that are referenced by this column'>Parents</th>
+				  <th title='Comments' class="toggle"><span>Comments</span></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SimulationId">SimulationId</span></td>
+				 <td>varchar</td>
+				 <td>20</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="SimulationMarketDefaultCurvesNames.SimulationId references dbo.SimulationMarket.Id via FK_SimulationMarketDefaultCurvesNames_SimulationId">
+						<a href='../../dbo/tables/SimulationMarket.html'>SimulationMarket</a><span class='relatedKey'>.Id</span>
+					</td>
+					<td class="constraint detail">
+						FK_SimulationMarketDefaultCurvesNames_SimulationId <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Name">Name</span></td>
+				 <td>varchar</td>
+				 <td>30</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="SimulationMarketDefaultCurvesNames.Name references dbo.TypesParties.value via FK_SimulationMarketDefaultCurvesNames_Name">
+						<a href='../../dbo/tables/TypesParties.html'>TypesParties</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_SimulationMarketDefaultCurvesNames_Name <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="DayCounter">DayCounter</span></td>
+				 <td>varchar</td>
+				 <td>30</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="SimulationMarketDefaultCurvesNames.DayCounter references dbo.TypesDayCounter.value via FK_SimulationMarketDefaultCurvesNames_DayCounter">
+						<a href='../../dbo/tables/TypesDayCounter.html'>TypesDayCounter</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_SimulationMarketDefaultCurvesNames_DayCounter <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Calendar">Calendar</span></td>
+				 <td>varchar</td>
+				 <td>20</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="SimulationMarketDefaultCurvesNames.Calendar references dbo.TypesCalendar.value via FK_SimulationMarketDefaultCurvesNames_Calendar">
+						<a href='../../dbo/tables/TypesCalendar.html'>TypesCalendar</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_SimulationMarketDefaultCurvesNames_Calendar <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+								</tbody>
+				</table>
+				<p title='4 columns'>Table contained <span id="recordNumber">2</span> rows<p/>
+			</div>
+		</div>
+		<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-sitemap"></i>
+
+              <h3 id="Indexes" class="box-title">Indexes</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">
+				<table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead>
+				 <tr>
+				  <th>Constraint Name</th>
+				  <th>Type</th>
+				  <th>Sort</th>
+				  <th>Column(s)</th>
+				 </tr>
+				</thead>
+				<tbody>
+				 <tr>
+				  <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> PK_SimulationMarketDefaultCurvesNames</td>
+				  <td>Primary key</td>
+				  <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+				  <td>SimulationId + Name</td>
+				 </tr>				 
+				</tbody>
+				</table>   			  
+			</div><!-- /.box-body -->
+		</div>
+				<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-code-fork"></i>
+
+              <h3 id="Relationships" class="box-title">Relationships</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">	
+			<div class="nav-tabs-custom" style="cursor: move;">
+            <!-- Tabs within a box -->
+			<h5>Close relationships within degrees of separation</h5>
+            <ul class="nav nav-tabs pull-left ui-sortable-handle">
+			  			              <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>			  			 
+			  			              <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>			  			 
+            </ul>
+            <div class="tab-content no-padding">            
+				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
+<area shape="rect" id="node1" href="SimulationMarketDefaultCurvesNames.html" title="SimulationMarketDefaultCurvesNames" alt="" coords="445,581,875,768">
+<area shape="rect" id="node2" title="dbo.TypesCalendar" alt="" coords="94,791,313,879">
+<area shape="rect" id="node3" title="dbo.TypesDayCounter" alt="" coords="84,685,323,773">
+<area shape="rect" id="node4" title="dbo.TypesParties" alt="" coords="101,580,306,668">
+<area shape="rect" id="node5" title="dbo.SimulationMarket" alt="" coords="5,5,401,563">
+</map>
+
+					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/SimulationMarketDefaultCurvesNames.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
+<area shape="rect" id="node1" href="ConventionsAverageOIS.html" title="ConventionsAverageOIS" alt="" coords="411,121,668,209">
+<area shape="rect" id="node2" title="dbo.TypesDayCounter" alt="" coords="20,623,259,711">
+<area shape="rect" id="node3" href="ConventionsCDS.html" title="ConventionsCDS" alt="" coords="437,1147,641,1235">
+<area shape="rect" id="node4" title="dbo.TypesBool" alt="" coords="45,2125,233,2213">
+<area shape="rect" id="node5" href="ConventionsDeposit.html" title="ConventionsDeposit" alt="" coords="426,1463,653,1551">
+<area shape="rect" id="node6" title="dbo.ConventionsInflationSwap" alt="" coords="391,1357,688,1445">
+<area shape="rect" id="node7" href="ConventionsOIS.html" title="ConventionsOIS" alt="" coords="441,831,638,919">
+<area shape="rect" id="node8" href="ConventionsSwap.html" title="ConventionsSwap" alt="" coords="435,227,644,315">
+<area shape="rect" id="node9" href="ConventionsTenorBasisTwoSwap.html" title="ConventionsTenorBasisTwoSwap" alt="" coords="379,620,700,708">
+<area shape="rect" id="node10" href="ConventionsZero.html" title="ConventionsZero" alt="" coords="437,1252,641,1340">
+<area shape="rect" id="node11" href="CurveConfigurationBaseCorrelation.html" title="CurveConfigurationBaseCorrelation" alt="" coords="371,936,708,1024">
+<area shape="rect" id="node12" href="CurveConfigurationCapFloorVolatilities.html" title="CurveConfigurationCapFloorVolatilities" alt="" coords="359,1041,719,1129">
+<area shape="rect" id="node13" href="CurveConfigurationDefaultCurves.html" title="CurveConfigurationDefaultCurves" alt="" coords="377,1604,702,1692">
+<area shape="rect" id="node14" title="dbo.TypesCurrencyCode" alt="" coords="11,2953,268,3041">
+<area shape="rect" id="node15" title="dbo.CurveConfigurationEquityCurves" alt="" coords="865,796,1214,884">
+<area shape="rect" id="node16" title="dbo.CurveConfigurationYieldCurves" alt="" coords="369,1709,710,1797">
+<area shape="rect" id="node17" href="CurveConfigurationInflationCapFloorPriceSurfaces.html" title="CurveConfigurationInflationCapFloorPriceSurfaces" alt="" coords="317,725,761,813">
+<area shape="rect" id="node18" href="CurveConfigurationInflationCurves.html" title="CurveConfigurationInflationCurves" alt="" coords="874,269,1205,357">
+<area shape="rect" id="node19" href="CurveConfigurationSwaptionVolatilities.html" title="CurveConfigurationSwaptionVolatilities" alt="" coords="859,3327,1219,3415">
+<area shape="rect" id="node20" title="dbo.TypesCalendar" alt="" coords="430,3329,649,3417">
+<area shape="rect" id="node21" href="NettingSet.html" title="NettingSet" alt="" coords="461,2956,618,3044">
+<area shape="rect" id="node22" title="dbo.TypesParties" alt="" coords="37,3611,242,3699">
+<area shape="rect" id="node23" href="PortfolioBaskets.html" title="PortfolioBaskets" alt="" coords="440,3540,639,3628">
+<area shape="rect" id="node24" href="PortfolioBondData.html" title="PortfolioBondData" alt="" coords="433,3681,645,3769">
+<area shape="rect" id="node25" href="PortfolioCreditDefaultSwapData.html" title="PortfolioCreditDefaultSwapData" alt="" coords="386,2671,693,2759">
+<area shape="rect" id="node26" title="dbo.PortfolioLegData" alt="" coords="423,2565,655,2653">
+<area shape="rect" id="node27" href="PortfolioTrades.html" title="PortfolioTrades" alt="" coords="443,3787,635,3875">
+<area shape="rect" id="node28" href="SensitivityanalysisCreditCurve.html" title="SensitivityanalysisCreditCurve" alt="" coords="390,3435,689,3523">
+<area shape="rect" id="node29" href="SimulationCrossAssetModel.html" title="SimulationCrossAssetModel" alt="" coords="899,3432,1179,3520">
+<area shape="rect" id="node30" title="dbo.SimulationMarket" alt="" coords="341,1815,737,2372">
+<area shape="rect" id="node39" title="dbo.TypesTimeDecayType" alt="" coords="5,2020,273,2108">
+<area shape="rect" id="node31" href="SimulationCrossAssetModelCurrencies.html" title="SimulationCrossAssetModelCurrencies" alt="" coords="860,2589,1219,2677">
+<area shape="rect" id="node32" href="SimulationCrossAssetModelEquities.html" title="SimulationCrossAssetModelEquities" alt="" coords="1355,1656,1693,1744">
+<area shape="rect" id="node33" href="SimulationCrossAssetModelEquityModels.html" title="SimulationCrossAssetModelEquityModels" alt="" coords="851,2695,1227,2783">
+<area shape="rect" id="node34" href="SimulationCrossAssetModelForeignExchangeModels.html" title="SimulationCrossAssetModelForeignExchangeModels" alt="" coords="811,3116,1268,3204">
+<area shape="rect" id="node35" href="SimulationCrossAssetModelInflationIndexModels.html" title="SimulationCrossAssetModelInflationIndexModels" alt="" coords="825,2800,1253,2888">
+<area shape="rect" id="node36" href="SimulationCrossAssetModelInflationIndices.html" title="SimulationCrossAssetModelInflationIndices" alt="" coords="845,2448,1233,2536">
+<area shape="rect" id="node37" href="SimulationCrossAssetModelInstantaneousCorrelations.html" title="SimulationCrossAssetModelInstantaneousCorrelations" alt="" coords="805,1148,1273,1236">
+<area shape="rect" id="node38" href="SimulationCrossAssetModelInterestRateModels.html" title="SimulationCrossAssetModelInterestRateModels" alt="" coords="829,3011,1249,3099">
+<area shape="rect" id="node40" href="SimulationMarketAggregationScenarioDataCurrencies.html" title="SimulationMarketAggregationScenarioDataCurrencies" alt="" coords="807,3221,1271,3309">
+<area shape="rect" id="node41" href="SimulationMarketAggregationScenarioDataIndices.html" title="SimulationMarketAggregationScenarioDataIndices" alt="" coords="821,1253,1257,1341">
+<area shape="rect" id="node42" href="SimulationMarketBaseCorrelationsNames.html" title="SimulationMarketBaseCorrelationsNames" alt="" coords="851,375,1227,463">
+<area shape="rect" id="node43" href="SimulationMarketBenchmarkCurves.html" title="SimulationMarketBenchmarkCurves" alt="" coords="871,1780,1207,1868">
+<area shape="rect" id="node44" href="SimulationMarketCapFloorVolatilitiesCurrencies.html" title="SimulationMarketCapFloorVolatilitiesCurrencies" alt="" coords="829,1569,1250,1657">
+<area shape="rect" id="node45" href="SimulationMarketCDSVolatilitiesNames.html" title="SimulationMarketCDSVolatilitiesNames" alt="" coords="861,1359,1218,1447">
+<area shape="rect" id="node46" href="SimulationMarketCpiCapFloorVolatilities.html" title="SimulationMarketCpiCapFloorVolatilities" alt="" coords="857,901,1222,989">
+<area shape="rect" id="node47" href="SimulationMarketCPIIndices.html" title="SimulationMarketCPIIndices" alt="" coords="899,1675,1179,1763">
+<area shape="rect" id="node48" href="SimulationMarketCurrencies.html" title="SimulationMarketCurrencies" alt="" coords="898,2905,1181,2993">
+<area shape="rect" id="node49" href="SimulationMarketDefaultCurvesNames.html" title="SimulationMarketDefaultCurvesNames" alt="" coords="825,3537,1254,3724">
+<area shape="rect" id="node50" href="SimulationMarketEquitiesNames.html" title="SimulationMarketEquitiesNames" alt="" coords="1369,1832,1679,1920">
+<area shape="rect" id="node51" href="SimulationMarketEquityVolatilitiesEquityNames.html" title="SimulationMarketEquityVolatilitiesEquityNames" alt="" coords="1317,936,1731,1024">
+<area shape="rect" id="node52" href="SimulationMarketFxRatesCurrencyPairs.html" title="SimulationMarketFxRatesCurrencyPairs" alt="" coords="858,1885,1221,1973">
+<area shape="rect" id="node53" href="SimulationMarketFxVolatilitiesCurrencyPairs.html" title="SimulationMarketFxVolatilitiesCurrencyPairs" alt="" coords="842,1991,1237,2079">
+<area shape="rect" id="node54" href="SimulationMarketIndices.html" title="SimulationMarketIndices" alt="" coords="912,2096,1167,2184">
+<area shape="rect" id="node55" href="SimulationMarketSecurities.html" title="SimulationMarketSecurities" alt="" coords="901,2201,1177,2289">
+<area shape="rect" id="node56" href="SimulationMarketSwapIndices.html" title="SimulationMarketSwapIndices" alt="" coords="893,2343,1186,2431">
+<area shape="rect" id="node57" href="SimulationMarketSwaptionVolatilitiesCurrencies.html" title="SimulationMarketSwaptionVolatilitiesCurrencies" alt="" coords="829,1464,1250,1552">
+<area shape="rect" id="node58" href="SimulationMarketYieldCurveDayCounters.html" title="SimulationMarketYieldCurveDayCounters" alt="" coords="851,691,1227,779">
+<area shape="rect" id="node59" href="SimulationMarketYYCapFloorVolatilities.html" title="SimulationMarketYYCapFloorVolatilities" alt="" coords="859,1007,1220,1095">
+<area shape="rect" id="node60" href="SimulationMarketYYInflationIndexCurves.html" title="SimulationMarketYYInflationIndexCurves" alt="" coords="853,480,1225,568">
+<area shape="rect" id="node61" href="SimulationMarketZeroInflationIndexCurves.html" title="SimulationMarketZeroInflationIndexCurves" alt="" coords="847,585,1231,673">
+<area shape="rect" id="node62" href="SimulationParameters.html" title="SimulationParameters" alt="" coords="921,3741,1157,3829">
+<area shape="rect" id="node63" href="TodaysMarketDefaultCurves.html" title="TodaysMarketDefaultCurves" alt="" coords="397,3892,681,3980">
+</map>
+
+					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/SimulationMarketDefaultCurvesNames.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+			  			</div>
+			</div>
+		  </div><!-- /.box-body -->
+		</div>
+	      </section>
+    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.0.0-rc2</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+<script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+<script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="../bower/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="../bower/anchor-js/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="../bower/codemirror/codemirror.js"></script>
+<script src="../bower/codemirror/sql.js"></script>
+<!-- AdminLTE App -->
+<script src="../bower/admin-lte/dist/js/app.min.js"></script>
+<script src="table.js"></script>
+<script src="../schemaSpy.js"></script>
+</body>
+</html>

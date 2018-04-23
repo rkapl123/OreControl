@@ -1,7 +1,7 @@
 use ORE
 
 CREATE TABLE PortfolioTrades (
-	Id varchar(40) not null,
+	Id varchar(180) not null,
 	TradeType varchar(30),
 	EnvelopeCounterParty varchar(30),
 	EnvelopeNettingSetId varchar(10)
@@ -17,7 +17,7 @@ ALTER TABLE PortfolioTrades WITH CHECK ADD CONSTRAINT FK_PortfolioTrades_Envelop
 REFERENCES NettingSet (NettingSetId)
 
 CREATE TABLE PortfolioTradePortfolioIds (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	PortfolioId varchar(70),
 CONSTRAINT PK_PortfolioTradePortfolioIds PRIMARY KEY CLUSTERED 
 (
@@ -25,7 +25,7 @@ CONSTRAINT PK_PortfolioTradePortfolioIds PRIMARY KEY CLUSTERED
 ))
 
 CREATE TABLE PortfolioAdditionalFields (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	AdditionalId varchar(70),
 CONSTRAINT PK_PortfolioAdditionalFields PRIMARY KEY CLUSTERED 
 (
@@ -34,7 +34,7 @@ CONSTRAINT PK_PortfolioAdditionalFields PRIMARY KEY CLUSTERED
 
 CREATE TABLE PortfolioTradeActions (
 	Id int not null,
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	Type varchar(20),
 	Owner varchar(20)
 CONSTRAINT PK_PortfolioTradeActions PRIMARY KEY CLUSTERED 
@@ -93,7 +93,7 @@ CONSTRAINT PK_PortfolioScheduleDataDates PRIMARY KEY CLUSTERED
 --REFERENCES TypesCalendar (value)
 
 CREATE TABLE PortfolioSwapData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 CONSTRAINT PK_PortfolioSwapData PRIMARY KEY CLUSTERED 
 (
 	TradeId ASC
@@ -102,7 +102,7 @@ ALTER TABLE PortfolioSwapData WITH CHECK ADD CONSTRAINT FK_PortfolioSwapData_Tra
 REFERENCES PortfolioTrades (Id)
 
 CREATE TABLE PortfolioCDOData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3),
@@ -116,7 +116,7 @@ ALTER TABLE PortfolioCDOData WITH CHECK ADD CONSTRAINT FK_PortfolioCDOData_Trade
 REFERENCES PortfolioTrades (Id)
 
 CREATE TABLE PortfolioCreditDefaultSwapData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	IssuerId varchar(30) not null,
 	CreditCurveId varchar(20) not null,
 	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS,
@@ -141,7 +141,7 @@ REFERENCES TypesBool (value)
 
 
 CREATE TABLE PortfolioIndexCreditDefaultSwapData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	CreditCurveId varchar(20) not null,
 	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS,
 	PaysAtDefaultTime varchar(5) COLLATE Latin1_General_CS_AS,
@@ -163,7 +163,7 @@ REFERENCES TypesBool (value)
 
 
 CREATE TABLE PortfolioIndexCreditDefaultSwapOptionData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	KnockOut varchar(5) COLLATE Latin1_General_CS_AS,
 	OptionDataLongShort varchar(5),
 	OptionDataOptionType varchar(10),
@@ -197,7 +197,7 @@ REFERENCES TypesCurrencyCode (value)
 
 -- refers to PortfolioIndexCreditDefaultSwapOptionData as part of a IndexCreditDefaultSwapOption
 CREATE TABLE PortfolioIndexCreditDefaultSwapOptionSwapData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	CreditCurveId varchar(20) not null,
 	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS,
 	PaysAtDefaultTime varchar(5) COLLATE Latin1_General_CS_AS,
@@ -218,7 +218,7 @@ ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData WITH CHECK ADD CONSTRA
 REFERENCES TypesBool (value)
 
 CREATE TABLE PortfolioBaskets (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	SeqId int not null,
 	IssuerId varchar(30),
 	CreditCurveId varchar(20),
@@ -237,7 +237,7 @@ ALTER TABLE PortfolioBaskets WITH CHECK ADD CONSTRAINT FK_PortfolioBaskets_Curre
 REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE PortfolioSwaptionData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	OptionDataLongShort varchar(5),
 	OptionDataOptionType varchar(10),
 	OptionDataStyle varchar(10),
@@ -266,7 +266,7 @@ ALTER TABLE PortfolioSwaptionData WITH CHECK ADD CONSTRAINT FK_PortfolioSwaption
 REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE PortfolioFxOptionData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	BoughtCurrency varchar(7),
 	BoughtAmount decimal(18,3),
 	SoldCurrency varchar(7),
@@ -303,7 +303,7 @@ ALTER TABLE PortfolioFxOptionData WITH CHECK ADD CONSTRAINT FK_PortfolioFxOption
 REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE PortfolioEquityOptionData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	Name varchar(20),
 	Currency varchar(7),
 	Strike decimal(18,3),
@@ -340,7 +340,7 @@ ALTER TABLE PortfolioEquityOptionData WITH CHECK ADD CONSTRAINT FK_PortfolioEqui
 REFERENCES TypesBool (value)
 
 CREATE TABLE PortfolioOptionExercises (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	ExerciseDate date not null,
 	ExerciseFee decimal(18,3),
 	ExercisePrice decimal(18,3),
@@ -353,7 +353,7 @@ ALTER TABLE PortfolioOptionExercises WITH CHECK ADD CONSTRAINT FK_PortfolioOptio
 REFERENCES PortfolioTrades (Id)
 
 CREATE TABLE PortfolioBondData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	IssuerId varchar(30) not null,
 	CreditCurveId varchar(30) not null,
 	SecurityId varchar(20) not null,
@@ -379,7 +379,7 @@ REFERENCES CurveConfigurationSecurities (CurveId)
 -- relates to SwapData, SwaptionData, BondData. ALSO INCLUDES LegData_capfloor
 CREATE TABLE PortfolioLegData (
 	Id int not null,
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	Payer varchar(5) COLLATE Latin1_General_CS_AS,
 	LegType varchar(20),
 	Currency varchar(7),
@@ -452,6 +452,25 @@ REFERENCES TypesBool (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_YYLegIndexName FOREIGN KEY(YYLegIndexName)
 REFERENCES TypesIndexName (value)
 ALTER TABLE PortfolioLegData WITH CHECK ADD CONSTRAINT FK_PortfolioLegData_YYLegInterpolated FOREIGN KEY(YYLegInterpolated)
+REFERENCES TypesBool (value)
+
+CREATE TABLE PortfolioLegAmortizations (
+	LegDataId int not null,
+	SeqId int not null,
+	Type varchar(30) not null,
+	Value decimal(18,3) not null,
+	StartDate date,
+	EndDate date,
+	Frequency varchar(5),
+	Underflow varchar(5) COLLATE Latin1_General_CS_AS
+CONSTRAINT PK_PortfolioLegAmortizations PRIMARY KEY CLUSTERED 
+(
+	LegDataId ASC,
+	SeqId ASC
+))
+ALTER TABLE PortfolioLegAmortizations WITH CHECK ADD CONSTRAINT FK_PortfolioLegAmortizations_Type FOREIGN KEY(Type)
+REFERENCES TypesAmortizationType (value)
+ALTER TABLE PortfolioLegAmortizations WITH CHECK ADD CONSTRAINT FK_PortfolioLegAmortizations_Underflow FOREIGN KEY(Underflow)
 REFERENCES TypesBool (value)
 
 CREATE TABLE PortfolioLegNotionals (
@@ -532,9 +551,30 @@ CONSTRAINT PK_PortfolioFloatingLegGearings PRIMARY KEY CLUSTERED
 ALTER TABLE PortfolioFloatingLegGearings WITH CHECK ADD CONSTRAINT FK_PortfolioFloatingLegGearings_LegDataId FOREIGN KEY(LegDataId)
 REFERENCES PortfolioLegData (Id)
 
+CREATE TABLE PortfolioForwardRateAgreementData (
+	TradeId varchar(180) not null,
+	StartDate date,
+	EndDate date,
+	Currency varchar(7),
+	IndexName varchar(30),
+	LongShort varchar(5),
+	Strike decimal(18,10),
+	Notional decimal(18,3)
+CONSTRAINT PK_PortfolioForwardRateAgreementData PRIMARY KEY CLUSTERED 
+(
+	TradeId ASC
+))
+ALTER TABLE PortfolioForwardRateAgreementData WITH CHECK ADD CONSTRAINT FK_PortfolioForwardRateAgreementData_TradeId FOREIGN KEY(TradeId)
+REFERENCES PortfolioTrades (Id)
+ALTER TABLE PortfolioForwardRateAgreementData WITH CHECK ADD CONSTRAINT FK_PortfolioForwardRateAgreementData_Currency FOREIGN KEY(Currency)
+REFERENCES TypesCurrencyCode (value)
+ALTER TABLE PortfolioForwardRateAgreementData WITH CHECK ADD CONSTRAINT FK_PortfolioForwardRateAgreementData_LongShort FOREIGN KEY(LongShort)
+REFERENCES TypesLongShort (value)
+ALTER TABLE PortfolioForwardRateAgreementData WITH CHECK ADD CONSTRAINT FK_PortfolioForwardRateAgreementData_IndexName FOREIGN KEY(IndexName)
+REFERENCES TypesIndexName (value)
 
 CREATE TABLE PortfolioFxForwardData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	ValueDate date,
 	BoughtCurrency varchar(7),
 	BoughtAmount decimal(18,3),
@@ -552,7 +592,7 @@ ALTER TABLE PortfolioFxForwardData WITH CHECK ADD CONSTRAINT FK_PortfolioFxForwa
 REFERENCES TypesCurrencyCode (value)
 
 CREATE TABLE PortfolioCapFloorData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	LongShort varchar(7) 
 CONSTRAINT PK_PortfolioCapFloorData PRIMARY KEY CLUSTERED 
 (
@@ -562,7 +602,7 @@ ALTER TABLE PortfolioCapFloorData WITH CHECK ADD CONSTRAINT FK_PortfolioCapFloor
 REFERENCES PortfolioTrades (Id)
 
 CREATE TABLE PortfolioCapRates (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	SeqId int not null,
 	Rate decimal(18,10) not null,
 	StartDate date
@@ -575,7 +615,7 @@ ALTER TABLE PortfolioCapRates WITH CHECK ADD CONSTRAINT FK_PortfolioCapRates_Tra
 REFERENCES PortfolioTrades (Id)
 
 CREATE TABLE PortfolioFloorRates (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	SeqId int not null,
 	Rate decimal(18,10) not null,
 	StartDate date
@@ -588,7 +628,7 @@ ALTER TABLE PortfolioFloorRates WITH CHECK ADD CONSTRAINT FK_PortfolioFloorRates
 REFERENCES PortfolioTrades (Id)
 
 CREATE TABLE PortfolioEquityForwardData (
-	TradeId varchar(40) not null,
+	TradeId varchar(180) not null,
 	LongShort varchar(5),
 	Maturity date,
 	Name varchar(20),

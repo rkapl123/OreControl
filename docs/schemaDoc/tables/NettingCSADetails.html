@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NettingCSADetails - ORE Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+  <!-- Fonts -->
+  <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+  <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="../schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../bower/html5shiv/html5shiv.min.js"></script>
+  <script src="../bower/respond/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../index.html" class="navbar-brand"><b>ORE</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>            
+			<!--<li><a href="../components.html" title="List of system components">Components</a></li>-->
+			<li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>NettingCSADetails</h1></br>
+		      </section>
+      <!-- Main content -->
+      <section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+			  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <h3 id="Columns" class="box-title">Columns</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+            <div class="box-body">
+				<table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead align='left'>
+				<tr>
+				  <th>Column</th>
+				  <th>Type</th>
+				  <th>Size</th>
+				  <th title='Are nulls allowed?'>Nulls</th>
+				  <th title='Is column automatically updated?'>Auto</th>
+				  <th title='Default value'>Default</th>
+				  <th title='Columns in tables that reference this column'>Children</th>
+				  <th title='Columns in tables that are referenced by this column'>Parents</th>
+				  <th title='Comments' class="toggle"><span>Comments</span></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="NettingSetId">NettingSetId</span></td>
+				 <td>varchar</td>
+				 <td>10</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="NettingCSADetails.NettingSetId references dbo.NettingSet.NettingSetId via FK_NettingCSADetails_NettingSetId">
+						<a href='../../dbo/tables/NettingSet.html'>NettingSet</a><span class='relatedKey'>.NettingSetId</span>
+					</td>
+					<td class="constraint detail">
+						FK_NettingCSADetails_NettingSetId <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Bilateral">Bilateral</span></td>
+				 <td>varchar</td>
+				 <td>10</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="NettingCSADetails.Bilateral references dbo.TypesCsaType.value via FK_NettingCSADetails_Bilateral">
+						<a href='../../dbo/tables/TypesCsaType.html'>TypesCsaType</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_NettingCSADetails_Bilateral <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="CSACurrency">CSACurrency</span></td>
+				 <td>varchar</td>
+				 <td>7</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="NettingCSADetails.CSACurrency references dbo.TypesCurrencyCode.value via FK_NettingCSADetails_CSACurrency">
+						<a href='../../dbo/tables/TypesCurrencyCode.html'>TypesCurrencyCode</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_NettingCSADetails_CSACurrency <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="IndexName">IndexName</span></td>
+				 <td>varchar</td>
+				 <td>30</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="NettingCSADetails.IndexName references dbo.TypesIndexName.value via FK_NettingCSADetails_IndexName">
+						<a href='../../dbo/tables/TypesIndexName.html'>TypesIndexName</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_NettingCSADetails_IndexName <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="ThresholdPay">ThresholdPay</span></td>
+				 <td>decimal</td>
+				 <td>20,3</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="ThresholdReceive">ThresholdReceive</span></td>
+				 <td>decimal</td>
+				 <td>20,3</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="MinimumTransferAmountPay">MinimumTransferAmountPay</span></td>
+				 <td>decimal</td>
+				 <td>20,3</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="MinimumTransferAmountReceive">MinimumTransferAmountReceive</span></td>
+				 <td>decimal</td>
+				 <td>20,3</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="IndependentAmountHeld">IndependentAmountHeld</span></td>
+				 <td>decimal</td>
+				 <td>20,3</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="IndependentAmountType">IndependentAmountType</span></td>
+				 <td>varchar</td>
+				 <td>10</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="NettingCSADetails.IndependentAmountType references dbo.TypesIndependentAmountType.value via FK_NettingCSADetails_IndependentAmountType">
+						<a href='../../dbo/tables/TypesIndependentAmountType.html'>TypesIndependentAmountType</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_NettingCSADetails_IndependentAmountType <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="CallFrequency">CallFrequency</span></td>
+				 <td>varchar</td>
+				 <td>5</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="PostFrequency">PostFrequency</span></td>
+				 <td>varchar</td>
+				 <td>5</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="MarginPeriodOfRisk">MarginPeriodOfRisk</span></td>
+				 <td>varchar</td>
+				 <td>5</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="CollateralCompoundingSpreadReceive">CollateralCompoundingSpreadReceive</span></td>
+				 <td>decimal</td>
+				 <td>11,6</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="CollateralCompoundingSpreadPay">CollateralCompoundingSpreadPay</span></td>
+				 <td>decimal</td>
+				 <td>11,6</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+								</tbody>
+				</table>
+				<p title='15 columns'>Table contained <span id="recordNumber">42</span> rows<p/>
+			</div>
+		</div>
+		<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-sitemap"></i>
+
+              <h3 id="Indexes" class="box-title">Indexes</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">
+				<table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead>
+				 <tr>
+				  <th>Constraint Name</th>
+				  <th>Type</th>
+				  <th>Sort</th>
+				  <th>Column(s)</th>
+				 </tr>
+				</thead>
+				<tbody>
+				 <tr>
+				  <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> PK_NettingCSADetails</td>
+				  <td>Primary key</td>
+				  <td><span title='Ascending'>Asc</span></td>
+				  <td>NettingSetId</td>
+				 </tr>				 
+				</tbody>
+				</table>   			  
+			</div><!-- /.box-body -->
+		</div>
+				<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-code-fork"></i>
+
+              <h3 id="Relationships" class="box-title">Relationships</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">	
+			<div class="nav-tabs-custom" style="cursor: move;">
+            <!-- Tabs within a box -->
+			<h5>Close relationships within degrees of separation</h5>
+            <ul class="nav nav-tabs pull-left ui-sortable-handle">
+			  			              <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>			  			 
+			  			              <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>			  			 
+            </ul>
+            <div class="tab-content no-padding">            
+				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
+<area shape="rect" id="node1" href="NettingCSADetails.html" title="NettingCSADetails" alt="" coords="383,179,829,688">
+<area shape="rect" id="node2" title="dbo.TypesCsaType" alt="" coords="63,140,281,228">
+<area shape="rect" id="node3" title="dbo.TypesCurrencyCode" alt="" coords="43,245,301,333">
+<area shape="rect" id="node4" title="dbo.TypesIndependentAmountType" alt="" coords="5,456,339,544">
+<area shape="rect" id="node5" title="dbo.TypesIndexName" alt="" coords="55,351,289,439">
+<area shape="rect" id="node6" title="dbo.NettingSet" alt="" coords="78,5,266,123">
+</map>
+
+					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/NettingCSADetails.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
+<area shape="rect" id="node1" href="ConventionsAverageOIS.html" title="ConventionsAverageOIS" alt="" coords="795,954,1053,1042">
+<area shape="rect" id="node2" title="dbo.TypesIndexName" alt="" coords="361,1822,594,1910">
+<area shape="rect" id="node3" href="ConventionsCrossCurrencyBasis.html" title="ConventionsCrossCurrencyBasis" alt="" coords="765,112,1083,200">
+<area shape="rect" id="node4" title="dbo.TypesBool" alt="" coords="40,3358,228,3446">
+<area shape="rect" id="node5" href="ConventionsDeposit.html" title="ConventionsDeposit" alt="" coords="811,2128,1037,2216">
+<area shape="rect" id="node6" href="ConventionsFRA.html" title="ConventionsFRA" alt="" coords="823,1060,1025,1148">
+<area shape="rect" id="node7" href="ConventionsFuture.html" title="ConventionsFuture" alt="" coords="815,1165,1033,1253">
+<area shape="rect" id="node8" href="ConventionsFX.html" title="ConventionsFX" alt="" coords="382,4006,573,4094">
+<area shape="rect" id="node9" title="dbo.TypesCurrencyCode" alt="" coords="5,5530,263,5618">
+<area shape="rect" id="node10" title="dbo.ConventionsInflationSwap" alt="" coords="775,2233,1073,2321">
+<area shape="rect" id="node11" href="ConventionsOIS.html" title="ConventionsOIS" alt="" coords="825,2338,1023,2426">
+<area shape="rect" id="node12" href="ConventionsSwap.html" title="ConventionsSwap" alt="" coords="819,1270,1029,1358">
+<area shape="rect" id="node13" href="ConventionsTenorBasisSwap.html" title="ConventionsTenorBasisSwap" alt="" coords="778,2444,1070,2532">
+<area shape="rect" id="node14" href="ConventionsTenorBasisTwoSwap.html" title="ConventionsTenorBasisTwoSwap" alt="" coords="763,1917,1085,2005">
+<area shape="rect" id="node15" href="CurveConfigurationCapFloorVolatilities.html" title="CurveConfigurationCapFloorVolatilities" alt="" coords="744,2745,1104,2833">
+<area shape="rect" id="node16" href="CurveConfigurationDefaultCurves.html" title="CurveConfigurationDefaultCurves" alt="" coords="315,3901,640,3989">
+<area shape="rect" id="node17" title="dbo.CurveConfigurationEquityCurves" alt="" coords="749,5752,1099,5840">
+<area shape="rect" id="node18" title="dbo.CurveConfigurationYieldCurves" alt="" coords="307,4549,648,4637">
+<area shape="rect" id="node19" href="CurveConfigurationEquityVolatilities.html" title="CurveConfigurationEquityVolatilities" alt="" coords="308,5910,647,5998">
+<area shape="rect" id="node20" href="CurveConfigurationInflationCapFloorPriceSurfaces.html" title="CurveConfigurationInflationCapFloorPriceSurfaces" alt="" coords="702,2850,1146,2938">
+<area shape="rect" id="node21" href="CurveConfigurationSwaptionVolatilities.html" title="CurveConfigurationSwaptionVolatilities" alt="" coords="744,1376,1104,1464">
+<area shape="rect" id="node22" href="FixingDataDefinitions.html" title="FixingDataDefinitions" alt="" coords="361,6016,594,6104">
+<area shape="rect" id="node23" href="MarketDataDefinitions.html" title="MarketDataDefinitions" alt="" coords="358,6121,597,6209">
+<area shape="rect" id="node24" href="NettingCSADetails.html" title="NettingCSADetails" alt="" coords="701,4012,1147,4521">
+<area shape="rect" id="node25" title="dbo.TypesCsaType" alt="" coords="369,4220,586,4308">
+<area shape="rect" id="node26" title="dbo.TypesIndependentAmountType" alt="" coords="311,4361,644,4449">
+<area shape="rect" id="node27" title="dbo.NettingSet" alt="" coords="383,3589,571,3706">
+<area shape="rect" id="node28" href="NettingEligibleCollateralsCurrencies.html" title="NettingEligibleCollateralsCurrencies" alt="" coords="753,4538,1095,4626">
+<area shape="rect" id="node29" href="PortfolioBaskets.html" title="PortfolioBaskets" alt="" coords="1297,6098,1496,6186">
+<area shape="rect" id="node30" title="dbo.PortfolioTrades" alt="" coords="813,3449,1035,3537">
+<area shape="rect" id="node31" href="PortfolioEquityForwardData.html" title="PortfolioEquityForwardData" alt="" coords="1259,5804,1535,5892">
+<area shape="rect" id="node32" href="PortfolioEquityOptionData.html" title="PortfolioEquityOptionData" alt="" coords="1264,5698,1529,5786">
+<area shape="rect" id="node33" href="PortfolioForwardRateAgreementData.html" title="PortfolioForwardRateAgreementData" alt="" coords="1226,3397,1567,3485">
+<area shape="rect" id="node34" href="PortfolioFxForwardData.html" title="PortfolioFxForwardData" alt="" coords="1272,6374,1521,6462">
+<area shape="rect" id="node35" href="PortfolioFxOptionData.html" title="PortfolioFxOptionData" alt="" coords="1277,6645,1516,6733">
+<area shape="rect" id="node36" href="PortfolioIndexCreditDefaultSwapOptionData.html" title="PortfolioIndexCreditDefaultSwapOptionData" alt="" coords="1200,1258,1593,1346">
+<area shape="rect" id="node37" title="dbo.PortfolioLegData" alt="" coords="1281,2592,1513,2680">
+<area shape="rect" id="node38" href="PortfolioSwaptionData.html" title="PortfolioSwaptionData" alt="" coords="1277,3502,1516,3590">
+<area shape="rect" id="node39" href="SensitivityanalysisCapFloorVolatility.html" title="SensitivityanalysisCapFloorVolatility" alt="" coords="757,3696,1091,3784">
+<area shape="rect" id="node40" href="SensitivityanalysisCreditCurve.html" title="SensitivityanalysisCreditCurve" alt="" coords="328,4884,627,4972">
+<area shape="rect" id="node41" href="SensitivityanalysisDiscountCurve.html" title="SensitivityanalysisDiscountCurve" alt="" coords="319,4989,636,5077">
+<area shape="rect" id="node42" href="SensitivityanalysisIndexCurve.html" title="SensitivityanalysisIndexCurve" alt="" coords="777,1517,1071,1605">
+<area shape="rect" id="node43" href="SensitivityanalysisSwaptionVolatility.html" title="SensitivityanalysisSwaptionVolatility" alt="" coords="310,5094,645,5182">
+<area shape="rect" id="node44" href="SensitivityanalysisYYInflationIndexCurve.html" title="SensitivityanalysisYYInflationIndexCurve" alt="" coords="739,1622,1109,1710">
+<area shape="rect" id="node45" href="SensitivityanalysisZeroInflationIndexCurve.html" title="SensitivityanalysisZeroInflationIndexCurve" alt="" coords="733,1728,1115,1816">
+<area shape="rect" id="node46" href="SimulationCrossAssetModel.html" title="SimulationCrossAssetModel" alt="" coords="784,5469,1064,5557">
+<area shape="rect" id="node47" title="dbo.SimulationMarket" alt="" coords="360,3760,595,3848">
+<area shape="rect" id="node48" href="SimulationCrossAssetModelCurrencies.html" title="SimulationCrossAssetModelCurrencies" alt="" coords="745,5574,1103,5662">
+<area shape="rect" id="node49" href="SimulationCrossAssetModelEquityModels.html" title="SimulationCrossAssetModelEquityModels" alt="" coords="736,4644,1112,4732">
+<area shape="rect" id="node50" href="SimulationCrossAssetModelForeignExchangeModels.html" title="SimulationCrossAssetModelForeignExchangeModels" alt="" coords="695,5364,1153,5452">
+<area shape="rect" id="node51" href="SimulationCrossAssetModelInflationIndexModels.html" title="SimulationCrossAssetModelInflationIndexModels" alt="" coords="710,3801,1138,3889">
+<area shape="rect" id="node52" href="SimulationCrossAssetModelInflationIndices.html" title="SimulationCrossAssetModelInflationIndices" alt="" coords="730,2956,1118,3044">
+<area shape="rect" id="node53" href="SimulationCrossAssetModelInterestRateModels.html" title="SimulationCrossAssetModelInterestRateModels" alt="" coords="714,3906,1134,3994">
+<area shape="rect" id="node54" href="SimulationMarketAggregationScenarioDataCurrencies.html" title="SimulationMarketAggregationScenarioDataCurrencies" alt="" coords="692,4942,1156,5030">
+<area shape="rect" id="node55" href="SimulationMarketAggregationScenarioDataIndices.html" title="SimulationMarketAggregationScenarioDataIndices" alt="" coords="706,3061,1142,3149">
+<area shape="rect" id="node56" href="SimulationMarketBaseCorrelationsNames.html" title="SimulationMarketBaseCorrelationsNames" alt="" coords="736,3166,1112,3254">
+<area shape="rect" id="node57" href="SimulationMarketBenchmarkCurves.html" title="SimulationMarketBenchmarkCurves" alt="" coords="756,4749,1092,4837">
+<area shape="rect" id="node58" href="SimulationMarketCapFloorVolatilitiesCurrencies.html" title="SimulationMarketCapFloorVolatilitiesCurrencies" alt="" coords="713,5048,1135,5136">
+<area shape="rect" id="node59" href="SimulationMarketCPIIndices.html" title="SimulationMarketCPIIndices" alt="" coords="784,3272,1064,3360">
+<area shape="rect" id="node60" href="SimulationMarketCurrencies.html" title="SimulationMarketCurrencies" alt="" coords="783,5153,1065,5241">
+<area shape="rect" id="node61" href="SimulationMarketIndices.html" title="SimulationMarketIndices" alt="" coords="797,3590,1051,3678">
+<area shape="rect" id="node62" href="SimulationMarketSwapIndices.html" title="SimulationMarketSwapIndices" alt="" coords="777,2022,1071,2110">
+<area shape="rect" id="node63" href="SimulationMarketSwaptionVolatilitiesCurrencies.html" title="SimulationMarketSwaptionVolatilitiesCurrencies" alt="" coords="713,5258,1135,5346">
+<area shape="rect" id="node64" href="StresstestCapFloorVolatility.html" title="StresstestCapFloorVolatility" alt="" coords="339,5805,616,5893">
+<area shape="rect" id="node65" href="StresstestDiscountCurve.html" title="StresstestDiscountCurve" alt="" coords="347,6262,608,6350">
+<area shape="rect" id="node66" href="StresstestIndexCurve.html" title="StresstestIndexCurve" alt="" coords="805,217,1043,305">
+<area shape="rect" id="node67" href="StresstestSwaptionShift.html" title="StresstestSwaptionShift" alt="" coords="351,6456,603,6544">
+<area shape="rect" id="node68" href="StresstestSwaptionVolatility.html" title="StresstestSwaptionVolatility" alt="" coords="339,6561,616,6649">
+<area shape="rect" id="node69" href="StresstestYYInflationIndexCurve.html" title="StresstestYYInflationIndexCurve" alt="" coords="767,322,1081,410">
+<area shape="rect" id="node70" href="StresstestZeroInflationIndexCurve.html" title="StresstestZeroInflationIndexCurve" alt="" coords="761,428,1087,516">
+<area shape="rect" id="node71" href="TodaysMarketCapFloorVolatilities.html" title="TodaysMarketCapFloorVolatilities" alt="" coords="318,6734,637,6822">
+<area shape="rect" id="node72" href="TodaysMarketDiscountingCurves.html" title="TodaysMarketDiscountingCurves" alt="" coords="319,4778,636,4866">
+<area shape="rect" id="node73" href="TodaysMarketInflationCapFloorPriceSurfaces.html" title="TodaysMarketInflationCapFloorPriceSurfaces" alt="" coords="723,533,1125,621">
+<area shape="rect" id="node74" href="TodaysMarketSwapIndexCurves.html" title="TodaysMarketSwapIndexCurves" alt="" coords="769,638,1079,726">
+<area shape="rect" id="node75" href="TodaysMarketSwaptionVolatilities.html" title="TodaysMarketSwaptionVolatilities" alt="" coords="318,5452,637,5540">
+<area shape="rect" id="node76" href="TodaysMarketYYInflationIndexCurves.html" title="TodaysMarketYYInflationIndexCurves" alt="" coords="749,744,1099,832">
+<area shape="rect" id="node77" href="TodaysMarketZeroInflationIndexCurves.html" title="TodaysMarketZeroInflationIndexCurves" alt="" coords="743,849,1105,937">
+</map>
+
+					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/NettingCSADetails.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+			  			</div>
+			</div>
+		  </div><!-- /.box-body -->
+		</div>
+	      </section>
+    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.0.0-rc2</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+<script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+<script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="../bower/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="../bower/anchor-js/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="../bower/codemirror/codemirror.js"></script>
+<script src="../bower/codemirror/sql.js"></script>
+<!-- AdminLTE App -->
+<script src="../bower/admin-lte/dist/js/app.min.js"></script>
+<script src="table.js"></script>
+<script src="../schemaSpy.js"></script>
+</body>
+</html>

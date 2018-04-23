@@ -828,6 +828,15 @@ sub convertTradeTypeData() {
 		$subrecord->setAttribute("YYLegObservationLag", $subrecord->findvalue("YYLegData/ObservationLag"));
 		$subrecord->setAttribute("YYLegInterpolated", $subrecord->findvalue("YYLegData/Interpolated"));
 		printInsert($subrecord, "Portfolio", "LegData",0,1);
+		# Amortizations
+		my @subsubrecords = $subrecord->findnodes("Amortizations/AmortizationData");
+		$SeqId=0;
+		foreach my $subsubrecord (@subsubrecords) {
+			$subsubrecord->setAttribute("LegDataId", $LegDataId);
+			$subsubrecord->setAttribute("SeqId", $SeqId);
+			printInsert($subsubrecord, "Portfolio", "LegAmortizations",0,1);
+			$SeqId++;
+		}
 		# Notionals
 		my @subsubrecords = $subrecord->findnodes("Notionals/Notional");
 		$SeqId=0;

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ConventionsSelection - ORE Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+  <!-- Fonts -->
+  <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+  <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="../schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../bower/html5shiv/html5shiv.min.js"></script>
+  <script src="../bower/respond/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../index.html" class="navbar-brand"><b>ORE</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>            
+			<!--<li><a href="../components.html" title="List of system components">Components</a></li>-->
+			<li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>ConventionsSelection</h1></br>
+		      </section>
+      <!-- Main content -->
+      <section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+			  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <h3 id="Columns" class="box-title">Columns</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+            <div class="box-body">
+				<table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead align='left'>
+				<tr>
+				  <th>Column</th>
+				  <th>Type</th>
+				  <th>Size</th>
+				  <th title='Are nulls allowed?'>Nulls</th>
+				  <th title='Is column automatically updated?'>Auto</th>
+				  <th title='Default value'>Default</th>
+				  <th title='Columns in tables that reference this column'>Children</th>
+				  <th title='Columns in tables that are referenced by this column'>Parents</th>
+				  <th title='Comments' class="toggle"><span>Comments</span></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				 <td><span id="GroupingId">GroupingId</span></td>
+				 <td>varchar</td>
+				 <td>70</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="XMLData">XMLData</span></td>
+				 <td>nvarchar</td>
+				 <td>2147483647</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+								</tbody>
+				</table>
+				<p title='2 columns'>Table contained <span id="recordNumber">0</span> rows<p/>
+			</div>
+		</div>
+		<div class="box box-primary">		
+			<div class="box-header with-border">
+			  <i class="fa fa-file-code-o"></i>
+
+			  <h3 id="ViewDefinition" class="box-title">View Definition</h3>
+
+			  <div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+				</button>
+				<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			  </div>
+			</div>	
+			<div class="box-body">
+				<textarea id="code" name="code" rows="" style="display: none;">CREATE VIEW ConventionsSelection&#13;&#10;AS&#13;&#10;SELECT DISTINCT g.GroupingId,&#13;&#10;(SELECT &#13;&#10;&#9;(SELECT&#13;&#10;&#9;&#9;(SELECT Id,TenorBased,DayCounter,Compounding,CompoundingFrequency,TenorCalendar,SpotLag,SpotCalendar,RollConvention,EOM&#13;&#10;&#9;&#9;FROM ConventionsZero WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;Zero&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,SettlementDays,Calendar,Frequency,PaymentConvention,RuleName [Rule],DayCounter,SettlesAccrual,PaysAtDefaultTime&#13;&#10;&#9;&#9;FROM ConventionsCDS WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;CDS&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,IndexBased,IndexName [Index],Calendar,Convention,EOM,DayCounter&#13;&#10;&#9;&#9;FROM ConventionsDeposit WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;Deposit&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,IndexName [Index]&#13;&#10;&#9;&#9;FROM ConventionsFuture WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;Future&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,IndexName [Index]&#13;&#10;&#9;&#9;FROM ConventionsFRA WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;FRA&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,Conventions&#13;&#10;&#9;&#9;FROM ConventionsSwapIndex WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;SwapIndex&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,FixedCalendar,FixedFrequency,FixedConvention,FixedDayCounter,IndexName [Index],FloatFrequency,SubPeriodsCouponType&#13;&#10;&#9;&#9;FROM ConventionsSwap WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;Swap&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,SpotLag,IndexName [Index],FixedDayCounter,PaymentLag,EOM,FixedFrequency,FixedConvention,FixedPaymentConvention,RuleName [Rule]&#13;&#10;&#9;&#9;FROM ConventionsOIS WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;OIS&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,SpotLag,FixedTenor,FixedDayCounter,FixedCalendar,FixedConvention,FixedPaymentConvention,IndexName [Index],OnTenor,RateCutoff&#13;&#10;&#9;&#9;FROM ConventionsAverageOIS WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;AverageOIS&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,Calendar,LongFixedFrequency,LongFixedConvention,LongFixedDayCounter,LongIndex,ShortFixedFrequency,ShortFixedConvention,ShortFixedDayCounter,ShortIndex,LongMinusShort&#13;&#10;&#9;&#9;FROM ConventionsTenorBasisTwoSwap WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;TenorBasisTwoSwap&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,LongIndex,ShortIndex,ShortPayTenor,SpreadOnShort,IncludeSpread,SubPeriodsCouponType&#13;&#10;&#9;&#9;FROM ConventionsTenorBasisSwap WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;TenorBasisSwap&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,SpotDays,SourceCurrency,TargetCurrency,PointsFactor,AdvanceCalendar,SpotRelative,AdditionalSettleCalendar&#13;&#10;&#9;&#9;FROM ConventionsFX WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;FX&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,SettlementDays,SettlementCalendar,RollConvention,FlatIndex,SpreadIndex,EOM&#13;&#10;&#9;&#9;FROM ConventionsCrossCurrencyBasis WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;CrossCurrencyBasis&#39;), TYPE),&#13;&#10;&#9;&#9;(SELECT Id,FixCalendar,FixConvention,DayCounter,IndexName [Index],Interpolated,ObservationLag,AdjustInflationObservationDates,InflationCalendar,InflationConvention&#13;&#10;&#9;&#9;FROM ConventionsInflationSwap WHERE GroupingId = g.GroupingId&#13;&#10;&#9;&#9;FOR XML PATH (&#39;InflationSwap&#39;), TYPE)&#13;&#10;&#9;FOR XML PATH (&#39;Conventions&#39;))) XMLData&#13;&#10;FROM &#13;&#10;(SELECT GroupingId FROM ConventionsZero&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsCDS&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsDeposit&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsFuture&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsFRA&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsSwapIndex&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsSwap&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsOIS&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsAverageOIS&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsTenorBasisTwoSwap&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsTenorBasisSwap&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsFX&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsCrossCurrencyBasis&#13;&#10;UNION&#13;&#10;SELECT GroupingId FROM ConventionsInflationSwap) g</textarea>
+				<div style="padding-top: 5px;"><hr></div>
+				<div class="box box-solid">
+					<div class="box-header with-border">
+					  <i class="fa fa-puzzle-piece"></i>
+					  <h3 class="box-title">Possibly Referenced Tables/Views</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+					  <ul class="list-unstyled">
+						<li><a href="ConventionsInflationSwap.html">ConventionsInflationSwap</a></li>
+						<li><a href="ConventionsSelection.html">ConventionsSelection</a></li>
+						<li><a href="ConventionsTenorBasisSwap.html">ConventionsTenorBasisSwap</a></li>
+						<li><a href="ConventionsOIS.html">ConventionsOIS</a></li>
+						<li><a href="ConventionsCrossCurrencyBasis.html">ConventionsCrossCurrencyBasis</a></li>
+						<li><a href="ConventionsZero.html">ConventionsZero</a></li>
+						<li><a href="ConventionsDeposit.html">ConventionsDeposit</a></li>
+						<li><a href="ConventionsFX.html">ConventionsFX</a></li>
+						<li><a href="ConventionsSwap.html">ConventionsSwap</a></li>
+						<li><a href="ConventionsFuture.html">ConventionsFuture</a></li>
+						<li><a href="ConventionsCDS.html">ConventionsCDS</a></li>
+						<li><a href="ConventionsSwapIndex.html">ConventionsSwapIndex</a></li>
+						<li><a href="ConventionsAverageOIS.html">ConventionsAverageOIS</a></li>
+						<li><a href="ConventionsFRA.html">ConventionsFRA</a></li>
+						<li><a href="ConventionsTenorBasisTwoSwap.html">ConventionsTenorBasisTwoSwap</a></li>
+					  </ul>
+					</div>
+					<!-- /.box-body -->
+				 </div>					
+			</div><!-- /.box-body -->			
+		</div>		
+	      </section>
+    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.0.0-rc2</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+<script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+<script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="../bower/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="../bower/anchor-js/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="../bower/codemirror/codemirror.js"></script>
+<script src="../bower/codemirror/sql.js"></script>
+<!-- AdminLTE App -->
+<script src="../bower/admin-lte/dist/js/app.min.js"></script>
+<script src="table.js"></script>
+<script src="../schemaSpy.js"></script>
+</body>
+</html>

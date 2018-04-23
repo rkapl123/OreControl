@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PortfolioIndexCreditDefaultSwapData - ORE Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+  <!-- Fonts -->
+  <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+  <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="../schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../bower/html5shiv/html5shiv.min.js"></script>
+  <script src="../bower/respond/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../index.html" class="navbar-brand"><b>ORE</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>            
+			<!--<li><a href="../components.html" title="List of system components">Components</a></li>-->
+			<li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>PortfolioIndexCreditDefaultSwapData</h1></br>
+		      </section>
+      <!-- Main content -->
+      <section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+			  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <h3 id="Columns" class="box-title">Columns</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+            <div class="box-body">
+				<table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead align='left'>
+				<tr>
+				  <th>Column</th>
+				  <th>Type</th>
+				  <th>Size</th>
+				  <th title='Are nulls allowed?'>Nulls</th>
+				  <th title='Is column automatically updated?'>Auto</th>
+				  <th title='Default value'>Default</th>
+				  <th title='Columns in tables that reference this column'>Children</th>
+				  <th title='Columns in tables that are referenced by this column'>Parents</th>
+				  <th title='Comments' class="toggle"><span>Comments</span></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="TradeId">TradeId</span></td>
+				 <td>varchar</td>
+				 <td>180</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="PortfolioIndexCreditDefaultSwapData.TradeId references dbo.PortfolioTrades.Id via FK_PortfolioIndexCreditDefaultSwapData_TradeId">
+						<a href='../../dbo/tables/PortfolioTrades.html'>PortfolioTrades</a><span class='relatedKey'>.Id</span>
+					</td>
+					<td class="constraint detail">
+						FK_PortfolioIndexCreditDefaultSwapData_TradeId <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="CreditCurveId">CreditCurveId</span></td>
+				 <td>varchar</td>
+				 <td>20</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SettlesAccrual">SettlesAccrual</span></td>
+				 <td>varchar</td>
+				 <td>5</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="PortfolioIndexCreditDefaultSwapData.SettlesAccrual references dbo.TypesBool.value via FK_PortfolioIndexCreditDefaultSwapData_SettlesAccrual">
+						<a href='../../dbo/tables/TypesBool.html'>TypesBool</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_PortfolioIndexCreditDefaultSwapData_SettlesAccrual <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="PaysAtDefaultTime">PaysAtDefaultTime</span></td>
+				 <td>varchar</td>
+				 <td>5</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="PortfolioIndexCreditDefaultSwapData.PaysAtDefaultTime references dbo.TypesBool.value via FK_PortfolioIndexCreditDefaultSwapData_PaysAtDefaultTime">
+						<a href='../../dbo/tables/TypesBool.html'>TypesBool</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_PortfolioIndexCreditDefaultSwapData_PaysAtDefaultTime <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="ProtectionStart">ProtectionStart</span></td>
+				 <td>date</td>
+				 <td>6</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="UpfrontDate">UpfrontDate</span></td>
+				 <td>date</td>
+				 <td>6</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="UpfrontFee">UpfrontFee</span></td>
+				 <td>decimal</td>
+				 <td>20,3</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+								</tbody>
+				</table>
+				<p title='7 columns'>Table contained <span id="recordNumber">0</span> rows<p/>
+			</div>
+		</div>
+		<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-sitemap"></i>
+
+              <h3 id="Indexes" class="box-title">Indexes</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">
+				<table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead>
+				 <tr>
+				  <th>Constraint Name</th>
+				  <th>Type</th>
+				  <th>Sort</th>
+				  <th>Column(s)</th>
+				 </tr>
+				</thead>
+				<tbody>
+				 <tr>
+				  <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> PK_PortfolioIndexCreditDefaultSwapData</td>
+				  <td>Primary key</td>
+				  <td><span title='Ascending'>Asc</span></td>
+				  <td>TradeId</td>
+				 </tr>				 
+				</tbody>
+				</table>   			  
+			</div><!-- /.box-body -->
+		</div>
+				<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-code-fork"></i>
+
+              <h3 id="Relationships" class="box-title">Relationships</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">	
+			<div class="nav-tabs-custom" style="cursor: move;">
+            <!-- Tabs within a box -->
+			<h5>Close relationships within degrees of separation</h5>
+            <ul class="nav nav-tabs pull-left ui-sortable-handle">
+			  			              <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>			  			 
+			  			              <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>			  			 
+            </ul>
+            <div class="tab-content no-padding">            
+				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
+<area shape="rect" id="node1" href="PortfolioIndexCreditDefaultSwapData.html" title="PortfolioIndexCreditDefaultSwapData" alt="" coords="272,44,707,319">
+<area shape="rect" id="node2" title="dbo.TypesBool" alt="" coords="23,140,211,228">
+<area shape="rect" id="node3" title="dbo.PortfolioTrades" alt="" coords="5,5,228,123">
+</map>
+
+					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/PortfolioIndexCreditDefaultSwapData.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
+<area shape="rect" id="node1" href="ConventionsCDS.html" title="ConventionsCDS" alt="" coords="357,5,561,93">
+<area shape="rect" id="node2" title="dbo.TypesBool" alt="" coords="5,2052,193,2140">
+<area shape="rect" id="node3" href="ConventionsCrossCurrencyBasis.html" title="ConventionsCrossCurrencyBasis" alt="" coords="301,111,618,199">
+<area shape="rect" id="node4" href="ConventionsDeposit.html" title="ConventionsDeposit" alt="" coords="346,216,573,304">
+<area shape="rect" id="node5" href="ConventionsFX.html" title="ConventionsFX" alt="" coords="364,321,555,409">
+<area shape="rect" id="node6" title="dbo.ConventionsInflationSwap" alt="" coords="311,427,608,515">
+<area shape="rect" id="node7" href="ConventionsOIS.html" title="ConventionsOIS" alt="" coords="361,532,558,620">
+<area shape="rect" id="node8" href="ConventionsTenorBasisSwap.html" title="ConventionsTenorBasisSwap" alt="" coords="313,637,605,725">
+<area shape="rect" id="node9" href="ConventionsTenorBasisTwoSwap.html" title="ConventionsTenorBasisTwoSwap" alt="" coords="299,743,620,831">
+<area shape="rect" id="node10" href="ConventionsZero.html" title="ConventionsZero" alt="" coords="357,848,561,936">
+<area shape="rect" id="node11" href="CurveConfigurationBaseCorrelation.html" title="CurveConfigurationBaseCorrelation" alt="" coords="291,953,628,1041">
+<area shape="rect" id="node12" href="CurveConfigurationCapFloorVolatilities.html" title="CurveConfigurationCapFloorVolatilities" alt="" coords="279,1059,639,1147">
+<area shape="rect" id="node13" href="CurveConfigurationDefaultCurves.html" title="CurveConfigurationDefaultCurves" alt="" coords="297,1164,622,1252">
+<area shape="rect" id="node14" href="CurveConfigurationInflationCapFloorPriceSurfaces.html" title="CurveConfigurationInflationCapFloorPriceSurfaces" alt="" coords="237,1269,681,1357">
+<area shape="rect" id="node15" href="CurveConfigurationInflationCurves.html" title="CurveConfigurationInflationCurves" alt="" coords="789,781,1119,869">
+<area shape="rect" id="node16" title="dbo.CurveConfigurationYieldCurves" alt="" coords="289,1411,630,1499">
+<area shape="rect" id="node17" title="dbo.NettingSet" alt="" coords="365,1568,553,1656">
+<area shape="rect" id="node18" href="PortfolioBaskets.html" title="PortfolioBaskets" alt="" coords="1345,1199,1543,1287">
+<area shape="rect" id="node19" title="dbo.PortfolioTrades" alt="" coords="843,1292,1065,1409">
+<area shape="rect" id="node20" href="PortfolioBondData.html" title="PortfolioBondData" alt="" coords="1338,1304,1550,1392">
+<area shape="rect" id="node21" href="PortfolioCapFloorData.html" title="PortfolioCapFloorData" alt="" coords="1325,1409,1563,1497">
+<area shape="rect" id="node22" href="PortfolioCapRates.html" title="PortfolioCapRates" alt="" coords="1339,251,1549,339">
+<area shape="rect" id="node23" href="PortfolioCDOData.html" title="PortfolioCDOData" alt="" coords="1340,356,1548,444">
+<area shape="rect" id="node24" href="PortfolioCreditDefaultSwapData.html" title="PortfolioCreditDefaultSwapData" alt="" coords="1291,145,1597,233">
+<area shape="rect" id="node25" href="PortfolioEquityForwardData.html" title="PortfolioEquityForwardData" alt="" coords="1306,461,1582,549">
+<area shape="rect" id="node26" href="PortfolioEquityOptionData.html" title="PortfolioEquityOptionData" alt="" coords="1311,1515,1577,1603">
+<area shape="rect" id="node27" href="PortfolioFloorRates.html" title="PortfolioFloorRates" alt="" coords="1334,567,1554,655">
+<area shape="rect" id="node28" href="PortfolioForwardRateAgreementData.html" title="PortfolioForwardRateAgreementData" alt="" coords="1273,672,1615,760">
+<area shape="rect" id="node29" href="PortfolioFxForwardData.html" title="PortfolioFxForwardData" alt="" coords="1319,777,1569,865">
+<area shape="rect" id="node30" href="PortfolioFxOptionData.html" title="PortfolioFxOptionData" alt="" coords="1325,1620,1563,1708">
+<area shape="rect" id="node31" href="PortfolioIndexCreditDefaultSwapData.html" title="PortfolioIndexCreditDefaultSwapData" alt="" coords="1227,1725,1661,2000">
+<area shape="rect" id="node32" href="PortfolioIndexCreditDefaultSwapOptionData.html" title="PortfolioIndexCreditDefaultSwapOptionData" alt="" coords="1247,2017,1641,2105">
+<area shape="rect" id="node33" href="PortfolioIndexCreditDefaultSwapOptionSwapData.html" title="PortfolioIndexCreditDefaultSwapOptionSwapData" alt="" coords="243,1869,675,1957">
+<area shape="rect" id="node34" href="PortfolioLegAmortizations.html" title="PortfolioLegAmortizations" alt="" coords="327,1975,592,2063">
+<area shape="rect" id="node35" title="dbo.PortfolioLegData" alt="" coords="1328,2123,1560,2211">
+<area shape="rect" id="node36" href="PortfolioOptionExercises.html" title="PortfolioOptionExercises" alt="" coords="1314,883,1574,971">
+<area shape="rect" id="node37" href="PortfolioScheduleDataRules.html" title="PortfolioScheduleDataRules" alt="" coords="319,2276,600,2364">
+<area shape="rect" id="node38" href="PortfolioSwapData.html" title="PortfolioSwapData" alt="" coords="1338,988,1550,1076">
+<area shape="rect" id="node39" href="PortfolioSwaptionData.html" title="PortfolioSwaptionData" alt="" coords="1325,2255,1563,2343">
+<area shape="rect" id="node40" href="PortfolioTradeActions.html" title="PortfolioTradeActions" alt="" coords="1326,1093,1562,1181">
+<area shape="rect" id="node41" href="SimulationCrossAssetModelEquityModels.html" title="SimulationCrossAssetModelEquityModels" alt="" coords="766,2355,1142,2443">
+<area shape="rect" id="node42" title="dbo.SimulationMarket" alt="" coords="342,2489,577,2577">
+<area shape="rect" id="node43" href="SimulationCrossAssetModelForeignExchangeModels.html" title="SimulationCrossAssetModelForeignExchangeModels" alt="" coords="725,2460,1183,2548">
+<area shape="rect" id="node44" href="SimulationCrossAssetModelInflationIndexModels.html" title="SimulationCrossAssetModelInflationIndexModels" alt="" coords="740,2565,1168,2653">
+<area shape="rect" id="node45" href="SimulationCrossAssetModelInterestRateModels.html" title="SimulationCrossAssetModelInterestRateModels" alt="" coords="744,2671,1164,2759">
+</map>
+
+					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/PortfolioIndexCreditDefaultSwapData.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+			  			</div>
+			</div>
+		  </div><!-- /.box-body -->
+		</div>
+	      </section>
+    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.0.0-rc2</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+<script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+<script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+<script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="../bower/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="../bower/anchor-js/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="../bower/codemirror/codemirror.js"></script>
+<script src="../bower/codemirror/sql.js"></script>
+<!-- AdminLTE App -->
+<script src="../bower/admin-lte/dist/js/app.min.js"></script>
+<script src="table.js"></script>
+<script src="../schemaSpy.js"></script>
+</body>
+</html>
