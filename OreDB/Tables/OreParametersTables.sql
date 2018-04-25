@@ -1,43 +1,43 @@
-use ORE
+use ORE;
 
 CREATE TABLE OreParametersConfigs (
 	id varchar(20) NOT NULL,
 	Description varchar(120) NOT NULL,
 CONSTRAINT PK_OreParametersConfigs PRIMARY KEY CLUSTERED (
 	id ASC
-))
+));
 
 CREATE TABLE OreParametersSetup (
 	OreConfigId varchar(20) NOT NULL,
 	name varchar(20) NOT NULL,
-	Parameter varchar(70) NOT NULL
+	Parameter varchar(70) NOT NULL,
 CONSTRAINT PK_OreParametersSetup PRIMARY KEY CLUSTERED (
 	OreConfigId ASC,
 	name ASC
-))
-ALTER TABLE OreParametersSetup WITH CHECK ADD CONSTRAINT FK_OreParametersSetup_OreConfigId FOREIGN KEY(OreConfigId)
-REFERENCES OreParametersConfigs (id)
+));
+ALTER TABLE OreParametersSetup ADD CONSTRAINT FK_OreParametersSetup_OreConfigId FOREIGN KEY(OreConfigId)
+REFERENCES OreParametersConfigs (id);
 
 CREATE TABLE OreParametersMarkets (
 	OreConfigId varchar(20) NOT NULL,
 	name varchar(20) NOT NULL,
-	Parameter varchar(20) NOT NULL
+	Parameter varchar(20) NOT NULL,
 CONSTRAINT PK_OreParametersMarkets PRIMARY KEY CLUSTERED (
 	OreConfigId ASC,
 	name ASC
-))
-ALTER TABLE OreParametersMarkets WITH CHECK ADD CONSTRAINT FK_OreParametersMarkets_OreConfigId FOREIGN KEY(OreConfigId)
-REFERENCES OreParametersConfigs (id)
+));
+ALTER TABLE OreParametersMarkets ADD CONSTRAINT FK_OreParametersMarkets_OreConfigId FOREIGN KEY(OreConfigId)
+REFERENCES OreParametersConfigs (id);
 
 CREATE TABLE OreParametersAnalytics (
 	OreConfigId varchar(20) NOT NULL,
 	type varchar(15) NOT NULL,
 	name varchar(40) NOT NULL,
-	Parameter varchar(70)
+	Parameter varchar(70),
 CONSTRAINT PK_OreParametersAnalytics PRIMARY KEY CLUSTERED (
 	OreConfigId ASC,
 	type ASC,
 	name ASC
-))
-ALTER TABLE OreParametersAnalytics WITH CHECK ADD CONSTRAINT FK_OreParametersAnalytics_OreConfigId FOREIGN KEY(OreConfigId)
-REFERENCES OreParametersConfigs (id)
+));
+ALTER TABLE OreParametersAnalytics ADD CONSTRAINT FK_OreParametersAnalytics_OreConfigId FOREIGN KEY(OreConfigId)
+REFERENCES OreParametersConfigs (id);

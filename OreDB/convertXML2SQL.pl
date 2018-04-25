@@ -22,7 +22,7 @@ $inputDir = "";
 if (-e $configDir.'/conventions.xml') {
 	print "processing conventions.xml\n";
 	open SQLOUT, ">Data/conventions.sql";
-	print SQLOUT "use ORE\n\n";
+	print SQLOUT "use ORE;\n\n";
 	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/conventions.xml', no_blanks => 1);
 	my @firstlevel=$xmldata->firstChild->childNodes;
 	foreach my $record (sort @firstlevel) {
@@ -38,7 +38,7 @@ if (-e $configDir.'/conventions.xml') {
 # process pricingengine data
 if (-e $configDir.'/pricingengine.xml') {
 	open SQLOUT, ">Data/pricingengine.sql";
-	print SQLOUT "use ORE\n\n";
+	print SQLOUT "use ORE;\n\n";
 	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/pricingengine.xml', no_blanks => 1);
 	print "processing pricingengine.xml\n";
 	my @firstlevel = $xmldata->firstChild->childNodes;
@@ -65,7 +65,7 @@ if (-e $configDir.'/pricingengine.xml') {
 # process ore_types data
 if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 	open SQLOUT, ">Data/ore_types.sql";
-	print SQLOUT "use ORE\n\n";
+	print SQLOUT "use ORE;\n\n";
 	my $xmldata= XML::LibXML->load_xml(location => $xsdDir.'/ore_types.xsd', no_blanks => 1);
 	print "processing ore_types.xsd\n";
 	#<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -199,7 +199,7 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 # process todaysmarket data
 if (-e $configDir.'/todaysmarket.xml') {
 	open SQLOUT, ">Data/todaysmarket.sql";
-	print SQLOUT "use ORE\n\n";
+	print SQLOUT "use ORE;\n\n";
 	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/todaysmarket.xml', no_blanks => 1);
 	print "processing todaysmarket.xml\n";
 	my @firstlevel = $xmldata->firstChild->childNodes;
@@ -243,7 +243,7 @@ if (-e $configDir.'/todaysmarket.xml') {
 # process curveconfig data
 if (-e $configDir.'/curveconfig.xml') {
 	open SQLOUT, ">Data/curveconfig.sql";
-	print SQLOUT "use ORE\n\n";
+	print SQLOUT "use ORE;\n\n";
 	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/curveconfig.xml', no_blanks => 1);
 	print "processing curveconfig.xml\n";
 	my @firstlevel = $xmldata->firstChild->childNodes;
@@ -355,7 +355,7 @@ sub doInputXMLs {
 	# process portfolio data
 	if (-e $xmlInputDir.'/portfolio.xml') {
 		open SQLOUT, ">>Data/portfolio.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
+		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/portfolio.xml', no_blanks => 1);
 		print "processing portfolio.xml\n";
 		# first level: trades
@@ -442,10 +442,10 @@ sub doInputXMLs {
 	# process ORE.xml data
 	if (-e $xmlInputDir.'/ore.xml') {
 		open SQLOUT, ">>Data/ore.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
+		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/ore.xml', no_blanks => 1);
 		print "processing ore.xml\n";
-		print SQLOUT "INSERT OreParametersConfigs (id,Description) VALUES ('".$OreConfigId."','".$OreConfigId." Description')\n";
+		print SQLOUT "INSERT OreParametersConfigs (id,Description) VALUES ('".$OreConfigId."','".$OreConfigId." Description');\n";
 		my @firstlevel = $xmldata->firstChild->childNodes;
 		foreach my $record (@firstlevel) {
 			if (ref($record) eq "XML::LibXML::Element") {
@@ -476,7 +476,7 @@ sub doInputXMLs {
 	# process nettingsetdefinitions data
 	if (-e $xmlInputDir.'/netting.xml') {
 		open SQLOUT, ">>Data/netting.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
+		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/netting.xml', no_blanks => 1);
 		print "processing netting.xml\n";
 		my @firstlevel = $xmldata->firstChild->childNodes;
@@ -507,7 +507,7 @@ sub doInputXMLs {
 	# process simulation data
 	if (-e $xmlInputDir.'/simulation.xml') {
 		open SQLOUT, ">>Data/simulation.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
+		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/simulation.xml', no_blanks => 1);
 		print "processing simulation.xml\n";
 		# first market (primary element)
@@ -684,7 +684,7 @@ sub doInputXMLs {
 	# process sensitivity data
 	if (-e $xmlInputDir.'/sensitivity.xml') {
 		open SQLOUT, ">>Data/sensitivity.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has sensitivity.xml
+		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has sensitivity.xml
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/sensitivity.xml', no_blanks => 1);
 		print "processing sensitivity.xml\n";
 		my $record = $xmldata->firstChild;
@@ -708,7 +708,7 @@ sub doInputXMLs {
 	# process stresstest data
 	if (-e $xmlInputDir.'/stresstest.xml') {
 		open SQLOUT, ">>Data/stresstest.sql";
-		print SQLOUT "use ORE\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has stresstest.xml
+		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has stresstest.xml
 		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/stresstest.xml', no_blanks => 1);
 		print "processing stresstest.xml\n";
 		my @firstlevel = $xmldata->firstChild->childNodes;
@@ -960,7 +960,7 @@ sub printInsert() {
 			}
 		}
 	}
-	print SQLOUT "INSERT $prefix$tableName (".substr($colNames,0,-1).") VALUES (".substr($colValues,0,-1).")\n" if $colValues ne "";
+	print SQLOUT "INSERT $prefix$tableName (".substr($colNames,0,-1).") VALUES (".substr($colValues,0,-1).");\n" if $colValues ne "";
 }
 
 # format SQL according to type (number vs. string/dates)

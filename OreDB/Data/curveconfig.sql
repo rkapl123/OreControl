@@ -1,876 +1,876 @@
-use ORE
+use ORE;
 
-INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURUSD','ATM','1M,3M,6M,1Y,2Y,3Y,10Y','ExampleInput')
-INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURGBP','ATM','1M,3M,6M,1Y,2Y,5Y,10Y','ExampleInput')
-INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURCHF','ATM','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,10Y','ExampleInput')
-INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURJPY','ATM','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,10Y','ExampleInput')
-INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('GBPUSD','ATM','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,10Y','ExampleInput')
-INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('EUR_SW_N','EUR normal swaption volatilities','ATM','Normal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','EUR-CMS-1Y','EUR-CMS-30Y','ExampleInput')
-INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('USD_SW_N','USD normal swaption volatilities','ATM','Lognormal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','USD-CMS-1Y','USD-CMS-30Y','ExampleInput')
-INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('GBP_SW_N','GBP normal swaption volatilities','ATM','Lognormal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','GBP-CMS-1Y','GBP-CMS-30Y','ExampleInput')
-INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('CHF_SW_N','CHF normal swaption volatilities','ATM','Normal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','CHF-CMS-1Y','CHF-CMS-30Y','ExampleInput')
-INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('JPY_SW_N','JPY normal swaption volatilities','ATM','Normal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','JPY-CMS-1Y','JPY-CMS-30Y','ExampleInput')
-INSERT CurveConfigurationCapFloorVolatilities (CurveId,CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,DiscountCurve,GroupingId) VALUES ('EUR_CF_N','EUR normal cap floor volatilities','Normal','TRUE','FALSE','Actual/365 (Fixed)','TARGET','Following','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,15Y,20Y','-0.01,0.0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1','EUR-EURIBOR-6M','Yield/EUR/EUR1D','ExampleInput')
-INSERT CurveConfigurationCapFloorVolatilities (CurveId,CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,DiscountCurve,GroupingId) VALUES ('GBP_CF_N','GBP normal cap floor volatilities','Normal','TRUE','FALSE','Actual/365 (Fixed)','UK','Following','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,15Y,20Y','0.005,0.015,0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1','GBP-LIBOR-6M','Yield/GBP/GBP1D','ExampleInput')
-INSERT CurveConfigurationCapFloorVolatilities (CurveId,CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,DiscountCurve,GroupingId) VALUES ('USD_CF_N','USD normal cap floor volatilities','Normal','TRUE','FALSE','Actual/365 (Fixed)','UK','Following','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,15Y,20Y','0.005,0.015,0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1','USD-LIBOR-3M','Yield/USD/USD1D','ExampleInput')
-INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DiscountCurve,DayCounter,RecoveryRate,Conventions,GroupingId) VALUES ('BANK_SR_USD','BANK SR CDS USD','USD','SpreadCDS','Yield/USD/USD3M','A365','RECOVERY_RATE/RATE/BANK/SR/USD','CDS-STANDARD-CONVENTIONS','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/1Y',0,'BANK_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/2Y',1,'BANK_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/3Y',2,'BANK_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/4Y',3,'BANK_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/5Y',4,'BANK_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/7Y',5,'BANK_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/10Y',6,'BANK_SR_USD')
-INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DayCounter,RecoveryRate,Conventions,GroupingId) VALUES ('CPTY_A_SR_USD','CPTY_A SR HR USD','USD','HazardRate','A365','RECOVERY_RATE/RATE/CPTY_A/SR/USD','CDS-STANDARD-CONVENTIONS','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/0Y',0,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/1Y',1,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/2Y',2,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/3Y',3,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/4Y',4,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/5Y',5,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/7Y',6,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/10Y',7,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/15Y',8,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/20Y',9,'CPTY_A_SR_USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/30Y',10,'CPTY_A_SR_USD')
-INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DayCounter,RecoveryRate,Conventions,GroupingId) VALUES ('CPTY_C_SR_EUR','CPTY_C SR HR EUR','EUR','HazardRate','A360','RECOVERY_RATE/RATE/CPTY_C/SR/EUR','CDS-STANDARD-CONVENTIONS','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_C/SR/EUR/1Y',0,'CPTY_C_SR_EUR')
-INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DayCounter,BenchmarkCurve,SourceCurve,Pillars,SpotLag,Calendar,GroupingId) VALUES ('BOND_YIELD_EUR_OVER_OIS','Default curve derived as bond yield curve over Eonia','EUR','Benchmark','A365','Yield/EUR/EUR1D','Yield/EUR/BOND_YIELD_EUR','1Y,2Y,3Y,4Y,5Y,7Y,10Y',0,'TARGET','ExampleInput')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('CHF6M','CHF','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-LIBOR-CONVENTIONS','CHF6M','Simple','CHF6M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/2D',1,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1W',2,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/2W',3,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/3W',4,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1M',5,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/2M',6,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/3M',7,'Deposit','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/6M',8,'Deposit','CHF6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','CHF-6M-FRA-CONVENTIONS','CHF6M','Simple','CHF6M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/1M/6M',0,'FRA','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/2M/6M',1,'FRA','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/3M/6M',2,'FRA','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/4M/6M',3,'FRA','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/5M/6M',4,'FRA','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/6M/6M',5,'FRA','CHF6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','CHF-6M-SWAP-CONVENTIONS','CHF6M','Simple','CHF6M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/2Y',0,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/3Y',1,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/4Y',2,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/5Y',3,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/6Y',4,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/7Y',5,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/8Y',6,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/9Y',7,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/10Y',8,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/12Y',9,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/15Y',10,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/20Y',11,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/25Y',12,'Swap','CHF6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/30Y',13,'Swap','CHF6M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('CHF3M','CHF','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-LIBOR-CONVENTIONS','CHF3M','Simple','CHF3M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1W',1,'Deposit','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1M',2,'Deposit','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/3M',3,'Deposit','CHF3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','CHF-3M-FRA-CONVENTIONS','CHF3M','Simple','CHF3M',1)
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','CHF-3M-SWAP-CONVENTIONS','CHF3M','Simple','CHF3M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/2Y',0,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/3Y',1,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/4Y',2,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/5Y',3,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/7Y',4,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/10Y',5,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/12Y',6,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/15Y',7,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/20Y',8,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/25Y',9,'Swap','CHF3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/30Y',10,'Swap','CHF3M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('CHF1M','CHF','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-Deposit','CHF1M','Simple','CHF1M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/1D/1D',1,'Deposit','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1W',2,'Deposit','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1M',3,'Deposit','CHF1M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','CHF1M-Swap','CHF1M','Simple','CHF1M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/2M',0,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/3M',1,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/4M',2,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/5M',3,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/6M',4,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/7M',5,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/8M',6,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/9M',7,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/10M',8,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/11M',9,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/1Y',10,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/2Y',11,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/3Y',12,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/4Y',13,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/5Y',14,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/7Y',15,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/10Y',16,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/12Y',17,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/15Y',18,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/20Y',19,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/25Y',20,'Swap','CHF1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/30Y',21,'Swap','CHF1M')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('CHF1D','CHF discount curve bootstrapped from TOIS swap rates','CHF','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-TOIS-CONVENTIONS','Simple','CHF1D',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF1D')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','CHF-OIS-CONVENTIONS','Simple','CHF1D',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1M',0,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/2M',1,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/3M',2,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/4M',3,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/5M',4,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/6M',5,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/7M',6,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/8M',7,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/9M',8,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/10M',9,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/11M',10,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y',11,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y3M',12,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y6M',13,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y9M',14,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/2Y',15,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/3Y',16,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/4Y',17,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/5Y',18,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/6Y',19,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/7Y',20,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/8Y',21,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/10Y',22,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/12Y',23,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/15Y',24,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/20Y',25,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/25Y',26,'OIS','CHF1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/30Y',27,'OIS','CHF1D')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('EUR1D','EUR discount curve bootstrapped from EONIA swap rates','EUR','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-EONIA-CONVENTIONS','Simple','EUR1D',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR1D')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','EUR-OIS-CONVENTIONS','Simple','EUR1D',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1W',0,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/2W',1,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1M',2,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/2M',3,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/3M',4,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/4M',5,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/5M',6,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/6M',7,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/7M',8,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/8M',9,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/9M',10,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/10M',11,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/11M',12,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y',13,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y3M',14,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y6M',15,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y9M',16,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/2Y',17,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/3Y',18,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/4Y',19,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/5Y',20,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/6Y',21,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/7Y',22,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/8Y',23,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/9Y',24,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/10Y',25,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/12Y',26,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/15Y',27,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/20Y',28,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/25Y',29,'OIS','EUR1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/30Y',30,'OIS','EUR1D')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR6M','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-EURIBOR-CONVENTIONS','EUR6M','Simple','EUR6M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/6M',0,'Deposit','EUR6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','EUR-6M-FRA-CONVENTIONS','EUR6M','Simple','EUR6M',1)
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','EUR-6M-SWAP-CONVENTIONS','EUR6M','Simple','EUR6M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/2Y',0,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/3Y',1,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/4Y',2,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/5Y',3,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/7Y',4,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/10Y',5,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/12Y',6,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/15Y',7,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/20Y',8,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/25Y',9,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/30Y',10,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/40Y',11,'Swap','EUR6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/50Y',12,'Swap','EUR6M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR12M','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-DEPOSIT','EUR12M','Simple','EUR12M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1W',1,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1M',2,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/2M',3,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/3M',4,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/4M',5,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/5M',6,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/6M',7,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/7M',8,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/8M',9,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/9M',10,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/10M',11,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/11M',12,'Deposit','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1Y',13,'Deposit','EUR12M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurveLong,ProjectionCurveShort,SegmentsType,CurveId,Seq) VALUES ('Tenor Basis Two Swaps','EUR-EURIBOR-6M-12M-BASIS-CONVENTIONS','EUR12M','EUR6M','TenorBasis','EUR12M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/2Y',0,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/3Y',1,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/4Y',2,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/5Y',3,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/6Y',4,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/8Y',5,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/9Y',6,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/10Y',7,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/11Y',8,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/12Y',9,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/15Y',10,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/20Y',11,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/25Y',12,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/30Y',13,'Tenor Basis Two Swaps','EUR12M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR3M','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-EURIBOR-CONVENTIONS','EUR3M','Simple','EUR3M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1W',1,'Deposit','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1M',2,'Deposit','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/2M',3,'Deposit','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/3M',4,'Deposit','EUR3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','EUR-3M-FRA-CONVENTIONS','EUR3M','Simple','EUR3M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/1M/3M',0,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/2M/3M',1,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/3M/3M',2,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/4M/3M',3,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/5M/3M',4,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/6M/3M',5,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/9M/3M',6,'FRA','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/1Y/3M',7,'FRA','EUR3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','EUR-3M-SWAP-CONVENTIONS','EUR3M','Simple','EUR3M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/2Y',0,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/3Y',1,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/4Y',2,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/5Y',3,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/6Y',4,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/7Y',5,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/8Y',6,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/9Y',7,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/10Y',8,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/12Y',9,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/15Y',10,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/20Y',11,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/25Y',12,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/40Y',13,'Swap','EUR3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/50Y',14,'Swap','EUR3M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR1M','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-DEPOSIT','EUR1M','Simple','EUR1M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1W',1,'Deposit','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1M',2,'Deposit','EUR1M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','EUR-1M-SWAP-CONVENTIONS','EUR1M','Simple','EUR1M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/2M',0,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/3M',1,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/4M',2,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/5M',3,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/6M',4,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/7M',5,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/8M',6,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/9M',7,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/10M',8,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/11M',9,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/1Y',10,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/2Y',11,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/3Y',12,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/4Y',13,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/5Y',14,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/6Y',15,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/7Y',16,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/8Y',17,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/9Y',18,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/10Y',19,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/12Y',20,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/15Y',21,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/20Y',22,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/25Y',23,'Swap','EUR1M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/30Y',24,'Swap','EUR1M')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('USD1D','USD discount curve bootstrapped from FED FUNDS swap rates','USD','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','USD-FED-FUNDS-CONVENTIONS','Simple','USD1D',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/0D/1D',0,'Deposit','USD1D')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','USD-OIS-CONVENTIONS','Simple','USD1D',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1M',0,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/3M',1,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/6M',2,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/9M',3,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y',4,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y3M',5,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y6M',6,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y9M',7,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/2Y',8,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/3Y',9,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/4Y',10,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/5Y',11,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/7Y',12,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/10Y',13,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/12Y',14,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/15Y',15,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/20Y',16,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/25Y',17,'OIS','USD1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/30Y',18,'OIS','USD1D')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('USD3M','USD','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','USD-LIBOR-CONVENTIONS','USD3M','Simple','USD3M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/0D/1D',0,'Deposit','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1W',1,'Deposit','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1M',2,'Deposit','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/2M',3,'Deposit','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/3M',4,'Deposit','USD3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','USD-3M-FRA-CONVENTIONS','USD3M','Simple','USD3M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/3M/3M',0,'FRA','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/6M/3M',1,'FRA','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/9M/3M',2,'FRA','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/1Y/3M',3,'FRA','USD3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','USD-3M-SWAP-CONVENTIONS','USD3M','Simple','USD3M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/2Y',0,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/3Y',1,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/4Y',2,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/5Y',3,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/6Y',4,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/7Y',5,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/8Y',6,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/9Y',7,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/10Y',8,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/12Y',9,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/15Y',10,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/20Y',11,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/25Y',12,'Swap','USD3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/30Y',13,'Swap','USD3M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('USD6M','USD','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','USD-LIBOR-CONVENTIONS','USD6M','Simple','USD6M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/0D/1D',0,'Deposit','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1W',1,'Deposit','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1M',2,'Deposit','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/2M',3,'Deposit','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/3M',4,'Deposit','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/6M',5,'Deposit','USD6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','USD-6M-FRA-CONVENTIONS','USD6M','Simple','USD6M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/6M/6M',0,'FRA','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/1Y/6M',1,'FRA','USD6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurveLong,ProjectionCurveShort,SegmentsType,CurveId,Seq) VALUES ('Tenor Basis Swap','USD-LIBOR-3M-6M-BASIS-CONVENTIONS','USD6M','USD3M','TenorBasis','USD6M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/2Y',0,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/3Y',1,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/4Y',2,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/5Y',3,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/6Y',4,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/7Y',5,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/8Y',6,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/9Y',7,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/10Y',8,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/12Y',9,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/15Y',10,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/20Y',11,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/25Y',12,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/30Y',13,'Tenor Basis Swap','USD6M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('GBP1D','GBP','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('OIS','GBP-OIS-CONVENTIONS','GBP1D','Simple','GBP1D',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/1W',0,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/2W',1,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/1M',2,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/2M',3,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/3M',4,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/4M',5,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/5M',6,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/6M',7,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/7M',8,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/8M',9,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/9M',10,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/10M',11,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/11M',12,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/12M',13,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/2Y',14,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/3Y',15,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/4Y',16,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/5Y',17,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/6Y',18,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/7Y',19,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/8Y',20,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/9Y',21,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/10Y',22,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/15Y',23,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/20Y',24,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/25Y',25,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/30Y',26,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/40Y',27,'OIS','GBP1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/50Y',28,'OIS','GBP1D')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('GBP6M','GBP','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','GBP-DEPOSIT','GBP6M','Simple','GBP6M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1W',0,'Deposit','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1M',1,'Deposit','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/2M',2,'Deposit','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/3M',3,'Deposit','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/6M',4,'Deposit','GBP6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','GBP-6M-FRA','GBP6M','Simple','GBP6M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/1M/6M',0,'FRA','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/2M/6M',1,'FRA','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/3M/6M',2,'FRA','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/4M/6M',3,'FRA','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/5M/6M',4,'FRA','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/6M/6M',5,'FRA','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/1Y/6M',6,'FRA','GBP6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','GBP-6M-SWAP-CONVENTIONS','GBP6M','Simple','GBP6M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/2Y',0,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/3Y',1,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/4Y',2,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/5Y',3,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/6Y',4,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/7Y',5,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/8Y',6,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/9Y',7,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/10Y',8,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/12Y',9,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/15Y',10,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/20Y',11,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/25Y',12,'Swap','GBP6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/30Y',13,'Swap','GBP6M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('GBP3M','GBP','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','GBP-DEPOSIT','GBP3M','Simple','GBP3M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1W',0,'Deposit','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1M',1,'Deposit','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/2M',2,'Deposit','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/3M',3,'Deposit','GBP3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurveLong,SegmentsType,CurveId,Seq) VALUES ('Tenor Basis Swap','GBP-LIBOR-3M-6M-BASIS-CONVENTIONS','GBP6M','TenorBasis','GBP3M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/1Y',0,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/2Y',1,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/3Y',2,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/4Y',3,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/5Y',4,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/7Y',5,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/10Y',6,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/12Y',7,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/15Y',8,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/20Y',9,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/30Y',10,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/40Y',11,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/50Y',12,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/60Y',13,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/70Y',14,'Tenor Basis Swap','GBP3M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('SEK6M','SEK','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','SEK-STIBOR-CONVENTIONS','SEK6M','Simple','SEK6M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/1D',0,'Deposit','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/2D',1,'Deposit','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1W',2,'Deposit','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1M',3,'Deposit','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/2M',4,'Deposit','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/3M',5,'Deposit','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/6M',6,'Deposit','SEK6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','SEK-6M-SWAP-CONVENTIONS','SEK6M','Simple','SEK6M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/2Y',0,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/3Y',1,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/4Y',2,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/5Y',3,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/6Y',4,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/7Y',5,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/8Y',6,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/9Y',7,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/10Y',8,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/12Y',9,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/15Y',10,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/20Y',11,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/25Y',12,'Swap','SEK6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/30Y',13,'Swap','SEK6M')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('JPY1D','JPY discount curve bootstrapped from MUTAN swap rates','JPY','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','JPY-LIBOR-CONVENTIONS','Simple','JPY1D',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/0D/2D',0,'Deposit','JPY1D')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','JPY-OIS-CONVENTIONS','Simple','JPY1D',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/1M',0,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/2M',1,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/3M',2,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/4M',3,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/5M',4,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/6M',5,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/9M',6,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/1Y',7,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/1Y6M',8,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/2Y',9,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/3Y',10,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/4Y',11,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/5Y',12,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/7Y',13,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/10Y',14,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/12Y',15,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/15Y',16,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/20Y',17,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/25Y',18,'OIS','JPY1D')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/30Y',19,'OIS','JPY1D')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('JPY6M','JPY','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','JPY-LIBOR-CONVENTIONS','JPY6M','Simple','JPY6M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1W',0,'Deposit','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1M',1,'Deposit','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/2M',2,'Deposit','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/3M',3,'Deposit','JPY6M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','JPY-LIBOR-6M-SWAP-CONVENTIONS','JPY6M','Simple','JPY6M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/2Y',0,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/3Y',1,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/4Y',2,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/5Y',3,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/6Y',4,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/7Y',5,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/8Y',6,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/9Y',7,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/10Y',8,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/12Y',9,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/15Y',10,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/20Y',11,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/25Y',12,'Swap','JPY6M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/30Y',13,'Swap','JPY6M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('JPY3M','JPY','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','JPY-Deposit','JPY3M','Simple','JPY3M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/0D/1D',0,'Deposit','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1W',1,'Deposit','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1M',2,'Deposit','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/2M',3,'Deposit','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/3M',4,'Deposit','JPY3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','JPY-FRA','JPY3M','Simple','JPY3M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/3M/3M',0,'FRA','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/6M/3M',1,'FRA','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/9M/3M',2,'FRA','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/1Y/3M',3,'FRA','JPY3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','JPY3M-Swap','JPY3M','Simple','JPY3M',2)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/2Y',0,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/3Y',1,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/4Y',2,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/5Y',3,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/6Y',4,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/7Y',5,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/8Y',6,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/9Y',7,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/10Y',8,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/15Y',9,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/20Y',10,'Swap','JPY3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/30Y',11,'Swap','JPY3M')
-INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('SEK3M','SEK','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','SEK-STIBOR-CONVENTIONS','SEK3M','Simple','SEK3M',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/1D',0,'Deposit','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/2D',1,'Deposit','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1W',2,'Deposit','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1M',3,'Deposit','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/2M',4,'Deposit','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/3M',5,'Deposit','SEK3M')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','SEK-3M-SWAP-CONVENTIONS','SEK3M','Simple','SEK3M',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/1Y',0,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/2Y',1,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/3Y',2,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/4Y',3,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/5Y',4,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/6Y',5,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/7Y',6,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/8Y',7,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/9Y',8,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/10Y',9,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/12Y',10,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/15Y',11,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/20Y',12,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/25Y',13,'Swap','SEK3M')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/30Y',14,'Swap','SEK3M')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('EUR-IN-USD','EUR collateralized in USD discount curve','EUR','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-USD-FX-CONVENTIONS','USD1D','FX/RATE/EUR/USD','CrossCurrency','EUR-IN-USD',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/3M',0,'FX Forward','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/6M',1,'FX Forward','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/9M',2,'FX Forward','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/1Y',3,'FX Forward','EUR-IN-USD')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-USD-XCCY-BASIS-CONVENTIONS','USD1D','FX/RATE/EUR/USD','EUR3M','USD3M','CrossCurrency','EUR-IN-USD',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/2Y',0,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/3Y',1,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/4Y',2,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/5Y',3,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/7Y',4,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/10Y',5,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/15Y',6,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/20Y',7,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/30Y',8,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/40Y',9,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/50Y',10,'Cross Currency Basis Swap','EUR-IN-USD')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('GBP-IN-USD','GBP collateralized in USD discount curve','GBP','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','USD-GBP-FX-CONVENTIONS','USD1D','FX/RATE/USD/GBP','CrossCurrency','GBP-IN-USD',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/3M',0,'FX Forward','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/6M',1,'FX Forward','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/9M',2,'FX Forward','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/1Y',3,'FX Forward','GBP-IN-USD')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','USD-GBP-XCCY-BASIS-CONVENTIONS','USD1D','FX/RATE/USD/GBP','GBP3M','USD3M','CrossCurrency','GBP-IN-USD',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/2Y',0,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/3Y',1,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/4Y',2,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/5Y',3,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/7Y',4,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/10Y',5,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/15Y',6,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/20Y',7,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/30Y',8,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/40Y',9,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/50Y',10,'Cross Currency Basis Swap','GBP-IN-USD')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('CHF-IN-USD','CHF collateralized in USD discount curve','CHF','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','USD-CHF-FX-CONVENTIONS','USD1D','FX/RATE/USD/CHF','CrossCurrency','CHF-IN-USD',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/3M',0,'FX Forward','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/6M',1,'FX Forward','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/9M',2,'FX Forward','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/1Y',3,'FX Forward','CHF-IN-USD')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','USD-CHF-XCCY-BASIS-CONVENTIONS','USD1D','FX/RATE/USD/CHF','CHF3M','USD3M','CrossCurrency','CHF-IN-USD',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/2Y',0,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/3Y',1,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/4Y',2,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/5Y',3,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/7Y',4,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/10Y',5,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/15Y',6,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/20Y',7,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/30Y',8,'Cross Currency Basis Swap','CHF-IN-USD')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('USD-IN-EUR','USD collateralized in EUR discount curve','USD','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-USD-FX-CONVENTIONS','EUR1D','FX/RATE/EUR/USD','CrossCurrency','USD-IN-EUR',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/3M',0,'FX Forward','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/6M',1,'FX Forward','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/9M',2,'FX Forward','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/12M',3,'FX Forward','USD-IN-EUR')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-USD-XCCY-BASIS-CONVENTIONS','EUR1D','FX/RATE/EUR/USD','USD3M','EUR3M','CrossCurrency','USD-IN-EUR',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/2Y',0,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/3Y',1,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/4Y',2,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/5Y',3,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/7Y',4,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/10Y',5,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/15Y',6,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/20Y',7,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/30Y',8,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/40Y',9,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/50Y',10,'Cross Currency Basis Swap','USD-IN-EUR')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('GBP-IN-EUR','GBP collateralized in EUR discount curve','GBP','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-GBP-FX-CONVENTIONS','EUR1D','FX/RATE/EUR/GBP','CrossCurrency','GBP-IN-EUR',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/3M',0,'FX Forward','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/6M',1,'FX Forward','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/9M',2,'FX Forward','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/12M',3,'FX Forward','GBP-IN-EUR')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-GBP-XCCY-BASIS-CONVENTIONS','EUR1D','FX/RATE/EUR/GBP','GBP3M','EUR3M','CrossCurrency','GBP-IN-EUR',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/2Y',0,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/3Y',1,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/4Y',2,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/5Y',3,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/7Y',4,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/10Y',5,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/15Y',6,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/20Y',7,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/30Y',8,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/40Y',9,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/50Y',10,'Cross Currency Basis Swap','GBP-IN-EUR')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('CHF-IN-EUR','CHF collateralized in EUR discount curve','CHF','Discount','LogLinear','A365',0.000000000001,'ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-CHF-FX-CONVENTIONS','EUR1D','FX/RATE/EUR/CHF','CrossCurrency','CHF-IN-EUR',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/3M',0,'FX Forward','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/6M',1,'FX Forward','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/9M',2,'FX Forward','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/1Y',3,'FX Forward','CHF-IN-EUR')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-CHF-XCCY-BASIS-CONVENTIONS','EUR1D','FX/RATE/EUR/CHF','CHF3M','EUR3M','CrossCurrency','CHF-IN-EUR',1)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/2Y',0,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/3Y',1,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/4Y',2,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/5Y',3,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/7Y',4,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/10Y',5,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/15Y',6,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/20Y',7,'Cross Currency Basis Swap','CHF-IN-EUR')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BENCHMARK_EUR','Bond benchmark curve in EUR','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ReferenceCurve,SegmentsType,CurveId,Seq) VALUES ('Zero Spread','EUR-ZERO-CONVENTIONS-TENOR-BASED','EUR1D','ZeroSpread','BENCHMARK_EUR',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BENCHMARK_EUR/A365/5Y',0,'Zero Spread','BENCHMARK_EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BENCHMARK_EUR/A365/10Y',1,'Zero Spread','BENCHMARK_EUR')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BOND_YIELD_EUR','Bond yield curve EUR','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Zero','EUR-ZERO-CONVENTIONS-TENOR-BASED','Direct','BOND_YIELD_EUR',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/RATE/EUR/BOND_YIELD_EUR/A365/5Y',0,'Zero','BOND_YIELD_EUR')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/RATE/EUR/BOND_YIELD_EUR/A365/10Y',1,'Zero','BOND_YIELD_EUR')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BANK_EUR_BORROW','BANK''s average borrowing spread in EUR','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ReferenceCurve,SegmentsType,CurveId,Seq) VALUES ('Zero Spread','EUR-ZERO-CONVENTIONS-TENOR-BASED','EUR1D','ZeroSpread','BANK_EUR_BORROW',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/2Y',0,'Zero Spread','BANK_EUR_BORROW')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/5Y',1,'Zero Spread','BANK_EUR_BORROW')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/10Y',2,'Zero Spread','BANK_EUR_BORROW')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/20Y',3,'Zero Spread','BANK_EUR_BORROW')
-INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BANK_EUR_LEND','BANK''s average lending spread in EUR','EUR','ExampleInput')
-INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ReferenceCurve,SegmentsType,CurveId,Seq) VALUES ('Zero Spread','EUR-ZERO-CONVENTIONS-TENOR-BASED','EUR1D','ZeroSpread','BANK_EUR_LEND',0)
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/2Y',0,'Zero Spread','BANK_EUR_LEND')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/5Y',1,'Zero Spread','BANK_EUR_LEND')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/10Y',2,'Zero Spread','BANK_EUR_LEND')
-INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/20Y',3,'Zero Spread','BANK_EUR_LEND')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('USCPI_ZC_Swaps','Estimation Curve for USCPI','Yield/USD/USD1D','ZC','USCPI_INFLATIONSWAP','true','US','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/1Y',0,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/2Y',1,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/3Y',2,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/4Y',3,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/5Y',4,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/6Y',5,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/7Y',6,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/8Y',7,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/9Y',8,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/10Y',9,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/12Y',10,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/15Y',11,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/20Y',12,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/25Y',13,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/30Y',14,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/40Y',15,'USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/JAN','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/FEB','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/MAR','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/APR','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/MAY','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/JUN','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/JUL','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/AUG','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/SEP','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/OCT','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/NOV','USCPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/DEC','USCPI_ZC_Swaps')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,GroupingId) VALUES ('EUHICP_ZC_Swaps','Estimation Curve for EUHICP','Yield/EUR/EUR1D','ZC','EUHICP_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/1Y',0,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/2Y',1,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/3Y',2,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/4Y',3,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/5Y',4,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/6Y',5,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/7Y',6,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/8Y',7,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/9Y',8,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/10Y',9,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/12Y',10,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/15Y',11,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/20Y',12,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/25Y',13,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/30Y',14,'EUHICP_ZC_Swaps')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('EUHICPXT_ZC_Swaps','Estimation Curve for EUCPI','Yield/EUR/EUR1D','ZC','EUHICPXT_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/1Y',0,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/2Y',1,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/3Y',2,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/4Y',3,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/5Y',4,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/6Y',5,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/7Y',6,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/8Y',7,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/9Y',8,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/10Y',9,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/12Y',10,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/15Y',11,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/20Y',12,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/25Y',13,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/30Y',14,'EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JAN','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/FEB','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAR','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/APR','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAY','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUN','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUL','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/AUG','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/SEP','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/OCT','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/NOV','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/DEC','EUHICPXT_ZC_Swaps')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('EUHICPXT_YY_Swaps','Estimation Curve for EUCPI YoY','Yield/EUR/EUR1D','YY','EUHICPXT_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/1Y',0,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/2Y',1,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/3Y',2,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/4Y',3,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/5Y',4,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/6Y',5,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/7Y',6,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/8Y',7,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/9Y',8,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/10Y',9,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/12Y',10,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/15Y',11,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/20Y',12,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/25Y',13,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/30Y',14,'EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JAN','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/FEB','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAR','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/APR','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAY','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUN','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUL','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/AUG','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/SEP','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/OCT','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/NOV','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/DEC','EUHICPXT_YY_Swaps')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,GroupingId) VALUES ('FRHICP_ZC_Swaps','Estimation Curve for FRHICP','Yield/EUR/EUR1D','ZC','FRHICP_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/1Y',0,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/2Y',1,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/3Y',2,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/4Y',3,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/5Y',4,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/6Y',5,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/7Y',6,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/8Y',7,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/9Y',8,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/10Y',9,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/12Y',10,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/15Y',11,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/20Y',12,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/25Y',13,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/30Y',14,'FRHICP_ZC_Swaps')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('UKRPI_ZC_Swaps','Estimation Curve for UKRPI','Yield/GBP/GBP1D','ZC','UKRPI_INFLATIONSWAP','true','UK','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/1Y',0,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/2Y',1,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/3Y',2,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/4Y',3,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/5Y',4,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/6Y',5,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/7Y',6,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/8Y',7,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/9Y',8,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/10Y',9,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/12Y',10,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/15Y',11,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/20Y',12,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/25Y',13,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/30Y',14,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/40Y',15,'UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/JAN','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/FEB','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/MAR','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/APR','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/MAY','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/JUN','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/JUL','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/AUG','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/SEP','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/OCT','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/NOV','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/DEC','UKRPI_ZC_Swaps')
-INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,GroupingId) VALUES ('ZACPI_ZC_Swaps','Estimation Curve for ZACPI','Yield/EUR/EUR1D','ZC','ZACPI_INFLATIONSWAP','true','ZAR','A365','3M','Monthly',0.01,0.000000000001,'ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/1Y',0,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/2Y',1,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/3Y',2,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/4Y',3,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/5Y',4,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/6Y',5,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/7Y',6,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/8Y',7,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/9Y',8,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/10Y',9,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/12Y',10,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/15Y',11,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/20Y',12,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/25Y',13,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/30Y',14,'ZACPI_ZC_Swaps')
-INSERT CurveConfigurationInflationCapFloorPriceSurfaces (CurveId,CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName,IndexCurve,IndexInterpolated,YieldTermStructure,FloorStrikes,Maturities,GroupingId) VALUES ('EUHICPXT_ZC_CF','Price Surface ZC CapFloor EUHICPXT','ZC',0.10,'3M','TARGET','MF','A365','EUHICPXT','Inflation/EUHICPXT/EUHICPXT_ZC_Swaps','false','Yield/EUR/EUR1D','-0.02,-0.01,-0.005,0.00,0.01,0.015,0.02,0.025,0.03','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,12Y,15Y,20Y,30Y','ExampleInput')
-INSERT CurveConfigurationInflationCapFloorPriceSurfaces (CurveId,CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName,IndexCurve,IndexInterpolated,YieldTermStructure,FloorStrikes,Maturities,GroupingId) VALUES ('USCPI_ZC_CF','Price Surface ZC CapFloor USCPI','ZC',0.00,'3M','US','MF','A365','USCPI','Inflation/USCPI/USCPI_ZC_Swaps','false','Yield/USD/USD1D','-0.02,-0.015,-0.01,-0.005,0.00,0.01,0.015,0.02,0.025,0.03','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,12Y,15Y,20Y,30Y','ExampleInput')
-INSERT CurveConfigurationInflationCapFloorPriceSurfaces (CurveId,CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName,IndexCurve,IndexInterpolated,YieldTermStructure,FloorStrikes,Maturities,GroupingId) VALUES ('UKRPI_ZC_CF','Price Surface ZC CapFloor UKRPI','ZC',0.00,'3M','GBP','MF','A365','UKRPI','Inflation/UKRPI/UKRPI_ZC_Swaps','false','Yield/GBP/GBP1D','-0.03,-0.02,-0.015,-0.01,-0.005,0.00,0.005,0.01,0.015,0.02,0.025,0.03','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,12Y,15Y,20Y','ExampleInput')
-INSERT CurveConfigurationEquityCurves (CurveId,CurveDescription,Currency,ForecastingCurve,Type,SpotQuote,DayCounter,GroupingId) VALUES ('SP5','SP 500 equity price projection curve','USD','USD1D','DividendYield','EQUITY/PRICE/SP5/USD','A365','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/3M',0,'SP5')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/20160915',1,'SP5')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/1Y',2,'SP5')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/20170915',3,'SP5')
-INSERT CurveConfigurationEquityCurves (CurveId,CurveDescription,Currency,ForecastingCurve,Type,SpotQuote,DayCounter,GroupingId) VALUES ('Lufthansa','Lufthansa equity price projection curve','EUR','EUR1D','ForwardPrice','EQUITY/PRICE/Lufthansa/EUR','A365','ExampleInput')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/2016-06-16',0,'Lufthansa')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/6M',1,'Lufthansa')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/2017-06-16',2,'Lufthansa')
-INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/2Y',3,'Lufthansa')
-INSERT CurveConfigurationEquityVolatilities (CurveId,CurveDescription,Currency,Dimension,Expiries,GroupingId) VALUES ('SP5','Lognormal option implied vols for SP 500','USD','ATM','6M','ExampleInput')
-INSERT CurveConfigurationEquityVolatilities (CurveId,Currency,Dimension,Expiries,GroupingId) VALUES ('Lufthansa','EUR','ATM','2016-06-15','ExampleInput')
-INSERT CurveConfigurationSecurities (CurveId,CurveDescription,SpreadQuote,RecoveryRateQuote,GroupingId) VALUES ('SECURITY_1','Security','BOND/YIELD_SPREAD/SECURITY_1','RECOVERY_RATE/RATE/SECURITY_1','ExampleInput')
+INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURUSD','ATM','1M,3M,6M,1Y,2Y,3Y,10Y','ExampleInput');
+INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURGBP','ATM','1M,3M,6M,1Y,2Y,5Y,10Y','ExampleInput');
+INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURCHF','ATM','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,10Y','ExampleInput');
+INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('EURJPY','ATM','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,10Y','ExampleInput');
+INSERT CurveConfigurationFXVolatilities (CurveId,Dimension,Expiries,GroupingId) VALUES ('GBPUSD','ATM','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,10Y','ExampleInput');
+INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('EUR_SW_N','EUR normal swaption volatilities','ATM','Normal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','EUR-CMS-1Y','EUR-CMS-30Y','ExampleInput');
+INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('USD_SW_N','USD normal swaption volatilities','ATM','Lognormal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','USD-CMS-1Y','USD-CMS-30Y','ExampleInput');
+INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('GBP_SW_N','GBP normal swaption volatilities','ATM','Lognormal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','GBP-CMS-1Y','GBP-CMS-30Y','ExampleInput');
+INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('CHF_SW_N','CHF normal swaption volatilities','ATM','Normal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','CHF-CMS-1Y','CHF-CMS-30Y','ExampleInput');
+INSERT CurveConfigurationSwaptionVolatilities (CurveId,CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase,GroupingId) VALUES ('JPY_SW_N','JPY normal swaption volatilities','ATM','Normal','Flat','Actual/365 (Fixed)','TARGET','Following','1M,3M,6M,1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','1Y,2Y,3Y,4Y,5Y,7Y,10Y,15Y,20Y,25Y,30Y','JPY-CMS-1Y','JPY-CMS-30Y','ExampleInput');
+INSERT CurveConfigurationCapFloorVolatilities (CurveId,CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,DiscountCurve,GroupingId) VALUES ('EUR_CF_N','EUR normal cap floor volatilities','Normal','TRUE','FALSE','Actual/365 (Fixed)','TARGET','Following','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,15Y,20Y','-0.01,0.0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1','EUR-EURIBOR-6M','Yield/EUR/EUR1D','ExampleInput');
+INSERT CurveConfigurationCapFloorVolatilities (CurveId,CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,DiscountCurve,GroupingId) VALUES ('GBP_CF_N','GBP normal cap floor volatilities','Normal','TRUE','FALSE','Actual/365 (Fixed)','UK','Following','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,15Y,20Y','0.005,0.015,0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1','GBP-LIBOR-6M','Yield/GBP/GBP1D','ExampleInput');
+INSERT CurveConfigurationCapFloorVolatilities (CurveId,CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,DiscountCurve,GroupingId) VALUES ('USD_CF_N','USD normal cap floor volatilities','Normal','TRUE','FALSE','Actual/365 (Fixed)','UK','Following','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,15Y,20Y','0.005,0.015,0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1','USD-LIBOR-3M','Yield/USD/USD1D','ExampleInput');
+INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DiscountCurve,DayCounter,RecoveryRate,Conventions,GroupingId) VALUES ('BANK_SR_USD','BANK SR CDS USD','USD','SpreadCDS','Yield/USD/USD3M','A365','RECOVERY_RATE/RATE/BANK/SR/USD','CDS-STANDARD-CONVENTIONS','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/1Y',0,'BANK_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/2Y',1,'BANK_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/3Y',2,'BANK_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/4Y',3,'BANK_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/5Y',4,'BANK_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/7Y',5,'BANK_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('CDS/CREDIT_SPREAD/BANK/SR/USD/10Y',6,'BANK_SR_USD');
+INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DayCounter,RecoveryRate,Conventions,GroupingId) VALUES ('CPTY_A_SR_USD','CPTY_A SR HR USD','USD','HazardRate','A365','RECOVERY_RATE/RATE/CPTY_A/SR/USD','CDS-STANDARD-CONVENTIONS','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/0Y',0,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/1Y',1,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/2Y',2,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/3Y',3,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/4Y',4,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/5Y',5,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/7Y',6,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/10Y',7,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/15Y',8,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/20Y',9,'CPTY_A_SR_USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_A/SR/USD/30Y',10,'CPTY_A_SR_USD');
+INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DayCounter,RecoveryRate,Conventions,GroupingId) VALUES ('CPTY_C_SR_EUR','CPTY_C SR HR EUR','EUR','HazardRate','A360','RECOVERY_RATE/RATE/CPTY_C/SR/EUR','CDS-STANDARD-CONVENTIONS','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('HAZARD_RATE/RATE/CPTY_C/SR/EUR/1Y',0,'CPTY_C_SR_EUR');
+INSERT CurveConfigurationDefaultCurves (CurveId,CurveDescription,Currency,Type,DayCounter,BenchmarkCurve,SourceCurve,Pillars,SpotLag,Calendar,GroupingId) VALUES ('BOND_YIELD_EUR_OVER_OIS','Default curve derived as bond yield curve over Eonia','EUR','Benchmark','A365','Yield/EUR/EUR1D','Yield/EUR/BOND_YIELD_EUR','1Y,2Y,3Y,4Y,5Y,7Y,10Y',0,'TARGET','ExampleInput');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('CHF6M','CHF','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-LIBOR-CONVENTIONS','CHF6M','Simple','CHF6M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/2D',1,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1W',2,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/2W',3,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/3W',4,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1M',5,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/2M',6,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/3M',7,'Deposit','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/6M',8,'Deposit','CHF6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','CHF-6M-FRA-CONVENTIONS','CHF6M','Simple','CHF6M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/1M/6M',0,'FRA','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/2M/6M',1,'FRA','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/3M/6M',2,'FRA','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/4M/6M',3,'FRA','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/5M/6M',4,'FRA','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/CHF/6M/6M',5,'FRA','CHF6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','CHF-6M-SWAP-CONVENTIONS','CHF6M','Simple','CHF6M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/2Y',0,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/3Y',1,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/4Y',2,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/5Y',3,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/6Y',4,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/7Y',5,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/8Y',6,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/9Y',7,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/10Y',8,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/12Y',9,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/15Y',10,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/20Y',11,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/25Y',12,'Swap','CHF6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/6M/30Y',13,'Swap','CHF6M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('CHF3M','CHF','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-LIBOR-CONVENTIONS','CHF3M','Simple','CHF3M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1W',1,'Deposit','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1M',2,'Deposit','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/3M',3,'Deposit','CHF3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','CHF-3M-FRA-CONVENTIONS','CHF3M','Simple','CHF3M',1);
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','CHF-3M-SWAP-CONVENTIONS','CHF3M','Simple','CHF3M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/2Y',0,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/3Y',1,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/4Y',2,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/5Y',3,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/7Y',4,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/10Y',5,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/12Y',6,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/15Y',7,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/20Y',8,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/25Y',9,'Swap','CHF3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/3M/30Y',10,'Swap','CHF3M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('CHF1M','CHF','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-Deposit','CHF1M','Simple','CHF1M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/1D/1D',1,'Deposit','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1W',2,'Deposit','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/2D/1M',3,'Deposit','CHF1M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','CHF1M-Swap','CHF1M','Simple','CHF1M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/2M',0,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/3M',1,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/4M',2,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/5M',3,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/6M',4,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/7M',5,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/8M',6,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/9M',7,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/10M',8,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/11M',9,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/1Y',10,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/2Y',11,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/3Y',12,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/4Y',13,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/5Y',14,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/7Y',15,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/10Y',16,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/12Y',17,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/15Y',18,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/20Y',19,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/25Y',20,'Swap','CHF1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1M/30Y',21,'Swap','CHF1M');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('CHF1D','CHF discount curve bootstrapped from TOIS swap rates','CHF','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','CHF-TOIS-CONVENTIONS','Simple','CHF1D',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/CHF/0D/1D',0,'Deposit','CHF1D');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','CHF-OIS-CONVENTIONS','Simple','CHF1D',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1M',0,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/2M',1,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/3M',2,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/4M',3,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/5M',4,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/6M',5,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/7M',6,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/8M',7,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/9M',8,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/10M',9,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/11M',10,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y',11,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y3M',12,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y6M',13,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/1Y9M',14,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/2Y',15,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/3Y',16,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/4Y',17,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/5Y',18,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/6Y',19,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/7Y',20,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/8Y',21,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/10Y',22,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/12Y',23,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/15Y',24,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/20Y',25,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/25Y',26,'OIS','CHF1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/CHF/2D/1D/30Y',27,'OIS','CHF1D');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('EUR1D','EUR discount curve bootstrapped from EONIA swap rates','EUR','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-EONIA-CONVENTIONS','Simple','EUR1D',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR1D');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','EUR-OIS-CONVENTIONS','Simple','EUR1D',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1W',0,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/2W',1,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1M',2,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/2M',3,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/3M',4,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/4M',5,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/5M',6,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/6M',7,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/7M',8,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/8M',9,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/9M',10,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/10M',11,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/11M',12,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y',13,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y3M',14,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y6M',15,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/1Y9M',16,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/2Y',17,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/3Y',18,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/4Y',19,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/5Y',20,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/6Y',21,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/7Y',22,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/8Y',23,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/9Y',24,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/10Y',25,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/12Y',26,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/15Y',27,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/20Y',28,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/25Y',29,'OIS','EUR1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1D/30Y',30,'OIS','EUR1D');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR6M','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-EURIBOR-CONVENTIONS','EUR6M','Simple','EUR6M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/6M',0,'Deposit','EUR6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','EUR-6M-FRA-CONVENTIONS','EUR6M','Simple','EUR6M',1);
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','EUR-6M-SWAP-CONVENTIONS','EUR6M','Simple','EUR6M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/2Y',0,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/3Y',1,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/4Y',2,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/5Y',3,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/7Y',4,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/10Y',5,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/12Y',6,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/15Y',7,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/20Y',8,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/25Y',9,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/30Y',10,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/40Y',11,'Swap','EUR6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/6M/50Y',12,'Swap','EUR6M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR12M','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-DEPOSIT','EUR12M','Simple','EUR12M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1W',1,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1M',2,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/2M',3,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/3M',4,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/4M',5,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/5M',6,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/6M',7,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/7M',8,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/8M',9,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/9M',10,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/10M',11,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/11M',12,'Deposit','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1Y',13,'Deposit','EUR12M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurveLong,ProjectionCurveShort,SegmentsType,CurveId,Seq) VALUES ('Tenor Basis Two Swaps','EUR-EURIBOR-6M-12M-BASIS-CONVENTIONS','EUR12M','EUR6M','TenorBasis','EUR12M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/2Y',0,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/3Y',1,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/4Y',2,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/5Y',3,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/6Y',4,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/8Y',5,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/9Y',6,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/10Y',7,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/11Y',8,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/12Y',9,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/15Y',10,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/20Y',11,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/25Y',12,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/12M/EUR/30Y',13,'Tenor Basis Two Swaps','EUR12M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR3M','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-EURIBOR-CONVENTIONS','EUR3M','Simple','EUR3M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1W',1,'Deposit','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1M',2,'Deposit','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/2M',3,'Deposit','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/3M',4,'Deposit','EUR3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','EUR-3M-FRA-CONVENTIONS','EUR3M','Simple','EUR3M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/1M/3M',0,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/2M/3M',1,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/3M/3M',2,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/4M/3M',3,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/5M/3M',4,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/6M/3M',5,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/9M/3M',6,'FRA','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/EUR/1Y/3M',7,'FRA','EUR3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','EUR-3M-SWAP-CONVENTIONS','EUR3M','Simple','EUR3M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/2Y',0,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/3Y',1,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/4Y',2,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/5Y',3,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/6Y',4,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/7Y',5,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/8Y',6,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/9Y',7,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/10Y',8,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/12Y',9,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/15Y',10,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/20Y',11,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/25Y',12,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/40Y',13,'Swap','EUR3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/3M/50Y',14,'Swap','EUR3M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('EUR1M','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','EUR-DEPOSIT','EUR1M','Simple','EUR1M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/0D/1D',0,'Deposit','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1W',1,'Deposit','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/EUR/2D/1M',2,'Deposit','EUR1M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','EUR-1M-SWAP-CONVENTIONS','EUR1M','Simple','EUR1M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/2M',0,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/3M',1,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/4M',2,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/5M',3,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/6M',4,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/7M',5,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/8M',6,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/9M',7,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/10M',8,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/11M',9,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/1Y',10,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/2Y',11,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/3Y',12,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/4Y',13,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/5Y',14,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/6Y',15,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/7Y',16,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/8Y',17,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/9Y',18,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/10Y',19,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/12Y',20,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/15Y',21,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/20Y',22,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/25Y',23,'Swap','EUR1M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/EUR/2D/1M/30Y',24,'Swap','EUR1M');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('USD1D','USD discount curve bootstrapped from FED FUNDS swap rates','USD','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','USD-FED-FUNDS-CONVENTIONS','Simple','USD1D',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/0D/1D',0,'Deposit','USD1D');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','USD-OIS-CONVENTIONS','Simple','USD1D',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1M',0,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/3M',1,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/6M',2,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/9M',3,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y',4,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y3M',5,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y6M',6,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/1Y9M',7,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/2Y',8,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/3Y',9,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/4Y',10,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/5Y',11,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/7Y',12,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/10Y',13,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/12Y',14,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/15Y',15,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/20Y',16,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/25Y',17,'OIS','USD1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/1D/30Y',18,'OIS','USD1D');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('USD3M','USD','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','USD-LIBOR-CONVENTIONS','USD3M','Simple','USD3M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/0D/1D',0,'Deposit','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1W',1,'Deposit','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1M',2,'Deposit','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/2M',3,'Deposit','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/3M',4,'Deposit','USD3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','USD-3M-FRA-CONVENTIONS','USD3M','Simple','USD3M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/3M/3M',0,'FRA','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/6M/3M',1,'FRA','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/9M/3M',2,'FRA','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/1Y/3M',3,'FRA','USD3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','USD-3M-SWAP-CONVENTIONS','USD3M','Simple','USD3M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/2Y',0,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/3Y',1,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/4Y',2,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/5Y',3,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/6Y',4,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/7Y',5,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/8Y',6,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/9Y',7,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/10Y',8,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/12Y',9,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/15Y',10,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/20Y',11,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/25Y',12,'Swap','USD3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/USD/2D/3M/30Y',13,'Swap','USD3M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('USD6M','USD','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','USD-LIBOR-CONVENTIONS','USD6M','Simple','USD6M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/0D/1D',0,'Deposit','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1W',1,'Deposit','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/1M',2,'Deposit','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/2M',3,'Deposit','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/3M',4,'Deposit','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/USD/2D/6M',5,'Deposit','USD6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','USD-6M-FRA-CONVENTIONS','USD6M','Simple','USD6M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/6M/6M',0,'FRA','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/USD/1Y/6M',1,'FRA','USD6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurveLong,ProjectionCurveShort,SegmentsType,CurveId,Seq) VALUES ('Tenor Basis Swap','USD-LIBOR-3M-6M-BASIS-CONVENTIONS','USD6M','USD3M','TenorBasis','USD6M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/2Y',0,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/3Y',1,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/4Y',2,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/5Y',3,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/6Y',4,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/7Y',5,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/8Y',6,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/9Y',7,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/10Y',8,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/12Y',9,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/15Y',10,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/20Y',11,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/25Y',12,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/3M/6M/USD/30Y',13,'Tenor Basis Swap','USD6M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('GBP1D','GBP','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('OIS','GBP-OIS-CONVENTIONS','GBP1D','Simple','GBP1D',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/1W',0,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/2W',1,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/1M',2,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/2M',3,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/3M',4,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/4M',5,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/5M',6,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/6M',7,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/7M',8,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/8M',9,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/9M',10,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/10M',11,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/11M',12,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/12M',13,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/2Y',14,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/3Y',15,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/4Y',16,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/5Y',17,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/6Y',18,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/7Y',19,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/8Y',20,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/9Y',21,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/10Y',22,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/15Y',23,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/20Y',24,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/25Y',25,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/30Y',26,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/40Y',27,'OIS','GBP1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/1D/50Y',28,'OIS','GBP1D');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('GBP6M','GBP','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','GBP-DEPOSIT','GBP6M','Simple','GBP6M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1W',0,'Deposit','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1M',1,'Deposit','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/2M',2,'Deposit','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/3M',3,'Deposit','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/6M',4,'Deposit','GBP6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','GBP-6M-FRA','GBP6M','Simple','GBP6M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/1M/6M',0,'FRA','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/2M/6M',1,'FRA','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/3M/6M',2,'FRA','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/4M/6M',3,'FRA','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/5M/6M',4,'FRA','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/6M/6M',5,'FRA','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/GBP/1Y/6M',6,'FRA','GBP6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','GBP-6M-SWAP-CONVENTIONS','GBP6M','Simple','GBP6M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/2Y',0,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/3Y',1,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/4Y',2,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/5Y',3,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/6Y',4,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/7Y',5,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/8Y',6,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/9Y',7,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/10Y',8,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/12Y',9,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/15Y',10,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/20Y',11,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/25Y',12,'Swap','GBP6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/GBP/0D/6M/30Y',13,'Swap','GBP6M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('GBP3M','GBP','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','GBP-DEPOSIT','GBP3M','Simple','GBP3M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1W',0,'Deposit','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/1M',1,'Deposit','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/2M',2,'Deposit','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/GBP/0D/3M',3,'Deposit','GBP3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurveLong,SegmentsType,CurveId,Seq) VALUES ('Tenor Basis Swap','GBP-LIBOR-3M-6M-BASIS-CONVENTIONS','GBP6M','TenorBasis','GBP3M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/1Y',0,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/2Y',1,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/3Y',2,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/4Y',3,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/5Y',4,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/7Y',5,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/10Y',6,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/12Y',7,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/15Y',8,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/20Y',9,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/30Y',10,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/40Y',11,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/50Y',12,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/60Y',13,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('BASIS_SWAP/BASIS_SPREAD/6M/3M/GBP/70Y',14,'Tenor Basis Swap','GBP3M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('SEK6M','SEK','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','SEK-STIBOR-CONVENTIONS','SEK6M','Simple','SEK6M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/1D',0,'Deposit','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/2D',1,'Deposit','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1W',2,'Deposit','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1M',3,'Deposit','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/2M',4,'Deposit','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/3M',5,'Deposit','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/6M',6,'Deposit','SEK6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','SEK-6M-SWAP-CONVENTIONS','SEK6M','Simple','SEK6M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/2Y',0,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/3Y',1,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/4Y',2,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/5Y',3,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/6Y',4,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/7Y',5,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/8Y',6,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/9Y',7,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/10Y',8,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/12Y',9,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/15Y',10,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/20Y',11,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/25Y',12,'Swap','SEK6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/6M/30Y',13,'Swap','SEK6M');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('JPY1D','JPY discount curve bootstrapped from MUTAN swap rates','JPY','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Deposit','JPY-LIBOR-CONVENTIONS','Simple','JPY1D',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/0D/2D',0,'Deposit','JPY1D');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('OIS','JPY-OIS-CONVENTIONS','Simple','JPY1D',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/1M',0,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/2M',1,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/3M',2,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/4M',3,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/5M',4,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/6M',5,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/9M',6,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/1Y',7,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/1Y6M',8,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/2Y',9,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/3Y',10,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/4Y',11,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/5Y',12,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/7Y',13,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/10Y',14,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/12Y',15,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/15Y',16,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/20Y',17,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/25Y',18,'OIS','JPY1D');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/1D/30Y',19,'OIS','JPY1D');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('JPY6M','JPY','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','JPY-LIBOR-CONVENTIONS','JPY6M','Simple','JPY6M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1W',0,'Deposit','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1M',1,'Deposit','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/2M',2,'Deposit','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/3M',3,'Deposit','JPY6M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','JPY-LIBOR-6M-SWAP-CONVENTIONS','JPY6M','Simple','JPY6M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/2Y',0,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/3Y',1,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/4Y',2,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/5Y',3,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/6Y',4,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/7Y',5,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/8Y',6,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/9Y',7,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/10Y',8,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/12Y',9,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/15Y',10,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/20Y',11,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/25Y',12,'Swap','JPY6M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/6M/30Y',13,'Swap','JPY6M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('JPY3M','JPY','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','JPY-Deposit','JPY3M','Simple','JPY3M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/0D/1D',0,'Deposit','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1W',1,'Deposit','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/1M',2,'Deposit','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/2M',3,'Deposit','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/JPY/2D/3M',4,'Deposit','JPY3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('FRA','JPY-FRA','JPY3M','Simple','JPY3M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/3M/3M',0,'FRA','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/6M/3M',1,'FRA','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/9M/3M',2,'FRA','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FRA/RATE/JPY/1Y/3M',3,'FRA','JPY3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','JPY3M-Swap','JPY3M','Simple','JPY3M',2);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/2Y',0,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/3Y',1,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/4Y',2,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/5Y',3,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/6Y',4,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/7Y',5,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/8Y',6,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/9Y',7,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/10Y',8,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/15Y',9,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/20Y',10,'Swap','JPY3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/JPY/2D/3M/30Y',11,'Swap','JPY3M');
+INSERT CurveConfigurationYieldCurves (CurveId,Currency,GroupingId) VALUES ('SEK3M','SEK','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Deposit','SEK-STIBOR-CONVENTIONS','SEK3M','Simple','SEK3M',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/1D',0,'Deposit','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/0D/2D',1,'Deposit','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1W',2,'Deposit','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/1M',3,'Deposit','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/2M',4,'Deposit','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('MM/RATE/SEK/2D/3M',5,'Deposit','SEK3M');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ProjectionCurve,SegmentsType,CurveId,Seq) VALUES ('Swap','SEK-3M-SWAP-CONVENTIONS','SEK3M','Simple','SEK3M',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/1Y',0,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/2Y',1,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/3Y',2,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/4Y',3,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/5Y',4,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/6Y',5,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/7Y',6,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/8Y',7,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/9Y',8,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/10Y',9,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/12Y',10,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/15Y',11,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/20Y',12,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/25Y',13,'Swap','SEK3M');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('IR_SWAP/RATE/SEK/2D/3M/30Y',14,'Swap','SEK3M');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('EUR-IN-USD','EUR collateralized in USD discount curve','EUR','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-USD-FX-CONVENTIONS','USD1D','FX/RATE/EUR/USD','CrossCurrency','EUR-IN-USD',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/3M',0,'FX Forward','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/6M',1,'FX Forward','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/9M',2,'FX Forward','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/1Y',3,'FX Forward','EUR-IN-USD');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-USD-XCCY-BASIS-CONVENTIONS','USD1D','FX/RATE/EUR/USD','EUR3M','USD3M','CrossCurrency','EUR-IN-USD',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/2Y',0,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/3Y',1,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/4Y',2,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/5Y',3,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/7Y',4,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/10Y',5,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/15Y',6,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/20Y',7,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/30Y',8,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/40Y',9,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/50Y',10,'Cross Currency Basis Swap','EUR-IN-USD');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('GBP-IN-USD','GBP collateralized in USD discount curve','GBP','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','USD-GBP-FX-CONVENTIONS','USD1D','FX/RATE/USD/GBP','CrossCurrency','GBP-IN-USD',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/3M',0,'FX Forward','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/6M',1,'FX Forward','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/9M',2,'FX Forward','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/GBP/1Y',3,'FX Forward','GBP-IN-USD');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','USD-GBP-XCCY-BASIS-CONVENTIONS','USD1D','FX/RATE/USD/GBP','GBP3M','USD3M','CrossCurrency','GBP-IN-USD',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/2Y',0,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/3Y',1,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/4Y',2,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/5Y',3,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/7Y',4,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/10Y',5,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/15Y',6,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/20Y',7,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/30Y',8,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/40Y',9,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/GBP/3M/50Y',10,'Cross Currency Basis Swap','GBP-IN-USD');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('CHF-IN-USD','CHF collateralized in USD discount curve','CHF','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','USD-CHF-FX-CONVENTIONS','USD1D','FX/RATE/USD/CHF','CrossCurrency','CHF-IN-USD',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/3M',0,'FX Forward','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/6M',1,'FX Forward','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/9M',2,'FX Forward','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/USD/CHF/1Y',3,'FX Forward','CHF-IN-USD');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','USD-CHF-XCCY-BASIS-CONVENTIONS','USD1D','FX/RATE/USD/CHF','CHF3M','USD3M','CrossCurrency','CHF-IN-USD',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/2Y',0,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/3Y',1,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/4Y',2,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/5Y',3,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/7Y',4,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/10Y',5,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/15Y',6,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/20Y',7,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/CHF/3M/30Y',8,'Cross Currency Basis Swap','CHF-IN-USD');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('USD-IN-EUR','USD collateralized in EUR discount curve','USD','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-USD-FX-CONVENTIONS','EUR1D','FX/RATE/EUR/USD','CrossCurrency','USD-IN-EUR',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/3M',0,'FX Forward','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/6M',1,'FX Forward','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/9M',2,'FX Forward','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/USD/12M',3,'FX Forward','USD-IN-EUR');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-USD-XCCY-BASIS-CONVENTIONS','EUR1D','FX/RATE/EUR/USD','USD3M','EUR3M','CrossCurrency','USD-IN-EUR',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/2Y',0,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/3Y',1,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/4Y',2,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/5Y',3,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/7Y',4,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/10Y',5,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/15Y',6,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/20Y',7,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/30Y',8,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/40Y',9,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/USD/3M/EUR/3M/50Y',10,'Cross Currency Basis Swap','USD-IN-EUR');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('GBP-IN-EUR','GBP collateralized in EUR discount curve','GBP','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-GBP-FX-CONVENTIONS','EUR1D','FX/RATE/EUR/GBP','CrossCurrency','GBP-IN-EUR',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/3M',0,'FX Forward','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/6M',1,'FX Forward','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/9M',2,'FX Forward','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/GBP/12M',3,'FX Forward','GBP-IN-EUR');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-GBP-XCCY-BASIS-CONVENTIONS','EUR1D','FX/RATE/EUR/GBP','GBP3M','EUR3M','CrossCurrency','GBP-IN-EUR',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/2Y',0,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/3Y',1,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/4Y',2,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/5Y',3,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/7Y',4,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/10Y',5,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/15Y',6,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/20Y',7,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/30Y',8,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/40Y',9,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/GBP/3M/50Y',10,'Cross Currency Basis Swap','GBP-IN-EUR');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,InterpolationVariable,InterpolationMethod,YieldCurveDayCounter,Tolerance,GroupingId) VALUES ('CHF-IN-EUR','CHF collateralized in EUR discount curve','CHF','Discount','LogLinear','A365',0.000000000001,'ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,SegmentsType,CurveId,Seq) VALUES ('FX Forward','EUR-CHF-FX-CONVENTIONS','EUR1D','FX/RATE/EUR/CHF','CrossCurrency','CHF-IN-EUR',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/3M',0,'FX Forward','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/6M',1,'FX Forward','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/9M',2,'FX Forward','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('FXFWD/RATE/EUR/CHF/1Y',3,'FX Forward','CHF-IN-EUR');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,SegmentsType,CurveId,Seq) VALUES ('Cross Currency Basis Swap','EUR-CHF-XCCY-BASIS-CONVENTIONS','EUR1D','FX/RATE/EUR/CHF','CHF3M','EUR3M','CrossCurrency','CHF-IN-EUR',1);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/2Y',0,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/3Y',1,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/4Y',2,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/5Y',3,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/7Y',4,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/10Y',5,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/15Y',6,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('CC_BASIS_SWAP/BASIS_SPREAD/EUR/3M/CHF/3M/20Y',7,'Cross Currency Basis Swap','CHF-IN-EUR');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BENCHMARK_EUR','Bond benchmark curve in EUR','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ReferenceCurve,SegmentsType,CurveId,Seq) VALUES ('Zero Spread','EUR-ZERO-CONVENTIONS-TENOR-BASED','EUR1D','ZeroSpread','BENCHMARK_EUR',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BENCHMARK_EUR/A365/5Y',0,'Zero Spread','BENCHMARK_EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BENCHMARK_EUR/A365/10Y',1,'Zero Spread','BENCHMARK_EUR');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BOND_YIELD_EUR','Bond yield curve EUR','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,SegmentsType,CurveId,Seq) VALUES ('Zero','EUR-ZERO-CONVENTIONS-TENOR-BASED','Direct','BOND_YIELD_EUR',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/RATE/EUR/BOND_YIELD_EUR/A365/5Y',0,'Zero','BOND_YIELD_EUR');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/RATE/EUR/BOND_YIELD_EUR/A365/10Y',1,'Zero','BOND_YIELD_EUR');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BANK_EUR_BORROW','BANK''s average borrowing spread in EUR','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ReferenceCurve,SegmentsType,CurveId,Seq) VALUES ('Zero Spread','EUR-ZERO-CONVENTIONS-TENOR-BASED','EUR1D','ZeroSpread','BANK_EUR_BORROW',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/2Y',0,'Zero Spread','BANK_EUR_BORROW');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/5Y',1,'Zero Spread','BANK_EUR_BORROW');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/10Y',2,'Zero Spread','BANK_EUR_BORROW');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_BORROW/A365/20Y',3,'Zero Spread','BANK_EUR_BORROW');
+INSERT CurveConfigurationYieldCurves (CurveId,CurveDescription,Currency,GroupingId) VALUES ('BANK_EUR_LEND','BANK''s average lending spread in EUR','EUR','ExampleInput');
+INSERT CurveConfigurationYieldCurveSegments (Type,Conventions,ReferenceCurve,SegmentsType,CurveId,Seq) VALUES ('Zero Spread','EUR-ZERO-CONVENTIONS-TENOR-BASED','EUR1D','ZeroSpread','BANK_EUR_LEND',0);
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/2Y',0,'Zero Spread','BANK_EUR_LEND');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/5Y',1,'Zero Spread','BANK_EUR_LEND');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/10Y',2,'Zero Spread','BANK_EUR_LEND');
+INSERT CurveConfigurationQuotes (Quote,Seq,Type,CurveId) VALUES ('ZERO/YIELD_SPREAD/EUR/BANK_EUR_LEND/A365/20Y',3,'Zero Spread','BANK_EUR_LEND');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('USCPI_ZC_Swaps','Estimation Curve for USCPI','Yield/USD/USD1D','ZC','USCPI_INFLATIONSWAP','true','US','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/1Y',0,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/2Y',1,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/3Y',2,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/4Y',3,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/5Y',4,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/6Y',5,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/7Y',6,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/8Y',7,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/9Y',8,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/10Y',9,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/12Y',10,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/15Y',11,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/20Y',12,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/25Y',13,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/30Y',14,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/USCPI/40Y',15,'USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/JAN','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/FEB','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/MAR','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/APR','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/MAY','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/JUN','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/JUL','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/AUG','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/SEP','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/OCT','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/NOV','USCPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/USCPI/DEC','USCPI_ZC_Swaps');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,GroupingId) VALUES ('EUHICP_ZC_Swaps','Estimation Curve for EUHICP','Yield/EUR/EUR1D','ZC','EUHICP_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/1Y',0,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/2Y',1,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/3Y',2,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/4Y',3,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/5Y',4,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/6Y',5,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/7Y',6,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/8Y',7,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/9Y',8,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/10Y',9,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/12Y',10,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/15Y',11,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/20Y',12,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/25Y',13,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICP/30Y',14,'EUHICP_ZC_Swaps');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('EUHICPXT_ZC_Swaps','Estimation Curve for EUCPI','Yield/EUR/EUR1D','ZC','EUHICPXT_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/1Y',0,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/2Y',1,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/3Y',2,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/4Y',3,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/5Y',4,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/6Y',5,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/7Y',6,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/8Y',7,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/9Y',8,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/10Y',9,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/12Y',10,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/15Y',11,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/20Y',12,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/25Y',13,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/EUHICPXT/30Y',14,'EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JAN','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/FEB','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAR','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/APR','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAY','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUN','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUL','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/AUG','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/SEP','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/OCT','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/NOV','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/DEC','EUHICPXT_ZC_Swaps');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('EUHICPXT_YY_Swaps','Estimation Curve for EUCPI YoY','Yield/EUR/EUR1D','YY','EUHICPXT_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/1Y',0,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/2Y',1,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/3Y',2,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/4Y',3,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/5Y',4,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/6Y',5,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/7Y',6,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/8Y',7,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/9Y',8,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/10Y',9,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/12Y',10,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/15Y',11,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/20Y',12,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/25Y',13,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('YY_INFLATIONSWAP/RATE/EUHICPXT/30Y',14,'EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JAN','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/FEB','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAR','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/APR','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/MAY','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUN','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/JUL','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/AUG','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/SEP','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/OCT','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/NOV','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/EUHICPXT/DEC','EUHICPXT_YY_Swaps');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,GroupingId) VALUES ('FRHICP_ZC_Swaps','Estimation Curve for FRHICP','Yield/EUR/EUR1D','ZC','FRHICP_INFLATIONSWAP','true','TARGET','A365','3M','Monthly',0.01,0.000000000001,'ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/1Y',0,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/2Y',1,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/3Y',2,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/4Y',3,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/5Y',4,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/6Y',5,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/7Y',6,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/8Y',7,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/9Y',8,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/10Y',9,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/12Y',10,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/15Y',11,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/20Y',12,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/25Y',13,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/FRHICP/30Y',14,'FRHICP_ZC_Swaps');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,SeasonalityBaseDate,SeasonalityFrequency,GroupingId) VALUES ('UKRPI_ZC_Swaps','Estimation Curve for UKRPI','Yield/GBP/GBP1D','ZC','UKRPI_INFLATIONSWAP','true','UK','A365','3M','Monthly',0.01,0.000000000001,'20160101','Monthly','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/1Y',0,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/2Y',1,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/3Y',2,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/4Y',3,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/5Y',4,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/6Y',5,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/7Y',6,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/8Y',7,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/9Y',8,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/10Y',9,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/12Y',10,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/15Y',11,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/20Y',12,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/25Y',13,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/30Y',14,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/UKRPI/40Y',15,'UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/JAN','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/FEB','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/MAR','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/APR','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/MAY','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/JUN','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/JUL','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/AUG','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/SEP','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/OCT','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/NOV','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationSeasonalityFactors (Factor,CurveId) VALUES ('SEASONALITY/RATE/MULT/UKRPI/DEC','UKRPI_ZC_Swaps');
+INSERT CurveConfigurationInflationCurves (CurveId,CurveDescription,NominalTermStructure,Type,Conventions,Extrapolation,Calendar,DayCounter,Lag,Frequency,BaseRate,Tolerance,GroupingId) VALUES ('ZACPI_ZC_Swaps','Estimation Curve for ZACPI','Yield/EUR/EUR1D','ZC','ZACPI_INFLATIONSWAP','true','ZAR','A365','3M','Monthly',0.01,0.000000000001,'ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/1Y',0,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/2Y',1,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/3Y',2,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/4Y',3,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/5Y',4,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/6Y',5,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/7Y',6,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/8Y',7,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/9Y',8,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/10Y',9,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/12Y',10,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/15Y',11,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/20Y',12,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/25Y',13,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('ZC_INFLATIONSWAP/RATE/ZACPI/30Y',14,'ZACPI_ZC_Swaps');
+INSERT CurveConfigurationInflationCapFloorPriceSurfaces (CurveId,CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName,IndexCurve,IndexInterpolated,YieldTermStructure,FloorStrikes,Maturities,GroupingId) VALUES ('EUHICPXT_ZC_CF','Price Surface ZC CapFloor EUHICPXT','ZC',0.10,'3M','TARGET','MF','A365','EUHICPXT','Inflation/EUHICPXT/EUHICPXT_ZC_Swaps','false','Yield/EUR/EUR1D','-0.02,-0.01,-0.005,0.00,0.01,0.015,0.02,0.025,0.03','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,12Y,15Y,20Y,30Y','ExampleInput');
+INSERT CurveConfigurationInflationCapFloorPriceSurfaces (CurveId,CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName,IndexCurve,IndexInterpolated,YieldTermStructure,FloorStrikes,Maturities,GroupingId) VALUES ('USCPI_ZC_CF','Price Surface ZC CapFloor USCPI','ZC',0.00,'3M','US','MF','A365','USCPI','Inflation/USCPI/USCPI_ZC_Swaps','false','Yield/USD/USD1D','-0.02,-0.015,-0.01,-0.005,0.00,0.01,0.015,0.02,0.025,0.03','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,12Y,15Y,20Y,30Y','ExampleInput');
+INSERT CurveConfigurationInflationCapFloorPriceSurfaces (CurveId,CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName,IndexCurve,IndexInterpolated,YieldTermStructure,FloorStrikes,Maturities,GroupingId) VALUES ('UKRPI_ZC_CF','Price Surface ZC CapFloor UKRPI','ZC',0.00,'3M','GBP','MF','A365','UKRPI','Inflation/UKRPI/UKRPI_ZC_Swaps','false','Yield/GBP/GBP1D','-0.03,-0.02,-0.015,-0.01,-0.005,0.00,0.005,0.01,0.015,0.02,0.025,0.03','1Y,2Y,3Y,4Y,5Y,6Y,7Y,8Y,9Y,10Y,12Y,15Y,20Y','ExampleInput');
+INSERT CurveConfigurationEquityCurves (CurveId,CurveDescription,Currency,ForecastingCurve,Type,SpotQuote,DayCounter,GroupingId) VALUES ('SP5','SP 500 equity price projection curve','USD','USD1D','DividendYield','EQUITY/PRICE/SP5/USD','A365','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/3M',0,'SP5');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/20160915',1,'SP5');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/1Y',2,'SP5');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_DIVIDEND/RATE/SP5/USD/20170915',3,'SP5');
+INSERT CurveConfigurationEquityCurves (CurveId,CurveDescription,Currency,ForecastingCurve,Type,SpotQuote,DayCounter,GroupingId) VALUES ('Lufthansa','Lufthansa equity price projection curve','EUR','EUR1D','ForwardPrice','EQUITY/PRICE/Lufthansa/EUR','A365','ExampleInput');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/2016-06-16',0,'Lufthansa');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/6M',1,'Lufthansa');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/2017-06-16',2,'Lufthansa');
+INSERT CurveConfigurationQuotes (Quote,Seq,CurveId) VALUES ('EQUITY_FWD/PRICE/Lufthansa/EUR/2Y',3,'Lufthansa');
+INSERT CurveConfigurationEquityVolatilities (CurveId,CurveDescription,Currency,Dimension,Expiries,GroupingId) VALUES ('SP5','Lognormal option implied vols for SP 500','USD','ATM','6M','ExampleInput');
+INSERT CurveConfigurationEquityVolatilities (CurveId,Currency,Dimension,Expiries,GroupingId) VALUES ('Lufthansa','EUR','ATM','2016-06-15','ExampleInput');
+INSERT CurveConfigurationSecurities (CurveId,CurveDescription,SpreadQuote,RecoveryRateQuote,GroupingId) VALUES ('SECURITY_1','Security','BOND/YIELD_SPREAD/SECURITY_1','RECOVERY_RATE/RATE/SECURITY_1','ExampleInput');

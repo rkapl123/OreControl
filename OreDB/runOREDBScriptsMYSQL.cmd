@@ -4,6 +4,7 @@ call runSingleScriptMYSQL.cmd Tables\TypesTables.sql
 call runSingleScriptMYSQL.cmd Tables\PricingengineTables.sql
 call runSingleScriptMYSQL.cmd Tables\ConventionsTables.sql
 call runSingleScriptMYSQL.cmd Tables\TodaysmarketTables.sql
+call runSingleScriptMYSQL.cmd Tables\TodaysmarketTableTriggerMYSQL.sql
 call runSingleScriptMYSQL.cmd Tables\CurveConfigurationTables.sql
 call runSingleScriptMYSQL.cmd Tables\OreParametersTables.sql
 call runSingleScriptMYSQL.cmd Tables\NettingTables.sql

@@ -9,7 +9,7 @@ my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
 my $covarianceFile = "$oreRoot/Examples/Example_15/Input/covariance.csv";
 
 open SQLOUT, ">Data/marketdata.sql";
-print SQLOUT "use ORE\n\n";
+print SQLOUT "use ORE;\n\n";
 ################################
 # process Marketdata
 if (-e $marketdataFile) {
@@ -23,7 +23,7 @@ if (-e $marketdataFile) {
 		my ($QuoteDate,$Quotestring,$QuoteValue) = /^(.*?)\s+(.*?)\s+(.*?)$/;
 		processQuotestring ($QuoteDate,$Quotestring);
 		if (!$Quotevaluehash{$Quotestring.$QuoteDate}) {
-			print SQLOUT "INSERT Marketdata (QuoteId,QuoteDate,QuoteValue) VALUES (".$Quotehash{$Quotestring}.",'".$QuoteDate."',".$QuoteValue.")\n";
+			print SQLOUT "INSERT Marketdata (QuoteId,QuoteDate,QuoteValue) VALUES (".$Quotehash{$Quotestring}.",'".$QuoteDate."',".$QuoteValue.");\n";
 			#  to avoid unwanted duplicates, mark already inserted ones
 			$Quotevaluehash{$Quotestring.$QuoteDate} = "already inserted $Quotestring @ $QuoteDate \n";
 		} else {
@@ -50,7 +50,7 @@ if (-e $covarianceFile) {
 		#processQuotestring ("",$Quotestring1);
 		#processQuotestring ("",$Quotestring2);
 		if (!$Quotevaluehash{$Quotestring1.$Quotestring2}) {
-		print SQLOUT "INSERT CovarianceData (QuoteId1,QuoteId2,QuoteValue) VALUES ('".$Quotestring1."','".$Quotestring2."',".$QuoteValue.")\n";
+		print SQLOUT "INSERT CovarianceData (QuoteId1,QuoteId2,QuoteValue) VALUES ('".$Quotestring1."','".$Quotestring2."',".$QuoteValue.");\n";
 			#  to avoid unwanted duplicates, mark already inserted ones
 			$Quotevaluehash{$Quotestring1.$Quotestring2} = "already inserted $Quotestring1.$Quotestring2 \n";
 		} else {
@@ -100,11 +100,11 @@ if (-e $fixingdataFile) {
 				$colNames = "IndexId,Name,FixingIndex";
 				$colValues = $Indexhash{$Indexstring}.",'".$Indexstring."','".$Indexstring."'";
 			}
-			print SQLOUT "INSERT FixingDataDefinitions (".$colNames.") VALUES (".$colValues.")\n";
+			print SQLOUT "INSERT FixingDataDefinitions (".$colNames.") VALUES (".$colValues.");\n";
 		}
 		#  to avoid unwanted duplicates
 		if (!$Indexvaluehash{$Indexstring.$FixingDate}) {
-			print SQLOUT "INSERT Fixingdata (IndexId,FixingDate,IndexValue) VALUES (".$Indexhash{$Indexstring}.",'".$FixingDate."',".$IndexValue.")\n";
+			print SQLOUT "INSERT Fixingdata (IndexId,FixingDate,IndexValue) VALUES (".$Indexhash{$Indexstring}.",'".$FixingDate."',".$IndexValue.");\n";
 			$Indexvaluehash{$Indexstring.$FixingDate} = 1;
 		}
 	}
@@ -265,6 +265,6 @@ sub processQuotestring {
 		} else {
 			$Quotevaluehash{$Quotestring.$QuoteDate} = "ignoring unhandled data type: $Quotestring \n";
 		}
-		print SQLOUT "INSERT MarketdataDefinitions (InstrumentType,QuoteType,".$colNames.") VALUES ('".$InstrumentType."','".$QuoteType."',".$colValues.")\n" if $colNames;
+		print SQLOUT "INSERT MarketdataDefinitions (InstrumentType,QuoteType,".$colNames.") VALUES ('".$InstrumentType."','".$QuoteType."',".$colValues.");\n" if $colNames;
 	}
 }

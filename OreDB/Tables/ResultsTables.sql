@@ -1,4 +1,4 @@
-use ORE
+use ORE;
 
 CREATE TABLE ResultsFlows (
 	AnalysisID varchar(30) not null,
@@ -12,7 +12,7 @@ CREATE TABLE ResultsFlows (
 	Accrual decimal(18,4) null,
 	FixingDate datetime null,
 	FixingValue decimal(18,9) null
-)
+);
 
 CREATE TABLE ResultsNPV (
 	AnalysisID varchar(30) not null,
@@ -26,7 +26,7 @@ CREATE TABLE ResultsNPV (
 	BaseCurrency varchar(3) null,
 	Notional decimal(18,4) null,
 	NotionalBase decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsCurves (
 	AnalysisID varchar(30) not null,
@@ -34,7 +34,7 @@ CREATE TABLE ResultsCurves (
 	HorizonDate datetime null,
 	Name varchar(20) null,
 	Value decimal(18,9) null
-)
+);
 
 CREATE TABLE ResultsXVA (
 	AnalysisID varchar(30) not null,
@@ -57,7 +57,7 @@ CREATE TABLE ResultsXVA (
 	AllocationMethod  varchar(10) null,
 	BaselEPE decimal(18,4) null,
 	BaselEEPE decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsColVA (
 	AnalysisID varchar(30) not null,
@@ -69,7 +69,7 @@ CREATE TABLE ResultsColVA (
 	COLVA decimal(18,4) null,
 	CollateralFloorIncrement decimal(18,4) null,
 	CollateralFloor decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsExposureNettingSet (
 	AnalysisID varchar(30) not null,
@@ -82,7 +82,7 @@ CREATE TABLE ResultsExposureNettingSet (
 	ExpectedCollateral decimal(18,4) null,
 	BaselEE decimal(18,4) null,
 	BaselEEE decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsExposureTrade (
 	AnalysisID varchar(30) not null,
@@ -96,7 +96,7 @@ CREATE TABLE ResultsExposureTrade (
 	PFE decimal(18,4) null,
 	BaselEE decimal(18,4) null,
 	BaselEEE decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsCube (
 	AnalysisID varchar(30) not null,
@@ -108,7 +108,7 @@ CREATE TABLE ResultsCube (
 	Sample int null,
 	Depth int null,
 	Value decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsStresstest (
 	AnalysisID varchar(30) not null,
@@ -117,7 +117,7 @@ CREATE TABLE ResultsStresstest (
 	BaseNPV decimal(18,4) null,
 	ScenarioNPV decimal(18,4) null,
 	Sensitivity decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsSensitivity (
 	AnalysisID varchar(30) not null,
@@ -127,7 +127,7 @@ CREATE TABLE ResultsSensitivity (
 	BaseNPV decimal(18,4) null,
 	DeltaTimesShift decimal(18,4) null,
 	GammaTimesShiftSquare decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsScenario (
 	AnalysisID varchar(30) not null,
@@ -137,7 +137,7 @@ CREATE TABLE ResultsScenario (
 	BaseNPV decimal(18,4) null,
 	ScenarioNPV decimal(18,4) null,
 	Difference decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsCrossGamma (
 	AnalysisID varchar(30) not null,
@@ -148,7 +148,7 @@ CREATE TABLE ResultsCrossGamma (
 	ShiftSize2 decimal(18,4) null,
 	BaseNPV decimal(18,4) null,
 	CrossGammaTimesShiftSquare decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsDimEvolution (
 	AnalysisID varchar(30) not null,
@@ -159,7 +159,7 @@ CREATE TABLE ResultsDimEvolution (
 	AverageDIM decimal(18,4) null,
 	AverageFLOW decimal(18,4) null,
 	SimpleDIM decimal(18,4) null
-)
+);
 
 CREATE TABLE ResultsDimRegression (
 	AnalysisID varchar(30) not null,
@@ -172,4 +172,4 @@ CREATE TABLE ResultsDimRegression (
 	ZeroOrderDIM decimal(18,4) null,
 	DeltaNPV decimal(18,4) null,
 	SimpleDIM decimal(18,4) null
-)
+);

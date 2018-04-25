@@ -1,6 +1,6 @@
-USE ORE
+use ORE;
 
 INSERT INTO TypesFactors
-SELECT 'EQ:'+t1.[CurveId]
-  FROM [dbo].[CurveConfigurationEquityCurves] t1
-  ORDER BY CurveId
+SELECT concat('EQ:',t1.CurveId)
+  FROM CurveConfigurationEquityCurves t1
+  ORDER BY CurveId;
