@@ -4,7 +4,7 @@ CREATE TABLE NettingSet (
 	NettingSetId varchar(10) NOT NULL,
 	GroupingId varchar(70) NOT NULL,
 	Counterparty varchar(30) NOT NULL,
-	ActiveCSAFlag varchar(5) COLLATE Latin1_General_CS_AS NOT NULL
+	ActiveCSAFlag varchar(5) NOT NULL
 CONSTRAINT PK_NettingSet PRIMARY KEY CLUSTERED 
 (
 	NettingSetId ASC

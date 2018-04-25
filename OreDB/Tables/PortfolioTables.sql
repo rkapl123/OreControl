@@ -57,10 +57,10 @@ CREATE TABLE PortfolioScheduleDataRules (
 	EndDate date,
 	Tenor varchar(8),
 	Calendar varchar(20),
-	Convention varchar(20) COLLATE Latin1_General_CS_AS,
-	TermConvention varchar(20) COLLATE Latin1_General_CS_AS,
+	Convention varchar(20),
+	TermConvention varchar(20),
 	RuleName varchar(20),
-	EndOfMonth varchar(5) COLLATE Latin1_General_CS_AS,
+	EndOfMonth varchar(5),
 	FirstDate date,
 	LastDate date
 CONSTRAINT PK_PortfolioScheduleDataRules PRIMARY KEY CLUSTERED 
@@ -119,8 +119,8 @@ CREATE TABLE PortfolioCreditDefaultSwapData (
 	TradeId varchar(180) not null,
 	IssuerId varchar(30) not null,
 	CreditCurveId varchar(20) not null,
-	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS,
-	PaysAtDefaultTime varchar(5) COLLATE Latin1_General_CS_AS,
+	SettlesAccrual varchar(5),
+	PaysAtDefaultTime varchar(5),
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3)
@@ -143,8 +143,8 @@ REFERENCES TypesBool (value)
 CREATE TABLE PortfolioIndexCreditDefaultSwapData (
 	TradeId varchar(180) not null,
 	CreditCurveId varchar(20) not null,
-	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS,
-	PaysAtDefaultTime varchar(5) COLLATE Latin1_General_CS_AS,
+	SettlesAccrual varchar(5),
+	PaysAtDefaultTime varchar(5),
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3)
@@ -164,12 +164,12 @@ REFERENCES TypesBool (value)
 
 CREATE TABLE PortfolioIndexCreditDefaultSwapOptionData (
 	TradeId varchar(180) not null,
-	KnockOut varchar(5) COLLATE Latin1_General_CS_AS,
+	KnockOut varchar(5),
 	OptionDataLongShort varchar(5),
 	OptionDataOptionType varchar(10),
 	OptionDataStyle varchar(10),
 	OptionDataSettlement varchar(10),
-	OptionDataPayOffAtExpiry varchar(5) COLLATE Latin1_General_CS_AS,
+	OptionDataPayOffAtExpiry varchar(5),
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date
@@ -199,8 +199,8 @@ REFERENCES TypesCurrencyCode (value)
 CREATE TABLE PortfolioIndexCreditDefaultSwapOptionSwapData (
 	TradeId varchar(180) not null,
 	CreditCurveId varchar(20) not null,
-	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS,
-	PaysAtDefaultTime varchar(5) COLLATE Latin1_General_CS_AS,
+	SettlesAccrual varchar(5),
+	PaysAtDefaultTime varchar(5),
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3)
@@ -242,7 +242,7 @@ CREATE TABLE PortfolioSwaptionData (
 	OptionDataOptionType varchar(10),
 	OptionDataStyle varchar(10),
 	OptionDataSettlement varchar(10),
-	OptionDataPayOffAtExpiry varchar(5) COLLATE Latin1_General_CS_AS,
+	OptionDataPayOffAtExpiry varchar(5),
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date
@@ -275,7 +275,7 @@ CREATE TABLE PortfolioFxOptionData (
 	OptionDataOptionType varchar(10),
 	OptionDataStyle varchar(10),
 	OptionDataSettlement varchar(10),
-	OptionDataPayOffAtExpiry varchar(5) COLLATE Latin1_General_CS_AS,
+	OptionDataPayOffAtExpiry varchar(5),
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date
@@ -312,7 +312,7 @@ CREATE TABLE PortfolioEquityOptionData (
 	OptionDataOptionType varchar(10),
 	OptionDataStyle varchar(10),
 	OptionDataSettlement varchar(10),
-	OptionDataPayOffAtExpiry varchar(5) COLLATE Latin1_General_CS_AS,
+	OptionDataPayOffAtExpiry varchar(5),
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date
@@ -380,33 +380,33 @@ REFERENCES CurveConfigurationSecurities (CurveId)
 CREATE TABLE PortfolioLegData (
 	Id int not null,
 	TradeId varchar(180) not null,
-	Payer varchar(5) COLLATE Latin1_General_CS_AS,
+	Payer varchar(5),
 	LegType varchar(20),
 	Currency varchar(7),
-	PaymentConvention varchar(20) COLLATE Latin1_General_CS_AS,
+	PaymentConvention varchar(20),
 	DayCounter varchar(30),
-	NotionalInitialExchange varchar(5) COLLATE Latin1_General_CS_AS,
-	NotionalFinalExchange varchar(5) COLLATE Latin1_General_CS_AS,
-	NotionalAmortizingExchange varchar(5) COLLATE Latin1_General_CS_AS,
+	NotionalInitialExchange varchar(5),
+	NotionalFinalExchange varchar(5),
+	NotionalAmortizingExchange varchar(5),
 	FXResetForeignCurrency varchar(7),
 	FXResetForeignAmount decimal(18,3),
 	FXResetFXIndex varchar(30),
 	FXResetFixingDays int,
 	FloatingLegIndexName varchar(30),
-	FloatingLegIsInArrears varchar(5) COLLATE Latin1_General_CS_AS,
+	FloatingLegIsInArrears varchar(5),
 	FloatingLegFixingDays int,
-	FloatingLegIsAveraged varchar(5) COLLATE Latin1_General_CS_AS,
-	FloatingLegIsNotResettingXCCY varchar(5) COLLATE Latin1_General_CS_AS,
-	FloatingLegNakedOption varchar(5) COLLATE Latin1_General_CS_AS,
+	FloatingLegIsAveraged varchar(5),
+	FloatingLegIsNotResettingXCCY varchar(5),
+	FloatingLegNakedOption varchar(5),
 	CPILegIndexName varchar(30),
 	CPILegBaseCPI decimal(18,10),
 	CPILegObservationLag varchar(5),
-	CPILegInterpolated varchar(5) COLLATE Latin1_General_CS_AS,
-	CPILegSubtractInflationNotional varchar(5) COLLATE Latin1_General_CS_AS,
+	CPILegInterpolated varchar(5),
+	CPILegSubtractInflationNotional varchar(5),
 	YYLegIndexName varchar(30),
 	YYLegFixingDays int,
 	YYLegObservationLag varchar(5),
-	YYLegInterpolated varchar(5) COLLATE Latin1_General_CS_AS
+	YYLegInterpolated varchar(5)
 CONSTRAINT PK_PortfolioLegData PRIMARY KEY CLUSTERED 
 (
 	Id ASC
@@ -462,7 +462,7 @@ CREATE TABLE PortfolioLegAmortizations (
 	StartDate date,
 	EndDate date,
 	Frequency varchar(5),
-	Underflow varchar(5) COLLATE Latin1_General_CS_AS
+	Underflow varchar(5)
 CONSTRAINT PK_PortfolioLegAmortizations PRIMARY KEY CLUSTERED 
 (
 	LegDataId ASC,

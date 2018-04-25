@@ -3,15 +3,15 @@ use ORE
 CREATE TABLE ConventionsZero (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
-	TenorBased varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
+	TenorBased varchar(5) NOT NULL,
 	DayCounter varchar(30) NOT NULL,
 	Compounding varchar(30),
 	CompoundingFrequency varchar(20),
 	TenorCalendar varchar(20),
 	SpotLag int,
 	SpotCalendar varchar(20),
-	RollConvention varchar(20) COLLATE Latin1_General_CS_AS,
-	EOM varchar(5) COLLATE Latin1_General_CS_AS
+	RollConvention varchar(20),
+	EOM varchar(5)
 CONSTRAINT PK_ConventionsZero PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
@@ -38,11 +38,11 @@ CREATE TABLE ConventionsCDS (
 	SettlementDays int NOT NULL,
 	Calendar varchar(20) NOT NULL,
 	Frequency varchar(20) NOT NULL,
-	PaymentConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	PaymentConvention varchar(20) NOT NULL,
 	RuleName varchar(20) NOT NULL,
 	DayCounter varchar(30) NOT NULL,
-	SettlesAccrual varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
-	PaysAtDefaultTime varchar(5) COLLATE Latin1_General_CS_AS  NOT NULL
+	SettlesAccrual varchar(5) NOT NULL,
+	PaysAtDefaultTime varchar(5)  NOT NULL
 CONSTRAINT PK_ConventionsCDS PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
@@ -64,11 +64,11 @@ REFERENCES TypesBool (value)
 CREATE TABLE ConventionsDeposit (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
-	IndexBased varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
+	IndexBased varchar(5) NOT NULL,
 	IndexName varchar(30),
 	Calendar varchar(20),
-	Convention varchar(20) COLLATE Latin1_General_CS_AS,
-	EOM varchar(5) COLLATE Latin1_General_CS_AS,
+	Convention varchar(20),
+	EOM varchar(5),
 	DayCounter varchar(30),
 	SettlementDays int
 CONSTRAINT PK_ConventionsDeposit PRIMARY KEY CLUSTERED (
@@ -114,10 +114,10 @@ CREATE TABLE ConventionsOIS (
 	IndexName varchar(30) NOT NULL,
 	FixedDayCounter varchar(30) NOT NULL,
 	PaymentLag int,
-	EOM varchar(5) COLLATE Latin1_General_CS_AS,
+	EOM varchar(5),
 	FixedFrequency varchar(20),
-	FixedConvention varchar(20) COLLATE Latin1_General_CS_AS,
-	FixedPaymentConvention varchar(20) COLLATE Latin1_General_CS_AS,
+	FixedConvention varchar(20),
+	FixedPaymentConvention varchar(20),
 	RuleName varchar(20)
 CONSTRAINT PK_ConventionsOIS PRIMARY KEY CLUSTERED (
 	Id ASC
@@ -142,7 +142,7 @@ CREATE TABLE ConventionsSwap (
 	GroupingId varchar(70),
 	FixedCalendar varchar(20) NOT NULL,
 	FixedFrequency varchar(20) NOT NULL,
-	FixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	FixedConvention varchar(20) NOT NULL,
 	FixedDayCounter varchar(30) NOT NULL,
 	IndexName varchar(30) NOT NULL,
 	FloatFrequency varchar(20),
@@ -172,8 +172,8 @@ CREATE TABLE ConventionsAverageOIS (
 	FixedTenor varchar(8) NOT NULL,
 	FixedDayCounter varchar(30) NOT NULL,
 	FixedCalendar varchar(20) NOT NULL,
-	FixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
-	FixedPaymentConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	FixedConvention varchar(20) NOT NULL,
+	FixedPaymentConvention varchar(20) NOT NULL,
 	IndexName varchar(30) NOT NULL,
 	OnTenor varchar(8) NOT NULL,
 	RateCutoff varchar(8) NOT NULL
@@ -198,8 +198,8 @@ CREATE TABLE ConventionsTenorBasisSwap (
 	LongIndex varchar(30) NOT NULL,
 	ShortIndex varchar(30) NOT NULL,
 	ShortPayTenor varchar(8),
-	SpreadOnShort varchar(5) COLLATE Latin1_General_CS_AS,
-	IncludeSpread varchar(5) COLLATE Latin1_General_CS_AS,
+	SpreadOnShort varchar(5),
+	IncludeSpread varchar(5),
 	SubPeriodsCouponType varchar(20)
 CONSTRAINT PK_ConventionsTenorBasisSwap PRIMARY KEY CLUSTERED (
 	Id ASC
@@ -220,14 +220,14 @@ CREATE TABLE ConventionsTenorBasisTwoSwap (
 	GroupingId varchar(70),
 	Calendar varchar(20) NOT NULL,
 	LongFixedFrequency varchar(20) NOT NULL,
-	LongFixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	LongFixedConvention varchar(20) NOT NULL,
 	LongFixedDayCounter varchar(30) NOT NULL,
 	LongIndex varchar(30) NOT NULL,
 	ShortFixedFrequency varchar(20) NOT NULL,
-	ShortFixedConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	ShortFixedConvention varchar(20) NOT NULL,
 	ShortFixedDayCounter varchar(30) NOT NULL,
 	ShortIndex varchar(30) NOT NULL,
-	LongMinusShort varchar(5) COLLATE Latin1_General_CS_AS
+	LongMinusShort varchar(5)
 CONSTRAINT PK_ConventionsTenorBasisTwoSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
@@ -260,7 +260,7 @@ CREATE TABLE ConventionsFX (
 	TargetCurrency varchar(7) NOT NULL,
 	PointsFactor Decimal(18,4) NOT NULL,
 	AdvanceCalendar varchar(20),
-	SpotRelative varchar(5) COLLATE Latin1_General_CS_AS,
+	SpotRelative varchar(5),
 	AdditionalSettleCalendar varchar(20)
 CONSTRAINT PK_ConventionsFX PRIMARY KEY CLUSTERED (
 	Id ASC
@@ -281,10 +281,10 @@ CREATE TABLE ConventionsCrossCurrencyBasis (
 	GroupingId varchar(70),
 	SettlementDays int NOT NULL,
 	SettlementCalendar varchar(20),
-	RollConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	RollConvention varchar(20) NOT NULL,
 	FlatIndex varchar(30) NOT NULL,
 	SpreadIndex varchar(30) NOT NULL,
-	EOM varchar(5) COLLATE Latin1_General_CS_AS
+	EOM varchar(5)
 CONSTRAINT PK_ConventionsCrossCurrencyBasis PRIMARY KEY CLUSTERED (
 	Id ASC
 ))
@@ -313,14 +313,14 @@ CREATE TABLE ConventionsInflationSwap (
 	Id varchar(70) NOT NULL,
 	GroupingId varchar(70),
 	FixCalendar varchar(20) NOT NULL,
-	FixConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	FixConvention varchar(20) NOT NULL,
 	DayCounter varchar(30) NOT NULL,
 	IndexName varchar(30) NOT NULL,
-	Interpolated varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
+	Interpolated varchar(5) NOT NULL,
 	ObservationLag varchar(8) NOT NULL,
-	AdjustInflationObservationDates varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
+	AdjustInflationObservationDates varchar(5) NOT NULL,
 	InflationCalendar varchar(20) NOT NULL,
-	InflationConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL
+	InflationConvention varchar(20) NOT NULL
 CONSTRAINT PK_ConventionsInflationSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ))

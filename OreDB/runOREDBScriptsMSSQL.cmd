@@ -1,5 +1,5 @@
-echo starting ORE DB Creation scripts > sql.log
-call runSingleScript.cmd oreDBCreate.sql
+echo starting ORE DB Creation scripts > MSSQL.log
+call runSingleScript.cmd oreDBCreateMSSQL.sql
 call runSingleScript.cmd Tables\TypesTables.sql
 call runSingleScript.cmd Tables\PricingengineTables.sql
 call runSingleScript.cmd Tables\ConventionsTables.sql

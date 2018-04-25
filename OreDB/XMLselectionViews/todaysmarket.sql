@@ -21,8 +21,7 @@ SELECT DISTINCT tmc.GroupingId,
 			DefaultCurvesId,
 			InflationCapFloorPriceSurfacesId,
 			EquityCurvesId,
-			EquityVolatilitiesId,
-			SecuritiesId
+			EquityVolatilitiesId
 		FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId
 		FOR XML PATH ('Configuration'), TYPE),
 		(SELECT
@@ -154,20 +153,18 @@ SELECT DISTINCT tmc.GroupingId,
 		(SELECT
 			id [@id],
 			(SELECT 
-				c.name [@name], 
-				c.Security [data()] 
-			FROM TodaysMarketSecurities c WHERE c.id = co.id
+				name [@name], 
+				Security [data()] 
+			FROM TodaysMarketSecurities
 			FOR XML PATH ('Security'), TYPE)
-		FROM (SELECT DISTINCT ISNULL(SecuritiesId,'default') id FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId) co
 		FOR XML PATH ('Securities'), TYPE),
 		(SELECT
 			id [@id],
 			(SELECT 
-				c.name [@name], 
-				c.BaseCorrelation [data()] 
-			FROM TodaysMarketBaseCorrelations c WHERE c.id = co.id
+				name [@name], 
+				BaseCorrelation [data()] 
+			FROM TodaysMarketBaseCorrelations
 			FOR XML PATH ('BaseCorrelation'), TYPE)
-		FROM (SELECT DISTINCT ISNULL(BaseCorrelationsId,'default') id FROM TodaysMarketConfiguration WHERE GroupingId = tmc.GroupingId) co
 		FOR XML PATH ('BaseCorrelations'), TYPE)
 	FOR XML PATH('TodaysMarket'))) XMLData
 FROM TodaysMarketConfiguration tmc

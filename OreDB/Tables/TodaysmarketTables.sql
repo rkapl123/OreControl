@@ -30,9 +30,7 @@ CREATE TABLE TodaysMarketConfiguration (
 	DefaultCurvesId varchar(16),
 	InflationCapFloorPriceSurfacesId varchar(16),
 	EquityCurvesId varchar(16),
-	EquityVolatilitiesId varchar(16),
-	SecuritiesId varchar(16),
-	BaseCorrelationsId varchar(16)
+	EquityVolatilitiesId varchar(16)
 CONSTRAINT PK_TodaysMarketConfiguration PRIMARY KEY CLUSTERED (
 	id ASC
 ))
@@ -77,6 +75,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.YieldCurve
 END
 GO
+
 CREATE TABLE TodaysMarketDiscountingCurves (
 	DiscountingCurve varchar(70) NOT NULL,
 	currency varchar(7) NOT NULL,
@@ -118,6 +117,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.DiscountingCurve
 END
 GO
+
 CREATE TABLE TodaysMarketIndexForwardingCurves (
 	IndexName varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
@@ -156,6 +156,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.IndexName
 END
 GO
+
 CREATE TABLE TodaysMarketSwapIndexCurves (
 	Discounting varchar(30) NOT NULL,
 	name varchar(30) NOT NULL,
@@ -210,6 +211,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.ZeroInflationIndexCurve
 END
 GO
+
 CREATE TABLE TodaysMarketYYInflationIndexCurves (
 	name varchar(30) NOT NULL,
 	YYInflationIndexCurve varchar(70) NOT NULL,
@@ -250,6 +252,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.YYInflationIndexCurve
 END
 GO
+
 CREATE TABLE TodaysMarketFxSpots (
 	pair varchar(7) NOT NULL,
 	FxSpot varchar(70) NOT NULL,
@@ -290,6 +293,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.FxSpot
 END
 GO
+
 CREATE TABLE TodaysMarketFxVolatilities (
 	pair varchar(7) NOT NULL,
 	FxVolatility  varchar(70) NOT NULL,
@@ -330,6 +334,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.FxVolatility
 END
 GO
+
 CREATE TABLE TodaysMarketSwaptionVolatilities (
 	currency varchar(7) NOT NULL,
 	SwaptionVolatility varchar(70) NOT NULL,
@@ -370,6 +375,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.SwaptionVolatility
 END
 GO
+
 CREATE TABLE TodaysMarketCapFloorVolatilities (
 	currency varchar(7) NOT NULL,
 	CapFloorVolatility varchar(70) NOT NULL,
@@ -410,6 +416,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.CapFloorVolatility
 END
 GO
+
 CREATE TABLE TodaysMarketDefaultCurves (
 	DefaultCurve varchar(70) NOT NULL,
 	name varchar(30) NOT NULL,
@@ -451,6 +458,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.DefaultCurve
 END
 GO
+
 CREATE TABLE TodaysMarketInflationCapFloorPriceSurfaces (
 	InflationCapFloorPriceSurface varchar(70) NOT NULL,
 	name varchar(30) NOT NULL,
@@ -491,6 +499,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.InflationCapFloorPriceSurface
 END
 GO
+
 CREATE TABLE TodaysMarketEquityCurves (
 	EquityCurve varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
@@ -529,6 +538,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.EquityCurve
 END
 GO
+
 CREATE TABLE TodaysMarketCDSVolatilities (
 	CDSVolatility varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
@@ -567,6 +577,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.CDSVolatility
 END
 GO
+
 CREATE TABLE TodaysMarketEquityVolatilities (
 	EquityVolatility varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
@@ -605,6 +616,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.EquityVolatility
 END
 GO
+
 CREATE TABLE TodaysMarketSecurities (
 	Security varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,
@@ -643,6 +655,7 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.Security
 END
 GO
+
 CREATE TABLE TodaysMarketBaseCorrelations (
 	BaseCorrelation varchar(70) NOT NULL,
 	name varchar(20) NOT NULL,

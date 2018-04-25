@@ -17,7 +17,7 @@ CREATE TABLE CurveConfigurationSwaptionVolatilities (
 	Extrapolation varchar(10),
 	DayCounter varchar(30),
 	Calendar varchar(20),
-	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS,
+	BusinessDayConvention varchar(20),
 	OptionTenors varchar(70),
 	SwapTenors varchar(70),
 	ShortSwapIndexBase varchar(30),
@@ -50,11 +50,11 @@ CREATE TABLE CurveConfigurationCapFloorVolatilities (
 	GroupingId varchar(70),
 	CurveDescription varchar(70),
 	VolatilityType varchar(20),
-	Extrapolation varchar(5) COLLATE Latin1_General_CS_AS,
-	IncludeAtm varchar(5) COLLATE Latin1_General_CS_AS,
+	Extrapolation varchar(5),
+	IncludeAtm varchar(5),
 	DayCounter varchar(30),
 	Calendar varchar(20),
-	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS,
+	BusinessDayConvention varchar(20),
 	Tenors varchar(70),
 	Strikes varchar(130),
 	IborIndex varchar(30),
@@ -89,7 +89,7 @@ CREATE TABLE CurveConfigurationYieldCurves (
 	InterpolationMethod varchar(20),
 	YieldCurveDayCounter varchar(30),
 	Tolerance decimal(18,14),
-	Extrapolation varchar(5) COLLATE Latin1_General_CS_AS
+	Extrapolation varchar(5)
 CONSTRAINT PK_CurveConfigurationYieldCurves PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
@@ -119,7 +119,7 @@ CREATE TABLE CurveConfigurationDefaultCurves (
 	Pillars varchar(70),
 	SpotLag decimal(6,2),
 	Calendar varchar(20),
-	Extrapolation varchar(5) COLLATE Latin1_General_CS_AS
+	Extrapolation varchar(5)
 CONSTRAINT PK_CurveConfigurationDefaultCurves PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
@@ -179,7 +179,7 @@ CREATE TABLE CurveConfigurationInflationCurves (
 	NominalTermStructure varchar(70) NOT NULL,
 	Type varchar(2) NOT NULL,
 	Conventions varchar(70),
-	Extrapolation varchar(5) COLLATE Latin1_General_CS_AS,
+	Extrapolation varchar(5),
 	Calendar varchar(20),
 	DayCounter varchar(30),
 	Lag varchar(5) NOT NULL,
@@ -224,11 +224,11 @@ CREATE TABLE CurveConfigurationInflationCapFloorPriceSurfaces (
 	StartRate decimal(9,6) NOT NULL,
 	ObservationLag varchar(5) NOT NULL,
 	Calendar varchar(20) NOT NULL,
-	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	BusinessDayConvention varchar(20) NOT NULL,
 	DayCounter varchar(30) NOT NULL,
 	IndexName varchar(30) NOT NULL,
 	IndexCurve varchar(70) NOT NULL,
-	IndexInterpolated varchar(5) COLLATE Latin1_General_CS_AS NOT NULL,
+	IndexInterpolated varchar(5) NOT NULL,
 	YieldTermStructure varchar(70) NOT NULL,
 	CapStrikes varchar(70) NOT NULL,
 	FloorStrikes varchar(70) NOT NULL,
@@ -383,9 +383,9 @@ CREATE TABLE CurveConfigurationBaseCorrelation (
 	DetachmentPoints varchar(70),
 	SettlementDays decimal(9,6),
 	Calendar varchar(20) NOT NULL,
-	BusinessDayConvention varchar(20) COLLATE Latin1_General_CS_AS NOT NULL,
+	BusinessDayConvention varchar(20) NOT NULL,
 	DayCounter varchar(30) NOT NULL,
-	Extrapolate varchar(5) COLLATE Latin1_General_CS_AS
+	Extrapolate varchar(5)
 CONSTRAINT PK_CurveConfigurationBaseCorrelation PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ))
