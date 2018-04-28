@@ -315,9 +315,9 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="SpotRate">SpotRate</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SpotRate">SpotRate</span></td>
 				 <td>varchar</td>
-				 <td>70</td>
+				 <td>100</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
 				 <td>null</td>
@@ -327,6 +327,14 @@
 				 </td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="CurveConfigurationYieldCurveSegments.SpotRate references dbo.MdatMarketDataDefinitions.Quote via FK_CurveConfigurationYieldCurveSegments_SpotRate">
+						<a href='../../dbo/tables/MdatMarketDataDefinitions.html'>MdatMarketDataDefinitions</a><span class='relatedKey'>.Quote</span>
+					</td>
+					<td class="constraint detail">
+						FK_CurveConfigurationYieldCurveSegments_SpotRate <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
 				  </table>					 
 				 </td>
 				 <td></td>
@@ -467,34 +475,36 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="391,24,836,475">
-<area shape="rect" id="node2" title="dbo.CurveConfigurationYieldCurves" alt="" coords="5,216,347,421">
+<area shape="rect" id="node1" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="391,15,844,465">
+<area shape="rect" id="node2" title="dbo.CurveConfigurationYieldCurves" alt="" coords="5,216,347,333">
 <area shape="rect" id="node3" title="dbo.TypesSegmentType" alt="" coords="49,111,303,199">
-<area shape="rect" id="node4" title="dbo.TypesSegmentTypeType" alt="" coords="32,5,320,93">
+<area shape="rect" id="node4" title="dbo.MdatMarketDataDefinitions" alt="" coords="23,351,329,556">
+<area shape="rect" id="node5" title="dbo.TypesSegmentTypeType" alt="" coords="32,5,320,93">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/CurveConfigurationYieldCurveSegments.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="816,111,1165,199">
-<area shape="rect" id="node2" title="dbo.TypesSegmentTypeType" alt="" coords="409,113,697,201">
-<area shape="rect" id="node3" title="dbo.CurveConfigurationEquityCurves" alt="" coords="816,1211,1165,1299">
-<area shape="rect" id="node4" title="dbo.TypesCurrencyCode" alt="" coords="43,1000,301,1088">
-<area shape="rect" id="node5" title="dbo.TypesDayCounter" alt="" coords="53,1211,291,1299">
-<area shape="rect" id="node6" title="dbo.CurveConfigurationYieldCurves" alt="" coords="383,681,724,887">
-<area shape="rect" id="node8" title="dbo.TypesBool" alt="" coords="78,796,266,884">
-<area shape="rect" id="node9" title="dbo.TypesInterpolationMethodType" alt="" coords="5,691,339,779">
-<area shape="rect" id="node7" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="854,5,1127,93">
-<area shape="rect" id="node10" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="768,216,1213,667">
-<area shape="rect" id="node11" title="dbo.TypesSegmentType" alt="" coords="427,312,680,400">
-<area shape="rect" id="node12" href="SimulationMarketBenchmarkCurves.html" title="SimulationMarketBenchmarkCurves" alt="" coords="823,1000,1159,1088">
-<area shape="rect" id="node13" href="SimulationMarketCpiCapFloorVolatilities.html" title="SimulationMarketCpiCapFloorVolatilities" alt="" coords="808,684,1173,772">
-<area shape="rect" id="node14" href="SimulationMarketYieldCurveDayCounters.html" title="SimulationMarketYieldCurveDayCounters" alt="" coords="803,1316,1179,1404">
-<area shape="rect" id="node15" href="SimulationMarketYYCapFloorVolatilities.html" title="SimulationMarketYYCapFloorVolatilities" alt="" coords="810,789,1171,877">
-<area shape="rect" id="node16" href="SimulationMarketYYInflationIndexCurves.html" title="SimulationMarketYYInflationIndexCurves" alt="" coords="805,1105,1177,1193">
-<area shape="rect" id="node17" href="SimulationMarketZeroInflationIndexCurves.html" title="SimulationMarketZeroInflationIndexCurves" alt="" coords="799,1421,1183,1509">
-<area shape="rect" id="node18" href="StresstestYieldCurve.html" title="StresstestYieldCurve" alt="" coords="874,895,1107,983">
+<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="787,216,1136,304">
+<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="367,160,673,365">
+<area shape="rect" id="node3" title="dbo.TypesSegmentTypeType" alt="" coords="376,383,664,471">
+<area shape="rect" id="node12" title="dbo.TypesCurrencyCode" alt="" coords="27,221,284,309">
+<area shape="rect" id="node4" title="dbo.CurveConfigurationEquityCurves" alt="" coords="787,427,1136,515">
+<area shape="rect" id="node5" title="dbo.CurveConfigurationYieldCurves" alt="" coords="349,939,691,1056">
+<area shape="rect" id="node8" title="dbo.TodaysMarketCurveSpecs" alt="" coords="5,941,305,1029">
+<area shape="rect" id="node6" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="825,321,1098,409">
+<area shape="rect" id="node7" title="dbo.CurveConfigurationSecurities" alt="" coords="799,5,1124,93">
+<area shape="rect" id="node9" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="735,637,1188,1088">
+<area shape="rect" id="node10" title="dbo.TypesSegmentType" alt="" coords="393,733,647,821">
+<area shape="rect" id="node11" href="MdatMarketData.html" title="MdatMarketData" alt="" coords="863,111,1060,199">
+<area shape="rect" id="node13" href="SimulationMarketBenchmarkCurves.html" title="SimulationMarketBenchmarkCurves" alt="" coords="793,532,1129,620">
+<area shape="rect" id="node14" href="SimulationMarketCpiCapFloorVolatilities.html" title="SimulationMarketCpiCapFloorVolatilities" alt="" coords="779,1105,1144,1193">
+<area shape="rect" id="node15" href="SimulationMarketYieldCurveDayCounters.html" title="SimulationMarketYieldCurveDayCounters" alt="" coords="773,1211,1149,1299">
+<area shape="rect" id="node16" href="SimulationMarketYYCapFloorVolatilities.html" title="SimulationMarketYYCapFloorVolatilities" alt="" coords="781,1316,1142,1404">
+<area shape="rect" id="node17" href="SimulationMarketYYInflationIndexCurves.html" title="SimulationMarketYYInflationIndexCurves" alt="" coords="775,1421,1147,1509">
+<area shape="rect" id="node18" href="SimulationMarketZeroInflationIndexCurves.html" title="SimulationMarketZeroInflationIndexCurves" alt="" coords="769,1527,1153,1615">
+<area shape="rect" id="node19" href="StresstestYieldCurve.html" title="StresstestYieldCurve" alt="" coords="845,1632,1078,1720">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/CurveConfigurationYieldCurveSegments.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							

@@ -44,8 +44,8 @@ digraph "twoDegreesRelationshipsDiagram" {
   "CurveConfigurationInflationCapFloorPriceSurfaces":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationInflationCurves":"elipses":w -> "dbo.ConventionsInflationSwap":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationInflationCurves":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.NettingSet":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -274,14 +274,15 @@ digraph "twoDegreesRelationshipsDiagram" {
     URL="CurveConfigurationInflationCurves.html"
     tooltip="CurveConfigurationInflationCurves"
   ];
-  "dbo.CurveConfigurationYieldCurves" [
+  "CurveConfigurationYieldCurves" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.CurveConfigurationYieldCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationYieldCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">16 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 6</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">30 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    tooltip="dbo.CurveConfigurationYieldCurves"
+    URL="CurveConfigurationYieldCurves.html"
+    tooltip="CurveConfigurationYieldCurves"
   ];
   "dbo.NettingSet" [
    label=<

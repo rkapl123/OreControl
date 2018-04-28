@@ -64,9 +64,8 @@ digraph "twoDegreesRelationshipsDiagram" {
   "CurveConfigurationDefaultCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"elipses":w -> "dbo.TypesBool":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationEquityCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationEquityCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationEquityCurves":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationEquityCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationEquityCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationInflationCapFloorPriceSurfaces":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationInflationCapFloorPriceSurfaces":"elipses":w -> "dbo.TypesBool":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationInflationCapFloorPriceSurfaces":"elipses":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -76,9 +75,9 @@ digraph "twoDegreesRelationshipsDiagram" {
   "CurveConfigurationSwaptionVolatilities":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"elipses":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"elipses":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesBool":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesBool":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "NettingCSADetails":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "NettingCSADetails":"elipses":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioForwardRateAgreementData":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -110,7 +109,6 @@ digraph "twoDegreesRelationshipsDiagram" {
   "SimulationCrossAssetModel":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=teeodot];
   "SimulationCrossAssetModelCurrencies":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationCrossAssetModelCurrencies":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelEquities":"elipses":w -> "dbo.CurveConfigurationEquityCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationCrossAssetModelEquities":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationCrossAssetModelEquityModels":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationCrossAssetModelEquityModels":"elipses":w -> "dbo.TypesBool":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -154,13 +152,11 @@ digraph "twoDegreesRelationshipsDiagram" {
   "SimulationMarketBaseCorrelationsNames":"IndexName":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketBaseCorrelationsNames":"SimulationId":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketBenchmarkCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketBenchmarkCurves":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketBenchmarkCurves":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCapFloorVolatilitiesCurrencies":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCapFloorVolatilitiesCurrencies":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCapFloorVolatilitiesCurrencies":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCDSVolatilitiesNames":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketCpiCapFloorVolatilities":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCpiCapFloorVolatilities":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCPIIndices":"elipses":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketCPIIndices":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -168,9 +164,7 @@ digraph "twoDegreesRelationshipsDiagram" {
   "SimulationMarketCurrencies":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketDefaultCurvesNames":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketDefaultCurvesNames":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketEquitiesNames":"elipses":w -> "dbo.CurveConfigurationEquityCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketEquitiesNames":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketEquityVolatilitiesEquityNames":"elipses":w -> "dbo.CurveConfigurationEquityCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketEquityVolatilitiesEquityNames":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketFxRatesCurrencyPairs":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketFxVolatilitiesCurrencyPairs":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -186,14 +180,10 @@ digraph "twoDegreesRelationshipsDiagram" {
   "SimulationMarketSwaptionVolatilitiesCurrencies":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketYieldCurveDayCounters":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketYieldCurveDayCounters":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketYieldCurveDayCounters":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketYYCapFloorVolatilities":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketYYCapFloorVolatilities":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketYYInflationIndexCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketYYInflationIndexCurves":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketYYInflationIndexCurves":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketZeroInflationIndexCurves":"elipses":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationMarketZeroInflationIndexCurves":"elipses":w -> "dbo.CurveConfigurationYieldCurves":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationMarketZeroInflationIndexCurves":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "SimulationParameters":"elipses":w -> "dbo.SimulationMarket":"Id":e [arrowhead=none dir=back arrowtail=teeodot];
   "StresstestIndexCurve":"elipses":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -353,14 +343,15 @@ digraph "twoDegreesRelationshipsDiagram" {
     URL="CurveConfigurationDefaultCurves.html"
     tooltip="CurveConfigurationDefaultCurves"
   ];
-  "dbo.CurveConfigurationEquityCurves" [
+  "CurveConfigurationEquityCurves" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.CurveConfigurationEquityCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationEquityCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">11 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    tooltip="dbo.CurveConfigurationEquityCurves"
+    URL="CurveConfigurationEquityCurves.html"
+    tooltip="CurveConfigurationEquityCurves"
   ];
   "CurveConfigurationInflationCapFloorPriceSurfaces" [
    label=<
@@ -392,14 +383,15 @@ digraph "twoDegreesRelationshipsDiagram" {
     URL="CurveConfigurationSwaptionVolatilities.html"
     tooltip="CurveConfigurationSwaptionVolatilities"
   ];
-  "dbo.CurveConfigurationYieldCurves" [
+  "CurveConfigurationYieldCurves" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.CurveConfigurationYieldCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationYieldCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">16 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 6</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">30 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    tooltip="dbo.CurveConfigurationYieldCurves"
+    URL="CurveConfigurationYieldCurves.html"
+    tooltip="CurveConfigurationYieldCurves"
   ];
   "NettingCSADetails" [
    label=<

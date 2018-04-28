@@ -11,9 +11,9 @@ sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from PortfolioSe
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from SimulationSelection where Id = 'Example_2'" -y0 -o OREDB\simulation.xml
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from SensitivityanalysisSelection where Id = 'Example_15'" -y0 -o OREDB\sensitivity.xml
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select XMLdata from StresstestSelection where GroupingId = 'Example_15'" -y0 -o OREDB\stresstest.xml
-sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT f.FixingDate,fd.FixingIndex,f.IndexValue FROM FixingData f INNER JOIN FixingDataDefinitions fd ON f.IndexId = fd.IndexId ORDER BY f.FixingDate" -y0 -o OREDB\fixingdata.txt
-sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT m.QuoteDate,md.Quote,m.QuoteValue FROM MarketData m INNER JOIN MarketDataDefinitions md ON m.QuoteId = md.QuoteId" -y0 -o OREDB\marketdata.txt
-sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT QuoteId1,QuoteId2,QuoteValue FROM CovarianceData" -y0 -o OREDB\covariancedata.txt
+sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT convert(varchar,f.FixingDate,112),fd.FixingIndex,f.IndexValue FROM MdatFixingData f INNER JOIN MdatFixingDataDefinitions fd ON f.IndexId = fd.IndexId ORDER BY f.FixingDate" -y0 -o OREDB\fixingdata.txt
+sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT convert(varchar,m.QuoteDate,112),md.Quote,m.QuoteValue FROM MdatMarketData m INNER JOIN MdatMarketDataDefinitions md ON m.QuoteId = md.QuoteId" -y0 -o OREDB\marketdata.txt
+sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;SELECT QuoteId1,QuoteId2,QuoteValue FROM MdatCovarianceData" -y0 -o OREDB\covariancedata.txt
 rem start ORE with generated xml
 ..\..\Engine\App\bin\x64\Release\ore.exe OREDB\ore.xml
 pause

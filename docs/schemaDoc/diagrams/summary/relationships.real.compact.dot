@@ -280,7 +280,7 @@ digraph "compactRelationshipsDiagram" {
       <TR><TD PORT="Type" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="216" HEIGHT="16">Type</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="SpreadQuote" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="216" HEIGHT="16">SpreadQuote</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="RateQuote" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="216" HEIGHT="16">RateQuote</TD></TR></TABLE></TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="tables/CurveConfigurationCompositeQuotes.html"
     tooltip="CurveConfigurationCompositeQuotes"
@@ -308,12 +308,10 @@ digraph "compactRelationshipsDiagram" {
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.CurveConfigurationEquityCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="190" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="ForecastingCurve" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="190" HEIGHT="16">ForecastingCurve</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Type" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="190" HEIGHT="16">Type</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="DayCounter" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="190" HEIGHT="16">DayCounter</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="SpotQuote" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="190" HEIGHT="16">SpotQuote</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">11 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">11 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.CurveConfigurationEquityCurves"
   ];
@@ -396,7 +394,7 @@ digraph "compactRelationshipsDiagram" {
       <TR><TD PORT="Type" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">Type</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="Quote" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">Quote</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">701 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">701 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="tables/CurveConfigurationQuotes.html"
     tooltip="CurveConfigurationQuotes"
@@ -405,8 +403,10 @@ digraph "compactRelationshipsDiagram" {
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.CurveConfigurationSecurities</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="SpreadQuote" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="170" HEIGHT="16">SpreadQuote</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="RecoveryRateQuote" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="170" HEIGHT="16">RecoveryRateQuote</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.CurveConfigurationSecurities"
   ];
@@ -433,12 +433,9 @@ digraph "compactRelationshipsDiagram" {
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.CurveConfigurationYieldCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="182" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="InterpolationMethod" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="182" HEIGHT="16">InterpolationMethod</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="YieldCurveDayCounter" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="182" HEIGHT="16">YieldCurveDayCounter</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Extrapolation" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="182" HEIGHT="16">Extrapolation</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="DiscountCurve" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="182" HEIGHT="16">DiscountCurve</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">16 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">16 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.CurveConfigurationYieldCurves"
   ];
@@ -453,53 +450,64 @@ digraph "compactRelationshipsDiagram" {
       <TR><TD PORT="ProjectionCurveLong" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">ProjectionCurveLong</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="ProjectionCurveShort" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">ProjectionCurveShort</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="DiscountCurve" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">DiscountCurve</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="SpotRate" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">SpotRate</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="ProjectionCurveDomestic" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">ProjectionCurveDomestic</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="ProjectionCurveForeign" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">ProjectionCurveForeign</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="ReferenceCurve" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="232" HEIGHT="16">ReferenceCurve</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 10</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">63 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 11</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">63 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="tables/CurveConfigurationYieldCurveSegments.html"
     tooltip="CurveConfigurationYieldCurveSegments"
   ];
-  "FixingDataDefinitions" [
+  "MdatFixingData" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>FixingDataDefinitions</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="IndexId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">IndexId</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="ForeignCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">ForeignCurrency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="DomesticCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">DomesticCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>MdatFixingData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="IndexId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="89" HEIGHT="16">IndexId</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="FixingDate" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="89" HEIGHT="16">FixingDate</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">28 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">5.428 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    URL="tables/FixingDataDefinitions.html"
-    tooltip="FixingDataDefinitions"
+    URL="tables/MdatFixingData.html"
+    tooltip="MdatFixingData"
   ];
-  "MarketData" [
+  "dbo.MdatFixingDataDefinitions" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>MarketData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="QuoteId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="66" HEIGHT="16">QuoteId</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="QuoteDate" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="66" HEIGHT="16">QuoteDate</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.MdatFixingDataDefinitions</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="151" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="ForeignCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="151" HEIGHT="16">ForeignCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="DomesticCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="151" HEIGHT="16">DomesticCurrency</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7.309 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR>
     </TABLE>>
-    URL="tables/MarketData.html"
-    tooltip="MarketData"
+    tooltip="dbo.MdatFixingDataDefinitions"
   ];
-  "dbo.MarketDataDefinitions" [
+  "MdatMarketData" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.MarketDataDefinitions</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="UnitCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">UnitCurrency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="TargetCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">TargetCurrency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="FlatCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">FlatCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>MdatMarketData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="QuoteId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="92" HEIGHT="16">QuoteId</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="QuoteDate" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="92" HEIGHT="16">QuoteDate</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7.384 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    tooltip="dbo.MarketDataDefinitions"
+    URL="tables/MdatMarketData.html"
+    tooltip="MdatMarketData"
+  ];
+  "dbo.MdatMarketDataDefinitions" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.MdatMarketDataDefinitions</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="UnitCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">UnitCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="TargetCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">TargetCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="FlatCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">FlatCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">8 &gt;</TD></TR>
+    </TABLE>>
+    tooltip="dbo.MdatMarketDataDefinitions"
   ];
   "NettingCSADetails" [
    label=<
@@ -578,7 +586,7 @@ digraph "compactRelationshipsDiagram" {
       <TR><TD PORT="OreConfigId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="119" HEIGHT="16">OreConfigId</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="name" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="119" HEIGHT="16">name</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">257 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">258 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="tables/OreParametersSetup.html"
     tooltip="OreParametersSetup"
@@ -1845,7 +1853,7 @@ digraph "compactRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TodaysMarketCurveSpecs</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">9 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">10 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TodaysMarketCurveSpecs"
   ];
@@ -2417,6 +2425,8 @@ digraph "compactRelationshipsDiagram" {
   "CurveConfigurationCapFloorVolatilities":"IborIndex":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationCapFloorVolatilities":"IncludeAtm":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationCapFloorVolatilities":"VolatilityType":w -> "dbo.TypesVolatilityType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationCompositeQuotes":"RateQuote":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationCompositeQuotes":"SpreadQuote":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationCompositeQuotes":"Type":w -> "dbo.TypesSegmentTypeType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"BenchmarkCurve":w -> "dbo.TodaysMarketCurveSpecs":"id":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"Conventions":w -> "dbo.ConventionsCDS":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -2426,12 +2436,13 @@ digraph "compactRelationshipsDiagram" {
   "CurveConfigurationDefaultCurves":"Extrapolation":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"SourceCurve":w -> "dbo.TodaysMarketCurveSpecs":"id":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"Type":w -> "dbo.TypesDefaultCurveType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationEquityCurves":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationEquityCurves":"DayCounter":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationEquityCurves":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationEquityCurves":"DayCounter":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationEquityCurves":"DividendInterpolationMethod":w -> "dbo.TypesInterpolationMethodType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationEquityCurves":"DividendInterpolationVariable":w -> "dbo.TypesInterpolationVariableType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.CurveConfigurationEquityCurves":"ForecastingCurve":w -> "dbo.CurveConfigurationYieldCurves":"CurveId":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationEquityCurves":"Type":w -> "dbo.TypesEquityType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.CurveConfigurationEquityCurves":"SpotQuote":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationEquityCurves":"Type":w -> "dbo.TypesEquityType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationEquityVolatilities":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationEquityVolatilities":"Dimension":w -> "dbo.TypesDimensionType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationFXVolatilities":"Dimension":w -> "dbo.TypesDimensionType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -2452,7 +2463,10 @@ digraph "compactRelationshipsDiagram" {
   "dbo.CurveConfigurationInflationCurves":"NominalTermStructure":w -> "dbo.TodaysMarketCurveSpecs":"id":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.CurveConfigurationInflationCurves":"SeasonalityFrequency":w -> "dbo.TypesFrequencyType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.CurveConfigurationInflationCurves":"Type":w -> "dbo.TypesInflationType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationQuotes":"Quote":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationQuotes":"Type":w -> "dbo.TypesSegmentTypeType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.CurveConfigurationSecurities":"RecoveryRateQuote":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.CurveConfigurationSecurities":"SpreadQuote":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"BusinessDayConvention":w -> "dbo.TypesBusinessDayConvention":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"Calendar":w -> "dbo.TypesCalendar":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"DayCounter":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -2461,11 +2475,12 @@ digraph "compactRelationshipsDiagram" {
   "CurveConfigurationSwaptionVolatilities":"ShortSwapIndexBase":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"SwapIndexBase":w -> "dbo.TypesIndexName":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationSwaptionVolatilities":"VolatilityType":w -> "dbo.TypesVolatilityType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"Extrapolation":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"InterpolationMethod":w -> "dbo.TypesInterpolationMethodType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.CurveConfigurationYieldCurves":"DiscountCurve":w -> "dbo.TodaysMarketCurveSpecs":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"Extrapolation":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"InterpolationMethod":w -> "dbo.TypesInterpolationMethodType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurves":"InterpolationVariable":w -> "dbo.TypesInterpolationVariableType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.CurveConfigurationYieldCurves":"YieldCurveDayCounter":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurves":"YieldCurveDayCounter":w -> "dbo.TypesDayCounter":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurveSegments":"CurveId":w -> "dbo.CurveConfigurationYieldCurves":"CurveId":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurveSegments":"DiscountCurve":w -> "dbo.CurveConfigurationYieldCurves":"CurveId":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurveSegments":"ProjectionCurve":w -> "dbo.CurveConfigurationYieldCurves":"CurveId":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -2475,15 +2490,17 @@ digraph "compactRelationshipsDiagram" {
   "CurveConfigurationYieldCurveSegments":"ProjectionCurveShort":w -> "dbo.CurveConfigurationYieldCurves":"CurveId":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurveSegments":"ReferenceCurve":w -> "dbo.CurveConfigurationYieldCurves":"CurveId":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurveSegments":"SegmentsType":w -> "dbo.TypesSegmentType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "CurveConfigurationYieldCurveSegments":"SpotRate":w -> "dbo.MdatMarketDataDefinitions":"Quote":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationYieldCurveSegments":"Type":w -> "dbo.TypesSegmentTypeType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "FixingDataDefinitions":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "FixingDataDefinitions":"DomesticCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "FixingDataDefinitions":"ForeignCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "MarketData":"QuoteId":w -> "dbo.MarketDataDefinitions":"QuoteId":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.MarketDataDefinitions":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.MarketDataDefinitions":"FlatCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.MarketDataDefinitions":"TargetCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.MarketDataDefinitions":"UnitCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "MdatFixingData":"IndexId":w -> "dbo.MdatFixingDataDefinitions":"IndexId":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatFixingDataDefinitions":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatFixingDataDefinitions":"DomesticCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatFixingDataDefinitions":"ForeignCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "MdatMarketData":"QuoteId":w -> "dbo.MdatMarketDataDefinitions":"QuoteId":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatMarketDataDefinitions":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatMarketDataDefinitions":"FlatCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatMarketDataDefinitions":"TargetCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dbo.MdatMarketDataDefinitions":"UnitCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "NettingCSADetails":"Bilateral":w -> "dbo.TypesCsaType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "NettingCSADetails":"CSACurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "NettingCSADetails":"IndependentAmountType":w -> "dbo.TypesIndependentAmountType":"value":e [arrowhead=none dir=back arrowtail=crowodot];

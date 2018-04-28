@@ -153,18 +153,20 @@ SELECT DISTINCT tmc.GroupingId,
 		(SELECT
 			id [@id],
 			(SELECT 
-				name [@name], 
-				Security [data()] 
-			FROM TodaysMarketSecurities
+				c.name [@name], 
+				c.Security [data()] 
+			FROM TodaysMarketSecurities c WHERE c.id = co.id
 			FOR XML PATH ('Security'), TYPE)
+		FROM (SELECT DISTINCT id FROM TodaysMarketSecurities) co
 		FOR XML PATH ('Securities'), TYPE),
 		(SELECT
 			id [@id],
 			(SELECT 
-				name [@name], 
-				BaseCorrelation [data()] 
-			FROM TodaysMarketBaseCorrelations
+				c.name [@name], 
+				c.BaseCorrelation [data()] 
+			FROM TodaysMarketBaseCorrelations c WHERE c.id = co.id
 			FOR XML PATH ('BaseCorrelation'), TYPE)
+		FROM (SELECT DISTINCT id FROM TodaysMarketBaseCorrelations) co
 		FOR XML PATH ('BaseCorrelations'), TYPE)
 	FOR XML PATH('TodaysMarket'))) XMLData
 FROM TodaysMarketConfiguration tmc

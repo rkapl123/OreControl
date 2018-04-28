@@ -2,8 +2,9 @@
 
 ORE DB is
 - a collection of sql DDL scripts to create a Database for storing ORE Parameters, trade data and marketdata/fixingdata.
-- perl scripts to extract given xml files (e.g. examples) or marketdata/fixingdata into sql DML scripts
-- the perl scripts, SQL DDL/DML scripts and final database extraction/ORE running are executed with windows cmd-shell scripts.
+- perl scripts to transform given xml files (e.g. examples) and marketdata/fixingdata into sql DML scripts.
+- the perl scripts and the (generated) SQL DDL/DML scripts are executed with windows cmd-shell scripts.
+- currently MS SQL Server and MYSQL are supported. The proof-of-concept final database extraction/ORE running is only possible with MS SQL Server as it supports XML-creation for SQL Queries.
 
 ## SQL DDL scripts
 
@@ -11,6 +12,25 @@ ORE DB is
 The main rationale was to  
 a) follow the structure set up by the xml schemata  
 b) have relational intgrity where possible  
+
+Following sql scripts define the tables:
+- MdatTables.sql: all marketdata related tables (marketdata, fixingdata and covariancedata)
+- NettingTables.sql: all tables for nettingset definitions
+- OreParametersTables.sql: all tables for the ore parameter definitions
+- PortfolioTables.sql: all tables for the portfolio definitions
+- PricingengineTables.sql: all tables for the prixing engine definitions
+- ResultsTables.sql: all tables for ORE results.
+- SensitivityanalysisTables.sql: all tables for the sensitivity analysis definitions
+- SimulationTables.sql: all tables for the simulation definitions
+- StresstestTables.sql: all tables for the stresstest definitions
+- TodaysmarketTables.sql: all tables for the todaysmarket definitions
+- TypesTables.sql: all tables for the referenced types.
+- ConventionsTables.sql: all tables for the convention definitions
+- CurveConfigurationTables.sql: all tables for the curve configuration definitions
+
+For filling the TodaysmarketCurveSpec Table (which is required as a relational reference of curve configuration fields to curve specs) there are trigger definitions on the TodaysmarketTables that define a curve spec for each supported database:
+- TodaysmarketTableTriggerMSSQL.sql
+- TodaysmarketTableTriggerMYSQL.sql
 
 For details see the [SchemaSpy generated documentation](schemaDoc/index.html)
 
@@ -49,6 +69,7 @@ my $marketdataFile = "$oreRoot/Examples/Input/market_20160205.txt";
 my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
 my $covarianceFile = "$oreRoot/Examples/Example_15/Input/covariance.csv";
 ```
+Because the relational integrity of quotes in the curve configuration is relying on Quote keys available in the MarketData Definitions table, another marketdata file "marketdata_missing.txt" is needed, which inserts the missing Quote keys.
 
 ## Database creation and filling
 
@@ -56,4 +77,6 @@ The DDL and DML scripts are executed with runOREDBScriptsSQLServer.cmd that runs
 
 ## Database extraction and running ORE
 
-With the script runXMLOutput.cmd the Database stored data is fetched for example 2 (Sensitivityanalysis and Stresstest from example 15) and written into respective xml files in folder OREDB. Subsequently ORE is started with the ore.xml parametrization from example 2.
+As a proof of the concept, the script runXMLOutput.cmd fetches the Database-stored data for example 2 (Sensitivityanalysis and Stresstest from example 15) and writes it into respective xml files in folder OREDB. Subsequently ORE is started with the ore.xml parametrization and the extracted files.
+
+The final OREControl suite would pass the XML strings in-memory to a modified ORE-App (using SWIG) and retrieve the results in-memory, too.

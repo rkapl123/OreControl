@@ -31,11 +31,11 @@ digraph "oneDegreeRelationshipsDiagramImplied" {
   "CurveConfigurationDefaultCurves":"Extrapolation":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"SourceCurve":w -> "dbo.TodaysMarketCurveSpecs":"id":e [arrowhead=none dir=back arrowtail=crowodot];
   "CurveConfigurationDefaultCurves":"Type":w -> "dbo.TypesDefaultCurveType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "MarketDataDefinitions":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "MarketDataDefinitions":"CurveId":w -> "CurveConfigurationDefaultCurves":"CurveId.type":e [arrowhead=none dir=back arrowtail=crowodot style=dashed];
-  "MarketDataDefinitions":"FlatCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "MarketDataDefinitions":"TargetCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "MarketDataDefinitions":"UnitCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "MdatMarketDataDefinitions":"Currency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "MdatMarketDataDefinitions":"CurveId":w -> "CurveConfigurationDefaultCurves":"CurveId.type":e [arrowhead=none dir=back arrowtail=crowodot style=dashed];
+  "MdatMarketDataDefinitions":"FlatCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "MdatMarketDataDefinitions":"TargetCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "MdatMarketDataDefinitions":"UnitCurrency":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.ConventionsCDS" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -67,7 +67,7 @@ digraph "oneDegreeRelationshipsDiagramImplied" {
       <TR><TD PORT="BenchmarkCurve" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">BenchmarkCurve</TD></TR></TABLE></TD><TD PORT="BenchmarkCurve.type" ALIGN="LEFT">varchar[70]</TD></TR>
       <TR><TD PORT="SourceCurve" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">SourceCurve</TD></TR></TABLE></TD><TD PORT="SourceCurve.type" ALIGN="LEFT">varchar[70]</TD></TR>
       <TR><TD PORT="Pillars" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">Pillars</TD></TR></TABLE></TD><TD PORT="Pillars.type" ALIGN="LEFT">varchar[70]</TD></TR>
-      <TR><TD PORT="SpotLag" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">SpotLag</TD></TR></TABLE></TD><TD PORT="SpotLag.type" ALIGN="LEFT">decimal[8,2]</TD></TR>
+      <TR><TD PORT="SpotLag" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">SpotLag</TD></TR></TABLE></TD><TD PORT="SpotLag.type" ALIGN="LEFT">int[4]</TD></TR>
       <TR><TD PORT="Calendar" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">Calendar</TD></TR></TABLE></TD><TD PORT="Calendar.type" ALIGN="LEFT">varchar[20]</TD></TR>
       <TR><TD PORT="Extrapolation" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="194" HEIGHT="16">Extrapolation</TD></TR></TABLE></TD><TD PORT="Extrapolation.type" ALIGN="LEFT">varchar[5]</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 8</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR>
@@ -75,28 +75,29 @@ digraph "oneDegreeRelationshipsDiagramImplied" {
     URL="CurveConfigurationDefaultCurves.html"
     tooltip="CurveConfigurationDefaultCurves"
   ];
-  "MarketDataDefinitions" [
+  "MdatMarketDataDefinitions" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>MarketDataDefinitions</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="QuoteId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">QuoteId</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="UnitCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">UnitCurrency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="TargetCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">TargetCurrency</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="CurveId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">CurveId</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="FlatCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="126" HEIGHT="16">FlatCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>MdatMarketDataDefinitions</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="QuoteId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">QuoteId</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="Quote" COLSPAN="3" BGCOLOR="#ffffff" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">Quote</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="Currency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">Currency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="UnitCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">UnitCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="TargetCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">TargetCurrency</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="CurveId" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">CurveId</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="FlatCurrency" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="154" HEIGHT="16">FlatCurrency</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7.309 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7.384 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    URL="MarketDataDefinitions.html"
-    tooltip="MarketDataDefinitions"
+    URL="MdatMarketDataDefinitions.html"
+    tooltip="MdatMarketDataDefinitions"
   ];
   "dbo.TodaysMarketCurveSpecs" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TodaysMarketCurveSpecs</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">9 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">10 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TodaysMarketCurveSpecs"
   ];

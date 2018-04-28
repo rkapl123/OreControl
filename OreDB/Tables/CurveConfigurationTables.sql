@@ -87,7 +87,7 @@ CREATE TABLE CurveConfigurationYieldCurves (
 	GroupingId varchar(70),
 	CurveDescription varchar(70),
 	Currency varchar(7),
-	DiscountCurve varchar(20),
+	DiscountCurve varchar(70),
 	InterpolationVariable varchar(20),
 	InterpolationMethod varchar(20),
 	YieldCurveDayCounter varchar(30),
@@ -106,7 +106,8 @@ ALTER TABLE CurveConfigurationYieldCurves ADD CONSTRAINT FK_CurveConfigurationYi
 REFERENCES TypesDayCounter (value);
 ALTER TABLE CurveConfigurationYieldCurves ADD CONSTRAINT FK_CurveConfigurationYieldCurves_Extrapolation FOREIGN KEY(Extrapolation)
 REFERENCES TypesBool (value);
-
+ALTER TABLE CurveConfigurationYieldCurves ADD CONSTRAINT FK_CurveConfigurationYieldCurves_DiscountCurve FOREIGN KEY(DiscountCurve)
+REFERENCES TodaysMarketCurveSpecs (id);
 
 CREATE TABLE CurveConfigurationDefaultCurves (
 	CurveId varchar(30) NOT NULL,
@@ -121,7 +122,7 @@ CREATE TABLE CurveConfigurationDefaultCurves (
 	BenchmarkCurve varchar(70),
 	SourceCurve varchar(70),
 	Pillars varchar(70),
-	SpotLag decimal(6,2),
+	SpotLag int,
 	Calendar varchar(20),
 	Extrapolation varchar(5),
 CONSTRAINT PK_CurveConfigurationDefaultCurves PRIMARY KEY CLUSTERED (
@@ -271,7 +272,7 @@ CREATE TABLE CurveConfigurationEquityCurves (
 	Currency varchar(7),
 	ForecastingCurve varchar(20),
 	Type varchar(20),
-	SpotQuote varchar(70),
+	SpotQuote varchar(100),
 	DayCounter varchar(30),
 	DividendInterpolationVariable varchar(20),
 	DividendInterpolationMethod varchar(20),
@@ -290,6 +291,8 @@ ALTER TABLE CurveConfigurationEquityCurves ADD CONSTRAINT FK_CurveConfigurationE
 REFERENCES TypesInterpolationVariableType (value);
 ALTER TABLE CurveConfigurationEquityCurves ADD CONSTRAINT FK_CurveConfigurationEquityCurves_DividendInterpolationMethod FOREIGN KEY(DividendInterpolationMethod)
 REFERENCES TypesInterpolationMethodType (value);
+ALTER TABLE CurveConfigurationEquityCurves ADD CONSTRAINT FK_CurveConfigurationEquityCurves_SpotQuote FOREIGN KEY(SpotQuote)
+REFERENCES MdatMarketDataDefinitions (Quote);
 
 
 CREATE TABLE CurveConfigurationEquityVolatilities (
@@ -313,12 +316,15 @@ CREATE TABLE CurveConfigurationSecurities (
 	CurveId varchar(20) NOT NULL,
 	GroupingId varchar(70),
 	CurveDescription varchar(70),
-	SpreadQuote varchar(70),
-	RecoveryRateQuote varchar(70),
+	SpreadQuote varchar(100),
+	RecoveryRateQuote varchar(100),
 CONSTRAINT PK_CurveConfigurationSecurities PRIMARY KEY CLUSTERED (
 	CurveId ASC
 ));
-
+ALTER TABLE CurveConfigurationSecurities ADD CONSTRAINT FK_CurveConfigurationSecurities_SpreadQuote FOREIGN KEY(SpreadQuote)
+REFERENCES MdatMarketDataDefinitions (Quote);
+ALTER TABLE CurveConfigurationSecurities ADD CONSTRAINT FK_CurveConfigurationSecurities_RecoveryRateQuote FOREIGN KEY(RecoveryRateQuote)
+REFERENCES MdatMarketDataDefinitions (Quote);
 
 -- relates to CurveConfigurationYieldCurve above
 CREATE TABLE CurveConfigurationYieldCurveSegments (
@@ -331,7 +337,7 @@ CREATE TABLE CurveConfigurationYieldCurveSegments (
 	ProjectionCurveLong varchar(20),
 	ProjectionCurveShort varchar(20),
 	DiscountCurve varchar(20),
-	SpotRate varchar(70),
+	SpotRate varchar(100),
 	ProjectionCurveDomestic varchar(20),
 	ProjectionCurveForeign varchar(20),
 	ReferenceCurve varchar(20),
@@ -360,14 +366,15 @@ ALTER TABLE CurveConfigurationYieldCurveSegments ADD CONSTRAINT FK_CurveConfigur
 REFERENCES CurveConfigurationYieldCurves (CurveId);
 ALTER TABLE CurveConfigurationYieldCurveSegments ADD CONSTRAINT FK_CurveConfigurationYieldCurveSegments_ReferenceCurve FOREIGN KEY(ReferenceCurve)
 REFERENCES CurveConfigurationYieldCurves (CurveId);
-
+ALTER TABLE CurveConfigurationYieldCurveSegments ADD CONSTRAINT FK_CurveConfigurationYieldCurveSegments_SpotRate FOREIGN KEY(SpotRate)
+REFERENCES MdatMarketDataDefinitions (Quote);
 
 -- relates to Segments table above, only for Type AverageOIS
 CREATE TABLE CurveConfigurationCompositeQuotes (
 	CurveId varchar(20) NOT NULL,
 	Type varchar(30),
-	SpreadQuote varchar(70) NOT NULL,
-	RateQuote varchar(70) NOT NULL,
+	SpreadQuote varchar(100) NOT NULL,
+	RateQuote varchar(100) NOT NULL,
 CONSTRAINT PK_CurveConfigurationCompositeQuotes PRIMARY KEY CLUSTERED (
 	CurveId ASC,
 	SpreadQuote ASC,
@@ -375,20 +382,25 @@ CONSTRAINT PK_CurveConfigurationCompositeQuotes PRIMARY KEY CLUSTERED (
 ));
 ALTER TABLE CurveConfigurationCompositeQuotes ADD CONSTRAINT FK_CurveConfigurationCompositeQuotes_Type FOREIGN KEY(Type)
 REFERENCES TypesSegmentTypeType (value);
+ALTER TABLE CurveConfigurationCompositeQuotes ADD CONSTRAINT FK_CurveConfigurationCompositeQuotes_SpreadQuote FOREIGN KEY(SpreadQuote)
+REFERENCES MdatMarketDataDefinitions (Quote);
+ALTER TABLE CurveConfigurationCompositeQuotes ADD CONSTRAINT FK_CurveConfigurationCompositeQuotes_RateQuote FOREIGN KEY(RateQuote)
+REFERENCES MdatMarketDataDefinitions (Quote);
 
 -- relates to the Segment table above, except AverageOIS
 CREATE TABLE CurveConfigurationQuotes (
 	CurveId varchar(20) NOT NULL,
 	Seq int NOT NULL,
 	Type varchar(30),
-	Quote varchar(70) NOT NULL,
+	Quote varchar(100) NOT NULL,
 CONSTRAINT PK_CurveConfigurationQuotes PRIMARY KEY CLUSTERED (
 	CurveId ASC,
 	Quote ASC
 ));
 ALTER TABLE CurveConfigurationQuotes ADD CONSTRAINT FK_CurveConfigurationQuotes_Type FOREIGN KEY(Type)
 REFERENCES TypesSegmentTypeType (value);
-
+ALTER TABLE CurveConfigurationQuotes ADD CONSTRAINT FK_CurveConfigurationQuotes_Quote FOREIGN KEY(Quote)
+REFERENCES MdatMarketDataDefinitions (Quote);
 
 CREATE TABLE CurveConfigurationBaseCorrelation (
 	CurveId varchar(20) NOT NULL,

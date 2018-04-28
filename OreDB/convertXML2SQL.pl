@@ -56,7 +56,7 @@ if (-e $configDir.'/pricingengine.xml') {
 			foreach my $subrecord (@subrecordData) {
 				$subrecord->setAttribute("type", $typeAtt);
 				printInsert($subrecord, "PricingEngine", "ModelParameters");
-			}
+				}
 		}
 	}
 	close SQLOUT;
@@ -255,6 +255,8 @@ if (-e $configDir.'/curveconfig.xml') {
 			if ($tblrecord->nodeName !~ /^InflationCurve$/ && ref($tblrecord) eq "XML::LibXML::Element") {
 				# first the configuration curve to let childs relate
 				$tblrecord->setAttribute("GroupingId",'ExampleInput');
+				$tblrecord->setAttribute("DividendInterpolationVariable", $tblrecord->findvalue('DividendInterpolation/InterpolationVariable'));
+				$tblrecord->setAttribute("DividendInterpolationMethod", $tblrecord->findvalue('DividendInterpolation/InterpolationMethod'));
 				printInsert($tblrecord, "CurveConfiguration", $tableName);
 				my $curveid = $tblrecord->findvalue('CurveId');
 				my @subrecordData = $tblrecord->findnodes('Segments/*');
@@ -518,24 +520,45 @@ sub doInputXMLs {
 		$record->setAttribute("YieldCurvesConfigurationInterpolation", $record->findvalue("YieldCurves/Configuration/Interpolation"));
 		$record->setAttribute("YieldCurvesConfigurationExtrapolation", $record->findvalue("YieldCurves/Configuration/Extrapolation"));
 		$record->setAttribute("DefaultCurvesTenors", $record->findvalue("DefaultCurves/Tenors"));
-		$record->setAttribute("EquitiesTenors", $record->findvalue("Equities/Tenors"));
+		$record->setAttribute("DefaultCurvesSimulateSurvivalProbabilities", $record->findvalue("DefaultCurves/SimulateSurvivalProbabilities"));
+		$record->setAttribute("EquitiesDividendTenors", $record->findvalue("Equities/DividendTenors"));
+		$record->setAttribute("EquitiesForecastTenors", $record->findvalue("Equities/ForecastTenors"));
+		$record->setAttribute("EquitiesSimulateDividendYield", $record->findvalue("Equities/SimulateDividendYield"));
+		$record->setAttribute("EquitiesSimulateEquityForecastCurve", $record->findvalue("Equities/SimulateEquityForecastCurve"));
 		$record->setAttribute("SwaptionVolatilitiesSimulate", $record->findvalue("SwaptionVolatilities/Simulate"));
 		$record->setAttribute("SwaptionVolatilitiesReactionToTimeDecay", $record->findvalue("SwaptionVolatilities/ReactionToTimeDecay"));
 		$record->setAttribute("SwaptionVolatilitiesExpiries", $record->findvalue("SwaptionVolatilities/Expiries"));
 		$record->setAttribute("SwaptionVolatilitiesTerms", $record->findvalue("SwaptionVolatilities/Terms"));
-		$record->setAttribute("SwaptionVolatilitiesStrikes", $record->findvalue("SwaptionVolatilities/Strikes"));
-		$record->setAttribute("SwaptionVolatilitiesSimulate", $record->findvalue("SwaptionVolatilities/Simulate"));
-		$record->setAttribute("SwaptionVolatilitiesReactionToTimeDecay", $record->findvalue("SwaptionVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("SwaptionVolatilitiesExpiries", $record->findvalue("SwaptionVolatilities/Expiries"));
-		$record->setAttribute("SwaptionVolatilitiesStrikes", $record->findvalue("SwaptionVolatilities/Strikes"));
+		$record->setAttribute("SwaptionVolatilitiesCubeSimulateATMOnly", $record->findvalue("SwaptionVolatilities/Cube/SimulateATMOnly"));
+		$record->setAttribute("SwaptionVolatilitiesCubeStrikeSpreads", $record->findvalue("SwaptionVolatilities/Cube/StrikeSpreads"));
+		$record->setAttribute("CapFloorVolatilitiesSimulate", $record->findvalue("CapFloorVolatilities/Simulate"));
+		$record->setAttribute("CapFloorVolatilitiesReactionToTimeDecay", $record->findvalue("CapFloorVolatilities/ReactionToTimeDecay"));
+		$record->setAttribute("CapFloorVolatilitiesExpiries", $record->findvalue("CapFloorVolatilities/Expiries"));
+		$record->setAttribute("CapFloorVolatilitiesStrikes", $record->findvalue("CapFloorVolatilities/Strikes"));
+		$record->setAttribute("CDSVolatilitiesSimulate", $record->findvalue("CDSVolatilities/Simulate"));
+		$record->setAttribute("CDSVolatilitiesReactionToTimeDecay", $record->findvalue("CDSVolatilities/ReactionToTimeDecay"));
+		$record->setAttribute("CDSVolatilitiesExpiries", $record->findvalue("CDSVolatilities/Expiries"));
 		$record->setAttribute("FxVolatilitiesSimulate", $record->findvalue("FxVolatilities/Simulate"));
 		$record->setAttribute("FxVolatilitiesReactionToTimeDecay", $record->findvalue("FxVolatilities/ReactionToTimeDecay"));
 		$record->setAttribute("FxVolatilitiesExpiries", $record->findvalue("FxVolatilities/Expiries"));
-		$record->setAttribute("FxVolatilitiesStrikes", $record->findvalue("FxVolatilities/Strikes"));
+		$record->setAttribute("FxVolatilitiesSurfaceMoneyness", $record->findvalue("FxVolatilities/SurfaceMoneyness"));
 		$record->setAttribute("EquityVolatilitiesSimulate", $record->findvalue("EquityVolatilities/Simulate"));
 		$record->setAttribute("EquityVolatilitiesReactionToTimeDecay", $record->findvalue("EquityVolatilities/ReactionToTimeDecay"));
 		$record->setAttribute("EquityVolatilitiesExpiries", $record->findvalue("EquityVolatilities/Expiries"));
-		$record->setAttribute("EquityVolatilitiesStrikes", $record->findvalue("EquityVolatilities/Strikes"));
+		$record->setAttribute("EquityVolatilitiesSurfaceSimulateATMOnly", $record->findvalue("EquityVolatilities/Surface/SimulateATMOnly"));
+		$record->setAttribute("EquityVolatilitiesSurfaceMoneyness", $record->findvalue("EquityVolatilities/Surface/Moneyness"));
+		$record->setAttribute("YYInflationIndexCurvesTenors", $record->findvalue("YYInflationIndexCurves/Tenors"));
+		$record->setAttribute("CpiCapFloorVolatilitiesSimulate", $record->findvalue("CpiCapFloorVolatilities/Simulate"));
+		$record->setAttribute("CpiCapFloorVolatilitiesReactionToTimeDecay", $record->findvalue("CpiCapFloorVolatilities/ReactionToTimeDecay"));
+		$record->setAttribute("CpiCapFloorVolatilitiesExpiries", $record->findvalue("CpiCapFloorVolatilities/Expiries"));
+		$record->setAttribute("CpiCapFloorVolatilitiesStrikes", $record->findvalue("CpiCapFloorVolatilities/Strikes"));
+		$record->setAttribute("YYCapFloorVolatilitiesSimulate", $record->findvalue("YYCapFloorVolatilities/Simulate"));
+		$record->setAttribute("YYCapFloorVolatilitiesReactionToTimeDecay", $record->findvalue("YYCapFloorVolatilities/ReactionToTimeDecay"));
+		$record->setAttribute("YYCapFloorVolatilitiesExpiries", $record->findvalue("YYCapFloorVolatilities/Expiries"));
+		$record->setAttribute("YYCapFloorVolatilitiesStrikes", $record->findvalue("YYCapFloorVolatilities/Strikes"));
+		$record->setAttribute("BaseCorrelationsSimulate", $record->findvalue("BaseCorrelations/Simulate"));
+		$record->setAttribute("BaseCorrelationsDetachmentPoints", $record->findvalue("BaseCorrelations/DetachmentPoints"));
+		$record->setAttribute("BaseCorrelationsTerms", $record->findvalue("BaseCorrelations/Terms"));
 		printInsert($record, "Simulation", "Market");
 		my @subrecord = $record->findnodes('FxRates/CurrencyPairs/CurrencyPair');
 		foreach my $subrecord (@subrecord) {
@@ -954,6 +977,8 @@ sub printInsert() {
 	if ($record->hasAttributes) {
 		foreach my $tableCol ($record->attributes) {
 			#print Dumper($tableCol)."\n";
+			# duplicate values in CaseInsenstive Database: true|false|Following|Preceding
+			# && (($tableCol->value !~ /^true$|^false$/ && $tableName eq "bool") || ($tableCol->value !~ /^Following$|^Preceding$/ && $tableName eq "businessDayConvention"))
 			if ($tableCol->value ne "") {
 				$colNames.=($tableCol->nodeName =~ /^rule$|^index$/i ? $tableCol->nodeName."Name" : $tableCol->nodeName).",";
 				$colValues.=formatSQL($tableCol->value, $numericAsChar,$numericAsDate).",";

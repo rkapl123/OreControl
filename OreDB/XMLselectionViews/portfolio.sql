@@ -16,7 +16,7 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 			ta.Type, ta.Owner,
 			(SELECT 
 				(SELECT 
-				s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+				s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(s.FirstDate,'') FirstDate, ISNULL(s.LastDate,'') LastDate
 				FROM PortfolioScheduleDataRules s WHERE s.TradeActionId = ta.Id
 				FOR XML PATH (''), TYPE) Rules,
 				(SELECT s.ScheduleDate [Date]
@@ -40,7 +40,7 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					FOR XML PATH (''), TYPE) Exchanges
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(s.FirstDate,'') FirstDate, ISNULL(s.LastDate,'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]

@@ -1,27 +1,36 @@
 use ORE
 GO
-CREATE TRIGGER dbo.YieldCurveSpecsCreateI
-	ON dbo.TodaysMarketYieldCurves
+-- Triggers for TodaysMarket<> tables to enable filling of reference table TodaysMarketCurveSpecs
+-- this reference table is used in Curve configurations and other places.
+CREATE TRIGGER YieldCurveSpecsCreateI
+	ON TodaysMarketYieldCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.YieldCurve
 	FROM inserted
-	WHERE NOT exists(SELECT YieldCurve FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.YieldCurve)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.YieldCurve)
 END
 GO
-CREATE TRIGGER dbo.YieldCurveSpecsCreateU
-	ON dbo.TodaysMarketYieldCurves
-FOR UPDATE AS  
+CREATE TRIGGER [dbo].[YieldCurveSpecsCreateU]
+	ON [dbo].[TodaysMarketYieldCurves]
+AFTER UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.YieldCurve
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.YieldCurve AND inserted.YieldCurve = deleted.YieldCurve
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.YieldCurve AND
+	(SELECT count(*) FROM TodaysMarketYieldCurves WHERE YieldCurve = deleted.YieldCurve) = 0 AND
+	(SELECT count(*) FROM TodaysMarketDiscountingCurves WHERE DiscountingCurve = deleted.YieldCurve) = 0 AND
+	(SELECT count(*) FROM TodaysMarketIndexForwardingCurves WHERE IndexName = deleted.YieldCurve) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.YieldCurve id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.YieldCurve)
 END
 GO
-CREATE TRIGGER dbo.YieldCurveSpecsCreateD
-	ON dbo.TodaysMarketYieldCurves
+CREATE TRIGGER YieldCurveSpecsCreateD
+	ON TodaysMarketYieldCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -29,28 +38,35 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.YieldCurve
 END
 GO
-CREATE TRIGGER dbo.DiscountingCurveSpecsCreateI
-	ON dbo.TodaysMarketDiscountingCurves
+CREATE TRIGGER DiscountingCurveSpecsCreateI
+	ON TodaysMarketDiscountingCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.DiscountingCurve
 	FROM inserted
-	WHERE NOT exists(SELECT DiscountingCurve FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.DiscountingCurve)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.DiscountingCurve)
 END
 GO
-CREATE TRIGGER dbo.DiscountingCurveSpecsCreateU
-	ON dbo.TodaysMarketDiscountingCurves
+CREATE TRIGGER DiscountingCurveSpecsCreateU
+	ON TodaysMarketDiscountingCurves
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.DiscountingCurve
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.DiscountingCurve AND inserted.DiscountingCurve = deleted.DiscountingCurve
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.DiscountingCurve AND
+	(SELECT count(*) FROM TodaysMarketYieldCurves WHERE YieldCurve = deleted.DiscountingCurve) = 0 AND
+	(SELECT count(*) FROM TodaysMarketDiscountingCurves WHERE DiscountingCurve = deleted.DiscountingCurve) = 0 AND
+	(SELECT count(*) FROM TodaysMarketIndexForwardingCurves WHERE IndexName = deleted.DiscountingCurve) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.DiscountingCurve id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.DiscountingCurve)
 END
 GO
-CREATE TRIGGER dbo.DiscountingCurveSpecsCreateD
-	ON dbo.TodaysMarketDiscountingCurves
+CREATE TRIGGER DiscountingCurveSpecsCreateD
+	ON TodaysMarketDiscountingCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -58,28 +74,35 @@ BEGIN
 	WHERE TodaysMarketCurveSpecs.id = deleted.DiscountingCurve
 END
 GO
-CREATE TRIGGER dbo.ForwardingCurveSpecsCreateI
-	ON dbo.TodaysMarketIndexForwardingCurves
+CREATE TRIGGER ForwardingCurveSpecsCreateI
+	ON TodaysMarketIndexForwardingCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.IndexName
 	FROM inserted
-	WHERE NOT exists(SELECT IndexName FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.IndexName)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.IndexName)
 END
 GO
-CREATE TRIGGER dbo.ForwardingCurveSpecsCreateU
-	ON dbo.TodaysMarketIndexForwardingCurves
+CREATE TRIGGER ForwardingCurveSpecsCreateU
+	ON TodaysMarketIndexForwardingCurves
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.IndexName
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.IndexName AND inserted.IndexName = deleted.IndexName
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.IndexName AND
+	(SELECT count(*) FROM TodaysMarketIndexForwardingCurves WHERE IndexName = deleted.IndexName) = 0 AND
+	(SELECT count(*) FROM TodaysMarketYieldCurves WHERE YieldCurve = deleted.IndexName) = 0 AND
+	(SELECT count(*) FROM TodaysMarketDiscountingCurves WHERE DiscountingCurve = deleted.IndexName) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.IndexName id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.IndexName)
 END
 GO
-CREATE TRIGGER dbo.ForwardingCurveSpecsCreateD
-	ON dbo.TodaysMarketIndexForwardingCurves
+CREATE TRIGGER ForwardingCurveSpecsCreateD
+	ON TodaysMarketIndexForwardingCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -88,28 +111,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.InflationSpecsCreateI
-	ON dbo.TodaysMarketZeroInflationIndexCurves
+CREATE TRIGGER InflationSpecsCreateI
+	ON TodaysMarketZeroInflationIndexCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.ZeroInflationIndexCurve
 	FROM inserted
-	WHERE NOT exists(SELECT ZeroInflationIndexCurve FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.ZeroInflationIndexCurve)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.ZeroInflationIndexCurve)
 END
 GO
-CREATE TRIGGER dbo.InflationSpecsCreateU
-	ON dbo.TodaysMarketZeroInflationIndexCurves
+CREATE TRIGGER InflationSpecsCreateU
+	ON TodaysMarketZeroInflationIndexCurves
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.ZeroInflationIndexCurve
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.ZeroInflationIndexCurve AND inserted.ZeroInflationIndexCurve = deleted.ZeroInflationIndexCurve
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.ZeroInflationIndexCurve AND
+	(SELECT count(*) FROM TodaysMarketZeroInflationIndexCurves WHERE ZeroInflationIndexCurve = deleted.ZeroInflationIndexCurve) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.ZeroInflationIndexCurve id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.ZeroInflationIndexCurve)
 END
 GO
-CREATE TRIGGER dbo.InflationSpecsCreateD
-	ON dbo.TodaysMarketZeroInflationIndexCurves
+CREATE TRIGGER InflationSpecsCreateD
+	ON TodaysMarketZeroInflationIndexCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -118,28 +146,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.YYInflationSpecsCreateI
-	ON dbo.TodaysMarketYYInflationIndexCurves
+CREATE TRIGGER YYInflationSpecsCreateI
+	ON TodaysMarketYYInflationIndexCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.YYInflationIndexCurve
 	FROM inserted
-	WHERE NOT exists(SELECT YYInflationIndexCurve FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.YYInflationIndexCurve)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.YYInflationIndexCurve)
 END
 GO
-CREATE TRIGGER dbo.YYInflationSpecsCreateU
-	ON dbo.TodaysMarketYYInflationIndexCurves
+CREATE TRIGGER YYInflationSpecsCreateU
+	ON TodaysMarketYYInflationIndexCurves
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.YYInflationIndexCurve
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.YYInflationIndexCurve AND inserted.YYInflationIndexCurve = deleted.YYInflationIndexCurve
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.YYInflationIndexCurve AND
+	(SELECT count(*) FROM TodaysMarketYYInflationIndexCurves WHERE YYInflationIndexCurve = deleted.YYInflationIndexCurve) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.YYInflationIndexCurve id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.YYInflationIndexCurve)
 END
 GO
-CREATE TRIGGER dbo.YYInflationSpecsCreateD
-	ON dbo.TodaysMarketYYInflationIndexCurves
+CREATE TRIGGER YYInflationSpecsCreateD
+	ON TodaysMarketYYInflationIndexCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -149,28 +182,33 @@ END
 GO
 
 
-CREATE TRIGGER dbo.FxSpotSpecsCreateI
-	ON dbo.TodaysMarketFxSpots
+CREATE TRIGGER FxSpotSpecsCreateI
+	ON TodaysMarketFxSpots
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.FxSpot
 	FROM inserted
-	WHERE NOT exists(SELECT FxSpot FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.FxSpot)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.FxSpot)
 END
 GO
-CREATE TRIGGER dbo.FxSpotSpecsCreateU
-	ON dbo.TodaysMarketFxSpots
+CREATE TRIGGER FxSpotSpecsCreateU
+	ON TodaysMarketFxSpots
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.FxSpot
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.FxSpot AND inserted.FxSpot = deleted.FxSpot
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.FxSpot AND
+	(SELECT count(*) FROM TodaysMarketFxSpots WHERE FxSpot = deleted.FxSpot) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.FxSpot id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.FxSpot)
 END
 GO
-CREATE TRIGGER dbo.FxSpotSpecsCreateD
-	ON dbo.TodaysMarketFxSpots
+CREATE TRIGGER FxSpotSpecsCreateD
+	ON TodaysMarketFxSpots
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -179,28 +217,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.FxVolatilitySpecsCreateI
-	ON dbo.TodaysMarketFxVolatilities
+CREATE TRIGGER FxVolatilitySpecsCreateI
+	ON TodaysMarketFxVolatilities
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.FxVolatility
 	FROM inserted
-	WHERE NOT exists(SELECT FxVolatility FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.FxVolatility)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.FxVolatility)
 END
 GO
-CREATE TRIGGER dbo.FxVolatilitySpecsCreateU
-	ON dbo.TodaysMarketFxVolatilities
+CREATE TRIGGER FxVolatilitySpecsCreateU
+	ON TodaysMarketFxVolatilities
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.FxVolatility
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.FxVolatility AND inserted.FxVolatility = deleted.FxVolatility
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.FxVolatility AND
+	(SELECT count(*) FROM TodaysMarketFxVolatilities WHERE FxVolatility = deleted.FxVolatility) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.FxVolatility id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.FxVolatility)
 END
 GO
-CREATE TRIGGER dbo.FxVolatilitySpecsCreateD
-	ON dbo.TodaysMarketFxVolatilities
+CREATE TRIGGER FxVolatilitySpecsCreateD
+	ON TodaysMarketFxVolatilities
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -210,28 +253,33 @@ END
 GO
 
 
-CREATE TRIGGER dbo.SwaptionVolatilitySpecsCreateI
-	ON dbo.TodaysMarketSwaptionVolatilities
+CREATE TRIGGER SwaptionVolatilitySpecsCreateI
+	ON TodaysMarketSwaptionVolatilities
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.SwaptionVolatility
 	FROM inserted
-	WHERE NOT exists(SELECT SwaptionVolatility FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.SwaptionVolatility)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.SwaptionVolatility)
 END
 GO
-CREATE TRIGGER dbo.SwaptionVolatilitySpecsCreateU
-	ON dbo.TodaysMarketSwaptionVolatilities
+CREATE TRIGGER SwaptionVolatilitySpecsCreateU
+	ON TodaysMarketSwaptionVolatilities
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.SwaptionVolatility
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.SwaptionVolatility AND inserted.SwaptionVolatility = deleted.SwaptionVolatility
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.SwaptionVolatility AND
+	(SELECT count(*) FROM TodaysMarketSwaptionVolatilities WHERE SwaptionVolatility = deleted.SwaptionVolatility) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.SwaptionVolatility id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.SwaptionVolatility)
 END
 GO
-CREATE TRIGGER dbo.SwaptionVolatilitySpecsCreateD
-	ON dbo.TodaysMarketSwaptionVolatilities
+CREATE TRIGGER SwaptionVolatilitySpecsCreateD
+	ON TodaysMarketSwaptionVolatilities
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -240,28 +288,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.CapFloorVolatilitySpecsCreateI
-	ON dbo.TodaysMarketCapFloorVolatilities
+CREATE TRIGGER CapFloorVolatilitySpecsCreateI
+	ON TodaysMarketCapFloorVolatilities
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.CapFloorVolatility
 	FROM inserted
-	WHERE NOT exists(SELECT CapFloorVolatility FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.CapFloorVolatility)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.CapFloorVolatility)
 END
 GO
-CREATE TRIGGER dbo.CapFloorVolatilitySpecsCreateU
-	ON dbo.TodaysMarketCapFloorVolatilities
+CREATE TRIGGER CapFloorVolatilitySpecsCreateU
+	ON TodaysMarketCapFloorVolatilities
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.CapFloorVolatility
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.CapFloorVolatility AND inserted.CapFloorVolatility = deleted.CapFloorVolatility
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.CapFloorVolatility AND
+	(SELECT count(*) FROM TodaysMarketCapFloorVolatilities WHERE CapFloorVolatility = deleted.CapFloorVolatility) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.CapFloorVolatility id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.CapFloorVolatility)
 END
 GO
-CREATE TRIGGER dbo.CapFloorVolatilitySpecsCreateD
-	ON dbo.TodaysMarketCapFloorVolatilities
+CREATE TRIGGER CapFloorVolatilitySpecsCreateD
+	ON TodaysMarketCapFloorVolatilities
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -270,28 +323,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.DefaultSpecsCreateI
-	ON dbo.TodaysMarketDefaultCurves
+CREATE TRIGGER DefaultSpecsCreateI
+	ON TodaysMarketDefaultCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.DefaultCurve
 	FROM inserted
-	WHERE NOT exists(SELECT DefaultCurve FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.DefaultCurve)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.DefaultCurve)
 END
 GO
-CREATE TRIGGER dbo.DefaultSpecsCreateU
-	ON dbo.TodaysMarketDefaultCurves
+CREATE TRIGGER DefaultSpecsCreateU
+	ON TodaysMarketDefaultCurves
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.DefaultCurve
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.DefaultCurve AND inserted.DefaultCurve = deleted.DefaultCurve
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.DefaultCurve AND
+	(SELECT count(*) FROM TodaysMarketDefaultCurves WHERE DefaultCurve = deleted.DefaultCurve) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.DefaultCurve id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.DefaultCurve)
 END
 GO
-CREATE TRIGGER dbo.DefaultSpecsCreateD
-	ON dbo.TodaysMarketDefaultCurves
+CREATE TRIGGER DefaultSpecsCreateD
+	ON TodaysMarketDefaultCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -301,28 +359,33 @@ END
 GO
 
 
-CREATE TRIGGER dbo.InflationCapFloorPriceSpecsCreateI
-	ON dbo.TodaysMarketInflationCapFloorPriceSurfaces
+CREATE TRIGGER InflationCapFloorPriceSpecsCreateI
+	ON TodaysMarketInflationCapFloorPriceSurfaces
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.InflationCapFloorPriceSurface
 	FROM inserted
-	WHERE NOT exists(SELECT InflationCapFloorPriceSurface FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.InflationCapFloorPriceSurface)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.InflationCapFloorPriceSurface)
 END
 GO
-CREATE TRIGGER dbo.InflationCapFloorPriceSpecsCreateU
-	ON dbo.TodaysMarketInflationCapFloorPriceSurfaces
+CREATE TRIGGER InflationCapFloorPriceSpecsCreateU
+	ON TodaysMarketInflationCapFloorPriceSurfaces
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.InflationCapFloorPriceSurface
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.InflationCapFloorPriceSurface AND inserted.InflationCapFloorPriceSurface = deleted.InflationCapFloorPriceSurface
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.InflationCapFloorPriceSurface AND
+	(SELECT count(*) FROM TodaysMarketInflationCapFloorPriceSurfaces WHERE InflationCapFloorPriceSurface = deleted.InflationCapFloorPriceSurface) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.InflationCapFloorPriceSurface id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.InflationCapFloorPriceSurface)
 END
 GO
-CREATE TRIGGER dbo.InflationCapFloorPriceSpecsCreateD
-	ON dbo.TodaysMarketInflationCapFloorPriceSurfaces
+CREATE TRIGGER InflationCapFloorPriceSpecsCreateD
+	ON TodaysMarketInflationCapFloorPriceSurfaces
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -331,28 +394,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.EquityCurveSpecsCreateI
-	ON dbo.TodaysMarketEquityCurves
+CREATE TRIGGER EquityCurveSpecsCreateI
+	ON TodaysMarketEquityCurves
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.EquityCurve
 	FROM inserted
-	WHERE NOT exists(SELECT EquityCurve FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.EquityCurve)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.EquityCurve)
 END
 GO
-CREATE TRIGGER dbo.EquityCurveSpecsCreateU
-	ON dbo.TodaysMarketEquityCurves
+CREATE TRIGGER EquityCurveSpecsCreateU
+	ON TodaysMarketEquityCurves
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.EquityCurve
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.EquityCurve AND inserted.EquityCurve = deleted.EquityCurve
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.EquityCurve AND
+	(SELECT count(*) FROM TodaysMarketEquityCurves WHERE EquityCurve = deleted.EquityCurve) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.EquityCurve id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.EquityCurve)
 END
 GO
-CREATE TRIGGER dbo.EquityCurveSpecsCreateD
-	ON dbo.TodaysMarketEquityCurves
+CREATE TRIGGER EquityCurveSpecsCreateD
+	ON TodaysMarketEquityCurves
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -361,28 +429,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.CDSVolatilitySpecsCreateI
-	ON dbo.TodaysMarketCDSVolatilities
+CREATE TRIGGER CDSVolatilitySpecsCreateI
+	ON TodaysMarketCDSVolatilities
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.CDSVolatility
 	FROM inserted
-	WHERE NOT exists(SELECT CDSVolatility FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.CDSVolatility)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.CDSVolatility)
 END
 GO
-CREATE TRIGGER dbo.CDSVolatilitySpecsCreateU
-	ON dbo.TodaysMarketCDSVolatilities
+CREATE TRIGGER CDSVolatilitySpecsCreateU
+	ON TodaysMarketCDSVolatilities
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.CDSVolatility
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.CDSVolatility AND inserted.CDSVolatility = deleted.CDSVolatility
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.CDSVolatility AND
+	(SELECT count(*) FROM TodaysMarketCDSVolatilities WHERE CDSVolatility = deleted.CDSVolatility) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.CDSVolatility id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.CDSVolatility)
 END
 GO
-CREATE TRIGGER dbo.CDSVolatilitySpecsCreateD
-	ON dbo.TodaysMarketCDSVolatilities
+CREATE TRIGGER CDSVolatilitySpecsCreateD
+	ON TodaysMarketCDSVolatilities
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -391,28 +464,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.EquityVolatilitySpecsCreateI
-	ON dbo.TodaysMarketEquityVolatilities
+CREATE TRIGGER EquityVolatilitySpecsCreateI
+	ON TodaysMarketEquityVolatilities
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.EquityVolatility
 	FROM inserted
-	WHERE NOT exists(SELECT EquityVolatility FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.EquityVolatility)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.EquityVolatility)
 END
 GO
-CREATE TRIGGER dbo.EquityVolatilitySpecsCreateU
-	ON dbo.TodaysMarketEquityVolatilities
+CREATE TRIGGER EquityVolatilitySpecsCreateU
+	ON TodaysMarketEquityVolatilities
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.EquityVolatility
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.EquityVolatility AND inserted.EquityVolatility = deleted.EquityVolatility
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.EquityVolatility AND
+	(SELECT count(*) FROM TodaysMarketEquityVolatilities WHERE EquityVolatility = deleted.EquityVolatility) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.EquityVolatility id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.EquityVolatility)
 END
 GO
-CREATE TRIGGER dbo.EquityVolatilitySpecsCreateD
-	ON dbo.TodaysMarketEquityVolatilities
+CREATE TRIGGER EquityVolatilitySpecsCreateD
+	ON TodaysMarketEquityVolatilities
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs
@@ -421,28 +499,33 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER dbo.SecuritySpecsCreateI
-	ON dbo.TodaysMarketSecurities
+CREATE TRIGGER SecuritySpecsCreateI
+	ON TodaysMarketSecurities
 FOR INSERT AS  
 BEGIN
-	INSERT dbo.TodaysMarketCurveSpecs
+	INSERT TodaysMarketCurveSpecs
 	SELECT inserted.Security
 	FROM inserted
-	WHERE NOT exists(SELECT Security FROM dbo.TodaysMarketCurveSpecs WHERE id = inserted.Security)
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.Security)
 END
 GO
-CREATE TRIGGER dbo.SecuritySpecsCreateU
-	ON dbo.TodaysMarketSecurities
+CREATE TRIGGER SecuritySpecsCreateU
+	ON TodaysMarketSecurities
 FOR UPDATE AS  
 BEGIN
-	UPDATE dbo.TodaysMarketCurveSpecs  
-	SET id = inserted.Security
-	FROM inserted, deleted
-	WHERE dbo.TodaysMarketCurveSpecs.id = deleted.Security AND inserted.Security = deleted.Security
+	DELETE TodaysMarketCurveSpecs
+	FROM TodaysMarketCurveSpecs, deleted
+	WHERE TodaysMarketCurveSpecs.id = deleted.Security AND
+	(SELECT count(*) FROM TodaysMarketSecurities WHERE Security = deleted.Security) = 0
+	
+	INSERT TodaysMarketCurveSpecs
+	SELECT inserted.Security id
+	FROM inserted
+	WHERE NOT exists(SELECT id FROM TodaysMarketCurveSpecs WHERE id = inserted.Security)
 END
 GO
-CREATE TRIGGER dbo.SecuritySpecsCreateD
-	ON dbo.TodaysMarketSecurities
+CREATE TRIGGER SecuritySpecsCreateD
+	ON TodaysMarketSecurities
 FOR DELETE AS  
 BEGIN
 	DELETE TodaysMarketCurveSpecs

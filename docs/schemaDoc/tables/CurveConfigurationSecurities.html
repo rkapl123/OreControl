@@ -157,9 +157,9 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="SpreadQuote">SpreadQuote</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SpreadQuote">SpreadQuote</span></td>
 				 <td>varchar</td>
-				 <td>70</td>
+				 <td>100</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
 				 <td>null</td>
@@ -169,14 +169,22 @@
 				 </td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="CurveConfigurationSecurities.SpreadQuote references dbo.MdatMarketDataDefinitions.Quote via FK_CurveConfigurationSecurities_SpreadQuote">
+						<a href='../../dbo/tables/MdatMarketDataDefinitions.html'>MdatMarketDataDefinitions</a><span class='relatedKey'>.Quote</span>
+					</td>
+					<td class="constraint detail">
+						FK_CurveConfigurationSecurities_SpreadQuote <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
 				  </table>					 
 				 </td>
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="RecoveryRateQuote">RecoveryRateQuote</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="RecoveryRateQuote">RecoveryRateQuote</span></td>
 				 <td>varchar</td>
-				 <td>70</td>
+				 <td>100</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
 				 <td>null</td>
@@ -186,6 +194,14 @@
 				 </td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="CurveConfigurationSecurities.RecoveryRateQuote references dbo.MdatMarketDataDefinitions.Quote via FK_CurveConfigurationSecurities_RecoveryRateQuote">
+						<a href='../../dbo/tables/MdatMarketDataDefinitions.html'>MdatMarketDataDefinitions</a><span class='relatedKey'>.Quote</span>
+					</td>
+					<td class="constraint detail">
+						FK_CurveConfigurationSecurities_RecoveryRateQuote <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
 				  </table>					 
 				 </td>
 				 <td></td>
@@ -227,6 +243,53 @@
 				</tbody>
 				</table>   			  
 			</div><!-- /.box-body -->
+		</div>
+				<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-code-fork"></i>
+
+              <h3 id="Relationships" class="box-title">Relationships</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>	
+			<div class="box-body">	
+			<div class="nav-tabs-custom" style="cursor: move;">
+            <!-- Tabs within a box -->
+			<h5>Close relationships within degrees of separation</h5>
+            <ul class="nav nav-tabs pull-left ui-sortable-handle">
+			  			              <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>			  			 
+			  			              <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>			  			 
+            </ul>
+            <div class="tab-content no-padding">            
+				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
+<area shape="rect" id="node1" href="CurveConfigurationSecurities.html" title="CurveConfigurationSecurities" alt="" coords="355,5,725,221">
+<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="5,57,311,263">
+</map>
+
+					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/CurveConfigurationSecurities.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
+					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
+<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="668,5,1017,93">
+<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="307,260,612,465">
+<area shape="rect" id="node8" title="dbo.TypesCurrencyCode" alt="" coords="5,307,263,395">
+<area shape="rect" id="node3" title="dbo.CurveConfigurationEquityCurves" alt="" coords="668,111,1017,199">
+<area shape="rect" id="node4" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="706,216,979,304">
+<area shape="rect" id="node5" href="CurveConfigurationSecurities.html" title="CurveConfigurationSecurities" alt="" coords="657,321,1028,537">
+<area shape="rect" id="node6" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="656,555,1029,643">
+<area shape="rect" id="node7" href="MdatMarketData.html" title="MdatMarketData" alt="" coords="744,660,941,748">
+</map>
+
+					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/CurveConfigurationSecurities.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+			  			</div>
+			</div>
+		  </div><!-- /.box-body -->
 		</div>
 	      </section>
     

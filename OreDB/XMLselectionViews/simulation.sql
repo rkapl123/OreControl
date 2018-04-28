@@ -83,8 +83,7 @@ SELECT o.Id, o.SimulationDescription,
 				FROM SimulationMarketSwaptionVolatilitiesCurrencies i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) Currencies,
 				SwaptionVolatilitiesExpiries Expiries, SwaptionVolatilitiesTerms Terms,
-				(SELECT SwaptionVolatilitiesCubeSimulateATMOnly SimulateATMOnly, SwaptionVolatilitiesCubeStrikeSpreads StrikeSpreads
-				FOR XML PATH (''), TYPE) Cube
+				SwaptionVolatilitiesCubeSimulateATMOnly AS "Cube/SimulateATMOnly", SwaptionVolatilitiesCubeStrikeSpreads AS "Cube/StrikeSpreads"
 			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT SwaptionVolatilitiesSimulate IS NULL
 			FOR XML PATH (''), ROOT('SwaptionVolatilities'), TYPE),
 			(SELECT CapFloorVolatilitiesSimulate Simulate,
@@ -102,8 +101,7 @@ SELECT o.Id, o.SimulationDescription,
 				FROM SimulationMarketFxVolatilitiesCurrencyPairs i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) CurrencyPairs,
 				FxVolatilitiesExpiries Expiries,
-				(SELECT FxVolatilitiesSurfaceMoneyness Moneyness
-				FOR XML PATH (''), TYPE) Surface
+				FxVolatilitiesSurfaceMoneyness AS "Surface/Moneyness"
 			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT FxVolatilitiesSimulate IS NULL
 			FOR XML PATH (''), ROOT('FxVolatilities'), TYPE),
 			(SELECT Currency, Name
@@ -126,8 +124,7 @@ SELECT o.Id, o.SimulationDescription,
 				FROM SimulationMarketEquityVolatilitiesEquityNames i WHERE i.SimulationId = o.Id
 				FOR XML PATH (''), TYPE) Names,
 				EquityVolatilitiesExpiries Expiries,
-				(SELECT EquityVolatilitiesSurfaceSimulateATMOnly SimulateATMOnly, EquityVolatilitiesSurfaceMoneyness Moneyness
-				FOR XML PATH (''), TYPE) Surface
+				EquityVolatilitiesSurfaceSimulateATMOnly AS "Surface/SimulateATMOnly", EquityVolatilitiesSurfaceMoneyness AS "Surface/Moneyness"
 			FROM SimulationMarket i WHERE i.Id = o.Id AND NOT EquityVolatilitiesSimulate IS NULL
 			FOR XML PATH (''), ROOT('EquityVolatilities'), TYPE),
 			(SELECT Currency

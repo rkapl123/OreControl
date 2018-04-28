@@ -4,7 +4,7 @@ my %Quotehash; my %Quotevaluehash; my $maxQuoteId;
 # set this to your ORE Root folder
 my $oreRoot='../../Engine';
 # set this to the folder where marketdata/fixingdata/covariance files are located
-my $marketdataFile = "$oreRoot/Examples/Input/market_20160205.txt";
+my @marketdataFiles = ("$oreRoot/Examples/Input/market_20160205.txt","marketdata_missing.txt");
 my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
 my $covarianceFile = "$oreRoot/Examples/Example_15/Input/covariance.csv";
 
@@ -12,25 +12,27 @@ open SQLOUT, ">Data/marketdata.sql";
 print SQLOUT "use ORE;\n\n";
 ################################
 # process Marketdata
-if (-e $marketdataFile) {
-	print "processing $marketdataFile\n";
-	open (FH_MD, "<".$marketdataFile);
-	my $linenum;
-	while (<FH_MD>) {
-		$linenum++;
-		chomp;
-		next if /^#/ or $_ eq "";
-		my ($QuoteDate,$Quotestring,$QuoteValue) = /^(.*?)\s+(.*?)\s+(.*?)$/;
-		processQuotestring ($QuoteDate,$Quotestring);
-		if (!$Quotevaluehash{$Quotestring.$QuoteDate}) {
-			print SQLOUT "INSERT Marketdata (QuoteId,QuoteDate,QuoteValue) VALUES (".$Quotehash{$Quotestring}.",'".$QuoteDate."',".$QuoteValue.");\n";
-			#  to avoid unwanted duplicates, mark already inserted ones
-			$Quotevaluehash{$Quotestring.$QuoteDate} = "already inserted $Quotestring @ $QuoteDate \n";
-		} else {
-			print $Quotevaluehash{$Quotestring.$QuoteDate};
+for my $marketdataFile (@marketdataFiles) {
+	if (-e $marketdataFile) {
+		print "processing $marketdataFile\n";
+		open (FH_MD, "<".$marketdataFile);
+		my $linenum;
+		while (<FH_MD>) {
+			$linenum++;
+			chomp;
+			next if /^#/ or $_ eq "";
+			my ($QuoteDate,$Quotestring,$QuoteValue) = /^(.*?)\s+(.*?)\s+(.*?)$/;
+			processQuotestring ($QuoteDate,$Quotestring);
+			if (!$Quotevaluehash{$Quotestring.$QuoteDate}) {
+				print SQLOUT "INSERT MdatMarketdata (QuoteId,QuoteDate,QuoteValue) VALUES (".$Quotehash{$Quotestring}.",'".$QuoteDate."',".$QuoteValue.");\n";
+				#  to avoid unwanted duplicates, mark already inserted ones
+				$Quotevaluehash{$Quotestring.$QuoteDate} = "already inserted $Quotestring @ $QuoteDate \n";
+			} else {
+				print $Quotevaluehash{$Quotestring.$QuoteDate};
+			}
 		}
+		close FH_MD;
 	}
-	close FH_MD;
 }
 close SQLOUT;
 
@@ -50,7 +52,7 @@ if (-e $covarianceFile) {
 		#processQuotestring ("",$Quotestring1);
 		#processQuotestring ("",$Quotestring2);
 		if (!$Quotevaluehash{$Quotestring1.$Quotestring2}) {
-		print SQLOUT "INSERT CovarianceData (QuoteId1,QuoteId2,QuoteValue) VALUES ('".$Quotestring1."','".$Quotestring2."',".$QuoteValue.");\n";
+		print SQLOUT "INSERT MdatCovarianceData (QuoteId1,QuoteId2,QuoteValue) VALUES ('".$Quotestring1."','".$Quotestring2."',".$QuoteValue.");\n";
 			#  to avoid unwanted duplicates, mark already inserted ones
 			$Quotevaluehash{$Quotestring1.$Quotestring2} = "already inserted $Quotestring1.$Quotestring2 \n";
 		} else {
@@ -100,11 +102,11 @@ if (-e $fixingdataFile) {
 				$colNames = "IndexId,Name,FixingIndex";
 				$colValues = $Indexhash{$Indexstring}.",'".$Indexstring."','".$Indexstring."'";
 			}
-			print SQLOUT "INSERT FixingDataDefinitions (".$colNames.") VALUES (".$colValues.");\n";
+			print SQLOUT "INSERT MdatFixingDataDefinitions (".$colNames.") VALUES (".$colValues.");\n";
 		}
 		#  to avoid unwanted duplicates
 		if (!$Indexvaluehash{$Indexstring.$FixingDate}) {
-			print SQLOUT "INSERT Fixingdata (IndexId,FixingDate,IndexValue) VALUES (".$Indexhash{$Indexstring}.",'".$FixingDate."',".$IndexValue.");\n";
+			print SQLOUT "INSERT MdatFixingdata (IndexId,FixingDate,IndexValue) VALUES (".$Indexhash{$Indexstring}.",'".$FixingDate."',".$IndexValue.");\n";
 			$Indexvaluehash{$Indexstring.$FixingDate} = 1;
 		}
 	}
@@ -265,6 +267,6 @@ sub processQuotestring {
 		} else {
 			$Quotevaluehash{$Quotestring.$QuoteDate} = "ignoring unhandled data type: $Quotestring \n";
 		}
-		print SQLOUT "INSERT MarketdataDefinitions (InstrumentType,QuoteType,".$colNames.") VALUES ('".$InstrumentType."','".$QuoteType."',".$colValues.");\n" if $colNames;
+		print SQLOUT "INSERT MdatMarketdataDefinitions (InstrumentType,QuoteType,".$colNames.") VALUES ('".$InstrumentType."','".$QuoteType."',".$colValues.");\n" if $colNames;
 	}
 }

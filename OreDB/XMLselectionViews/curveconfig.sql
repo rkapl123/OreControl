@@ -1,5 +1,6 @@
 use ORE
 GO
+
 CREATE VIEW CurveConfigSelection
 AS
 SELECT DISTINCT g.GroupingId,
@@ -14,7 +15,7 @@ SELECT DISTINCT g.GroupingId,
 		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,ISNULL(DiscountCurve,'') DiscountCurve
 		FROM CurveConfigurationCapFloorVolatilities c
 		FOR XML PATH ('CapFloorVolatility'), TYPE) CapFloorVolatilities,
-		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Currency,Type,ISNULL(DiscountCurve,'') DiscountCurve,DayCounter,RecoveryRate,Conventions,
+		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Currency,Type,ISNULL(DiscountCurve,'') DiscountCurve,DayCounter,RecoveryRate,Conventions,BenchmarkCurve,SourceCurve,Pillars,SpotLag,Calendar,
 			(SELECT Quote [data()] 
 			FROM CurveConfigurationQuotes q WHERE q.CurveId = c.CurveId ORDER by Seq
 			FOR XML PATH ('Quote'), TYPE) Quotes
@@ -50,10 +51,12 @@ SELECT DISTINCT g.GroupingId,
 		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Type,StartRate,ObservationLag,Calendar,BusinessDayConvention,DayCounter,IndexName [Index],IndexCurve,IndexInterpolated,YieldTermStructure,CapStrikes,FloorStrikes,Maturities
 		FROM CurveConfigurationInflationCapFloorPriceSurfaces c
 		FOR XML PATH ('InflationCapFloorPriceSurface'), TYPE) InflationCapFloorPriceSurfaces,
-		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Currency,Type,SpotQuote,DayCounter,
+		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Currency,ForecastingCurve,Type,SpotQuote,DayCounter,
 			(SELECT Quote [data()] 
 			FROM CurveConfigurationQuotes q WHERE q.CurveId = c.CurveId ORDER by Seq
-			FOR XML PATH ('Quote'), TYPE) Quotes
+			FOR XML PATH ('Quote'), TYPE) Quotes,
+			DividendInterpolationVariable AS "DividendInterpolation/InterpolationVariable", 
+			DividendInterpolationMethod AS "DividendInterpolation/InterpolationMethod"
 		FROM CurveConfigurationEquityCurves c
 		FOR XML PATH ('EquityCurve'), TYPE) EquityCurves,
 		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Currency,Dimension,Expiries
