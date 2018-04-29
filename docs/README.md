@@ -1,6 +1,13 @@
+# Overview
+
+In enhancement of the official ORE Data flow (from the userguide), OREControl modules fit in as follows:
+
+![Image of screenshot1](https://raw.githubusercontent.com/rkapl123/OREControl/master/docs/overview.png)
+
+
 # ORE Addin
 
-Excel-DNA based Add-in for managing ORE and ORE-DB from Excel, starting ORE with data/configuration in Excel and ORE-Database 
+Excel-DNA based Add-in for managing ORE and ORE-DB from Excel, starting ORE with data/configuration in Excel and ORE-Database
 and storing results into ORE-Database or Excel.
 
 For details see [OREAddin](OREAddin.md)
