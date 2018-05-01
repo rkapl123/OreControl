@@ -15,7 +15,7 @@ For details see [OREAddin](OREAddin.md)
 
 # ORE-DB
 
-ORE-DB creates a Database (currently only MSSQL Server and MYSQL Server are supported) using Table and (for MSSQL Server) XML View definitions
+ORE-DB creates a Database (currently only MS SQL Server and MYSQL are supported) using Table and XML View definitions (only MS SQL Server))
 for storing Opensource risk engine Data. Additional scripts convert existing ORE XML Files to insert statements, which can be imported into the database.
 
 For details see [OREDB](OREDB.md)
