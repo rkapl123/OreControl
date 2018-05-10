@@ -23,8 +23,8 @@ For details see [OREDB](OREDB.md)
 # ORE Mgr
 
 OREMgr provides
-- a SWIG Interface to ORE together with a .NET DLL wrapper (for ORE Addin and other applications) -> ORESwigWrapper
-- a "Treeize" Relational Data Mapper, building XML from relationally referenced data (coming from a query or an Excel Range)
+- a SWIG Wrapper to ORE (as a.NET DLL) for ORE Addin and other applications.
+- a "Treeize" Relational Data Mapper, building XML from relationally referenced data (coming from a query or an Excel Range).
 - a Windows Service for running ORE unattended.
 
 For details see [OREMgr](OREMgr.md)
