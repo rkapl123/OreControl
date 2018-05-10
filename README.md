@@ -4,6 +4,6 @@ Tools for easier implementation of Opensource Risk Engine (ORE, http://www.opens
 
 * easy starting from Excel (OreAddin in conjunction with OreMgr),
 * loading ORE data from a Database (OreDB),
-* a SWIG wrapper, Utilities and standalone Windows service (OreMgr)
+* a .NET SWIG wrapper, an XML Building Utility and a standalone Windows service (OreMgr)
 
 Currently in development, details see [https://rkapl123.github.io/OreControl](https://rkapl123.github.io/OreControl)
