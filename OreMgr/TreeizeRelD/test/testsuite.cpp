@@ -18,8 +18,6 @@ using namespace boost;
 #include <boost/test/unit_test.hpp>
 using boost::unit_test::test_suite;
 
-#include <oret/oret.hpp>
-
 #ifdef BOOST_MSVC
 #define BOOST_LIB_NAME boost_date_time
 #include <boost/config/auto_link.hpp>
@@ -34,7 +32,7 @@ using boost::unit_test::test_suite;
 #endif
 
 // Lib test suites
-#include "TreeizeRelData.hpp"
+#include "TreeizeRelDTest.hpp"
 
 
 namespace {
@@ -62,13 +60,10 @@ test_suite* init_unit_test_suite(int, char* []) {
     // Get command line arguments
     int argc = boost::unit_test::framework::master_test_suite().argc;
     char** argv = boost::unit_test::framework::master_test_suite().argv;
-    // Set up test logging
-    ore::test::setupTestLogging(argc, argv);
-
     test_suite* test = BOOST_TEST_SUITE("TreeizeRelDataTestSuite");
 
     test->add(BOOST_TEST_CASE(startTimer));
-    test->add(testsuite::TreeizeRelData::suite());
+    test->add(testsuite::TreeizeRelDTest::suite());
 
     test->add(BOOST_TEST_CASE(stopTimer));
 

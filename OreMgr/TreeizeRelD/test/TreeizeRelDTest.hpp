@@ -1,7 +1,6 @@
-
 #pragma once
 
-#include <treeizeRelD/treeizeRelD.hpp>
+#include <treeizeRelD/TreeizeRelD.hpp>
 
 #include <boost/test/unit_test.hpp>
 
@@ -10,7 +9,7 @@ namespace testsuite {
 /*!
   
  */
-class TreeizeRelData {
+class TreeizeRelDTest {
 public:
     //! Test storing and retrieving a few artificial data points
     static void testTreeizeRelData();

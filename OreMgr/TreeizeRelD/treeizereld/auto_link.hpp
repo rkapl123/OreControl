@@ -61,7 +61,7 @@
 #endif
 
 #define TREEIZE_RELD_LIB_NAME                                                                               \
-    "OREAnalytics-" TREEIZE_RELD_LIB_TOOLSET TREEIZE_RELD_LIB_PLATFORM                \
+    "TreeizeRelD-" TREEIZE_RELD_LIB_TOOLSET TREEIZE_RELD_LIB_PLATFORM                \
         TREEIZE_RELD_LIB_THREAD_OPT TREEIZE_RELD_LIB_RT_OPT ".lib"
 
 #pragma comment(lib, TREEIZE_RELD_LIB_NAME)
