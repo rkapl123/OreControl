@@ -1,21 +1,9 @@
-/*! \file testsuite.cpp
-    \brief wrapper calling all individual test cases
-    \ingroup
-*/
-
-#include <iomanip>
-#include <iostream>
+#define BOOST_TEST_MODULE TreeizeRelDTest
+#include <treeizeRelD/TreeizeRelD.hpp>
 using namespace std;
 
-// Boost
-#include <boost/make_shared.hpp>
-#include <boost/timer.hpp>
-using namespace boost;
-
 // Boost.Test
-#include <boost/test/parameterized_test.hpp>
-#include <boost/test/test_tools.hpp>
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 using boost::unit_test::test_suite;
 
 #ifdef BOOST_MSVC
@@ -31,41 +19,48 @@ using boost::unit_test::test_suite;
 #include <boost/config/auto_link.hpp>
 #endif
 
-// Lib test suites
-#include "TreeizeRelDTest.hpp"
-
-
-namespace {
-
-boost::timer t;
-
-void startTimer() { t.restart(); }
-void stopTimer() {
-    double seconds = t.elapsed();
-    int hours = int(seconds / 3600);
-    seconds -= hours * 3600;
-    int minutes = int(seconds / 60);
-    seconds -= minutes * 60;
-    std::cout << endl << " TreeizeRelData tests completed in ";
-    if (hours > 0)
-        cout << hours << " h ";
-    if (hours > 0 || minutes > 0)
-        cout << minutes << " m ";
-    cout << fixed << setprecision(0) << seconds << " s" << endl << endl;
+BOOST_AUTO_TEST_CASE(writeTree)
+{
+    // table data[1] has child relation to table data[0] via FK/PK "a"
+    std::vector<std::vector<std::vector<std::string>>> data = { { { "a","b","c.d" },
+                                                                { "dataA1","","dataCD1" },
+                                                                { "dataA2","","dataCD2" } },
+                                                                { { "b.<xmlattr>.attr","b","a" },
+                                                                { "attB1","dataB1","dataA1" },
+                                                                { "attB2","dataB2","dataA1" },
+                                                                { "attB3","dataB3","dataA2" },
+                                                                { "attB4","dataB4","dataA2" }, } };
+    pt::ptree testTree;
+    bool dummy = TreeizeRelD::writeTable(testTree, data[0], "a", "", "p_row");
+    dummy = TreeizeRelD::writeTable(testTree, data[1], "", "a", "a");
+    BOOST_TEST_MESSAGE("tree:") << TreeizeRelD::createXML(testTree);
 }
-} // namespace
 
-test_suite* init_unit_test_suite(int, char* []) {
+BOOST_AUTO_TEST_CASE(writeTable)
+{
+    std::vector<std::vector<std::string>> data = { { "a","b","c.d" },{ "dataA1","dataB1","dataCD1" },{ "dataA2","dataB2","dataCD2" } };
+    pt::ptree testTree;
+    bool dummy = TreeizeRelD::writeTable(testTree, data, "", "b", "row");
+    BOOST_TEST(TreeizeRelD::createXML(testTree) == "<row><a>dataA1</a><c><d>dataCD1</d></c></row><row><a>dataA2</a><c><d>dataCD2</d></c></row>");
+}
 
-    // Get command line arguments
-    int argc = boost::unit_test::framework::master_test_suite().argc;
-    char** argv = boost::unit_test::framework::master_test_suite().argv;
-    test_suite* test = BOOST_TEST_SUITE("TreeizeRelDataTestSuite");
+BOOST_AUTO_TEST_CASE(writeRecord)
+{
+    std::vector<std::string> header = { "a","b","c.d" };
+    std::vector<std::string> dataRow = { "dataA","dataB","dataCD" };
 
-    test->add(BOOST_TEST_CASE(startTimer));
-    test->add(testsuite::TreeizeRelDTest::suite());
+    pt::ptree testTree;
+    std::string rowsFK; std::string rowsPK;
+    bool dummy = TreeizeRelD::writeRecord(testTree, dataRow, header, "", rowsPK, "b", rowsFK);
+    BOOST_TEST(TreeizeRelD::createXML(testTree) == "<a>dataA</a><c><d>dataCD</d></c>");
+    BOOST_TEST(rowsPK == "");
+    BOOST_TEST(rowsFK == "dataB");
 
-    test->add(BOOST_TEST_CASE(stopTimer));
-
-    return test;
+    testTree = pt::ptree();
+    header = { "a.<xmlattr>.attr","b","c.d" };
+    dataRow = { "dataA","dataB","dataCD" };
+    dummy = TreeizeRelD::writeRecord(testTree, dataRow, header, "a.<xmlattr>.attr", rowsPK, "", rowsFK);
+    BOOST_TEST(TreeizeRelD::createXML(testTree) == "<a attr=\"dataA\"/><b>dataB</b><c><d>dataCD</d></c>");
+    BOOST_TEST(rowsPK == "dataA");
+    BOOST_TEST(rowsFK == "");
 }

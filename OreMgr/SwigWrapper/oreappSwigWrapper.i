@@ -46,5 +46,6 @@
 namespace std {
     %template(DoubleVector) vector<double>;
     %template(StrVector) vector<string>;
+    %template(StrTable) vector<vector<string>>;
 }
 

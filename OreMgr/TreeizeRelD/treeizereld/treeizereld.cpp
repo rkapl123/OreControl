@@ -1,42 +1,102 @@
 #include <treeizereld/treeizereld.hpp>
 
-void TreeizeRelD::debug_settings::load(const std::string &filename)
-{
-    // Parse the XML into the property tree.
-    pt::read_xml(filename, tree);
-
-    // Use the throwing version of get to find the debug filename.
-    // If the path cannot be resolved, an exception is thrown.
-    m_file = tree.get<std::string>("debug.filename");
-
-    // Use the default-value version of get to find the debug level.
-    // Note that the default value is used to deduce the target type.
-    m_level = tree.get("debug.level", 0);
-
-    // Use get_child to find the node containing the modules, and iterate over
-    // its children. If the path cannot be resolved, get_child throws.
-    // A C++11 for-range loop would also work.
-    BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("debug.modules")) {
-        // The data function is used to access the data stored in a node.
-        m_modules.insert(v.second.data());
-    }
-
+std::string TreeizeRelD::createXML(const pt::ptree &ptTree) {
+    std::ostringstream oss;
+    pt::xml_writer_settings<pt::ptree::key_type> settings(' ', 0);
+    pt::xml_parser::write_xml_element(oss, pt::ptree::key_type(), ptTree, -1, settings);
+    return oss.str();
 }
 
-void TreeizeRelD::debug_settings::save(const std::string &filename)
-{
-    // Put the simple values into the tree. The integer is automatically
-    // converted to a string. Note that the "debug" node is automatically
-    // created if it doesn't exist.
-    //tree.put("debug.filename", m_file);
-    //tree.put("debug.level", m_level);
+// create Json from 
+std::string TreeizeRelD::createJson(const pt::ptree &ptTree) {
+    std::ostringstream oss;
+    pt::json_parser::write_json(oss, ptTree);
+    return oss.str();
+}
 
-    // Add all the modules. Unlike put, which overwrites existing nodes, add
-    // adds a new node at the lowest level, so the "modules" node will have
-    // multiple "module" children.
-    //BOOST_FOREACH(const std::string &name, m_modules)
-        //tree.add("debug.modules.module", name);
+// write a tree of tables given in table data (header and data) and table control (relations and tags) 
+// into property tree ptTree
+bool TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &control,
+                   const std::vector<std::vector<std::vector<std::string>>> &data,
+                   pt::ptree &ptTree) {
+    std::map<std::string, pt::ptree> tableDic;
 
-    // Write property tree to XML file
-    pt::write_xml(filename, tree);
+    // first pass: write all tables, writing record nodes with row data in it
+    std::string parentNode; std::string subnodeOfParent; 
+    std::string primaryKey; std::string foreignKey; std::string rootElemRec;
+    for (int i = 0; i < control.size(); i++) {
+        getRelInfo(control[i], parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec);
+        std::string tableLookup = parentNode + (subnodeOfParent != "" ? "." + subnodeOfParent : "") + "." + rootElemRec;
+        pt::ptree ptTable;
+        if (!writeTable(ptTable, data[i], primaryKey, foreignKey, rootElemRec)) {
+            return false;
+        }
+        tableDic[tableLookup] = ptTable;
+    }
+    // second pass: collect constructed nodes
+
+    // find/create parentNode/subnodeOfParent
+
+    // add nodes to each primary key of parentNode/subnodeOfParent
+    return true;
+}
+
+// helper function to retrieve info from definition Row in control table to the elements of the row
+void TreeizeRelD::getRelInfo(const std::vector<std::string> &defRow,
+    std::string &parentNode, std::string &subnodeOfParent,
+    std::string &primaryKey, std::string &foreignKey, std::string &rootElemRec) {
+    parentNode = defRow[1];
+    subnodeOfParent = defRow[2];
+    primaryKey = defRow[3];
+    foreignKey = defRow[4];
+    rootElemRec = defRow[5];
+}
+
+// write a subtable given in table into property tree ptTable
+bool TreeizeRelD::writeTable(pt::ptree &ptTable, const std::vector<std::vector<std::string>> &table,
+    std::string primaryKey, std::string foreignKey, std::string rootElemRec) {
+    // iterate data rows, first row is header
+    for (int i = 1; i < table.size(); i++) {
+        // create root node of record
+        pt::ptree ptRecord;
+        // produce the record, getting primary key / foreign key values along the way
+        std::string rowsFK = ""; std::string rowsPK = "";
+        if (!writeRecord(ptRecord, table[i], table[0], primaryKey, rowsPK, foreignKey, rowsFK)) {
+            return false;
+        }
+        // add record to table
+        ptTable.add_child(rootElemRec, ptRecord);
+    }
+    return true;
+}
+
+// write a record given in recordRow (data) into property tree ptRecord, path info given in header
+bool TreeizeRelD::writeRecord(pt::ptree &ptRecord, const std::vector<std::string> &recordRow,
+    const std::vector<std::string> &header, std::string primaryKey, std::string &rowsPK, std::string foreignKey,
+    std::string &rowsFK) {
+
+    boost::log::sources::logger lg;
+    rowsPK = ""; rowsFK = "";
+    // traverse columns of record
+    for (int i = 0; i < recordRow.size(); i++) {
+        // get current rows foreign key if needed (given), ignore foreign key column in construction of xml
+        if (header[i] == foreignKey) {
+            rowsFK = recordRow[i];
+        }
+        else {
+            // get primary Key value if needed (given)
+            if (header[i] == primaryKey) {
+                rowsPK = recordRow[i];
+            }
+            // construct column
+            try {
+                ptRecord.put(header[i], recordRow[i]);
+            }
+            catch (std::exception ex) {
+                BOOST_LOG(lg) << ex.what();
+                return false;
+            }
+        }
+    }
+    return true;
 }

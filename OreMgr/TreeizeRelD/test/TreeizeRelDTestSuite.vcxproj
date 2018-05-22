@@ -35,11 +35,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TreeizeRelDTest.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="TreeizeRelDTest.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="testsuite.cpp" />
   </ItemGroup>
   <ItemGroup>
