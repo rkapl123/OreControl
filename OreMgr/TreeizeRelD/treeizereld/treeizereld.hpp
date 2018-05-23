@@ -28,10 +28,9 @@ namespace TreeizeRelD {
         std::string &parentNode, std::string &subnodeOfParent,
         std::string &primaryKey, std::string &foreignKey, std::string &rootElemRec);
 
-    bool writeTable(pt::ptree &ptTable, const std::vector<std::vector<std::string>> &table,
-        std::string primaryKey, std::string foreignKey, std::string rootElemRec);
+    bool writeTable(std::map<std::string, pt::ptree> &ptTable, const std::vector<std::vector<std::string>> &table,
+        std::string foreignKey, std::string rootElemRec);
 
     bool writeRecord(pt::ptree &ptRecord, const std::vector<std::string> &recordRow,
-        const std::vector<std::string> &header, std::string primaryKey, std::string &rowsPK, std::string foreignKey,
-        std::string &rowsFK);
+        const std::vector<std::string> &header, std::string foreignKey, std::string &rowsFK);
 }

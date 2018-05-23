@@ -19,7 +19,7 @@ std::string TreeizeRelD::createJson(const pt::ptree &ptTree) {
 bool TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &control,
                    const std::vector<std::vector<std::vector<std::string>>> &data,
                    pt::ptree &ptTree) {
-    std::map<std::string, pt::ptree> tableDic;
+    std::map<std::string, std::map<std::string, pt::ptree>> tableDic;
 
     // first pass: write all tables, writing record nodes with row data in it
     std::string parentNode; std::string subnodeOfParent; 
@@ -27,17 +27,27 @@ bool TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &control
     for (int i = 0; i < control.size(); i++) {
         getRelInfo(control[i], parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec);
         std::string tableLookup = parentNode + (subnodeOfParent != "" ? "." + subnodeOfParent : "") + "." + rootElemRec;
-        pt::ptree ptTable;
-        if (!writeTable(ptTable, data[i], primaryKey, foreignKey, rootElemRec)) {
+        // FK map of ptree segments (for each common FK collect all records)
+        std::map<std::string, pt::ptree> ptTable;
+        if (!writeTable(ptTable, data[i], foreignKey, rootElemRec)) {
             return false;
         }
         tableDic[tableLookup] = ptTable;
     }
     // second pass: collect constructed nodes
+    // for each row in control
+    // add records if no foreignkey exists
+    // if foreignkey exists, look up parentNode / ForeignKey in main tree(foreach parentNode / ForeignKey..) assuming that foreignKey = primaryKey
+    // add tableDic[ForeignKeyVal] entries to each looked up parentNode / ForeignKey placing it under parentNode / subnode
 
-    // find/create parentNode/subnodeOfParent
-
-    // add nodes to each primary key of parentNode/subnodeOfParent
+    //auto& root = pt.get_child("Element");
+    //for (auto& child : root.get_child("Name"))
+    //{
+    //    if (child.first == "KeyFrame")
+    //    {
+    //        std::cout << child.second.get<int>("<xmlattr>.time", 0) << " : " << child.second.data() << std::endl;
+    //    }
+    //}
     return true;
 }
 
@@ -53,41 +63,36 @@ void TreeizeRelD::getRelInfo(const std::vector<std::string> &defRow,
 }
 
 // write a subtable given in table into property tree ptTable
-bool TreeizeRelD::writeTable(pt::ptree &ptTable, const std::vector<std::vector<std::string>> &table,
-    std::string primaryKey, std::string foreignKey, std::string rootElemRec) {
+bool TreeizeRelD::writeTable(std::map<std::string, pt::ptree> &ptTable, 
+    const std::vector<std::vector<std::string>> &table,
+    std::string foreignKey, std::string rootElemRec) {
     // iterate data rows, first row is header
     for (int i = 1; i < table.size(); i++) {
         // create root node of record
         pt::ptree ptRecord;
         // produce the record, getting primary key / foreign key values along the way
-        std::string rowsFK = ""; std::string rowsPK = "";
-        if (!writeRecord(ptRecord, table[i], table[0], primaryKey, rowsPK, foreignKey, rowsFK)) {
+        std::string rowsFK = "";
+        if (!writeRecord(ptRecord, table[i], table[0], foreignKey, rowsFK)) {
             return false;
         }
-        // add record to table
-        ptTable.add_child(rootElemRec, ptRecord);
+        // add record to FK table segment
+        ptTable[rowsFK].add_child(rootElemRec, ptRecord);
     }
     return true;
 }
 
 // write a record given in recordRow (data) into property tree ptRecord, path info given in header
 bool TreeizeRelD::writeRecord(pt::ptree &ptRecord, const std::vector<std::string> &recordRow,
-    const std::vector<std::string> &header, std::string primaryKey, std::string &rowsPK, std::string foreignKey,
-    std::string &rowsFK) {
+    const std::vector<std::string> &header, std::string foreignKey, std::string &rowsFK) {
 
     boost::log::sources::logger lg;
-    rowsPK = ""; rowsFK = "";
     // traverse columns of record
     for (int i = 0; i < recordRow.size(); i++) {
-        // get current rows foreign key if needed (given), ignore foreign key column in construction of xml
+        // get current rows foreign key if needed (= given), ignore foreign key column in construction of xml
         if (header[i] == foreignKey) {
             rowsFK = recordRow[i];
         }
         else {
-            // get primary Key value if needed (given)
-            if (header[i] == primaryKey) {
-                rowsPK = recordRow[i];
-            }
             // construct column
             try {
                 ptRecord.put(header[i], recordRow[i]);
