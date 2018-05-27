@@ -19,11 +19,11 @@ using boost::unit_test::test_suite;
 #include <boost/config/auto_link.hpp>
 #endif
 
-BOOST_AUTO_TEST_CASE(writeTree)
+BOOST_AUTO_TEST_CASE(writeTree1)
 {
     // control table:                                   parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec
-    std::vector<std::vector<std::string>> control = { {"root",      "",              "a",        "",         "a" },
-                                                      {"root.a",    "",              "",         "a",         "" } };
+    std::vector<std::vector<std::string>> control = { {"root",      "",              "a",        "",         "rec" },
+                                                      {"root.rec",  "",              "",         "a",        "b" } };
     // table data[1] has child relation to table data[0] via FK/PK "a"
     std::vector<std::vector<std::vector<std::string>>> data = { { {"a",     "b","c.d" },
                                                                 {  "dataA1","", "dataCD1" },
@@ -33,38 +33,43 @@ BOOST_AUTO_TEST_CASE(writeTree)
                                                                 {  "attB2",           "dataB2","dataA1" },
                                                                 {  "attB3",           "dataB3","dataA2" },
                                                                 {  "attB4",           "dataB4","dataA2" }, } };
-    std::map<std::string, pt::ptree> testTree;
-    bool dummy = TreeizeRelD::writeTable(testTree, data[0], "", "p_row");
-    BOOST_TEST_MESSAGE("tree:") << TreeizeRelD::createXML(testTree[""]);
-    dummy = TreeizeRelD::writeTable(testTree, data[1], "a", "a");
-    BOOST_TEST_MESSAGE("tree:") << TreeizeRelD::createXML(testTree["a"]);
+    pt::ptree testTree;
+    BOOST_TEST(TreeizeRelD::writeTree(control, data, testTree) == "");
+    std::string resultStr;
+    BOOST_TEST(TreeizeRelD::createXML(testTree, resultStr) == "");
+    BOOST_TEST(resultStr == "<root><rec><a>dataA1</a><b attr=\"attB1\">dataB1</b><b attr=\"attB2\">dataB2</b><c><d>dataCD1</d></c></rec><rec><a>dataA2</a><b attr=\"attB3\">dataB3</b><b attr=\"attB4\">dataB4</b><c><d>dataCD2</d></c></rec></root>");
 }
 
 BOOST_AUTO_TEST_CASE(writeTable)
 {
     std::vector<std::vector<std::string>> data = { { "a","b","c.d" },{ "dataA1","dataB1","dataCD1" },{ "dataA2","dataB2","dataCD2" } };
-    std::map<std::string, pt::ptree> testTree;
-    bool dummy = TreeizeRelD::writeTable(testTree, data, "b", "row");
-    BOOST_TEST(TreeizeRelD::createXML(testTree["b"]) == "<row><a>dataA1</a><c><d>dataCD1</d></c></row><row><a>dataA2</a><c><d>dataCD2</d></c></row>");
+    pt::ptree testTree;
+    BOOST_TEST(TreeizeRelD::writeTable(testTree, data, "b", "row") == "");
+    std::string resultStr;
+    BOOST_TEST(TreeizeRelD::createXML(testTree, resultStr) == "");
+    BOOST_TEST(resultStr == "<dataB1><row><a>dataA1</a><c><d>dataCD1</d></c></row></dataB1><dataB2><row><a>dataA2</a><c><d>dataCD2</d></c></row></dataB2>");
 }
 
-BOOST_AUTO_TEST_CASE(writeRecord)
+BOOST_AUTO_TEST_CASE(writeRecord1)
 {
     std::vector<std::string> header = { "a","b","c.d" };
     std::vector<std::string> dataRow = { "dataA","dataB","dataCD" };
-
-    pt::ptree testTree;
-    std::string rowsFK; std::string rowsPK;
-    bool dummy = TreeizeRelD::writeRecord(testTree, dataRow, header, "b", rowsFK);
-    BOOST_TEST(TreeizeRelD::createXML(testTree) == "<a>dataA</a><c><d>dataCD</d></c>");
-    BOOST_TEST(rowsPK == "");
+    pt::ptree testTree; std::string rowsFK;
+    BOOST_TEST(TreeizeRelD::writeRecord(testTree, dataRow, header, "b", rowsFK) == "");
+    std::string resultStr;
+    BOOST_TEST(TreeizeRelD::createXML(testTree, resultStr) == "");
+    BOOST_TEST(resultStr == "<a>dataA</a><c><d>dataCD</d></c>");
     BOOST_TEST(rowsFK == "dataB");
+}
 
-    testTree = pt::ptree();
-    header = { "a.<xmlattr>.attr","b","c.d" };
-    dataRow = { "dataA","dataB","dataCD" };
-    dummy = TreeizeRelD::writeRecord(testTree, dataRow, header, "", rowsFK);
-    BOOST_TEST(TreeizeRelD::createXML(testTree) == "<a attr=\"dataA\"/><b>dataB</b><c><d>dataCD</d></c>");
-    BOOST_TEST(rowsPK == "dataA");
+BOOST_AUTO_TEST_CASE(writeRecord2)
+{
+    std::vector<std::string> header = { "a.<xmlattr>.attr","b","c.d" };
+    std::vector<std::string> dataRow = { "dataA","dataB","dataCD" };
+    pt::ptree testTree; std::string rowsFK;
+    BOOST_TEST(TreeizeRelD::writeRecord(testTree, dataRow, header, "", rowsFK) == "");
+    std::string resultStr;
+    BOOST_TEST(TreeizeRelD::createXML(testTree, resultStr) == "");
+    BOOST_TEST(resultStr == "<a attr=\"dataA\"/><b>dataB</b><c><d>dataCD</d></c>");
     BOOST_TEST(rowsFK == "");
 }
