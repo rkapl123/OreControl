@@ -36,6 +36,7 @@ call %runscript% XMLselectionViews\todaysmarket.sql
 
 call %runscript% Data\ore_types.sql
 call %runscript% Data\ore_typesOther.sql
+call %runscript% Data\ore_typesParties.sql
 call %runscript% Data\marketdata.sql
 call %runscript% Data\pricingengine.sql 
 call %runscript% Data\conventions.sql
@@ -50,5 +51,4 @@ call %runscript% Data\stresstest.sql
 call %runscript% Data\sensitivity.sql
 call %runscript% Data\covariancedata.sql
 call %runscript% Data\fixingdata.sql
-
 pause

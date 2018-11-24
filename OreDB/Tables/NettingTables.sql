@@ -1,7 +1,7 @@
 use ORE;
 
 CREATE TABLE NettingSet (
-	NettingSetId varchar(10) NOT NULL,
+	NettingSetId varchar(30) NOT NULL,
 	GroupingId varchar(70) NOT NULL,
 	Counterparty varchar(30) NOT NULL,
 	ActiveCSAFlag varchar(5) NOT NULL,
@@ -15,7 +15,7 @@ ALTER TABLE NettingSet ADD CONSTRAINT FK_NettingSet_Counterparty FOREIGN KEY(Cou
 REFERENCES TypesParties (value);
 
 CREATE TABLE NettingCSADetails (
-	NettingSetId varchar(10) NOT NULL,
+	NettingSetId varchar(30) NOT NULL,
 	Bilateral varchar(10),
 	CSACurrency varchar(7),
 	IndexName varchar(30),
@@ -50,7 +50,7 @@ ALTER TABLE NettingCSADetails ADD CONSTRAINT CK_NettingCSADetails_MinimumTransfe
 ALTER TABLE NettingCSADetails ADD CONSTRAINT CK_NettingCSADetails_MinimumTransferAmountReceive CHECK (MinimumTransferAmountReceive>=0);
 
 CREATE TABLE NettingEligibleCollateralsCurrencies (
-	NettingSetId varchar(10) NOT NULL,
+	NettingSetId varchar(30) NOT NULL,
 	Currency varchar(7) NOT NULL,
 CONSTRAINT PK_NettingEligibleCollateralsCurrencies PRIMARY KEY CLUSTERED 
 (

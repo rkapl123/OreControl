@@ -1,12 +1,19 @@
+# convertMarketdata2SQL.pl - converts ORE market related data to ORE DB sql statements
+
+# $ARGV[0] .. ORE Root folder
+# $ARGV[1] .. marketdata file
+# $ARGV[2] .. fixingdata file
+# $ARGV[3] .. covariance file
+
 use strict;
 my %Quotehash; my %Quotevaluehash; my $maxQuoteId;
 
 # set this to your ORE Root folder
-my $oreRoot='../../Engine';
-# set this to the folder where marketdata/fixingdata/covariance files are located
-my @marketdataFiles = ("$oreRoot/Examples/Input/market_20160205.txt","marketdata_missing.txt");
-my $fixingdataFile = "$oreRoot/Examples/Input/fixings_20160205.txt";
-my $covarianceFile = "$oreRoot/Examples/Example_15/Input/covariance.csv";
+my $oreRoot = ($ARGV[0] ? $ARGV[0] : '../../Engine');
+# set this to the path/filename of the marketdata/fixingdata/covariance files
+my @marketdataFiles = (($ARGV[1] ? $ARGV[1] : "$oreRoot/Examples/Input/market_20160205.txt"),"marketdata_missing.txt");
+my $fixingdataFile = ($ARGV[2] ? $ARGV[2] : "$oreRoot/Examples/Input/fixings_20160205.txt");
+my $covarianceFile = ($ARGV[3] ? $ARGV[3] : "$oreRoot/Examples/Example_15/Input/covariance.csv");
 
 open SQLOUT, ">Data/marketdata.sql";
 print SQLOUT "use ORE;\n\n";
@@ -84,9 +91,9 @@ if (-e $fixingdataFile) {
 				$colNames = "IndexId,Source,ForeignCurrency,DomesticCurrency,FixingIndex";
 				my ($Source,$ForeignCurrency,$DomesticCurrency) = ($Indexstring =~ /^FX-(.*?)-(.*?)-(.*?)$/);
 				$colValues = $Indexhash{$Indexstring}.",'".$Source."','".$ForeignCurrency."','".$DomesticCurrency."','".$Indexstring."'";
-			} elsif ($Indexstring =~ /-CMS-/) {
-				$colNames = "IndexId,Currency,isCMS,Tenor,FixingIndex";
-				my ($Ccy,$Tenor) = ($Indexstring =~ /^(.*?)-CMS-(.*?)$/);
+			} elsif ($Indexstring =~ /\-CMS\-/) {
+				$colNames = "IndexId,Currency,isCMS,Tenor";
+				my ($Ccy,$Tenor) = ($Indexstring =~ /^(.*?)\-CMS\-(.*?)$/);
 				$colValues = $Indexhash{$Indexstring}.",'".$Ccy."',1,'".$Tenor."'";
 			} elsif ($Indexstring =~ /^.*?-.*?/) {
 				my ($Ccy,$IndexName,$Tenor);

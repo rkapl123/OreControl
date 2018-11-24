@@ -4,7 +4,7 @@ CREATE TABLE PortfolioTrades (
 	Id varchar(180) not null,
 	TradeType varchar(30),
 	EnvelopeCounterParty varchar(30),
-	EnvelopeNettingSetId varchar(10),
+	EnvelopeNettingSetId varchar(30),
 CONSTRAINT PK_PortfolioTrades PRIMARY KEY CLUSTERED
 (
 	Id ASC

@@ -330,9 +330,9 @@ REFERENCES MdatMarketDataDefinitions (Quote);
 CREATE TABLE CurveConfigurationYieldCurveSegments (
 	CurveId varchar(20) NOT NULL,
 	Seq int NOT NULL,
-	Type varchar(30),
-	SegmentsType varchar(15),
-	Conventions varchar(70),
+	Type varchar(30) NOT NULL,
+	SegmentsType varchar(15) NOT NULL,
+	Conventions varchar(70) NOT NULL,
 	ProjectionCurve varchar(20),
 	ProjectionCurveLong varchar(20),
 	ProjectionCurveShort varchar(20),
@@ -344,7 +344,8 @@ CREATE TABLE CurveConfigurationYieldCurveSegments (
 CONSTRAINT PK_CurveConfigurationYieldCurveSegments PRIMARY KEY CLUSTERED (
 	CurveId ASC,
 	Type ASC,
-	SegmentsType ASC
+	SegmentsType ASC,
+	Conventions ASC
 ));
 ALTER TABLE CurveConfigurationYieldCurveSegments ADD CONSTRAINT FK_CurveConfigurationYieldCurveSegments_Type FOREIGN KEY(Type)
 REFERENCES TypesSegmentTypeType (value);

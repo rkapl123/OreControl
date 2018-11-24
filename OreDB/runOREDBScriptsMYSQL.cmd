@@ -17,6 +17,7 @@ call runSingleScriptMYSQL.cmd Tables\ResultsTables.sql
 
 call runSingleScriptMYSQL.cmd Data\ore_types.sql
 call runSingleScriptMYSQL.cmd Data\ore_typesOther.sql
+call runSingleScriptMYSQL.cmd Data\ore_typesParties.sql
 call runSingleScriptMYSQL.cmd Data\marketdata.sql
 call runSingleScriptMYSQL.cmd Data\pricingengine.sql 
 call runSingleScriptMYSQL.cmd Data\conventions.sql
