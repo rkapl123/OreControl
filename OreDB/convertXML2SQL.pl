@@ -479,7 +479,7 @@ sub doInputXMLs {
 				my $tableName = $record->nodeName;
 				my @subrecordData = $record->childNodes;
 				foreach my $subrecord (@subrecordData) {
-					if ($tableName ne 'Analytics') {
+					if ($tableName ne 'Analytics' && ref($subrecord) eq "XML::LibXML::Element") {
 						$subrecord->setAttribute("OreConfigId", $OreConfigId);
 						print SQLOUT createInsert($subrecord, "OreParameters", $tableName, 1);
 					} else {

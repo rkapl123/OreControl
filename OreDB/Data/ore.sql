@@ -70,7 +70,7 @@ INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('../../Input/curv
 INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('../../Input/conventions.xml','conventionsFile','Example_2');
 INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('../../Input/todaysmarket.xml','marketConfigFile','Example_2');
 INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('../../Input/pricingengine.xml','pricingEnginesFile','Example_2');
-INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('portfolio.xml','portfolioFile','Example_2');
+INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('portfolio_swap.xml','portfolioFile','Example_2');
 INSERT OreParametersSetup (Parameter,name,OreConfigId) VALUES ('Disable','observationModel','Example_2');
 INSERT OreParametersMarkets (Parameter,name,OreConfigId) VALUES ('collateral_inccy','lgmcalibration','Example_2');
 INSERT OreParametersMarkets (Parameter,name,OreConfigId) VALUES ('collateral_eur','fxcalibration','Example_2');
