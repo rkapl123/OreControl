@@ -25,7 +25,7 @@ call %runscript% Tables\StresstestTables.sql
 call %runscript% Tables\SensitivityanalysisTables.sql
 call %runscript% Tables\ResultsTables.sql
 
-if %databasetype% == "MSSQL" (
+if "%databasetype%" == "MSSQL" (
 	call %runscript% XMLselectionViews\conventions.sql
 	call %runscript% XMLselectionViews\curveconfig.sql
 	call %runscript% XMLselectionViews\netting.sql

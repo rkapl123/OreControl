@@ -3,12 +3,12 @@ GO
 
 CREATE VIEW PortfolioSelection
 AS
-SELECT DISTINCT paf.AdditionalId, (SELECT 
+SELECT DISTINCT pgo.GroupingId, (SELECT 
 	(SELECT Id [@id], TradeType, 
 		(SELECT 
 			ti.EnvelopeCounterParty CounterParty, ti.EnvelopeNettingSetId NettingSetId,
-			(SELECT af.AdditionalId
-			FROM PortfolioAdditionalFields af WHERE af.TradeId = t.id
+			(SELECT taf.AddFieldsAdditionalId AdditionalId
+			FROM PortfolioTrades taf WHERE taf.id = t.id
 			FOR XML PATH (''), TYPE) AdditionalFields
 		FROM PortfolioTrades ti WHERE ti.id = t.id
 		FOR XML PATH (''), TYPE) Envelope,
@@ -16,7 +16,7 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 			ta.Type, ta.Owner,
 			(SELECT 
 				(SELECT 
-				s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(s.FirstDate,'') FirstDate, ISNULL(s.LastDate,'') LastDate
+				s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 				FROM PortfolioScheduleDataRules s WHERE s.TradeActionId = ta.Id
 				FOR XML PATH (''), TYPE) Rules,
 				(SELECT s.ScheduleDate [Date]
@@ -32,15 +32,15 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					(SELECT ln.startDate [@startDate], ln.Notional [data()]
 					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
 					FOR XML PATH ('Notional'), TYPE),
-					(SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
+					CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
-					FOR XML PATH (''), TYPE) FXReset,
+					FOR XML PATH ('FXReset'), TYPE) ELSE '' END,
 					(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
 					FOR XML PATH (''), TYPE) Exchanges
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(s.FirstDate,'') FirstDate, ISNULL(s.LastDate,'') LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]
@@ -111,15 +111,15 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					(SELECT ln.startDate [@startDate], ln.Notional [data()]
 					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
 					FOR XML PATH ('Notional'), TYPE),
-					(SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
+					CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
-					FOR XML PATH (''), TYPE) FXReset,
+					FOR XML PATH ('FXReset'), TYPE) ELSE '' END,
 					(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
 					FOR XML PATH (''), TYPE) Exchanges
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]
@@ -200,7 +200,7 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					FOR XML PATH ('Notional'), TYPE)
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]
@@ -284,15 +284,15 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					(SELECT ln.startDate [@startDate], ln.Notional [data()]
 					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
 					FOR XML PATH ('Notional'), TYPE),
-					(SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
+					CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
-					FOR XML PATH (''), TYPE) FXReset,
+					FOR XML PATH ('FXReset'), TYPE) ELSE '' END,
 					(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
 					FOR XML PATH (''), TYPE) Exchanges
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]
@@ -350,15 +350,15 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					(SELECT ln.startDate [@startDate], ln.Notional [data()]
 					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
 					FOR XML PATH ('Notional'), TYPE),
-					(SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
+					CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
-					FOR XML PATH (''), TYPE) FXReset,
+					FOR XML PATH ('FXReset'), TYPE) ELSE '' END,
 					(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
 					FOR XML PATH (''), TYPE) Exchanges
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]
@@ -416,15 +416,15 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 					(SELECT ln.startDate [@startDate], ln.Notional [data()]
 					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
 					FOR XML PATH ('Notional'), TYPE),
-					(SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
+					CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
-					FOR XML PATH (''), TYPE) FXReset,
+					FOR XML PATH ('FXReset'), TYPE) ELSE '' END,
 					(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
 					FOR XML PATH (''), TYPE) Exchanges
 				FOR XML PATH (''), TYPE) Notionals,
 				(SELECT 
-					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Rules,
 					(SELECT s.ScheduleDate [Date]
@@ -499,15 +499,15 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 						(SELECT ln.startDate [@startDate], ln.Notional [data()]
 						FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
 						FOR XML PATH ('Notional'), TYPE),
-						(SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
+						CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 						FROM PortfolioLegData li WHERE li.Id =ld.Id
-						FOR XML PATH (''), TYPE) FXReset,
+						FOR XML PATH ('FXReset'), TYPE) ELSE '' END,
 						(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 						FROM PortfolioLegData li WHERE li.Id =ld.Id
 						FOR XML PATH (''), TYPE) Exchanges
 					FOR XML PATH (''), TYPE) Notionals,
 					(SELECT 
-						(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], s.EndOfMonth, s.FirstDate, s.LastDate
+						(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 						FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
 						FOR XML PATH (''), TYPE) Rules,
 						(SELECT s.ScheduleDate [Date]
@@ -563,7 +563,7 @@ SELECT DISTINCT paf.AdditionalId, (SELECT
 			FOR XML PATH (''), TYPE) IndexCreditDefaultSwapData
 		FROM PortfolioIndexCreditDefaultSwapOptionData iod WHERE iod.TradeId = t.id
 		FOR XML PATH (''), TYPE) IndexCreditDefaultSwapOptionData
-	FROM PortfolioTrades t INNER JOIN PortfolioAdditionalFields pa ON pa.TradeId = t.Id AND pa.AdditionalId = paf.AdditionalId
+	FROM PortfolioTrades t INNER JOIN PortfolioTradeGroupingIds pg ON pg.TradeId = t.Id AND pgo.GroupingId = pg.GroupingId
 	FOR XML PATH ('Trade'), TYPE)
 FOR XML PATH ('Portfolio')) XMLData
-FROM PortfolioAdditionalFields paf
+FROM PortfolioTradeGroupingIds pgo

@@ -5,6 +5,7 @@ CREATE TABLE PortfolioTrades (
 	TradeType varchar(30),
 	EnvelopeCounterParty varchar(30),
 	EnvelopeNettingSetId varchar(30),
+	AddFieldsAdditionalId varchar(70)
 CONSTRAINT PK_PortfolioTrades PRIMARY KEY CLUSTERED
 (
 	Id ASC
@@ -17,21 +18,13 @@ ALTER TABLE PortfolioTrades ADD CONSTRAINT FK_PortfolioTrades_EnvelopeNettingSet
 REFERENCES NettingSet (NettingSetId);
 
 
-CREATE TABLE PortfolioTradePortfolioIds (
+CREATE TABLE PortfolioTradeGroupingIds (
 	TradeId varchar(180) not null,
-	PortfolioId varchar(70),
-CONSTRAINT PK_PortfolioTradePortfolioIds PRIMARY KEY CLUSTERED 
+	GroupingId varchar(70) not null,
+CONSTRAINT PK_PortfolioTradeGroupingIds PRIMARY KEY CLUSTERED 
 (
-	TradeId ASC
-));
-
-
-CREATE TABLE PortfolioAdditionalFields (
-	TradeId varchar(180) not null,
-	AdditionalId varchar(70),
-CONSTRAINT PK_PortfolioAdditionalFields PRIMARY KEY CLUSTERED 
-(
-	TradeId ASC
+	TradeId ASC,
+	GroupingId ASC
 ));
 
 

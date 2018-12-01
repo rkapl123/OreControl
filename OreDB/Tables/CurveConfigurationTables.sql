@@ -343,9 +343,7 @@ CREATE TABLE CurveConfigurationYieldCurveSegments (
 	ReferenceCurve varchar(20),
 CONSTRAINT PK_CurveConfigurationYieldCurveSegments PRIMARY KEY CLUSTERED (
 	CurveId ASC,
-	Type ASC,
-	SegmentsType ASC,
-	Conventions ASC
+	Seq ASC
 ));
 ALTER TABLE CurveConfigurationYieldCurveSegments ADD CONSTRAINT FK_CurveConfigurationYieldCurveSegments_Type FOREIGN KEY(Type)
 REFERENCES TypesSegmentTypeType (value);
@@ -373,16 +371,15 @@ REFERENCES MdatMarketDataDefinitions (Quote);
 -- relates to Segments table above, only for Type AverageOIS
 CREATE TABLE CurveConfigurationCompositeQuotes (
 	CurveId varchar(20) NOT NULL,
-	Type varchar(30),
+	Seq int NOT NULL,
+	SeqSegment int NOT NULL,
 	SpreadQuote varchar(100) NOT NULL,
 	RateQuote varchar(100) NOT NULL,
 CONSTRAINT PK_CurveConfigurationCompositeQuotes PRIMARY KEY CLUSTERED (
 	CurveId ASC,
-	SpreadQuote ASC,
-	RateQuote ASC
+	Seq ASC,
+	SeqSegment ASC
 ));
-ALTER TABLE CurveConfigurationCompositeQuotes ADD CONSTRAINT FK_CurveConfigurationCompositeQuotes_Type FOREIGN KEY(Type)
-REFERENCES TypesSegmentTypeType (value);
 ALTER TABLE CurveConfigurationCompositeQuotes ADD CONSTRAINT FK_CurveConfigurationCompositeQuotes_SpreadQuote FOREIGN KEY(SpreadQuote)
 REFERENCES MdatMarketDataDefinitions (Quote);
 ALTER TABLE CurveConfigurationCompositeQuotes ADD CONSTRAINT FK_CurveConfigurationCompositeQuotes_RateQuote FOREIGN KEY(RateQuote)
@@ -392,14 +389,13 @@ REFERENCES MdatMarketDataDefinitions (Quote);
 CREATE TABLE CurveConfigurationQuotes (
 	CurveId varchar(20) NOT NULL,
 	Seq int NOT NULL,
-	Type varchar(30),
+	SeqSegment int NOT NULL,
 	Quote varchar(100) NOT NULL,
 CONSTRAINT PK_CurveConfigurationQuotes PRIMARY KEY CLUSTERED (
 	CurveId ASC,
-	Quote ASC
+	Seq ASC,
+	SeqSegment ASC
 ));
-ALTER TABLE CurveConfigurationQuotes ADD CONSTRAINT FK_CurveConfigurationQuotes_Type FOREIGN KEY(Type)
-REFERENCES TypesSegmentTypeType (value);
 ALTER TABLE CurveConfigurationQuotes ADD CONSTRAINT FK_CurveConfigurationQuotes_Quote FOREIGN KEY(Quote)
 REFERENCES MdatMarketDataDefinitions (Quote);
 

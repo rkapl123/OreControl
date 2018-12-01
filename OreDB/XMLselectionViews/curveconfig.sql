@@ -1,6 +1,5 @@
 use ORE
 GO
-
 CREATE VIEW CurveConfigSelection
 AS
 SELECT DISTINCT g.GroupingId,
@@ -25,7 +24,7 @@ SELECT DISTINCT g.GroupingId,
 			(SELECT cast('<' + SegmentsType + '>' + 
 				convert(varchar(MAX),(SELECT Type,
 					ISNULL((SELECT Quote [data()] 
-					FROM CurveConfigurationQuotes q WHERE q.CurveId = c.CurveId AND q.Type = si.Type ORDER by Seq
+					FROM CurveConfigurationQuotes q WHERE q.CurveId = c.CurveId AND q.SeqSegment = si.Seq ORDER by q.Seq
 					FOR XML PATH ('Quote'), TYPE), (SELECT '' FOR XML PATH (''), TYPE)) Quotes,
 					Conventions,ProjectionCurve,ProjectionCurveLong,ProjectionCurveShort,DiscountCurve,SpotRate,ProjectionCurveDomestic,ProjectionCurveForeign,ReferenceCurve
 				FROM CurveConfigurationYieldCurveSegments si WHERE si.CurveId = c.CurveId AND si.Type = s.Type AND si.Seq = s.Seq

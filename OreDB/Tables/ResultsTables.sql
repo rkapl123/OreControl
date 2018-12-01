@@ -2,22 +2,25 @@ use ORE;
 
 CREATE TABLE ResultsFlows (
 	AnalysisID varchar(30) not null,
-	TradeID varchar(40) null,
-	TradeType varchar(30) null,
-	LegNo int null,
-	PayDate datetime null,
+	TradeID varchar(40) not null,
+	TradeType varchar(30) not null,
+	CashflowNo int not null,
+	LegNo int not null,
+	PayDate datetime not null,
+	FlowType varchar(30) not null,
 	Amount decimal(18,4) null,
 	Currency varchar(3) null,
 	Coupon decimal(18,9) null,
 	Accrual decimal(18,4) null,
 	FixingDate datetime null,
-	FixingValue decimal(18,9) null
+	FixingValue decimal(18,9) null,
+	Notional decimal(18,4) null
 );
 
 CREATE TABLE ResultsNPV (
 	AnalysisID varchar(30) not null,
-	TradeID varchar(40) null,
-	TradeType varchar(30) null,
+	TradeID varchar(40) not null,
+	TradeType varchar(30) not null,
 	Maturity datetime null,
 	MaturityTime decimal(18,9) null,
 	NPV decimal(18,4) null,
@@ -25,7 +28,9 @@ CREATE TABLE ResultsNPV (
 	NPVBase decimal(18,4) null,
 	BaseCurrency varchar(3) null,
 	Notional decimal(18,4) null,
-	NotionalBase decimal(18,4) null
+	NotionalBase decimal(18,4) null,
+	NettingSetId varchar(30) null,
+	CounterParty varchar(30) null
 );
 
 CREATE TABLE ResultsCurves (
@@ -39,7 +44,7 @@ CREATE TABLE ResultsCurves (
 CREATE TABLE ResultsXVA (
 	AnalysisID varchar(30) not null,
 	TradeID varchar(40) null,
-	NettingSetId varchar(10) null,
+	NettingSetId varchar(30) null,
 	CVA decimal(18,4) null,
 	DVA decimal(18,4) null,
 	FBA decimal(18,4) null,
@@ -61,7 +66,7 @@ CREATE TABLE ResultsXVA (
 
 CREATE TABLE ResultsColVA (
 	AnalysisID varchar(30) not null,
-	NettingSet varchar(10) null,
+	NettingSetId varchar(30) null,
 	HorizonDate datetime null,
 	HorizonTime decimal(18,6) null,
 	CollateralBalance decimal(18,4) null,
@@ -73,7 +78,7 @@ CREATE TABLE ResultsColVA (
 
 CREATE TABLE ResultsExposureNettingSet (
 	AnalysisID varchar(30) not null,
-	NettingSet varchar(10) null,
+	NettingSetId varchar(30) null,
 	HorizonDate datetime null,
 	HorizonTime decimal(18,6) null,
 	EPE decimal(18,4) null,
