@@ -133,6 +133,7 @@ INSERT Typescalendar (value) VALUES ('US,UK');
 INSERT Typescalendar (value) VALUES ('EUR,USD,GBP,CHF');
 INSERT Typescalendar (value) VALUES ('EUR,GBP');
 
+-- not yet contained in xsd, might be removed:
 INSERT TypesOptionStyle (value) VALUES ('European');
 INSERT TypesOptionStyle (value) VALUES ('American');
 INSERT TypesOptionStyle (value) VALUES ('Bermudan');
@@ -140,12 +141,8 @@ INSERT TypesOptionSettlement (value) VALUES ('Cash');
 INSERT TypesOptionSettlement (value) VALUES ('Physical');
 INSERT TypesOptionType (value) VALUES ('Call');
 INSERT TypesOptionType (value) VALUES ('Put');
-
 INSERT TypesDiscretizationType (value) VALUES ('Euler');
-
 INSERT TypesShiftType (value) VALUES ('Absolute');
 INSERT TypesShiftType (value) VALUES ('Relative');
-
 INSERT TypesSegmentTypeType (value) VALUES ('Average OIS');
-
 INSERT TypesCurveType (value) VALUES ('EquityForecast');
