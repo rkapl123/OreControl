@@ -127,9 +127,15 @@ INSERT Typescalendar (value) VALUES ('ZUB,US');
 INSERT Typescalendar (value) VALUES ('TARGET,ZUB');
 INSERT Typescalendar (value) VALUES ('TARGET,UK');
 INSERT Typescalendar (value) VALUES ('TARGET,US');
+INSERT Typescalendar (value) VALUES ('TARGET,AU');
+INSERT Typescalendar (value) VALUES ('TARGET,JP');
 INSERT Typescalendar (value) VALUES ('ZUB,UK');
 INSERT Typescalendar (value) VALUES ('JP,UK');
 INSERT Typescalendar (value) VALUES ('US,UK');
+INSERT Typescalendar (value) VALUES ('US,CA');
+INSERT Typescalendar (value) VALUES ('US,JP');
+INSERT Typescalendar (value) VALUES ('US,NOK');
+INSERT Typescalendar (value) VALUES ('US,SEK');
 INSERT Typescalendar (value) VALUES ('EUR,USD,GBP,CHF');
 INSERT Typescalendar (value) VALUES ('EUR,GBP');
 
