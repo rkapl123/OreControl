@@ -64,13 +64,14 @@ REFERENCES TypesCurrencyCode(value);
 
 CREATE TABLE TodaysMarketIndexForwardingCurves (
 	IndexName varchar(70) NOT NULL,
-	name varchar(20) NOT NULL,
+	name varchar(30) NOT NULL,
 	id varchar(16) NOT NULL,
 CONSTRAINT PK_TodaysMarketIndexForwardingCurves PRIMARY KEY CLUSTERED (
 	IndexName ASC,
 	id ASC
 ));
-
+ALTER TABLE TodaysMarketIndexForwardingCurves ADD CONSTRAINT FK_TodaysMarketIndexForwardingCurves_name FOREIGN KEY(name)
+REFERENCES TypesIndexName(value);
 
 CREATE TABLE TodaysMarketSwapIndexCurves (
 	Discounting varchar(30) NOT NULL,
