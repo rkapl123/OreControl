@@ -118,6 +118,16 @@ INSERT INTO TypesCurrencyCode (value) VALUES ('default');
 INSERT INTO TypesCurrencyPair (value) VALUES ('default');
 -- this is ugly, but necessary for XML import (and multiple calendar choices). maybe in the future we get an relation between Typescalendar and TypesMulticalendar...
 -- add calendar combinations as needed for XML import or selection...
+INSERT Typescalendar (value) VALUES ('TARGET,AU,UK');
+INSERT Typescalendar (value) VALUES ('CA,TARGET,UK');
+INSERT Typescalendar (value) VALUES ('TKB,TARGET,UK');
+INSERT Typescalendar (value) VALUES ('NOK,TARGET,UK');
+INSERT Typescalendar (value) VALUES ('CA,US,UK');
+INSERT Typescalendar (value) VALUES ('JP,US,UK');
+INSERT Typescalendar (value) VALUES ('MXN,US,UK');
+INSERT Typescalendar (value) VALUES ('NOK,US,UK');
+INSERT Typescalendar (value) VALUES ('SEK,US,UK');
+
 INSERT Typescalendar (value) VALUES ('TARGET,US,UK');
 INSERT Typescalendar (value) VALUES ('UK,US');
 INSERT Typescalendar (value) VALUES ('UK,TARGET');

@@ -231,8 +231,8 @@ CREATE TABLE ConventionsTenorBasisTwoSwap (
 CONSTRAINT PK_ConventionsTenorBasisTwoSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
--- ALTER TABLE ConventionsTenorBasisTwoSwap ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_Calendar FOREIGN KEY(Calendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsTenorBasisTwoSwap ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_Calendar FOREIGN KEY(Calendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsTenorBasisTwoSwap ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_LongFixedFrequency FOREIGN KEY(LongFixedFrequency)
 REFERENCES TypesFrequencyType (value);
 ALTER TABLE ConventionsTenorBasisTwoSwap ADD CONSTRAINT FK_ConventionsTenorBasisTwoSwap_LongFixedConvention FOREIGN KEY(LongFixedConvention)
@@ -269,12 +269,12 @@ ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_SourceCurrency FOREIGN
 REFERENCES TypesCurrencyCode (value);
 ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_TargetCurrency FOREIGN KEY(TargetCurrency)
 REFERENCES TypesCurrencyCode (value);
--- ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_AdvanceCalendar FOREIGN KEY(AdvanceCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_AdvanceCalendar FOREIGN KEY(AdvanceCalendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_SpotRelative FOREIGN KEY(SpotRelative)
 REFERENCES TypesBool (value);
--- ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_AdditionalSettleCalendar FOREIGN KEY(AdditionalSettleCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsFX ADD CONSTRAINT FK_ConventionsFX_AdditionalSettleCalendar FOREIGN KEY(AdditionalSettleCalendar)
+REFERENCES TypesCalendar (value);
 
 CREATE TABLE ConventionsCrossCurrencyBasis (
 	Id varchar(70) NOT NULL,
@@ -288,8 +288,8 @@ CREATE TABLE ConventionsCrossCurrencyBasis (
 CONSTRAINT PK_ConventionsCrossCurrencyBasis PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
--- ALTER TABLE ConventionsCrossCurrencyBasis ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_SettlementCalendar FOREIGN KEY(SettlementCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsCrossCurrencyBasis ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_SettlementCalendar FOREIGN KEY(SettlementCalendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsCrossCurrencyBasis ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_RollConvention FOREIGN KEY(RollConvention)
 REFERENCES TypesBusinessDayConvention (value);
 ALTER TABLE ConventionsCrossCurrencyBasis ADD CONSTRAINT FK_ConventionsCrossCurrencyBasis_FlatIndex FOREIGN KEY(FlatIndex)
@@ -324,8 +324,8 @@ CREATE TABLE ConventionsInflationSwap (
 CONSTRAINT PK_ConventionsInflationSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
--- ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_FixCalendar FOREIGN KEY(FixCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_FixCalendar FOREIGN KEY(FixCalendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_FixConvention FOREIGN KEY(FixConvention)
 REFERENCES TypesBusinessDayConvention (value);
 ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_DayCounter FOREIGN KEY(DayCounter)
@@ -336,5 +336,5 @@ ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_
 REFERENCES TypesBool (value);
 ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_AdjustInflationObservationDates FOREIGN KEY(AdjustInflationObservationDates)
 REFERENCES TypesBool (value);
--- ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_InflationCalendar FOREIGN KEY(InflationCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsInflationSwap ADD CONSTRAINT FK_ConventionsInflationSwap_InflationCalendar FOREIGN KEY(InflationCalendar)
+REFERENCES TypesCalendar (value);
