@@ -23,10 +23,10 @@ ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_Compounding FOREIG
 REFERENCES TypesCompounding (value);
 ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_CompoundingFrequency FOREIGN KEY(CompoundingFrequency)
 REFERENCES TypesFrequencyType (value);
--- ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_TenorCalendar FOREIGN KEY(TenorCalendar)
--- REFERENCES TypesCalendar (value);
--- ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_SpotCalendar FOREIGN KEY(SpotCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_TenorCalendar FOREIGN KEY(TenorCalendar)
+REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_SpotCalendar FOREIGN KEY(SpotCalendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_RollConvention FOREIGN KEY(RollConvention)
 REFERENCES TypesBusinessDayConvention (value);
 ALTER TABLE ConventionsZero ADD CONSTRAINT FK_ConventionsZero_EOM FOREIGN KEY(EOM)
@@ -46,8 +46,8 @@ CREATE TABLE ConventionsCDS (
 CONSTRAINT PK_ConventionsCDS PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
--- ALTER TABLE ConventionsCDS ADD CONSTRAINT FK_ConventionsCDS_Calendar FOREIGN KEY(Calendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsCDS ADD CONSTRAINT FK_ConventionsCDS_Calendar FOREIGN KEY(Calendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsCDS ADD CONSTRAINT FK_ConventionsCDS_Frequency FOREIGN KEY(Frequency)
 REFERENCES TypesFrequencyType (value);
 ALTER TABLE ConventionsCDS ADD CONSTRAINT FK_ConventionsCDS_PaymentConvention FOREIGN KEY(PaymentConvention)
@@ -78,8 +78,8 @@ ALTER TABLE ConventionsDeposit ADD CONSTRAINT FK_ConventionsDeposit_IndexBased F
 REFERENCES TypesBool (value);
 ALTER TABLE ConventionsDeposit ADD CONSTRAINT FK_ConventionsDeposit_IndexName FOREIGN KEY(IndexName)
 REFERENCES TypesIndexName (value);
--- ALTER TABLE ConventionsDeposit ADD CONSTRAINT FK_ConventionsDeposit_Calendar FOREIGN KEY(Calendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsDeposit ADD CONSTRAINT FK_ConventionsDeposit_Calendar FOREIGN KEY(Calendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsDeposit ADD CONSTRAINT FK_ConventionsDeposit_Convention FOREIGN KEY(Convention)
 REFERENCES TypesBusinessDayConvention (value);
 ALTER TABLE ConventionsDeposit ADD CONSTRAINT FK_ConventionsDeposit_EOM FOREIGN KEY(EOM)
@@ -150,8 +150,8 @@ CREATE TABLE ConventionsSwap (
 CONSTRAINT PK_ConventionsSwap PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
--- ALTER TABLE ConventionsSwap ADD CONSTRAINT FK_ConventionsSwap_FixedCalendar FOREIGN KEY(FixedCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsSwap ADD CONSTRAINT FK_ConventionsSwap_FixedCalendar FOREIGN KEY(FixedCalendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsSwap ADD CONSTRAINT FK_ConventionsSwap_FixedFrequency FOREIGN KEY(FixedFrequency)
 REFERENCES TypesFrequencyType (value);
 ALTER TABLE ConventionsSwap ADD CONSTRAINT FK_ConventionsSwap_FixedConvention FOREIGN KEY(FixedConvention)
@@ -182,8 +182,8 @@ CONSTRAINT PK_ConventionsAverageOIS PRIMARY KEY CLUSTERED (
 ));
 ALTER TABLE ConventionsAverageOIS ADD CONSTRAINT FK_ConventionsAverageOIS_FixedDayCounter FOREIGN KEY(FixedDayCounter)
 REFERENCES TypesDayCounter (value);
--- ALTER TABLE ConventionsAverageOIS ADD CONSTRAINT FK_ConventionsAverageOIS_FixedCalendar FOREIGN KEY(FixedCalendar)
--- REFERENCES TypesCalendar (value);
+ALTER TABLE ConventionsAverageOIS ADD CONSTRAINT FK_ConventionsAverageOIS_FixedCalendar FOREIGN KEY(FixedCalendar)
+REFERENCES TypesCalendar (value);
 ALTER TABLE ConventionsAverageOIS ADD CONSTRAINT FK_ConventionsAverageOIS_FixedConvention FOREIGN KEY(FixedConvention)
 REFERENCES TypesBusinessDayConvention (value);
 ALTER TABLE ConventionsAverageOIS ADD CONSTRAINT FK_ConventionsAverageOIS_FixedPaymentConvention FOREIGN KEY(FixedPaymentConvention)
