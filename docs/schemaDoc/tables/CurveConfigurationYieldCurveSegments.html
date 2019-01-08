@@ -131,7 +131,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="Seq">Seq</span></td>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Seq">Seq</span></td>
 				 <td>int</td>
 				 <td>4</td>
 				 <td title=''></td>
@@ -148,7 +148,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Type">Type</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Type">Type</span></td>
 				 <td>varchar</td>
 				 <td>30</td>
 				 <td title=''></td>
@@ -173,7 +173,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SegmentsType">SegmentsType</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SegmentsType">SegmentsType</span></td>
 				 <td>varchar</td>
 				 <td>15</td>
 				 <td title=''></td>
@@ -201,7 +201,7 @@
 				 <td><span id="Conventions">Conventions</span></td>
 				 <td>varchar</td>
 				 <td>70</td>
-				 <td title='nullable'>√</td>
+				 <td title=''></td>
 				 <td title=''></td>
 				 <td>null</td>
 				 <td>
@@ -445,8 +445,8 @@
 				 <tr>
 				  <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> PK_CurveConfigurationYieldCurveSegments</td>
 				  <td>Primary key</td>
-				  <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
-				  <td>CurveId + Type + SegmentsType</td>
+				  <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+				  <td>CurveId + Seq</td>
 				 </tr>				 
 				</tbody>
 				</table>   			  
@@ -486,18 +486,18 @@
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="787,216,1136,304">
-<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="367,160,673,365">
-<area shape="rect" id="node3" title="dbo.TypesSegmentTypeType" alt="" coords="376,383,664,471">
-<area shape="rect" id="node12" title="dbo.TypesCurrencyCode" alt="" coords="27,221,284,309">
-<area shape="rect" id="node4" title="dbo.CurveConfigurationEquityCurves" alt="" coords="787,427,1136,515">
-<area shape="rect" id="node5" title="dbo.CurveConfigurationYieldCurves" alt="" coords="349,939,691,1056">
-<area shape="rect" id="node8" title="dbo.TodaysMarketCurveSpecs" alt="" coords="5,941,305,1029">
-<area shape="rect" id="node6" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="825,321,1098,409">
-<area shape="rect" id="node7" title="dbo.CurveConfigurationSecurities" alt="" coords="799,5,1124,93">
-<area shape="rect" id="node9" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="735,637,1188,1088">
-<area shape="rect" id="node10" title="dbo.TypesSegmentType" alt="" coords="393,733,647,821">
-<area shape="rect" id="node11" href="MdatMarketData.html" title="MdatMarketData" alt="" coords="863,111,1060,199">
+<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="787,321,1136,409">
+<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="367,265,673,471">
+<area shape="rect" id="node12" title="dbo.TypesCurrencyCode" alt="" coords="27,327,284,415">
+<area shape="rect" id="node3" title="dbo.CurveConfigurationEquityCurves" alt="" coords="787,427,1136,515">
+<area shape="rect" id="node4" title="dbo.CurveConfigurationYieldCurves" alt="" coords="349,939,691,1056">
+<area shape="rect" id="node7" title="dbo.TodaysMarketCurveSpecs" alt="" coords="5,941,305,1029">
+<area shape="rect" id="node5" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="825,5,1098,93">
+<area shape="rect" id="node6" title="dbo.CurveConfigurationSecurities" alt="" coords="799,111,1124,199">
+<area shape="rect" id="node8" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="735,637,1188,1088">
+<area shape="rect" id="node9" title="dbo.TypesSegmentType" alt="" coords="393,772,647,860">
+<area shape="rect" id="node10" title="dbo.TypesSegmentTypeType" alt="" coords="376,667,664,755">
+<area shape="rect" id="node11" href="MdatMarketData.html" title="MdatMarketData" alt="" coords="863,216,1060,304">
 <area shape="rect" id="node13" href="SimulationMarketBenchmarkCurves.html" title="SimulationMarketBenchmarkCurves" alt="" coords="793,532,1129,620">
 <area shape="rect" id="node14" href="SimulationMarketCpiCapFloorVolatilities.html" title="SimulationMarketCpiCapFloorVolatilities" alt="" coords="779,1105,1144,1193">
 <area shape="rect" id="node15" href="SimulationMarketYieldCurveDayCounters.html" title="SimulationMarketYieldCurveDayCounters" alt="" coords="773,1211,1149,1299">

@@ -199,7 +199,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="FixedCalendar">FixedCalendar</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="FixedCalendar">FixedCalendar</span></td>
 				 <td>varchar</td>
 				 <td>20</td>
 				 <td title=''></td>
@@ -211,6 +211,14 @@
 				 </td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="ConventionsAverageOIS.FixedCalendar references dbo.TypesCalendar.value via FK_ConventionsAverageOIS_FixedCalendar">
+						<a href='../../dbo/tables/TypesCalendar.html'>TypesCalendar</a><span class='relatedKey'>.value</span>
+					</td>
+					<td class="constraint detail">
+						FK_ConventionsAverageOIS_FixedCalendar <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
 				  </table>					 
 				 </td>
 				 <td></td>
@@ -386,65 +394,70 @@
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
 <area shape="rect" id="node1" href="ConventionsAverageOIS.html" title="ConventionsAverageOIS" alt="" coords="379,5,711,397">
-<area shape="rect" id="node2" title="dbo.TypesBusinessDayConvention" alt="" coords="5,204,335,292">
-<area shape="rect" id="node3" title="dbo.TypesDayCounter" alt="" coords="51,99,289,187">
-<area shape="rect" id="node4" title="dbo.TypesIndexName" alt="" coords="53,309,287,397">
+<area shape="rect" id="node2" title="dbo.TypesCalendar" alt="" coords="61,113,279,201">
+<area shape="rect" id="node3" title="dbo.TypesBusinessDayConvention" alt="" coords="5,219,335,307">
+<area shape="rect" id="node4" title="dbo.TypesDayCounter" alt="" coords="51,8,289,96">
+<area shape="rect" id="node5" title="dbo.TypesIndexName" alt="" coords="53,324,287,412">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/ConventionsAverageOIS.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="ConventionsAverageOIS.html" title="ConventionsAverageOIS" alt="" coords="435,532,767,924">
-<area shape="rect" id="node2" title="dbo.TypesBusinessDayConvention" alt="" coords="5,944,335,1032">
-<area shape="rect" id="node3" title="dbo.TypesDayCounter" alt="" coords="51,1612,289,1700">
-<area shape="rect" id="node4" title="dbo.TypesIndexName" alt="" coords="53,3297,287,3385">
-<area shape="rect" id="node5" href="ConventionsCDS.html" title="ConventionsCDS" alt="" coords="499,111,703,199">
-<area shape="rect" id="node6" href="ConventionsCrossCurrencyBasis.html" title="ConventionsCrossCurrencyBasis" alt="" coords="442,2663,759,2751">
-<area shape="rect" id="node7" href="ConventionsDeposit.html" title="ConventionsDeposit" alt="" coords="487,2136,714,2224">
-<area shape="rect" id="node8" href="ConventionsFRA.html" title="ConventionsFRA" alt="" coords="500,4559,701,4647">
-<area shape="rect" id="node9" href="ConventionsFuture.html" title="ConventionsFuture" alt="" coords="491,4664,710,4752">
-<area shape="rect" id="node10" title="dbo.ConventionsInflationSwap" alt="" coords="452,1925,749,2013">
-<area shape="rect" id="node11" href="ConventionsOIS.html" title="ConventionsOIS" alt="" coords="502,427,699,515">
-<area shape="rect" id="node12" href="ConventionsSwap.html" title="ConventionsSwap" alt="" coords="496,2347,705,2435">
-<area shape="rect" id="node13" href="ConventionsTenorBasisSwap.html" title="ConventionsTenorBasisSwap" alt="" coords="455,4769,747,4857">
-<area shape="rect" id="node14" href="ConventionsTenorBasisTwoSwap.html" title="ConventionsTenorBasisTwoSwap" alt="" coords="440,2452,761,2540">
-<area shape="rect" id="node15" href="ConventionsZero.html" title="ConventionsZero" alt="" coords="499,216,703,304">
-<area shape="rect" id="node16" href="CurveConfigurationBaseCorrelation.html" title="CurveConfigurationBaseCorrelation" alt="" coords="432,321,769,409">
-<area shape="rect" id="node17" href="CurveConfigurationCapFloorVolatilities.html" title="CurveConfigurationCapFloorVolatilities" alt="" coords="421,941,781,1029">
-<area shape="rect" id="node18" href="CurveConfigurationDefaultCurves.html" title="CurveConfigurationDefaultCurves" alt="" coords="438,2031,763,2119">
-<area shape="rect" id="node19" href="CurveConfigurationEquityCurves.html" title="CurveConfigurationEquityCurves" alt="" coords="442,2241,759,2329">
-<area shape="rect" id="node20" href="CurveConfigurationInflationCapFloorPriceSurfaces.html" title="CurveConfigurationInflationCapFloorPriceSurfaces" alt="" coords="379,1047,823,1135">
-<area shape="rect" id="node21" href="CurveConfigurationInflationCurves.html" title="CurveConfigurationInflationCurves" alt="" coords="867,1679,1197,1767">
-<area shape="rect" id="node22" href="CurveConfigurationSwaptionVolatilities.html" title="CurveConfigurationSwaptionVolatilities" alt="" coords="421,2557,781,2645">
-<area shape="rect" id="node23" href="CurveConfigurationYieldCurves.html" title="CurveConfigurationYieldCurves" alt="" coords="446,1152,755,1240">
-<area shape="rect" id="node24" href="NettingCSADetails.html" title="NettingCSADetails" alt="" coords="495,4875,707,4963">
-<area shape="rect" id="node25" href="PortfolioForwardRateAgreementData.html" title="PortfolioForwardRateAgreementData" alt="" coords="430,4980,771,5068">
-<area shape="rect" id="node26" title="dbo.PortfolioLegData" alt="" coords="485,2873,717,2961">
-<area shape="rect" id="node27" href="PortfolioScheduleDataRules.html" title="PortfolioScheduleDataRules" alt="" coords="460,5,741,93">
-<area shape="rect" id="node28" href="SensitivityanalysisCapFloorVolatility.html" title="SensitivityanalysisCapFloorVolatility" alt="" coords="433,5085,768,5173">
-<area shape="rect" id="node29" href="SensitivityanalysisIndexCurve.html" title="SensitivityanalysisIndexCurve" alt="" coords="454,2979,747,3067">
-<area shape="rect" id="node30" href="SensitivityanalysisYYInflationIndexCurve.html" title="SensitivityanalysisYYInflationIndexCurve" alt="" coords="415,3084,786,3172">
-<area shape="rect" id="node31" href="SensitivityanalysisZeroInflationIndexCurve.html" title="SensitivityanalysisZeroInflationIndexCurve" alt="" coords="409,3189,792,3277">
-<area shape="rect" id="node32" href="SimulationCrossAssetModelInflationIndices.html" title="SimulationCrossAssetModelInflationIndices" alt="" coords="407,3295,795,3383">
-<area shape="rect" id="node33" href="SimulationMarketAggregationScenarioDataIndices.html" title="SimulationMarketAggregationScenarioDataIndices" alt="" coords="383,3400,819,3488">
-<area shape="rect" id="node34" href="SimulationMarketBaseCorrelationsNames.html" title="SimulationMarketBaseCorrelationsNames" alt="" coords="413,2768,789,2856">
-<area shape="rect" id="node35" href="SimulationMarketCapFloorVolatilitiesCurrencies.html" title="SimulationMarketCapFloorVolatilitiesCurrencies" alt="" coords="390,1257,811,1345">
-<area shape="rect" id="node36" href="SimulationMarketCPIIndices.html" title="SimulationMarketCPIIndices" alt="" coords="461,3505,741,3593">
-<area shape="rect" id="node37" href="SimulationMarketDefaultCurvesNames.html" title="SimulationMarketDefaultCurvesNames" alt="" coords="423,1363,778,1451">
-<area shape="rect" id="node38" href="SimulationMarketIndices.html" title="SimulationMarketIndices" alt="" coords="473,3611,728,3699">
-<area shape="rect" id="node39" href="SimulationMarketSwapIndices.html" title="SimulationMarketSwapIndices" alt="" coords="454,3716,747,3804">
-<area shape="rect" id="node40" href="SimulationMarketSwaptionVolatilitiesCurrencies.html" title="SimulationMarketSwaptionVolatilitiesCurrencies" alt="" coords="390,1504,811,1592">
-<area shape="rect" id="node41" href="SimulationMarketYieldCurveDayCounters.html" title="SimulationMarketYieldCurveDayCounters" alt="" coords="413,1609,789,1697">
-<area shape="rect" id="node42" href="SimulationMarketYYInflationIndexCurves.html" title="SimulationMarketYYInflationIndexCurves" alt="" coords="415,1715,787,1803">
-<area shape="rect" id="node43" href="SimulationMarketZeroInflationIndexCurves.html" title="SimulationMarketZeroInflationIndexCurves" alt="" coords="409,1820,793,1908">
-<area shape="rect" id="node44" href="StresstestIndexCurve.html" title="StresstestIndexCurve" alt="" coords="482,3821,719,3909">
-<area shape="rect" id="node45" href="StresstestYYInflationIndexCurve.html" title="StresstestYYInflationIndexCurve" alt="" coords="444,3927,757,4015">
-<area shape="rect" id="node46" href="StresstestZeroInflationIndexCurve.html" title="StresstestZeroInflationIndexCurve" alt="" coords="438,4032,763,4120">
-<area shape="rect" id="node47" href="TodaysMarketInflationCapFloorPriceSurfaces.html" title="TodaysMarketInflationCapFloorPriceSurfaces" alt="" coords="399,4137,802,4225">
-<area shape="rect" id="node48" href="TodaysMarketSwapIndexCurves.html" title="TodaysMarketSwapIndexCurves" alt="" coords="446,4243,755,4331">
-<area shape="rect" id="node49" href="TodaysMarketYYInflationIndexCurves.html" title="TodaysMarketYYInflationIndexCurves" alt="" coords="426,4348,775,4436">
-<area shape="rect" id="node50" href="TodaysMarketZeroInflationIndexCurves.html" title="TodaysMarketZeroInflationIndexCurves" alt="" coords="420,4453,781,4541">
+<area shape="rect" id="node1" href="ConventionsAverageOIS.html" title="ConventionsAverageOIS" alt="" coords="435,743,767,1135">
+<area shape="rect" id="node2" title="dbo.TypesCalendar" alt="" coords="61,535,279,623">
+<area shape="rect" id="node3" title="dbo.TypesBusinessDayConvention" alt="" coords="5,1365,335,1453">
+<area shape="rect" id="node4" title="dbo.TypesDayCounter" alt="" coords="51,1823,289,1911">
+<area shape="rect" id="node5" title="dbo.TypesIndexName" alt="" coords="53,3561,287,3649">
+<area shape="rect" id="node6" href="ConventionsCDS.html" title="ConventionsCDS" alt="" coords="499,427,703,515">
+<area shape="rect" id="node7" href="ConventionsCrossCurrencyBasis.html" title="ConventionsCrossCurrencyBasis" alt="" coords="442,1679,759,1767">
+<area shape="rect" id="node8" href="ConventionsDeposit.html" title="ConventionsDeposit" alt="" coords="487,1363,714,1451">
+<area shape="rect" id="node9" href="ConventionsFRA.html" title="ConventionsFRA" alt="" coords="500,5085,701,5173">
+<area shape="rect" id="node10" href="ConventionsFuture.html" title="ConventionsFuture" alt="" coords="491,5191,710,5279">
+<area shape="rect" id="node11" href="ConventionsFX.html" title="ConventionsFX" alt="" coords="505,5,696,93">
+<area shape="rect" id="node12" title="dbo.ConventionsInflationSwap" alt="" coords="452,532,749,620">
+<area shape="rect" id="node13" href="ConventionsOIS.html" title="ConventionsOIS" alt="" coords="502,1468,699,1556">
+<area shape="rect" id="node14" href="ConventionsSwap.html" title="ConventionsSwap" alt="" coords="496,1152,705,1240">
+<area shape="rect" id="node15" href="ConventionsTenorBasisSwap.html" title="ConventionsTenorBasisSwap" alt="" coords="455,5296,747,5384">
+<area shape="rect" id="node16" href="ConventionsTenorBasisTwoSwap.html" title="ConventionsTenorBasisTwoSwap" alt="" coords="440,1573,761,1661">
+<area shape="rect" id="node17" href="ConventionsZero.html" title="ConventionsZero" alt="" coords="499,216,703,304">
+<area shape="rect" id="node18" href="CurveConfigurationBaseCorrelation.html" title="CurveConfigurationBaseCorrelation" alt="" coords="432,1257,769,1345">
+<area shape="rect" id="node19" href="CurveConfigurationCapFloorVolatilities.html" title="CurveConfigurationCapFloorVolatilities" alt="" coords="421,2241,781,2329">
+<area shape="rect" id="node20" href="CurveConfigurationDefaultCurves.html" title="CurveConfigurationDefaultCurves" alt="" coords="438,2768,763,2856">
+<area shape="rect" id="node21" href="CurveConfigurationEquityCurves.html" title="CurveConfigurationEquityCurves" alt="" coords="442,2873,759,2961">
+<area shape="rect" id="node22" href="CurveConfigurationInflationCapFloorPriceSurfaces.html" title="CurveConfigurationInflationCapFloorPriceSurfaces" alt="" coords="379,2347,823,2435">
+<area shape="rect" id="node23" href="CurveConfigurationInflationCurves.html" title="CurveConfigurationInflationCurves" alt="" coords="867,1140,1197,1228">
+<area shape="rect" id="node24" href="CurveConfigurationSwaptionVolatilities.html" title="CurveConfigurationSwaptionVolatilities" alt="" coords="421,1820,781,1908">
+<area shape="rect" id="node25" href="CurveConfigurationYieldCurves.html" title="CurveConfigurationYieldCurves" alt="" coords="446,1925,755,2013">
+<area shape="rect" id="node26" href="NettingCSADetails.html" title="NettingCSADetails" alt="" coords="495,5401,707,5489">
+<area shape="rect" id="node27" href="PortfolioForwardRateAgreementData.html" title="PortfolioForwardRateAgreementData" alt="" coords="430,3189,771,3277">
+<area shape="rect" id="node28" title="dbo.PortfolioLegData" alt="" coords="485,3084,717,3172">
+<area shape="rect" id="node29" href="PortfolioScheduleDataRules.html" title="PortfolioScheduleDataRules" alt="" coords="460,637,741,725">
+<area shape="rect" id="node30" href="SensitivityanalysisCapFloorVolatility.html" title="SensitivityanalysisCapFloorVolatility" alt="" coords="433,3295,768,3383">
+<area shape="rect" id="node31" href="SensitivityanalysisIndexCurve.html" title="SensitivityanalysisIndexCurve" alt="" coords="454,3400,747,3488">
+<area shape="rect" id="node32" href="SensitivityanalysisYYInflationIndexCurve.html" title="SensitivityanalysisYYInflationIndexCurve" alt="" coords="415,3505,786,3593">
+<area shape="rect" id="node33" href="SensitivityanalysisZeroInflationIndexCurve.html" title="SensitivityanalysisZeroInflationIndexCurve" alt="" coords="409,3611,792,3699">
+<area shape="rect" id="node34" href="SimulationCrossAssetModelInflationIndices.html" title="SimulationCrossAssetModelInflationIndices" alt="" coords="407,3716,795,3804">
+<area shape="rect" id="node35" href="SimulationMarketAggregationScenarioDataIndices.html" title="SimulationMarketAggregationScenarioDataIndices" alt="" coords="383,3821,819,3909">
+<area shape="rect" id="node36" href="SimulationMarketBaseCorrelationsNames.html" title="SimulationMarketBaseCorrelationsNames" alt="" coords="413,2979,789,3067">
+<area shape="rect" id="node37" href="SimulationMarketCapFloorVolatilitiesCurrencies.html" title="SimulationMarketCapFloorVolatilitiesCurrencies" alt="" coords="390,2031,811,2119">
+<area shape="rect" id="node38" href="SimulationMarketCPIIndices.html" title="SimulationMarketCPIIndices" alt="" coords="461,3927,741,4015">
+<area shape="rect" id="node39" href="SimulationMarketDefaultCurvesNames.html" title="SimulationMarketDefaultCurvesNames" alt="" coords="423,321,778,409">
+<area shape="rect" id="node40" href="SimulationMarketIndices.html" title="SimulationMarketIndices" alt="" coords="473,4032,728,4120">
+<area shape="rect" id="node41" href="SimulationMarketSwapIndices.html" title="SimulationMarketSwapIndices" alt="" coords="454,4137,747,4225">
+<area shape="rect" id="node42" href="SimulationMarketSwaptionVolatilitiesCurrencies.html" title="SimulationMarketSwaptionVolatilitiesCurrencies" alt="" coords="390,2136,811,2224">
+<area shape="rect" id="node43" href="SimulationMarketYieldCurveDayCounters.html" title="SimulationMarketYieldCurveDayCounters" alt="" coords="413,2452,789,2540">
+<area shape="rect" id="node44" href="SimulationMarketYYInflationIndexCurves.html" title="SimulationMarketYYInflationIndexCurves" alt="" coords="415,2557,787,2645">
+<area shape="rect" id="node45" href="SimulationMarketZeroInflationIndexCurves.html" title="SimulationMarketZeroInflationIndexCurves" alt="" coords="409,2663,793,2751">
+<area shape="rect" id="node46" href="SimulationParameters.html" title="SimulationParameters" alt="" coords="483,111,719,199">
+<area shape="rect" id="node47" href="StresstestIndexCurve.html" title="StresstestIndexCurve" alt="" coords="482,4243,719,4331">
+<area shape="rect" id="node48" href="StresstestYYInflationIndexCurve.html" title="StresstestYYInflationIndexCurve" alt="" coords="444,4348,757,4436">
+<area shape="rect" id="node49" href="StresstestZeroInflationIndexCurve.html" title="StresstestZeroInflationIndexCurve" alt="" coords="438,4453,763,4541">
+<area shape="rect" id="node50" href="TodaysMarketIndexForwardingCurves.html" title="TodaysMarketIndexForwardingCurves" alt="" coords="425,4559,777,4647">
+<area shape="rect" id="node51" href="TodaysMarketInflationCapFloorPriceSurfaces.html" title="TodaysMarketInflationCapFloorPriceSurfaces" alt="" coords="399,4664,802,4752">
+<area shape="rect" id="node52" href="TodaysMarketSwapIndexCurves.html" title="TodaysMarketSwapIndexCurves" alt="" coords="446,4769,755,4857">
+<area shape="rect" id="node53" href="TodaysMarketYYInflationIndexCurves.html" title="TodaysMarketYYInflationIndexCurves" alt="" coords="426,4875,775,4963">
+<area shape="rect" id="node54" href="TodaysMarketZeroInflationIndexCurves.html" title="TodaysMarketZeroInflationIndexCurves" alt="" coords="420,4980,781,5068">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/ConventionsAverageOIS.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							

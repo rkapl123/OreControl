@@ -108,8 +108,9 @@ digraph "twoDegreesRelationshipsDiagram" {
   "StresstestFxVolatility":"elipses":w -> "dbo.Stresstest":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "StresstestIndexCurve":"elipses":w -> "dbo.TypesShiftType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "StresstestIndexCurve":"elipses":w -> "dbo.Stresstest":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "StresstestSwaptionShift":"elipses":w -> "dbo.StresstestSwaptionVolatility":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "StresstestSwaptionShift":"elipses":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "StresstestSwaptionVolatility":"elipses":w -> "dbo.TypesCurrencyCode":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "StresstestSwaptionShift":"elipses":w -> "dbo.StresstestSwaptionVolatility":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "StresstestSwaptionVolatility":"elipses":w -> "dbo.TypesShiftType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.StresstestSwaptionVolatility":"elipses":w -> "dbo.Stresstest":"Id":e [arrowhead=none dir=back arrowtail=crowodot];
   "StresstestYieldCurve":"elipses":w -> "dbo.TypesShiftType":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -126,7 +127,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsFX</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="ConventionsFX.html"
     tooltip="ConventionsFX"
@@ -646,19 +647,20 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>StresstestSwaptionShift</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">24 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">42 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="StresstestSwaptionShift.html"
     tooltip="StresstestSwaptionShift"
   ];
-  "dbo.StresstestSwaptionVolatility" [
+  "StresstestSwaptionVolatility" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.StresstestSwaptionVolatility</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>StresstestSwaptionVolatility</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">6 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    tooltip="dbo.StresstestSwaptionVolatility"
+    URL="StresstestSwaptionVolatility.html"
+    tooltip="StresstestSwaptionVolatility"
   ];
   "StresstestYieldCurve" [
    label=<

@@ -123,7 +123,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="Seq">Seq</span></td>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Seq">Seq</span></td>
 				 <td>int</td>
 				 <td>4</td>
 				 <td title=''></td>
@@ -140,10 +140,10 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Type">Type</span></td>
-				 <td>varchar</td>
-				 <td>30</td>
-				 <td title='nullable'>√</td>
+				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="SeqSegment">SeqSegment</span></td>
+				 <td>int</td>
+				 <td>4</td>
+				 <td title=''></td>
 				 <td title=''></td>
 				 <td>null</td>
 				 <td>
@@ -152,20 +152,12 @@
 				 </td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
-				   <tr>
-					<td title="CurveConfigurationQuotes.Type references dbo.TypesSegmentTypeType.value via FK_CurveConfigurationQuotes_Type">
-						<a href='../../dbo/tables/TypesSegmentTypeType.html'>TypesSegmentTypeType</a><span class='relatedKey'>.value</span>
-					</td>
-					<td class="constraint detail">
-						FK_CurveConfigurationQuotes_Type <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
-					</td>
-				   </tr>
 				  </table>					 
 				 </td>
 				 <td></td>
 				</tr>
 				<tr>
-				 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Quote">Quote</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="Quote">Quote</span></td>
 				 <td>varchar</td>
 				 <td>100</td>
 				 <td title=''></td>
@@ -220,8 +212,8 @@
 				 <tr>
 				  <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> PK_CurveConfigurationQuotes</td>
 				  <td>Primary key</td>
-				  <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
-				  <td>CurveId + Quote</td>
+				  <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+				  <td>CurveId + Seq + SeqSegment</td>
 				 </tr>				 
 				</tbody>
 				</table>   			  
@@ -250,24 +242,22 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="355,7,704,193">
-<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="5,111,311,316">
-<area shape="rect" id="node3" title="dbo.TypesSegmentTypeType" alt="" coords="14,5,302,93">
+<area shape="rect" id="node1" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="355,5,704,192">
+<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="5,43,311,248">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/CurveConfigurationQuotes.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="668,321,1017,409">
-<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="307,213,612,419">
-<area shape="rect" id="node3" title="dbo.TypesSegmentTypeType" alt="" coords="315,493,603,581">
-<area shape="rect" id="node9" title="dbo.TypesCurrencyCode" alt="" coords="5,260,263,348">
-<area shape="rect" id="node4" title="dbo.CurveConfigurationEquityCurves" alt="" coords="668,5,1017,93">
-<area shape="rect" id="node5" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="668,427,1017,613">
-<area shape="rect" id="node6" title="dbo.CurveConfigurationSecurities" alt="" coords="680,111,1005,199">
-<area shape="rect" id="node7" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="656,631,1029,719">
-<area shape="rect" id="node8" href="MdatMarketData.html" title="MdatMarketData" alt="" coords="744,216,941,304">
+<area shape="rect" id="node1" href="CurveConfigurationCompositeQuotes.html" title="CurveConfigurationCompositeQuotes" alt="" coords="668,5,1017,93">
+<area shape="rect" id="node2" title="dbo.MdatMarketDataDefinitions" alt="" coords="307,309,612,515">
+<area shape="rect" id="node8" title="dbo.TypesCurrencyCode" alt="" coords="5,356,263,444">
+<area shape="rect" id="node3" title="dbo.CurveConfigurationEquityCurves" alt="" coords="668,111,1017,199">
+<area shape="rect" id="node4" href="CurveConfigurationQuotes.html" title="CurveConfigurationQuotes" alt="" coords="668,216,1017,403">
+<area shape="rect" id="node5" title="dbo.CurveConfigurationSecurities" alt="" coords="680,420,1005,508">
+<area shape="rect" id="node6" href="CurveConfigurationYieldCurveSegments.html" title="CurveConfigurationYieldCurveSegments" alt="" coords="656,525,1029,613">
+<area shape="rect" id="node7" href="MdatMarketData.html" title="MdatMarketData" alt="" coords="744,631,941,719">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/CurveConfigurationQuotes.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
