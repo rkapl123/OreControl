@@ -487,7 +487,7 @@ CREATE TABLE PortfolioLegNotionals (
 	LegDataId int not null,
 	SeqId int not null,
 	Notional decimal(18,3) not null,
-	startDate date,
+	StartDate date,
 CONSTRAINT PK_PortfolioLegNotionals PRIMARY KEY CLUSTERED 
 (
 	LegDataId ASC,
@@ -495,6 +495,20 @@ CONSTRAINT PK_PortfolioLegNotionals PRIMARY KEY CLUSTERED
 ));
 ALTER TABLE PortfolioLegNotionals ADD CONSTRAINT FK_PortfolioLegNotionals_LegDataId FOREIGN KEY(LegDataId)
 REFERENCES PortfolioLegData (Id);
+
+
+CREATE TABLE PortfolioCashflowDataCashflow (
+	LegDataId int not null,
+	SeqId int not null,
+	Amount decimal(18, 3) not null,
+	StartDate date not null,
+ CONSTRAINT PK_PortfolioCashflowDataCashflow PRIMARY KEY CLUSTERED 
+(
+	LegDataId ASC,
+	SeqId ASC
+));
+ALTER TABLE PortfolioCashflowDataCashflow ADD  CONSTRAINT FK_PortfolioCashflowDataCashflow_LegDataId FOREIGN KEY(LegDataId)
+REFERENCES PortfolioLegData (Id)
 
 
 CREATE TABLE PortfolioFixedLegCPIRates (

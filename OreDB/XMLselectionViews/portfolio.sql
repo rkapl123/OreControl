@@ -28,9 +28,10 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 		(SELECT 
 			(SELECT 
 				ld.LegType, ld.Payer, ld.Currency, ld.DayCounter, ld.PaymentConvention,
+				CASE WHEN ld.LegType <> 'Cashflow' THEN
 				(SELECT
 					(SELECT ln.startDate [@startDate], ln.Notional [data()]
-					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id
+					FROM PortfolioLegNotionals ln WHERE ln.LegDataId =ld.Id ORDER by SeqId
 					FOR XML PATH ('Notional'), TYPE),
 					CASE WHEN (SELECT COUNT(li.FXresetForeignCurrency) FROM PortfolioLegData li WHERE li.Id =ld.Id) > 0 THEN (SELECT li.FXresetForeignCurrency ForeignCurrency, li.FXresetForeignAmount ForeignAmount, li.FXresetFXIndex FXIndex, li.FXresetFixingDays FixingDays
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
@@ -38,7 +39,8 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					(SELECT	li.NotionalInitialExchange InitialExchange, li.NotionalAmortizingExchange AmortizingExchange, li.NotionalFinalExchange FinalExchange
 					FROM PortfolioLegData li WHERE li.Id =ld.Id
 					FOR XML PATH (''), TYPE) Exchanges
-				FOR XML PATH (''), TYPE) Notionals,
+				FOR XML PATH (''), TYPE) END Notionals,
+				CASE WHEN ld.LegType <> 'Cashflow' THEN
 				(SELECT 
 					(SELECT s.StartDate, s.EndDate, s.Tenor, s.Calendar, s.Convention, s.TermConvention, s.RuleName [Rule], ISNULL(s.EndOfMonth,'') EndOfMonth, ISNULL(convert(varchar,s.FirstDate,112),'') FirstDate, ISNULL(convert(varchar,s.LastDate,112),'') LastDate
 					FROM PortfolioScheduleDataRules s WHERE s.LegDataId = ld.Id
@@ -46,35 +48,41 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					(SELECT s.ScheduleDate [Date]
 					FROM PortfolioScheduleDataDates s WHERE s.LegDataId = ld.Id
 					FOR XML PATH (''), TYPE) Dates
-				FOR XML PATH (''), TYPE) ScheduleData,
+				FOR XML PATH (''), TYPE) END ScheduleData,
 				CASE WHEN ld.LegType = 'Fixed' THEN 
 				(SELECT 
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FOR XML PATH (''), TYPE) END FixedLegData,
 				CASE WHEN ld.LegType = 'Floating' THEN 
 				(SELECT 
 					li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 					(SELECT r.StartDate [@startDate], r.Spread [data()]
-					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Spread'), TYPE) Spreads,
 					(SELECT r.StartDate [@startDate], r.Cap [data()]
-					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Cap'), TYPE) Caps,
 					(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Floor'), TYPE) Floors,
 					(SELECT r.StartDate [@startDate], r.Gearing [data()]
-					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Gearing'), TYPE) Gearings
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END FloatingLegData,
+				CASE WHEN ld.LegType = 'Cashflow' THEN 
+				(SELECT 
+					(SELECT c.StartDate [@Date], c.Amount [data()]
+					FROM PortfolioCashflowDataCashflow c WHERE c.LegDataId = ld.Id ORDER by SeqId
+					FOR XML PATH ('Amount'), TYPE) Cashflow
+				FOR XML PATH (''), TYPE) END CashflowData,
 				CASE WHEN ld.LegType = 'CPI' THEN 
 				(SELECT 
 					li.CPILegIndexName [Index],
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates,
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -83,7 +91,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END YYLegData
@@ -129,23 +137,23 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				CASE WHEN ld.LegType = 'Fixed' THEN 
 				(SELECT 
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FOR XML PATH (''), TYPE) END FixedLegData,
 				CASE WHEN ld.LegType = 'Floating' THEN 
 				(SELECT 
 					li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 					(SELECT r.StartDate [@startDate], r.Spread [data()]
-					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Spread'), TYPE) Spreads,
 					(SELECT r.StartDate [@startDate], r.Cap [data()]
-					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Cap'), TYPE) Caps,
 					(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Floor'), TYPE) Floors,
 					(SELECT r.StartDate [@startDate], r.Gearing [data()]
-					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Gearing'), TYPE) Gearings
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END FloatingLegData,
@@ -153,7 +161,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT 
 					li.CPILegIndexName [Index],
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates,
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -162,7 +170,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END YYLegData
@@ -210,23 +218,23 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				CASE WHEN ld.LegType = 'Fixed' THEN 
 				(SELECT 
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FOR XML PATH (''), TYPE) END FixedLegData,
 				CASE WHEN ld.LegType = 'Floating' THEN 
 				(SELECT 
 					li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 					(SELECT r.StartDate [@startDate], r.Spread [data()]
-					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Spread'), TYPE) Spreads,
 					(SELECT r.StartDate [@startDate], r.Cap [data()]
-					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Cap'), TYPE) Caps,
 					(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Floor'), TYPE) Floors,
 					(SELECT r.StartDate [@startDate], r.Gearing [data()]
-					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Gearing'), TYPE) Gearings
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END FloatingLegData,
@@ -234,7 +242,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT 
 					li.CPILegIndexName [Index],
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates,
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -243,17 +251,17 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END YYLegData
 			FROM PortfolioLegData ld WHERE ld.TradeId = t.id
 			FOR XML PATH ('LegData'), TYPE),
 			(SELECT r.Rate
-			FROM PortfolioCapRates r WHERE r.TradeId = t.Id
+			FROM PortfolioCapRates r WHERE r.TradeId = t.Id ORDER by SeqId
 			FOR XML PATH (''), TYPE) CapRates,
 			(SELECT r.Rate
-			FROM PortfolioFloorRates r WHERE r.TradeId = t.Id
+			FROM PortfolioFloorRates r WHERE r.TradeId = t.Id ORDER by SeqId
 			FOR XML PATH (''), TYPE) FloorRates
 		FROM PortfolioCapFloorData cfd WHERE cfd.TradeId = t.id
 		FOR XML PATH (''), TYPE) CapFloorData,
@@ -302,23 +310,23 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				CASE WHEN ld.LegType = 'Fixed' THEN 
 				(SELECT 
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FOR XML PATH (''), TYPE) END FixedLegData,
 				CASE WHEN ld.LegType = 'Floating' THEN 
 				(SELECT 
 					li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 					(SELECT r.StartDate [@startDate], r.Spread [data()]
-					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Spread'), TYPE) Spreads,
 					(SELECT r.StartDate [@startDate], r.Cap [data()]
-					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Cap'), TYPE) Caps,
 					(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Floor'), TYPE) Floors,
 					(SELECT r.StartDate [@startDate], r.Gearing [data()]
-					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Gearing'), TYPE) Gearings
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END FloatingLegData,
@@ -326,7 +334,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT 
 					li.CPILegIndexName [Index],
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates,
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -335,7 +343,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END YYLegData
@@ -368,23 +376,23 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				CASE WHEN ld.LegType = 'Fixed' THEN 
 				(SELECT 
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FOR XML PATH (''), TYPE) END FixedLegData,
 				CASE WHEN ld.LegType = 'Floating' THEN 
 				(SELECT 
 					li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 					(SELECT r.StartDate [@startDate], r.Spread [data()]
-					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Spread'), TYPE) Spreads,
 					(SELECT r.StartDate [@startDate], r.Cap [data()]
-					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Cap'), TYPE) Caps,
 					(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Floor'), TYPE) Floors,
 					(SELECT r.StartDate [@startDate], r.Gearing [data()]
-					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Gearing'), TYPE) Gearings
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END FloatingLegData,
@@ -392,7 +400,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT 
 					li.CPILegIndexName [Index],
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates,
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -401,7 +409,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END YYLegData
@@ -434,23 +442,23 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				CASE WHEN ld.LegType = 'Fixed' THEN 
 				(SELECT 
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FOR XML PATH (''), TYPE) END FixedLegData,
 				CASE WHEN ld.LegType = 'Floating' THEN 
 				(SELECT 
 					li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 					(SELECT r.StartDate [@startDate], r.Spread [data()]
-					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Spread'), TYPE) Spreads,
 					(SELECT r.StartDate [@startDate], r.Cap [data()]
-					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Cap'), TYPE) Caps,
 					(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Floor'), TYPE) Floors,
 					(SELECT r.StartDate [@startDate], r.Gearing [data()]
-					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Gearing'), TYPE) Gearings
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END FloatingLegData,
@@ -458,7 +466,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT 
 					li.CPILegIndexName [Index],
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates,
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -467,7 +475,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
-					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+					FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Rate'), TYPE) Rates
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END YYLegData
@@ -517,23 +525,23 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					CASE WHEN ld.LegType = 'Fixed' THEN 
 					(SELECT 
 						(SELECT r.StartDate [@startDate], r.Rate [data()]
-						FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Rate'), TYPE) Rates
 					FOR XML PATH (''), TYPE) END FixedLegData,
 					CASE WHEN ld.LegType = 'Floating' THEN 
 					(SELECT 
 						li.FloatingLegFixingDays FixingDays, li.FloatingLegIndexName [Index], li.FloatingLegIsInArrears IsInArrears, li.FloatingLegIsNotResettingXCCY IsNotResettingXCCY,
 						(SELECT r.StartDate [@startDate], r.Spread [data()]
-						FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFloatingLegSpreads r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Spread'), TYPE) Spreads,
 						(SELECT r.StartDate [@startDate], r.Cap [data()]
-						FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFloatingLegCaps r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Cap'), TYPE) Caps,
 						(SELECT r.StartDate [@startDate], r.[Floor] [data()]
-						FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFloatingLegFloors r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Floor'), TYPE) Floors,
 						(SELECT r.StartDate [@startDate], r.Gearing [data()]
-						FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFloatingLegGearings r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Gearing'), TYPE) Gearings
 					FROM PortfolioLegData li WHERE li.Id = ld.Id
 					FOR XML PATH (''), TYPE) END FloatingLegData,
@@ -541,7 +549,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					(SELECT 
 						li.CPILegIndexName [Index],
 						(SELECT r.StartDate [@startDate], r.Rate [data()]
-						FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Rate'), TYPE) Rates,
 						li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 					FROM PortfolioLegData li WHERE li.Id = ld.Id
@@ -550,14 +558,14 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					(SELECT
 						li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 						(SELECT r.StartDate [@startDate], r.Rate [data()]
-						FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id
+						FROM PortfolioFixedLegCPIRates r WHERE r.LegDataId = ld.Id ORDER by SeqId
 						FOR XML PATH ('Rate'), TYPE) Rates
 					FROM PortfolioLegData li WHERE li.Id = ld.Id
 					FOR XML PATH (''), TYPE) END YYLegData
 				FROM PortfolioLegData ld WHERE ld.TradeId = t.id
 				FOR XML PATH ('LegData'), TYPE),
 				(SELECT ba.IssuerId, ba.CreditCurveId, ba.Notional, ba.Currency
-				FROM PortfolioBaskets ba WHERE ba.TradeId = t.id
+				FROM PortfolioBaskets ba WHERE ba.TradeId = t.id ORDER by SeqId
 				FOR XML PATH ('Name'), TYPE) Basket
 			FROM PortfolioIndexCreditDefaultSwapOptionSwapData id WHERE id.TradeId = t.id
 			FOR XML PATH (''), TYPE) IndexCreditDefaultSwapData
