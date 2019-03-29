@@ -26,7 +26,7 @@ $inputDir = "" if !$ARGV[0];
 # GroupingId is used to query parameters from the database, set this to a meaningful name
 my $GroupingId = ($ARGV[4] ? $ARGV[4] : "ExampleInput");
 
-print "oreRoot: $oreRoot, configDir: $configDir, xsdDir: $xsdDir, inputDir: $inputDir\n";
+print "oreRoot:$oreRoot, configDir:$configDir, xsdDir:$xsdDir, inputDir:$inputDir...\n";
 
 # to have unique parties from multiple netting.xml files (examples !), store in central "parties" hash...
 my %parties;
@@ -333,6 +333,7 @@ if (-e $configDir.'/curveconfig.xml') {
 				foreach my $subrecord (@subrecordData) {
 					$subrecord->setAttribute("Seq",$SequenceNo);
 					$subrecord->setAttribute("CurveId", $curveid);
+					$subrecord->setAttribute("SeqSegment",0); # dummy SeqSegment because of referential integrity
 					print SQLOUT createInsert($subrecord, "CurveConfiguration", "Quotes");
 					$SequenceNo++;
 				}
@@ -360,10 +361,12 @@ unlink "Data/ore_typesParties.sql";
 
 # given analyses/portfolio data input Dir;
 if ($inputDir) {
+	# set all grouping IDs to the passed parameter, however GroupingIds (SimulationId,OreConfigId,NettingSetGrouping,SensitivityAnalysisId,StresstestGroupingId) could be individually changed here
 	doInputXMLs ($inputDir,$GroupingId,$GroupingId,$GroupingId,$GroupingId,$GroupingId,"");
 } else {
 	# example inputs...
 	for my $i (1 .. 30) {
+		$GroupingId = "Example_$i";
 		doInputXMLs("$oreRoot/Examples/Example_$i/Input","Example_$i","Example_$i","Example_$i","Example_$i","Example_$i",$i)
 	}
 }

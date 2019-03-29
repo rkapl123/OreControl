@@ -198,7 +198,6 @@ INSERT TypesdayCounter (value) VALUES ('30/360 (Italian)');
 INSERT TypesdayCounter (value) VALUES ('ActActISDA');
 INSERT TypesdayCounter (value) VALUES ('Actual/Actual (ISDA)');
 INSERT TypesdayCounter (value) VALUES ('ACT/ACT');
-INSERT TypesdayCounter (value) VALUES ('ACT/ACT.ISDA');
 INSERT TypesdayCounter (value) VALUES ('ACT');
 INSERT TypesdayCounter (value) VALUES ('ActActISMA');
 INSERT TypesdayCounter (value) VALUES ('Actual/Actual (ISMA)');
