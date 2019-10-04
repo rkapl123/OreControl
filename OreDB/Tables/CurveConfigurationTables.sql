@@ -52,7 +52,7 @@ CREATE TABLE CurveConfigurationCapFloorVolatilities (
 	GroupingId varchar(70),
 	CurveDescription varchar(70),
 	VolatilityType varchar(20),
-	Extrapolation varchar(5),
+	Extrapolation varchar(10),
 	IncludeAtm varchar(5),
 	DayCounter varchar(30),
 	Calendar varchar(20),
@@ -67,7 +67,7 @@ CONSTRAINT PK_CurveConfigurationCapFloorVolatilities PRIMARY KEY CLUSTERED (
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_Type FOREIGN KEY(VolatilityType)
 REFERENCES TypesVolatilityType (value);
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_Extrapolation FOREIGN KEY(Extrapolation)
-REFERENCES TypesBool (value);
+REFERENCES TypesExtrapolationType (value);
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_IncludeAtm FOREIGN KEY(IncludeAtm)
 REFERENCES TypesBool (value);
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_DayCounter FOREIGN KEY(DayCounter)
