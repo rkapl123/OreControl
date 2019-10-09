@@ -154,7 +154,7 @@ CREATE TABLE CurveConfigurationFXVolatilities (
 	CurveDescription varchar(70),
 	Dimension varchar(5),
 	Expiries varchar(70),
-	FXSpotID varchar(6),
+	FXSpotID varchar(70),
 	FXForeignCurveID varchar(70),
 	FXDomesticCurveID varchar(70),
 CONSTRAINT PK_CurveConfigurationFXVolatilities PRIMARY KEY CLUSTERED (
@@ -163,7 +163,7 @@ CONSTRAINT PK_CurveConfigurationFXVolatilities PRIMARY KEY CLUSTERED (
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_Dimension FOREIGN KEY(Dimension)
 REFERENCES TypesDimensionType (value);
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXSpotID FOREIGN KEY(FXSpotID)
-REFERENCES CurveConfigurationFxSpots (CurveId);
+REFERENCES TodaysMarketCurveSpecs (id);
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXForeignCurveID FOREIGN KEY(FXForeignCurveID)
 REFERENCES TodaysMarketCurveSpecs (id);
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXDomesticCurveID FOREIGN KEY(FXDomesticCurveID)
