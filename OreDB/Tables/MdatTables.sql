@@ -37,6 +37,7 @@ CREATE TABLE MdatMarketDataDefinitions (
 	StrikeRate decimal(18,6),
 	CorrFactType varchar(10),
 	CorrFactMonth varchar(10),
+	VendorTicker varchar(100),
 CONSTRAINT PK_MarketDataDefinitions PRIMARY KEY CLUSTERED
 (
 	QuoteId ASC
@@ -75,6 +76,7 @@ CREATE TABLE MdatFixingDataDefinitions (
 	Tenor varchar(10),
 	Name varchar(10),
 	FixingIndex varchar(200),
+	VendorTicker varchar(100),
 CONSTRAINT PK_MdatFixingDataDefinitions PRIMARY KEY CLUSTERED 
 (
 	IndexId ASC
