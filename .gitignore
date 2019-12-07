@@ -1,0 +1,100 @@
+##########################
+# General
+##########################
+*.aux
+*.log
+*.toc
+*.out
+*.user
+*.opendb
+*.tdo
+
+##################
+# compiled sources
+##################
+*.o
+*.lo
+*.la
+*.lai
+*.exe
+*.class
+*.com
+*.dll
+*.so
+*.a
+*.dylib
+*.dylib.dSYM
+*.jnilib
+*.Plo
+*.Po
+.libs
+.deps
+.lib
+.xll
+.obj
+
+##############
+# OS generated
+##############
+.DS_Store?
+.DS_Store
+ethumbs.db
+Icon?
+Thumbs.db
+
+##########
+# packages
+##########
+*.7z
+*.dmg
+*.gz
+*.tgz
+*.jar
+*.tar
+*.zip
+*.iso
+
+#######################
+# auto and other backup
+#######################
+*~
+*.swp
+*.#*
+*.bak
+*.save
+*.ncb
+*.suo
+
+
+###############################################
+# bin, lib and build folders from Visual Studio
+###############################################
+bin/
+lib/
+build/
+
+# Visual Studio database files
+*.sdf
+*.opensdf
+*.db
+.vs/
+
+# config folders
+config/
+
+# DS_Store files
+*.DS_Store
+
+# additional recommendations from  https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
