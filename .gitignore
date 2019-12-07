@@ -98,3 +98,11 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+Data
+ExampleXMLs
+Input
+OREDB
+/OreMgr/OreService/SetUnmanagedCodeDebugging.docx
+SwigWrapper
+/OreAddin/*.xlsm
+/OreMgr/TreeizeRelD/nestedRelTree.xml
