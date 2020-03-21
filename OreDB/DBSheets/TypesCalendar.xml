@@ -1,0 +1,14 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>TypesCalendar</table>
+<query>SELECT T1.value
+FROM ORE.dbo.TypesCalendar T1
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*value</name><primkey>1</primkey></field>
+</columns>
+</DBsheetConfig>

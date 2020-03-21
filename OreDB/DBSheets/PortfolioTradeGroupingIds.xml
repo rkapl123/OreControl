@@ -1,0 +1,16 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>PortfolioTradeGroupingIds</table>
+<query>SELECT Id+':'+TradeType+','+isnull(EnvelopeNettingSetId,'') TradeId, T1.GroupingId
+FROM ORE.dbo.PortfolioTradeGroupingIds T1 INNER JOIN 
+ORE.dbo.PortfolioTrades T2 ON T1.TradeId = T2.Id
+ORDER BY 1 ASC, 2 ASC</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*TradeId</name><ftable>ORE.dbo.PortfolioTrades</ftable><fkey>Id</fkey><flookup>Id</flookup><primkey>1</primkey><sort>Ascending</sort><lookup>SELECT Id+':'+TradeType+','+isnull(EnvelopeNettingSetId,'') TradeId,Id FROM ORE.dbo.PortfolioTrades ORDER BY Id</lookup></field>
+<field><name>*GroupingId</name><sort>Ascending</sort></field>
+</columns>
+</DBsheetConfig>

@@ -1,0 +1,18 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>PortfolioCashflowDataCashflow</table>
+<query>SELECT 'Trade:'+TradeId+'/'+LegType+'/'+Currency+'/'+convert(varchar,Id) LegDataId, T1.SeqId, T1.Amount, T1.StartDate
+FROM ORE.dbo.PortfolioCashflowDataCashflow T1 INNER JOIN 
+ORE.dbo.PortfolioLegData T2 ON T1.LegDataId = T2.Id
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*LegDataId</name><ftable>ORE.dbo.PortfolioLegData</ftable><fkey>Id</fkey><flookup>TradeId</flookup><primkey>1</primkey><lookup>SELECT 'Trade:'+TradeId+'/'+LegType+'/'+Currency+'/'+convert(varchar,Id) LegDataId,Id FROM ORE.dbo.PortfolioLegData ORDER BY TradeId</lookup></field>
+<field><name>*SeqId</name></field>
+<field><name>*Amount</name></field>
+<field><name>*StartDate</name></field>
+</columns>
+</DBsheetConfig>

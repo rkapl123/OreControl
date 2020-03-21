@@ -1,0 +1,26 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>ConventionsCrossCurrencyBasis</table>
+<query>SELECT T1.Id, T1.GroupingId, T1.SettlementDays, T5.value SettlementCalendar, T6.value RollConvention, T7.value FlatIndex, T8.value SpreadIndex, T9.value EOM
+FROM ORE.dbo.ConventionsCrossCurrencyBasis T1 LEFT JOIN 
+ORE.dbo.TypesCalendar T5 ON T1.SettlementCalendar = T5.value LEFT JOIN 
+ORE.dbo.TypesBusinessDayConvention T6 ON T1.RollConvention = T6.value LEFT JOIN 
+ORE.dbo.TypesIndexName T7 ON T1.FlatIndex = T7.value LEFT JOIN 
+ORE.dbo.TypesIndexName T8 ON T1.SpreadIndex = T8.value LEFT JOIN 
+ORE.dbo.TypesBool T9 ON T1.EOM = T9.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><primkey>1</primkey></field>
+<field><name>GroupingId</name></field>
+<field><name>*SettlementDays</name></field>
+<field><name>SettlementCalendar</name><ftable>ORE.dbo.TypesCalendar</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value SettlementCalendar, !T!.value FROM ORE.dbo.TypesCalendar !T! ORDER BY value</lookup></field>
+<field><name>*RollConvention</name><ftable>ORE.dbo.TypesBusinessDayConvention</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value RollConvention,!T!.value FROM ORE.dbo.TypesBusinessDayConvention !T! ORDER BY value</lookup></field>
+<field><name>*FlatIndex</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value FlatIndex,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>*SpreadIndex</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value SpreadIndex,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>EOM</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value EOM, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+</columns>
+</DBsheetConfig>

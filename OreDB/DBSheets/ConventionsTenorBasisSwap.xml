@@ -1,0 +1,26 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>ConventionsTenorBasisSwap</table>
+<query>SELECT T1.Id, T1.GroupingId, T4.value LongIndex, T5.value ShortIndex, T1.ShortPayTenor, T7.value SpreadOnShort, T8.value IncludeSpread, T9.value SubPeriodsCouponType
+FROM ORE.dbo.ConventionsTenorBasisSwap T1 INNER JOIN 
+ORE.dbo.TypesIndexName T4 ON T1.LongIndex = T4.value INNER JOIN 
+ORE.dbo.TypesIndexName T5 ON T1.ShortIndex = T5.value LEFT JOIN 
+ORE.dbo.TypesBool T7 ON T1.SpreadOnShort = T7.value LEFT JOIN 
+ORE.dbo.TypesBool T8 ON T1.IncludeSpread = T8.value LEFT JOIN 
+ORE.dbo.TypesSubPeriodsCouponType T9 ON T1.SubPeriodsCouponType = T9.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><primkey>1</primkey></field>
+<field><name>GroupingId</name></field>
+<field><name>*LongIndex</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value LongIndex,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>*ShortIndex</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value ShortIndex,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>ShortPayTenor</name></field>
+<field><name>SpreadOnShort</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value SpreadOnShort, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>IncludeSpread</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value IncludeSpread, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>SubPeriodsCouponType</name><ftable>ORE.dbo.TypesSubPeriodsCouponType</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value SubPeriodsCouponType,!T!.value FROM ORE.dbo.TypesSubPeriodsCouponType !T! ORDER BY value</lookup></field>
+</columns>
+</DBsheetConfig>

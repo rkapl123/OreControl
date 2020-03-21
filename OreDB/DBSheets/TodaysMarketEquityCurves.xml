@@ -1,0 +1,16 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>TodaysMarketEquityCurves</table>
+<query>SELECT T1.EquityCurve, T1.name, T1.id
+FROM ORE.dbo.TodaysMarketEquityCurves T1
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*EquityCurve</name><primkey>1</primkey></field>
+<field><name>*name</name></field>
+<field><name>*id</name></field>
+</columns>
+</DBsheetConfig>

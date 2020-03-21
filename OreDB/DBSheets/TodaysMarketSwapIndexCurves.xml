@@ -1,0 +1,18 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>TodaysMarketSwapIndexCurves</table>
+<query>SELECT T2.value Discounting, T3.value name, T1.id
+FROM ORE.dbo.TodaysMarketSwapIndexCurves T1 INNER JOIN 
+ORE.dbo.TypesIndexName T2 ON T1.Discounting = T2.value INNER JOIN 
+ORE.dbo.TypesIndexName T3 ON T1.name = T3.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>3</primcols>
+<columns>
+<field><name>*Discounting</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><primkey>1</primkey><lookup>SELECT  !T!.value Discounting, !T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>*name</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><primkey>1</primkey><lookup>SELECT  !T!.value name, !T!.value FROM ORE.dbo.TypesIndexName  !T! ORDER BY value</lookup></field>
+<field><name>*id</name><primkey>1</primkey></field>
+</columns>
+</DBsheetConfig>

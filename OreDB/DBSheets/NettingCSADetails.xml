@@ -1,0 +1,35 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>NettingCSADetails</table>
+<query>SELECT T2.Counterparty+':'+T2.NettingSetId NettingSetId, T3.value Bilateral, T4.value CSACurrency, T5.value IndexName, T1.ThresholdPay, T1.ThresholdReceive, T1.MinimumTransferAmountPay, T1.MinimumTransferAmountReceive, T1.IndependentAmountHeld, T11.value IndependentAmountType, T12.value CallFrequency, T13.value PostFrequency, T1.MarginPeriodOfRisk, T1.CollateralCompoundingSpreadReceive, T1.CollateralCompoundingSpreadPay
+FROM ORE.dbo.NettingCSADetails T1 INNER JOIN 
+ORE.dbo.NettingSet T2 ON T1.NettingSetId = T2.NettingSetId INNER JOIN 
+ORE.dbo.TypesCsaType T3 ON T1.Bilateral = T3.value LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T4 ON T1.CSACurrency = T4.value LEFT JOIN 
+ORE.dbo.TypesIndexName T5 ON T1.IndexName = T5.value LEFT JOIN 
+ORE.dbo.TypesIndependentAmountType T11 ON T1.IndependentAmountType = T11.value LEFT JOIN 
+ORE.dbo.TypesFrequencyType T12 ON T1.CallFrequency = T12.value LEFT JOIN 
+ORE.dbo.TypesFrequencyType T13 ON T1.PostFrequency = T13.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*NettingSetId</name><ftable>ORE.dbo.NettingSet</ftable><fkey>NettingSetId</fkey><flookup>Counterparty</flookup><primkey>1</primkey><lookup>SELECT !T!.Counterparty+':'+!T!.NettingSetId NettingSetId,!T!.NettingSetId lookup FROM ORE.dbo.NettingSet !T! ORDER BY Counterparty</lookup></field>
+<field><name>Bilateral</name><ftable>ORE.dbo.TypesCsaType</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value Bilateral,!T!.value FROM ORE.dbo.TypesCsaType !T! ORDER BY value</lookup></field>
+<field><name>CSACurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value CSACurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>IndexName</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value IndexName,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>ThresholdPay</name></field>
+<field><name>ThresholdReceive</name></field>
+<field><name>MinimumTransferAmountPay</name></field>
+<field><name>MinimumTransferAmountReceive</name></field>
+<field><name>IndependentAmountHeld</name></field>
+<field><name>IndependentAmountType</name><ftable>ORE.dbo.TypesIndependentAmountType</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value IndependentAmountType,!T!.value FROM ORE.dbo.TypesIndependentAmountType !T! ORDER BY value</lookup></field>
+<field><name>CallFrequency</name><ftable>ORE.dbo.TypesFrequencyType</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value CallFrequency, !T!.value FROM ORE.dbo.TypesFrequencyType !T! ORDER BY value</lookup></field>
+<field><name>PostFrequency</name><ftable>ORE.dbo.TypesFrequencyType</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value PostFrequency, !T!.value FROM ORE.dbo.TypesFrequencyType !T! ORDER BY value</lookup></field>
+<field><name>MarginPeriodOfRisk</name></field>
+<field><name>CollateralCompoundingSpreadReceive</name></field>
+<field><name>CollateralCompoundingSpreadPay</name></field>
+</columns>
+</DBsheetConfig>

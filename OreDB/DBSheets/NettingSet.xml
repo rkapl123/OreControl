@@ -1,0 +1,19 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>NettingSet</table>
+<query>SELECT T1.NettingSetId, T1.GroupingId, T4.value Counterparty, T5.value ActiveCSAFlag
+FROM ORE.dbo.NettingSet T1 INNER JOIN 
+ORE.dbo.TypesParties T4 ON T1.Counterparty = T4.value INNER JOIN 
+ORE.dbo.TypesBool T5 ON T1.ActiveCSAFlag = T5.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*NettingSetId</name><primkey>1</primkey></field>
+<field><name>*GroupingId</name></field>
+<field><name>*Counterparty</name><ftable>ORE.dbo.TypesParties</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value Counterparty,!T!.value FROM ORE.dbo.TypesParties !T! ORDER BY value</lookup></field>
+<field><name>*ActiveCSAFlag</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value ActiveCSAFlag,!T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+</columns>
+</DBsheetConfig>

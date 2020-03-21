@@ -1,0 +1,18 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>ConventionsSwapIndex</table>
+<query>SELECT value Id, T1.GroupingId, T4.Id Conventions
+FROM ORE.dbo.ConventionsSwapIndex T1 INNER JOIN 
+ORE.dbo.TypesIndexName T2 ON T1.Id = T2.value INNER JOIN 
+ORE.dbo.ConventionsSwap T4 ON T1.Conventions = T4.Id
+ORDER BY 1 ASC</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><primkey>1</primkey><sort>Ascending</sort><lookup>SELECT value Id,value FROM ORE.dbo.TypesIndexName ORDER BY value</lookup></field>
+<field><name>GroupingId</name></field>
+<field><name>*Conventions</name><ftable>ORE.dbo.ConventionsSwap</ftable><fkey>Id</fkey><flookup>Id</flookup><lookup>SELECT !T!.Id Conventions,!T!.Id FROM ORE.dbo.ConventionsSwap !T! ORDER BY Id</lookup></field>
+</columns>
+</DBsheetConfig>
