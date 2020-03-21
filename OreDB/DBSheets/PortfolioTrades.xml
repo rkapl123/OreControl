@@ -1,0 +1,21 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>PortfolioTrades</table>
+<query>SELECT T1.Id, T3.value TradeType, T4.value EnvelopeCounterParty, Counterparty+':'+NettingSetId EnvelopeNettingSetId, T1.AddFieldsAdditionalId
+FROM ORE.dbo.PortfolioTrades T1 INNER JOIN 
+ORE.dbo.TypesOreTradeType T3 ON T1.TradeType = T3.value INNER JOIN 
+ORE.dbo.TypesParties T4 ON T1.EnvelopeCounterParty = T4.value LEFT JOIN 
+ORE.dbo.NettingSet T5 ON T1.EnvelopeNettingSetId = T5.NettingSetId
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><primkey>1</primkey></field>
+<field><name>TradeType</name><ftable>ORE.dbo.TypesOreTradeType</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value TradeType,!T!.value FROM ORE.dbo.TypesOreTradeType !T! ORDER BY value</lookup></field>
+<field><name>EnvelopeCounterParty</name><ftable>ORE.dbo.TypesParties</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value EnvelopeCounterParty,!T!.value FROM ORE.dbo.TypesParties !T! ORDER BY value</lookup></field>
+<field><name>EnvelopeNettingSetId</name><ftable>ORE.dbo.NettingSet</ftable><fkey>NettingSetId</fkey><flookup>Counterparty</flookup><outer>1</outer><lookup>SELECT Counterparty+':'+NettingSetId EnvelopeNettingSetId,NettingSetId FROM ORE.dbo.NettingSet ORDER BY Counterparty</lookup></field>
+<field><name>AddFieldsAdditionalId</name></field>
+</columns>
+</DBsheetConfig>

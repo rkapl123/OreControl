@@ -1,0 +1,17 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>NettingEligibleCollateralsCurrencies</table>
+<query>SELECT T2.Counterparty+':'+T2.NettingSetId NettingSetId, T3.value Currency
+FROM ORE.dbo.NettingEligibleCollateralsCurrencies T1 INNER JOIN 
+ORE.dbo.NettingSet T2 ON T1.NettingSetId = T2.NettingSetId LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T3 ON T1.Currency = T3.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*NettingSetId</name><ftable>ORE.dbo.NettingSet</ftable><fkey>NettingSetId</fkey><flookup>Counterparty</flookup><primkey>1</primkey><lookup>SELECT !T!.Counterparty+':'+!T!.NettingSetId NettingSetId,!T!.NettingSetId lookup FROM ORE.dbo.NettingSet !T! ORDER BY Counterparty</lookup></field>
+<field><name>*Currency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value Currency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+</columns>
+</DBsheetConfig>

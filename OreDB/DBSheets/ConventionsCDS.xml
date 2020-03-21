@@ -1,0 +1,30 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>ConventionsCDS</table>
+<query>SELECT T1.Id, T1.GroupingId, T1.SettlementDays, T5.value Calendar, T6.value Frequency, T7.value PaymentConvention, T8.value RuleName, T9.value DayCounter, T10.value SettlesAccrual, T11.value PaysAtDefaultTime
+FROM ORE.dbo.ConventionsCDS T1 LEFT JOIN 
+ORE.dbo.TypesCalendar T5 ON T1.Calendar = T5.value LEFT JOIN 
+ORE.dbo.TypesFrequencyType T6 ON T1.Frequency = T6.value LEFT JOIN 
+ORE.dbo.TypesBusinessDayConvention T7 ON T1.PaymentConvention = T7.value LEFT JOIN 
+ORE.dbo.TypesDateRule T8 ON T1.RuleName = T8.value LEFT JOIN 
+ORE.dbo.TypesDayCounter T9 ON T1.DayCounter = T9.value LEFT JOIN 
+ORE.dbo.TypesBool T10 ON T1.SettlesAccrual = T10.value LEFT JOIN 
+ORE.dbo.TypesBool T11 ON T1.PaysAtDefaultTime = T11.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><primkey>1</primkey></field>
+<field><name>GroupingId</name></field>
+<field><name>*SettlementDays</name></field>
+<field><name>*Calendar</name><ftable>ORE.dbo.TypesCalendar</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value Calendar, !T!.value FROM ORE.dbo.TypesCalendar !T! ORDER BY value</lookup></field>
+<field><name>*Frequency</name><ftable>ORE.dbo.TypesFrequencyType</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value Frequency, !T!.value FROM ORE.dbo.TypesFrequencyType !T! ORDER BY value</lookup></field>
+<field><name>*PaymentConvention</name><ftable>ORE.dbo.TypesBusinessDayConvention</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value PaymentConvention,!T!.value FROM ORE.dbo.TypesBusinessDayConvention !T! ORDER BY value</lookup></field>
+<field><name>*RuleName</name><ftable>ORE.dbo.TypesDateRule</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value RuleName,!T!.value FROM ORE.dbo.TypesDateRule !T! ORDER BY value</lookup></field>
+<field><name>*DayCounter</name><ftable>ORE.dbo.TypesDayCounter</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value DayCounter, !T!.value FROM ORE.dbo.TypesDayCounter !T! ORDER BY value</lookup></field>
+<field><name>*SettlesAccrual</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value SettlesAccrual,!T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>*PaysAtDefaultTime</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value PaysAtDefaultTime,!T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+</columns>
+</DBsheetConfig>

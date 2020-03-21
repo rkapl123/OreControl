@@ -1,0 +1,35 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>PortfolioFxOptionData</table>
+<query>SELECT T2.TradeType+':'+T2.Id TradeId, T3.value BoughtCurrency, T1.BoughtAmount, T5.value SoldCurrency, T1.SoldAmount, T7.value OptionDataLongShort, T8.value OptionDataOptionType, T9.value OptionDataStyle, T10.value OptionDataSettlement, T11.value OptionDataPayOffAtExpiry, T1.OptionDataPremiumAmount, T13.value OptionDataPremiumCurrency, T1.OptionDataPremiumPayDate
+FROM ORE.dbo.PortfolioFxOptionData T1 INNER JOIN 
+ORE.dbo.PortfolioTrades T2 ON T1.TradeId = T2.Id INNER JOIN 
+ORE.dbo.TypesCurrencyCode T3 ON T1.BoughtCurrency = T3.value INNER JOIN 
+ORE.dbo.TypesCurrencyCode T5 ON T1.SoldCurrency = T5.value INNER JOIN 
+ORE.dbo.TypesLongShort T7 ON T1.OptionDataLongShort = T7.value INNER JOIN 
+ORE.dbo.TypesOptionType T8 ON T1.OptionDataOptionType = T8.value INNER JOIN 
+ORE.dbo.TypesOptionStyle T9 ON T1.OptionDataStyle = T9.value INNER JOIN 
+ORE.dbo.TypesOptionSettlement T10 ON T1.OptionDataSettlement = T10.value INNER JOIN 
+ORE.dbo.TypesBool T11 ON T1.OptionDataPayOffAtExpiry = T11.value INNER JOIN 
+ORE.dbo.TypesCurrencyCode T13 ON T1.OptionDataPremiumCurrency = T13.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*TradeId</name><ftable>ORE.dbo.PortfolioTrades</ftable><fkey>Id</fkey><flookup>Id</flookup><primkey>1</primkey><lookup>SELECT !T!.TradeType+':'+!T!.Id TradeId, !T!.Id FROM ORE.dbo.PortfolioTrades !T! ORDER BY TradeId</lookup></field>
+<field><name>BoughtCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value BoughtCurrency,!T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY !T!.value</lookup></field>
+<field><name>BoughtAmount</name></field>
+<field><name>SoldCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value SoldCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY !T!.value</lookup></field>
+<field><name>SoldAmount</name></field>
+<field><name>OptionDataLongShort</name><ftable>ORE.dbo.TypesLongShort</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value OptionDataLongShort,!T!.value FROM ORE.dbo.TypesLongShort !T! ORDER BY !T!.value</lookup></field>
+<field><name>OptionDataOptionType</name><ftable>ORE.dbo.TypesOptionType</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value OptionDataOptionType,!T!.value FROM ORE.dbo.TypesOptionType !T! ORDER BY !T!.value</lookup></field>
+<field><name>OptionDataStyle</name><ftable>ORE.dbo.TypesOptionStyle</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value OptionDataStyle,!T!.value FROM ORE.dbo.TypesOptionStyle !T! ORDER BY !T!.value</lookup></field>
+<field><name>OptionDataSettlement</name><ftable>ORE.dbo.TypesOptionSettlement</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value OptionDataSettlement,!T!.value FROM ORE.dbo.TypesOptionSettlement !T! ORDER BY value</lookup></field>
+<field><name>OptionDataPayOffAtExpiry</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value OptionDataPayOffAtExpiry,!T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>OptionDataPremiumAmount</name></field>
+<field><name>OptionDataPremiumCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value OptionDataPremiumCurrency,!T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY !T!.value</lookup></field>
+<field><name>OptionDataPremiumPayDate</name></field>
+</columns>
+</DBsheetConfig>

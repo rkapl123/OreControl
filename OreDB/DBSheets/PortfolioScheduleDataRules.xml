@@ -1,0 +1,33 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>PortfolioScheduleDataRules</table>
+<query>SELECT T1.Id, 'TA/Trade:'+T3.TradeId+'/'+Type TradeActionId, 'Trade:'+T4.TradeId+'/'+LegType+'/'+Currency+'/'+convert(varchar,T4.Id) LegDataId, T1.StartDate, T1.EndDate, T1.Tenor, T8.value Calendar, T9.value Convention, T10.value TermConvention, T11.value RuleName, T12.value EndOfMonth, T1.FirstDate, T1.LastDate
+FROM ORE.dbo.PortfolioScheduleDataRules T1 LEFT JOIN 
+ORE.dbo.PortfolioTradeActions T3 ON T1.TradeActionId = T3.Id INNER JOIN 
+ORE.dbo.PortfolioLegData T4 ON T1.LegDataId = T4.Id INNER JOIN 
+ORE.dbo.TypesCalendar T8 ON T1.Calendar = T8.value LEFT JOIN 
+ORE.dbo.TypesBusinessDayConvention T9 ON T1.Convention = T9.value LEFT JOIN 
+ORE.dbo.TypesBusinessDayConvention T10 ON T1.TermConvention = T10.value LEFT JOIN 
+ORE.dbo.TypesDateRule T11 ON T1.RuleName = T11.value LEFT JOIN 
+ORE.dbo.TypesBool T12 ON T1.EndOfMonth = T12.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><primkey>1</primkey></field>
+<field><name>TradeActionId</name><ftable>ORE.dbo.PortfolioTradeActions</ftable><fkey>Id</fkey><flookup>TradeId</flookup><outer>1</outer><lookup>SELECT 'TA/Trade:'+!T!.TradeId+'/'+Type TradeActionId,!T!.Id FROM ORE.dbo.PortfolioTradeActions !T! ORDER BY TradeId</lookup></field>
+<field><name>LegDataId</name><ftable>ORE.dbo.PortfolioLegData</ftable><fkey>Id</fkey><flookup>TradeId</flookup><lookup>SELECT 'Trade:'+!T!.TradeId+'/'+LegType+'/'+Currency+'/'+convert(varchar,!T!.Id) LegDataId,!T!.Id FROM ORE.dbo.PortfolioLegData !T! ORDER BY TradeId</lookup></field>
+<field><name>StartDate</name></field>
+<field><name>EndDate</name></field>
+<field><name>Tenor</name></field>
+<field><name>Calendar</name><ftable>ORE.dbo.TypesCalendar</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value Calendar,!T!.value FROM ORE.dbo.TypesCalendar !T! ORDER BY value</lookup></field>
+<field><name>Convention</name><ftable>ORE.dbo.TypesBusinessDayConvention</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value Convention,!T!.value FROM ORE.dbo.TypesBusinessDayConvention !T! ORDER BY value</lookup></field>
+<field><name>TermConvention</name><ftable>ORE.dbo.TypesBusinessDayConvention</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value TermConvention,!T!.value FROM ORE.dbo.TypesBusinessDayConvention !T! ORDER BY value</lookup></field>
+<field><name>RuleName</name><ftable>ORE.dbo.TypesDateRule</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value RuleName,!T!.value FROM ORE.dbo.TypesDateRule !T! ORDER BY value</lookup></field>
+<field><name>EndOfMonth</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value EndOfMonth,!T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>FirstDate</name></field>
+<field><name>LastDate</name></field>
+</columns>
+</DBsheetConfig>

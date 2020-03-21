@@ -1,0 +1,22 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>PortfolioFxForwardData</table>
+<query>SELECT T2.TradeType+':'+T2.Id TradeId, T1.ValueDate, T4.value BoughtCurrency, T1.BoughtAmount, T6.value SoldCurrency, T1.SoldAmount
+FROM ORE.dbo.PortfolioFxForwardData T1 INNER JOIN 
+ORE.dbo.PortfolioTrades T2 ON T1.TradeId = T2.Id INNER JOIN 
+ORE.dbo.TypesCurrencyCode T4 ON T1.BoughtCurrency = T4.value INNER JOIN 
+ORE.dbo.TypesCurrencyCode T6 ON T1.SoldCurrency = T6.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*TradeId</name><ftable>ORE.dbo.PortfolioTrades</ftable><fkey>Id</fkey><flookup>Id</flookup><primkey>1</primkey><lookup>SELECT !T!.TradeType+':'+!T!.Id TradeId, !T!.Id FROM ORE.dbo.PortfolioTrades !T! ORDER BY TradeId</lookup></field>
+<field><name>ValueDate</name></field>
+<field><name>BoughtCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT  !T!.value BoughtCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>BoughtAmount</name></field>
+<field><name>SoldCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT  !T!.value SoldCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>SoldAmount</name></field>
+</columns>
+</DBsheetConfig>

@@ -1,0 +1,26 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>MdatFixingDataDefinitions</table>
+<query>SELECT T1.IndexId, T3.value Currency, T1.IndexName, T1.IsCMS, T1.Source, T7.value ForeignCurrency, T8.value DomesticCurrency, T1.Tenor, T1.Name, T1.FixingIndex
+FROM ORE.dbo.MdatFixingDataDefinitions T1 LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T3 ON T1.Currency = T3.value LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T7 ON T1.ForeignCurrency = T7.value LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T8 ON T1.DomesticCurrency = T8.value
+ORDER BY 2 ASC, 3 ASC</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*IndexId</name><primkey>1</primkey></field>
+<field><name>Currency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><sort>Ascending</sort><lookup>SELECT !T!.value Currency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>IndexName</name><sort>Ascending</sort></field>
+<field><name>IsCMS</name><lookup>0||1</lookup></field>
+<field><name>Source</name></field>
+<field><name>ForeignCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value ForeignCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>DomesticCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value DomesticCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>Tenor</name></field>
+<field><name>Name</name></field>
+<field><name>FixingIndex</name></field>
+</columns>
+</DBsheetConfig>

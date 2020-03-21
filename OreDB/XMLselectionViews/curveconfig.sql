@@ -5,10 +5,10 @@ AS
 SELECT DISTINCT g.GroupingId,
 (SELECT
 	(SELECT 
-		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Dimension,Expiries
+		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Dimension,Expiries,FXSpotID,FXForeignCurveID,FXDomesticCurveID
 		FROM CurveConfigurationFXVolatilities c
 		FOR XML PATH ('FXVolatility'), TYPE) FXVolatilities,
-		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase 
+		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,Dimension,VolatilityType,Extrapolation,DayCounter,Calendar,BusinessDayConvention,OptionTenors,SwapTenors,ShortSwapIndexBase,SwapIndexBase
 		FROM CurveConfigurationSwaptionVolatilities c
 		FOR XML PATH ('SwaptionVolatility'), TYPE) SwaptionVolatilities,
 		(SELECT CurveId,ISNULL(CurveDescription,'') CurveDescription,VolatilityType,Extrapolation,IncludeAtm,DayCounter,Calendar,BusinessDayConvention,Tenors,Strikes,IborIndex,ISNULL(DiscountCurve,'') DiscountCurve

@@ -15,7 +15,9 @@ CREATE TABLE ResultsFlows (
 	Accrual decimal(18,4) null,
 	FixingDate datetime null,
 	FixingValue decimal(18,9) null,
-	Notional decimal(18,4) null
+	Notional decimal(18,4) null,
+	DiscountFactor decimal(18, 9) null,
+	PresentValue decimal(18, 4) null
 );
 
 CREATE TABLE ResultsNPV (

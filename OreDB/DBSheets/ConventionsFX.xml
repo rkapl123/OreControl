@@ -1,0 +1,27 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>ConventionsFX</table>
+<query>SELECT T1.Id, T1.GroupingId, T1.SpotDays, T5.value SourceCurrency, T6.value TargetCurrency, T1.PointsFactor, T8.value AdvanceCalendar, T9.value SpotRelative, T10.value AdditionalSettleCalendar
+FROM ORE.dbo.ConventionsFX T1 INNER JOIN 
+ORE.dbo.TypesCurrencyCode T5 ON T1.SourceCurrency = T5.value INNER JOIN 
+ORE.dbo.TypesCurrencyCode T6 ON T1.TargetCurrency = T6.value LEFT JOIN 
+ORE.dbo.TypesCalendar T8 ON T1.AdvanceCalendar = T8.value LEFT JOIN 
+ORE.dbo.TypesBool T9 ON T1.SpotRelative = T9.value LEFT JOIN 
+ORE.dbo.TypesCalendar T10 ON T1.AdditionalSettleCalendar = T10.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*Id</name><primkey>1</primkey></field>
+<field><name>GroupingId</name></field>
+<field><name>*SpotDays</name></field>
+<field><name>*SourceCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT  !T!.value SourceCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>*TargetCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT  !T!.value TargetCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>*PointsFactor</name></field>
+<field><name>AdvanceCalendar</name><ftable>ORE.dbo.TypesCalendar</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value AdvanceCalendar, !T!.value FROM ORE.dbo.TypesCalendar !T! ORDER BY value</lookup></field>
+<field><name>SpotRelative</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value SpotRelative,!T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>AdditionalSettleCalendar</name><ftable>ORE.dbo.TypesCalendar</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value AdditionalSettleCalendar, !T!.value FROM ORE.dbo.TypesCalendar !T! ORDER BY value</lookup></field>
+</columns>
+</DBsheetConfig>

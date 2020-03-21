@@ -10,7 +10,7 @@ CONSTRAINT PK_OreParametersConfigs PRIMARY KEY CLUSTERED (
 CREATE TABLE OreParametersSetup (
 	OreConfigId varchar(20) NOT NULL,
 	name varchar(20) NOT NULL,
-	Parameter varchar(70) NOT NULL,
+	Parameter varchar(1024) NOT NULL,
 CONSTRAINT PK_OreParametersSetup PRIMARY KEY CLUSTERED (
 	OreConfigId ASC,
 	name ASC

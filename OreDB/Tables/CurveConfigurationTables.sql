@@ -52,7 +52,7 @@ CREATE TABLE CurveConfigurationCapFloorVolatilities (
 	GroupingId varchar(70),
 	CurveDescription varchar(70),
 	VolatilityType varchar(20),
-	Extrapolation varchar(5),
+	Extrapolation varchar(10),
 	IncludeAtm varchar(5),
 	DayCounter varchar(30),
 	Calendar varchar(20),
@@ -67,7 +67,7 @@ CONSTRAINT PK_CurveConfigurationCapFloorVolatilities PRIMARY KEY CLUSTERED (
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_Type FOREIGN KEY(VolatilityType)
 REFERENCES TypesVolatilityType (value);
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_Extrapolation FOREIGN KEY(Extrapolation)
-REFERENCES TypesBool (value);
+REFERENCES TypesExtrapolationType (value);
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_IncludeAtm FOREIGN KEY(IncludeAtm)
 REFERENCES TypesBool (value);
 ALTER TABLE CurveConfigurationCapFloorVolatilities ADD CONSTRAINT FK_CurveConfigurationCapFloorVolatilities_DayCounter FOREIGN KEY(DayCounter)
@@ -154,7 +154,7 @@ CREATE TABLE CurveConfigurationFXVolatilities (
 	CurveDescription varchar(70),
 	Dimension varchar(5),
 	Expiries varchar(70),
-	FXSpotID varchar(6),
+	FXSpotID varchar(70),
 	FXForeignCurveID varchar(70),
 	FXDomesticCurveID varchar(70),
 CONSTRAINT PK_CurveConfigurationFXVolatilities PRIMARY KEY CLUSTERED (
@@ -163,7 +163,7 @@ CONSTRAINT PK_CurveConfigurationFXVolatilities PRIMARY KEY CLUSTERED (
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_Dimension FOREIGN KEY(Dimension)
 REFERENCES TypesDimensionType (value);
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXSpotID FOREIGN KEY(FXSpotID)
-REFERENCES CurveConfigurationFxSpots (CurveId);
+REFERENCES TodaysMarketCurveSpecs (id);
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXForeignCurveID FOREIGN KEY(FXForeignCurveID)
 REFERENCES TodaysMarketCurveSpecs (id);
 ALTER TABLE CurveConfigurationFXVolatilities ADD CONSTRAINT FK_CurveConfigurationFXVolatilities_FXDomesticCurveID FOREIGN KEY(FXDomesticCurveID)

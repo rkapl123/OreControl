@@ -1,0 +1,55 @@
+<DBsheetConfig>
+<connID>MSSQLORE</connID>
+<table>MdatMarketDataDefinitions</table>
+<query>SELECT T1.QuoteId, T1.Quote, T1.InstrumentType, T1.QuoteType, T6.value Currency, T7.value UnitCurrency, T8.value TargetCurrency, T1.CurveId, T10.value DayCounter, T1.Tenor, T1.ZeroDate, T1.DiscountDate, T1.ForwardStart, T1.Term, T1.Expiry, T1.ExpiryDate, T1.StrikeType, T1.Contract, T1.FlatTenor, T21.value FlatCurrency, T1.Issuer, T1.Seniority, T1.SecurityID, T1.Rating, T1.IndexTenor, T1.Atm, T1.Relative, T1.Dimension, T1.Name, T1.Maturity, T1.MaturityDate, T1.IndexName, T1.CapFloor, T1.StrikeRate, T1.CorrFactType, T1.CorrFactMonth, T1.VendorTicker
+FROM ORE.dbo.MdatMarketDataDefinitions T1 LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T6 ON T1.Currency = T6.value LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T7 ON T1.UnitCurrency = T7.value LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T8 ON T1.TargetCurrency = T8.value LEFT JOIN 
+ORE.dbo.TypesDayCounter T10 ON T1.DayCounter = T10.value LEFT JOIN 
+ORE.dbo.TypesCurrencyCode T21 ON T1.FlatCurrency = T21.value
+</query>
+<whereClause></whereClause>
+<timeout>15</timeout>
+<calcedcols>0</calcedcols>
+<primcols>1</primcols>
+<columns>
+<field><name>*QuoteId</name><primkey>1</primkey></field>
+<field><name>*Quote</name></field>
+<field><name>*InstrumentType</name></field>
+<field><name>*QuoteType</name></field>
+<field><name>Currency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value Currency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>UnitCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value UnitCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>TargetCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value TargetCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>CurveId</name></field>
+<field><name>DayCounter</name><ftable>ORE.dbo.TypesDayCounter</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value DayCounter,!T!.value FROM ORE.dbo.TypesDayCounter !T! ORDER BY value</lookup></field>
+<field><name>Tenor</name></field>
+<field><name>ZeroDate</name></field>
+<field><name>DiscountDate</name></field>
+<field><name>ForwardStart</name></field>
+<field><name>Term</name></field>
+<field><name>Expiry</name></field>
+<field><name>ExpiryDate</name></field>
+<field><name>StrikeType</name></field>
+<field><name>Contract</name></field>
+<field><name>FlatTenor</name></field>
+<field><name>FlatCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value FlatCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>Issuer</name></field>
+<field><name>Seniority</name></field>
+<field><name>SecurityID</name></field>
+<field><name>Rating</name></field>
+<field><name>IndexTenor</name></field>
+<field><name>Atm</name></field>
+<field><name>Relative</name></field>
+<field><name>Dimension</name></field>
+<field><name>Name</name></field>
+<field><name>Maturity</name></field>
+<field><name>MaturityDate</name></field>
+<field><name>IndexName</name></field>
+<field><name>CapFloor</name></field>
+<field><name>StrikeRate</name></field>
+<field><name>CorrFactType</name></field>
+<field><name>CorrFactMonth</name></field>
+<field><name>VendorTicker</name></field>
+</columns>
+</DBsheetConfig>
