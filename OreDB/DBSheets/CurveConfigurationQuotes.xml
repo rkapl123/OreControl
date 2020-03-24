@@ -1,9 +1,9 @@
 <DBsheetConfig>
 <connID>MSSQLORE</connID>
 <table>CurveConfigurationQuotes</table>
-<query>SELECT T1.CurveId, T1.SeqSegment, T1.Seq, T5.Quote AS Quote
+<query>SELECT T1.CurveId, T1.SeqSegment, T1.Seq, T2.Quote Quote
 FROM ORE.dbo.CurveConfigurationQuotes T1 INNER JOIN 
-ORE.dbo.MdatMarketDataDefinitions T5 ON T1.Quote = T5.Quote
+ORE.dbo.MdatMarketDataDefinitions T2 ON T1.Quote = T2.Quote
 ORDER BY 1 ASC, 2 ASC, 3 ASC</query>
 <whereClause></whereClause>
 <timeout>15</timeout>
@@ -13,6 +13,6 @@ ORDER BY 1 ASC, 2 ASC, 3 ASC</query>
 <field><name>*CurveId</name><primkey>1</primkey><sort>Ascending</sort></field>
 <field><name>*SeqSegment</name><primkey>1</primkey><sort>Ascending</sort></field>
 <field><name>*Seq</name><primkey>1</primkey><sort>Ascending</sort></field>
-<field><name>*Quote</name><ftable>ORE.dbo.MdatMarketDataDefinitions</ftable><fkey>Quote</fkey><flookup>Quote</flookup><lookup>SELECT Quote,Quote Lookup FROM ORE.dbo.MdatMarketDataDefinitions ORDER BY Quote</lookup></field>
+<field><name>*Quote</name><ftable>ORE.dbo.MdatMarketDataDefinitions</ftable><fkey>Quote</fkey><flookup>Quote</flookup><lookup>SELECT !T!.Quote, Quote Lookup FROM ORE.dbo.MdatMarketDataDefinitions !T! ORDER BY !T!.Quote</lookup></field>
 </columns>
 </DBsheetConfig>

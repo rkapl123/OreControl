@@ -1,7 +1,7 @@
 <DBsheetConfig>
 <connID>MSSQLORE</connID>
 <table>CurveConfigurationYieldCurveSegments</table>
-<query>SELECT T2.CurveId, T1.Seq, T4.value AS SegmentsType, T5.value AS Type, Conventions, T7.CurveId ProjectionCurve, T8.CurveId ProjectionCurveLong, T9.CurveId ProjectionCurveShort, T10.CurveId DiscountCurve, Quote SpotRate, T12.CurveId ProjectionCurveDomestic, T13.CurveId ProjectionCurveForeign, T14.CurveId ReferenceCurve
+<query>SELECT T2.CurveId, T1.Seq, T4.value AS SegmentsType, T5.value AS Type, T1.Conventions, T7.CurveId ProjectionCurve, T8.CurveId ProjectionCurveLong, T9.CurveId ProjectionCurveShort, T10.CurveId DiscountCurve, T11.Quote SpotRate, T12.CurveId ProjectionCurveDomestic, T13.CurveId ProjectionCurveForeign, T14.CurveId ReferenceCurve
 FROM ORE.dbo.CurveConfigurationYieldCurveSegments T1 INNER JOIN 
 ORE.dbo.CurveConfigurationYieldCurves T2 ON T1.CurveId = T2.CurveId INNER JOIN 
 ORE.dbo.TypesSegmentType T4 ON T1.SegmentsType = T4.value INNER JOIN 
@@ -24,24 +24,24 @@ ORDER BY 1 ASC, 2 ASC</query>
 <field><name>*Seq</name><primkey>1</primkey><sort>Ascending</sort></field>
 <field><name>*SegmentsType</name><ftable>ORE.dbo.TypesSegmentType</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT value,value SegmentsType FROM ORE.dbo.TypesSegmentType ORDER BY value</lookup></field>
 <field><name>*Type</name><ftable>ORE.dbo.TypesSegmentTypeType</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT value,value Type FROM ORE.dbo.TypesSegmentTypeType ORDER BY value</lookup></field>
-<field><name>*Conventions</name><ftable>ORE.dbo.ConventionsSwap</ftable><fkey>Id</fkey><flookup>Id</flookup><lookup>SELECT Id Conventions, Id FROM ConventionsCrossCurrencyBasis
+<field><name>*Conventions</name><ftable>ORE.dbo.ConventionsSwap</ftable><fkey>Id</fkey><flookup>Id</flookup><lookup>SELECT Id Conventions, Id FROM ORE.dbo.ConventionsCrossCurrencyBasis
 UNION
-SELECT Id, Id  FROM ConventionsFRA
+SELECT Id, Id  FROM ORE.dbo.ConventionsFRA
 UNION
-SELECT Id, Id  FROM ConventionsOIS
+SELECT Id, Id  FROM ORE.dbo.ConventionsOIS
 UNION
-SELECT Id, Id  FROM ConventionsSwap
+SELECT Id, Id  FROM ORE.dbo.ConventionsSwap
 UNION
-SELECT Id, Id  FROM ConventionsTenorBasisSwap
+SELECT Id, Id  FROM ORE.dbo.ConventionsTenorBasisSwap
 UNION
-SELECT Id, Id FROM ConventionsTenorBasisTwoSwap
+SELECT Id, Id FROM ORE.dbo.ConventionsTenorBasisTwoSwap
 UNION
-SELECT Id, Id FROM ConventionsZero</lookup></field>
+SELECT Id, Id FROM ORE.dbo.ConventionsZero</lookup></field>
 <field><name>ProjectionCurve</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId ProjectionCurve,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
 <field><name>ProjectionCurveLong</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId ProjectionCurveLong,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
 <field><name>ProjectionCurveShort</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId ProjectionCurveShort,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
 <field><name>DiscountCurve</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId DiscountCurve,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
-<field><name>SpotRate</name><ftable>ORE.dbo.MdatMarketDataDefinitions</ftable><fkey>Quote</fkey><flookup>Quote</flookup><outer>1</outer><lookup>SELECT Quote SpotRate,Quote FROM ORE.dbo.MdatMarketDataDefinitions ORDER BY Quote</lookup></field>
+<field><name>SpotRate</name><ftable>ORE.dbo.MdatMarketDataDefinitions</ftable><fkey>Quote</fkey><flookup>Quote</flookup><outer>1</outer><lookup>SELECT !T!.Quote SpotRate,!T!.Quote FROM ORE.dbo.MdatMarketDataDefinitions !T! ORDER BY Quote</lookup></field>
 <field><name>ProjectionCurveDomestic</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId ProjectionCurveDomestic,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
 <field><name>ProjectionCurveForeign</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId ProjectionCurveForeign,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
 <field><name>ReferenceCurve</name><ftable>ORE.dbo.CurveConfigurationYieldCurves</ftable><fkey>CurveId</fkey><flookup>CurveId</flookup><outer>1</outer><lookup>SELECT !T!.CurveId ReferenceCurve,!T!.CurveId FROM ORE.dbo.CurveConfigurationYieldCurves !T! ORDER BY CurveId</lookup></field>
