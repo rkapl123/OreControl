@@ -1,17 +1,17 @@
 <DBsheetConfig>
 <connID>MSSQLORE</connID>
 <table>TodaysMarketDefaultCurves</table>
-<query>SELECT value DefaultCurve, T1.name, T1.id
+<query>SELECT T1.DefaultCurve, T2.value name, T1.id
 FROM ORE.dbo.TodaysMarketDefaultCurves T1 INNER JOIN 
-ORE.dbo.TypesParties T2 ON T1.DefaultCurve = T2.value
+ORE.dbo.TypesParties T2 ON T1.name = T2.value
 </query>
 <whereClause></whereClause>
 <timeout>15</timeout>
 <calcedcols>0</calcedcols>
 <primcols>1</primcols>
 <columns>
-<field><name>*DefaultCurve</name><ftable>ORE.dbo.TypesParties</ftable><fkey>value</fkey><flookup>value</flookup><primkey>1</primkey><lookup>SELECT value DefaultCurve,value FROM ORE.dbo.TypesParties ORDER BY value</lookup></field>
-<field><name>*name</name></field>
+<field><name>*DefaultCurve</name></field>
+<field><name>*name</name><ftable>ORE.dbo.TypesParties</ftable><fkey>value</fkey><flookup>value</flookup><primkey>1</primkey><lookup>SELECT value name,value FROM ORE.dbo.TypesParties ORDER BY value</lookup></field>
 <field><name>*id</name></field>
 </columns>
 </DBsheetConfig>
