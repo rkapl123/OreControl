@@ -22,7 +22,7 @@ ORE.dbo.TypesBool T20 ON T1.FloatingLegIsNotResettingXCCY = T20.value
 <whereClause></whereClause>
 <timeout>15</timeout>
 <calcedcols>0</calcedcols>
-<primcols>2</primcols>
+<primcols>1</primcols>
 <columns>
 <field><name>*Id</name><primkey>1</primkey></field>
 <field><name>*TradeId</name><ftable>ORE.dbo.PortfolioTrades</ftable><fkey>Id</fkey><flookup>Id</flookup><primkey>1</primkey><lookup>SELECT !T!.TradeType+':'+!T!.Id TradeId, !T!.Id FROM ORE.dbo.PortfolioTrades !T! ORDER BY TradeId</lookup></field>
