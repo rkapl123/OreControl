@@ -190,7 +190,7 @@ CREATE TABLE CurveConfigurationInflationCurves (
 	Extrapolation varchar(5),
 	Calendar varchar(20),
 	DayCounter varchar(30),
-	Lag varchar(5) NOT NULL,
+	"Lag" varchar(5) NOT NULL,
 	Frequency varchar(20) NOT NULL,
 	BaseRate decimal(9,6),
 	Tolerance decimal(18,14),

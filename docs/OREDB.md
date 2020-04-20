@@ -91,8 +91,8 @@ Because the relational integrity of quotes in the curve configuration is relying
 ## Database creation and filling
 
 The DDL and DML scripts are executed with runOREDBScripts.cmd, which runs each script using execMSSQL.cmd, execMYSQL.cmd or any provided execYOURDB.cmd, being a wrapper for different databases.
-runOREDBScripts.cmd takes two optional arguments, the first being the mentioned exec cmd script, containing the invocation of the Database specific command of the passed input script (%1). The second argument is the sql script creating the ORE Database, which also might be very specific to the local situation.
-Currently only MS SQL Server and MYSQL have been tested, for easy invocation there is the script runOREDBScriptsMYSQL.cmd that calls runOREDBScripts.cmd with execMYSQL.cmd.
+This script takes two optional arguments, the first being the mentioned exec cmd script, containing the invocation of the Database specific command of the passed input script (%1). The second argument is the sql script creating the ORE Database, which also might be very specific to the local situation.
+Currently only MS SQL Server and MYSQL have been tested, for easy starting runOREDBScripts.cmd for mysql, there is a script runOREDBScriptsMYSQL.cmd that calls runOREDBScripts.cmd with execMYSQL.cmd (runOREDBScripts.cmd starts by default with execMSSQL.cmd and oreDBCreateMSSQL.sql).
 The output of runOREDBScripts.cmd is logged to SQL.log 
 
 ## Database extraction and running ORE

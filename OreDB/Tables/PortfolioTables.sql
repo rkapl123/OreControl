@@ -5,9 +5,8 @@ CREATE TABLE PortfolioTrades (
 	TradeType varchar(30),
 	EnvelopeCounterParty varchar(30),
 	EnvelopeNettingSetId varchar(30),
-	AddFieldsAdditionalId varchar(70)
-CONSTRAINT PK_PortfolioTrades PRIMARY KEY CLUSTERED
-(
+	AddFieldsAdditionalId varchar(70),
+CONSTRAINT PK_PortfolioTrades PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
 ALTER TABLE PortfolioTrades ADD CONSTRAINT FK_PortfolioTrades_TradeType FOREIGN KEY(TradeType)
@@ -21,8 +20,7 @@ REFERENCES NettingSet (NettingSetId);
 CREATE TABLE PortfolioTradeGroupingIds (
 	TradeId varchar(180) not null,
 	GroupingId varchar(70) not null,
-CONSTRAINT PK_PortfolioTradeGroupingIds PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioTradeGroupingIds PRIMARY KEY CLUSTERED (
 	TradeId ASC,
 	GroupingId ASC
 ));
@@ -33,8 +31,7 @@ CREATE TABLE PortfolioTradeActions (
 	TradeId varchar(180) not null,
 	Type varchar(20),
 	Owner varchar(20),
-CONSTRAINT PK_PortfolioTradeActions PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioTradeActions PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
 ALTER TABLE PortfolioTradeActions ADD CONSTRAINT FK_PortfolioTradeActions_TradeId FOREIGN KEY(TradeId)
@@ -60,8 +57,7 @@ CREATE TABLE PortfolioScheduleDataRules (
 	EndOfMonth varchar(5),
 	FirstDate date,
 	LastDate date,
-CONSTRAINT PK_PortfolioScheduleDataRules PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioScheduleDataRules PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
 -- ALTER TABLE PortfolioScheduleDataRules ADD CONSTRAINT FK_PortfolioScheduleDataRules_Calendar FOREIGN KEY(Calendar)
@@ -82,8 +78,7 @@ CREATE TABLE PortfolioScheduleDataDates (
 	LegDataId int,
 	Calendar varchar(20),
 	ScheduleDate date,
-CONSTRAINT PK_PortfolioScheduleDataDates PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioScheduleDataDates PRIMARY KEY CLUSTERED (
 	Id ASC,
 	ScheduleDate ASC
 ));
@@ -93,8 +88,7 @@ CONSTRAINT PK_PortfolioScheduleDataDates PRIMARY KEY CLUSTERED
 
 CREATE TABLE PortfolioSwapData (
 	TradeId varchar(180) not null,
-CONSTRAINT PK_PortfolioSwapData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioSwapData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioSwapData ADD CONSTRAINT FK_PortfolioSwapData_TradeId FOREIGN KEY(TradeId)
@@ -108,8 +102,7 @@ CREATE TABLE PortfolioCDOData (
 	UpfrontFee decimal(18,3),
 	AttachmentPoint decimal(18,3),
 	DetachmentPoint decimal(18,3),
-CONSTRAINT PK_PortfolioCDOData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioCDOData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioCDOData ADD CONSTRAINT FK_PortfolioCDOData_TradeId FOREIGN KEY(TradeId)
@@ -125,8 +118,7 @@ CREATE TABLE PortfolioCreditDefaultSwapData (
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3),
-CONSTRAINT PK_PortfolioCreditDefaultSwapData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioCreditDefaultSwapData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_TradeId FOREIGN KEY(TradeId)
@@ -149,8 +141,7 @@ CREATE TABLE PortfolioIndexCreditDefaultSwapData (
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3),
-CONSTRAINT PK_PortfolioIndexCreditDefaultSwapData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioIndexCreditDefaultSwapData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_TradeId FOREIGN KEY(TradeId)
@@ -174,8 +165,7 @@ CREATE TABLE PortfolioIndexCreditDefaultSwapOptionData (
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date,
-CONSTRAINT PK_PortfolioIndexCreditDefaultSwapOptionData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioIndexCreditDefaultSwapOptionData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionData_TradeId FOREIGN KEY(TradeId)
@@ -205,8 +195,7 @@ CREATE TABLE PortfolioIndexCreditDefaultSwapOptionSwapData (
 	ProtectionStart date,
 	UpfrontDate date,
 	UpfrontFee decimal(18,3),
-CONSTRAINT PK_PortfolioIndexCreditDefaultSwapOptionSwapData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioIndexCreditDefaultSwapOptionSwapData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_TradeId FOREIGN KEY(TradeId)
@@ -226,8 +215,7 @@ CREATE TABLE PortfolioBaskets (
 	CreditCurveId varchar(20),
 	Notional decimal(18,3),
 	Currency varchar(7),
-CONSTRAINT PK_PortfolioBaskets PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioBaskets PRIMARY KEY CLUSTERED (
 	TradeId ASC,
 	SeqId ASC
 ));
@@ -249,8 +237,7 @@ CREATE TABLE PortfolioSwaptionData (
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date,
-CONSTRAINT PK_PortfolioSwaptionData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioSwaptionData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioSwaptionData ADD CONSTRAINT FK_PortfolioSwaptionData_TradeId FOREIGN KEY(TradeId)
@@ -283,8 +270,7 @@ CREATE TABLE PortfolioFxOptionData (
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date,
-CONSTRAINT PK_PortfolioFxOptionData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFxOptionData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioFxOptionData ADD CONSTRAINT FK_PortfolioFxOptionData_TradeId FOREIGN KEY(TradeId)
@@ -321,8 +307,7 @@ CREATE TABLE PortfolioEquityOptionData (
 	OptionDataPremiumAmount decimal(18,3),
 	OptionDataPremiumCurrency varchar(7),
 	OptionDataPremiumPayDate date,
-CONSTRAINT PK_PortfolioEquityOptionData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioEquityOptionData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioEquityOptionData ADD CONSTRAINT FK_PortfolioEquityOptionData_TradeId FOREIGN KEY(TradeId)
@@ -350,8 +335,7 @@ CREATE TABLE PortfolioOptionExercises (
 	ExerciseDate date not null,
 	ExerciseFee decimal(18,3),
 	ExercisePrice decimal(18,3),
-CONSTRAINT PK_PortfolioOptionExerciseDates PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioOptionExerciseDates PRIMARY KEY CLUSTERED (
 	TradeId ASC,
 	ExerciseDate ASC
 ));
@@ -368,8 +352,7 @@ CREATE TABLE PortfolioBondData (
 	SettlementDays int not null,
 	Calendar varchar(20) not null,
 	IssueDate date not null,
-CONSTRAINT PK_PortfolioBondData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioBondData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioBondData ADD CONSTRAINT FK_PortfolioBondData_TradeId FOREIGN KEY(TradeId)
@@ -415,8 +398,7 @@ CREATE TABLE PortfolioLegData (
 	YYLegFixingDays int,
 	YYLegObservationLag varchar(5),
 	YYLegInterpolated varchar(5),
-CONSTRAINT PK_PortfolioLegData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioLegData PRIMARY KEY CLUSTERED (
 	Id ASC
 ));
 ALTER TABLE PortfolioLegData ADD CONSTRAINT FK_PortfolioLegData_TradeId FOREIGN KEY(TradeId)
@@ -472,8 +454,7 @@ CREATE TABLE PortfolioLegAmortizations (
 	EndDate date,
 	Frequency varchar(5),
 	Underflow varchar(5),
-CONSTRAINT PK_PortfolioLegAmortizations PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioLegAmortizations PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -488,8 +469,7 @@ CREATE TABLE PortfolioLegNotionals (
 	SeqId int not null,
 	Notional decimal(18,3) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioLegNotionals PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioLegNotionals PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -502,13 +482,12 @@ CREATE TABLE PortfolioCashflowDataCashflow (
 	SeqId int not null,
 	Amount decimal(18, 3) not null,
 	StartDate date not null,
- CONSTRAINT PK_PortfolioCashflowDataCashflow PRIMARY KEY CLUSTERED 
-(
+ CONSTRAINT PK_PortfolioCashflowDataCashflow PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
 ALTER TABLE PortfolioCashflowDataCashflow ADD  CONSTRAINT FK_PortfolioCashflowDataCashflow_LegDataId FOREIGN KEY(LegDataId)
-REFERENCES PortfolioLegData (Id)
+REFERENCES PortfolioLegData (Id);
 
 
 CREATE TABLE PortfolioFixedLegCPIRates (
@@ -516,8 +495,7 @@ CREATE TABLE PortfolioFixedLegCPIRates (
 	SeqId int not null,
 	Rate decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioFixedLegCPIRates PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFixedLegCPIRates PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -530,8 +508,7 @@ CREATE TABLE PortfolioFloatingLegSpreads (
 	SeqId int not null,
 	Spread decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioFloatingLegSpreads PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFloatingLegSpreads PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -544,8 +521,7 @@ CREATE TABLE PortfolioFloatingLegCaps (
 	SeqId int not null,
 	Cap decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioFloatingLegCaps PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFloatingLegCaps PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -558,8 +534,7 @@ CREATE TABLE PortfolioFloatingLegFloors (
 	SeqId int not null,
 	Floor decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioFloatingLegFloors PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFloatingLegFloors PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -572,8 +547,7 @@ CREATE TABLE PortfolioFloatingLegGearings (
 	SeqId int not null,
 	Gearing decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioFloatingLegGearings PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFloatingLegGearings PRIMARY KEY CLUSTERED (
 	LegDataId ASC,
 	SeqId ASC
 ));
@@ -590,8 +564,7 @@ CREATE TABLE PortfolioForwardRateAgreementData (
 	LongShort varchar(5),
 	Strike decimal(18,10),
 	Notional decimal(18,3),
-CONSTRAINT PK_PortfolioForwardRateAgreementData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioForwardRateAgreementData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioForwardRateAgreementData ADD CONSTRAINT FK_PortfolioForwardRateAgreementData_TradeId FOREIGN KEY(TradeId)
@@ -611,8 +584,7 @@ CREATE TABLE PortfolioFxForwardData (
 	BoughtAmount decimal(18,3),
 	SoldCurrency varchar(7),
 	SoldAmount decimal(18,3),
-CONSTRAINT PK_PortfolioFxForwardData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFxForwardData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioFxForwardData ADD CONSTRAINT FK_PortfolioFxForwardData_TradeId FOREIGN KEY(TradeId)
@@ -626,8 +598,7 @@ REFERENCES TypesCurrencyCode (value);
 CREATE TABLE PortfolioCapFloorData (
 	TradeId varchar(180) not null,
 	LongShort varchar(7),
-CONSTRAINT PK_PortfolioCapFloorData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioCapFloorData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioCapFloorData ADD CONSTRAINT FK_PortfolioCapFloorData_TradeId FOREIGN KEY(TradeId)
@@ -639,8 +610,7 @@ CREATE TABLE PortfolioCapRates (
 	SeqId int not null,
 	Rate decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioCapRates PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioCapRates PRIMARY KEY CLUSTERED (
 	TradeId ASC,
 	SeqId ASC
 ));
@@ -653,8 +623,7 @@ CREATE TABLE PortfolioFloorRates (
 	SeqId int not null,
 	Rate decimal(18,10) not null,
 	StartDate date,
-CONSTRAINT PK_PortfolioFloorRates PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioFloorRates PRIMARY KEY CLUSTERED (
 	TradeId ASC,
 	SeqId ASC
 ));
@@ -670,8 +639,7 @@ CREATE TABLE PortfolioEquityForwardData (
 	Currency varchar(7),
 	Strike decimal(18,10),
 	Quantity decimal(18,3),
-CONSTRAINT PK_PortfolioEquityForwardData PRIMARY KEY CLUSTERED 
-(
+CONSTRAINT PK_PortfolioEquityForwardData PRIMARY KEY CLUSTERED (
 	TradeId ASC
 ));
 ALTER TABLE PortfolioEquityForwardData ADD CONSTRAINT FK_PortfolioEquityForwardData_TradeId FOREIGN KEY(TradeId)
