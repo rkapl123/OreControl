@@ -1,6 +1,6 @@
 <DBsheetConfig>
-<connID>MSSQLORE</connID>
-<table>PortfolioLegData</table>
+<connID>ORE</connID>
+<table>ORE.dbo.PortfolioLegData</table>
 <query>SELECT T1.Id, T3.TradeType+':'+T3.Id TradeId, T4.value Payer, T5.value LegType, T6.value Currency, T7.value PaymentConvention, T8.value DayCounter, T9.value NotionalInitialExchange, T10.value  NotionalFinalExchange, T11.value  NotionalAmortizingExchange, T12.value FXResetForeignCurrency, T1.FXResetForeignAmount, T14.value FXResetFXIndex, T1.FXResetFixingDays, T16.value FloatingLegIndexName, T17.value FloatingLegIsInArrears, T1.FloatingLegFixingDays, T19.value FloatingLegIsAveraged, T20.value FloatingLegIsNotResettingXCCY, T1.FloatingLegNakedOption
 FROM ORE.dbo.PortfolioLegData T1 INNER JOIN 
 ORE.dbo.PortfolioTrades T3 ON T1.TradeId = T3.Id INNER JOIN 
@@ -20,29 +20,27 @@ ORE.dbo.TypesBool T19 ON T1.FloatingLegIsAveraged = T19.value LEFT JOIN
 ORE.dbo.TypesBool T20 ON T1.FloatingLegIsNotResettingXCCY = T20.value
 </query>
 <whereClause></whereClause>
-<timeout>15</timeout>
-<calcedcols>0</calcedcols>
 <primcols>1</primcols>
 <columns>
-<field><name>*Id</name><primkey>1</primkey></field>
-<field><name>*TradeId</name><ftable>ORE.dbo.PortfolioTrades</ftable><fkey>Id</fkey><flookup>Id</flookup><primkey>1</primkey><lookup>SELECT !T!.TradeType+':'+!T!.Id TradeId, !T!.Id FROM ORE.dbo.PortfolioTrades !T! ORDER BY TradeId</lookup></field>
+<field><name>*Id</name><primkey>True</primkey></field>
+<field><name>*TradeId</name><ftable>ORE.dbo.PortfolioTrades</ftable><fkey>Id</fkey><flookup>Id</flookup><lookup>SELECT !T!.TradeType+':'+!T!.Id TradeId, !T!.Id FROM ORE.dbo.PortfolioTrades !T! ORDER BY TradeId</lookup></field>
 <field><name>Payer</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value Payer, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
 <field><name>LegType</name><ftable>ORE.dbo.TypesLegType</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT !T!.value LegType, !T!.value FROM ORE.dbo.TypesLegType !T! ORDER BY value</lookup></field>
 <field><name>Currency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><lookup>SELECT  !T!.value Currency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
-<field><name>PaymentConvention</name><ftable>ORE.dbo.TypesBusinessDayConvention</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value PaymentConvention, !T!.value FROM ORE.dbo.TypesBusinessDayConvention !T! ORDER BY value</lookup></field>
-<field><name>DayCounter</name><ftable>ORE.dbo.TypesDayCounter</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value DayCounter, !T!.value FROM ORE.dbo.TypesDayCounter !T! ORDER BY value</lookup></field>
-<field><name>NotionalInitialExchange</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value NotionalInitialExchange, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
-<field><name>NotionalFinalExchange</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value  NotionalFinalExchange, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
-<field><name>NotionalAmortizingExchange</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value  NotionalAmortizingExchange, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
-<field><name>FXResetForeignCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value FXResetForeignCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
+<field><name>PaymentConvention</name><ftable>ORE.dbo.TypesBusinessDayConvention</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value PaymentConvention, !T!.value FROM ORE.dbo.TypesBusinessDayConvention !T! ORDER BY value</lookup></field>
+<field><name>DayCounter</name><ftable>ORE.dbo.TypesDayCounter</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value DayCounter, !T!.value FROM ORE.dbo.TypesDayCounter !T! ORDER BY value</lookup></field>
+<field><name>NotionalInitialExchange</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value NotionalInitialExchange, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>NotionalFinalExchange</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value  NotionalFinalExchange, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>NotionalAmortizingExchange</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value  NotionalAmortizingExchange, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>FXResetForeignCurrency</name><ftable>ORE.dbo.TypesCurrencyCode</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value FXResetForeignCurrency, !T!.value FROM ORE.dbo.TypesCurrencyCode !T! ORDER BY value</lookup></field>
 <field><name>FXResetForeignAmount</name></field>
-<field><name>FXResetFXIndex</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value FXResetFXIndex,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>FXResetFXIndex</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT !T!.value FXResetFXIndex,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
 <field><name>FXResetFixingDays</name></field>
-<field><name>FloatingLegIndexName</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT !T!.value FloatingLegIndexName,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
-<field><name>FloatingLegIsInArrears</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value FloatingLegIsInArrears, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>FloatingLegIndexName</name><ftable>ORE.dbo.TypesIndexName</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT !T!.value FloatingLegIndexName,!T!.value FROM ORE.dbo.TypesIndexName !T! ORDER BY value</lookup></field>
+<field><name>FloatingLegIsInArrears</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value FloatingLegIsInArrears, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
 <field><name>FloatingLegFixingDays</name></field>
-<field><name>FloatingLegIsAveraged</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value FloatingLegIsAveraged, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
-<field><name>FloatingLegIsNotResettingXCCY</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>1</outer><lookup>SELECT  !T!.value FloatingLegIsNotResettingXCCY, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>FloatingLegIsAveraged</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value FloatingLegIsAveraged, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
+<field><name>FloatingLegIsNotResettingXCCY</name><ftable>ORE.dbo.TypesBool</ftable><fkey>value</fkey><flookup>value</flookup><outer>True</outer><lookup>SELECT  !T!.value FloatingLegIsNotResettingXCCY, !T!.value FROM ORE.dbo.TypesBool !T! ORDER BY value</lookup></field>
 <field><name>FloatingLegNakedOption</name></field>
 </columns>
 </DBsheetConfig>
