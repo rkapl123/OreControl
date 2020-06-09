@@ -1,5 +1,23 @@
 use ORE;
 
+CREATE TABLE TypesDefaultCurves (
+	value varchar(20) NOT NULL,
+CONSTRAINT PK_TypesDefaultCurves PRIMARY KEY CLUSTERED (
+	value ASC
+));
+
+CREATE TABLE TypesEquityCurves (
+	value varchar(20) NOT NULL,
+CONSTRAINT PK_TypesEquityCurves PRIMARY KEY CLUSTERED (
+	value ASC
+));
+
+CREATE TABLE TypesSecurityCurves (
+	value varchar(20) NOT NULL,
+CONSTRAINT PK_TypesSecurityCurves PRIMARY KEY CLUSTERED (
+	value ASC
+));
+
 CREATE TABLE TypesAmortizationType (
 	value varchar(30) NOT NULL,
 CONSTRAINT PK_TypesAmortizationType PRIMARY KEY CLUSTERED (

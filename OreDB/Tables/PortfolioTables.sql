@@ -125,8 +125,8 @@ ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefa
 REFERENCES PortfolioTrades (Id);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_IssuerId FOREIGN KEY(IssuerId)
 REFERENCES TypesParties (value);
---  ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
---  REFERENCES CurveConfigurationDefaultCurves (CurveId);
+ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
+REFERENCES TypesDefaultCurves (value);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_SettlesAccrual FOREIGN KEY(SettlesAccrual)
 REFERENCES TypesBool (value);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_PaysAtDefaultTime FOREIGN KEY(PaysAtDefaultTime)
@@ -146,8 +146,8 @@ CONSTRAINT PK_PortfolioIndexCreditDefaultSwapData PRIMARY KEY CLUSTERED (
 ));
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_TradeId FOREIGN KEY(TradeId)
 REFERENCES PortfolioTrades (Id);
---  ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
---  REFERENCES CurveConfigurationDefaultCurves (CurveId);
+ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
+REFERENCES TypesDefaultCurves (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_SettlesAccrual FOREIGN KEY(SettlesAccrual)
 REFERENCES TypesBool (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_PaysAtDefaultTime FOREIGN KEY(PaysAtDefaultTime)
@@ -200,8 +200,8 @@ CONSTRAINT PK_PortfolioIndexCreditDefaultSwapOptionSwapData PRIMARY KEY CLUSTERE
 ));
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_TradeId FOREIGN KEY(TradeId)
 REFERENCES PortfolioIndexCreditDefaultSwapOptionData (TradeId);
---  ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
---  REFERENCES CurveConfigurationDefaultCurves (CurveId);
+ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
+REFERENCES TypesDefaultCurves (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_SettlesAccrual FOREIGN KEY(SettlesAccrual)
 REFERENCES TypesBool (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_PaysAtDefTime FOREIGN KEY(PaysAtDefaultTime)
@@ -313,7 +313,7 @@ CONSTRAINT PK_PortfolioEquityOptionData PRIMARY KEY CLUSTERED (
 ALTER TABLE PortfolioEquityOptionData ADD CONSTRAINT FK_PortfolioEquityOptionData_TradeId FOREIGN KEY(TradeId)
 REFERENCES PortfolioTrades (Id);
 ALTER TABLE PortfolioEquityOptionData ADD CONSTRAINT FK_PortfolioEquityOptionData_Name FOREIGN KEY(Name)
-REFERENCES CurveConfigurationEquityCurves (CurveId);
+REFERENCES TypesEquityCurves (value);
 ALTER TABLE PortfolioEquityOptionData ADD CONSTRAINT FK_PortfolioEquityOptionData_Currency FOREIGN KEY(Currency)
 REFERENCES TypesCurrencyCode (value);
 ALTER TABLE PortfolioEquityOptionData ADD CONSTRAINT FK_PortfolioEquityOptionData_OptionDataPremiumCurrency FOREIGN KEY(OptionDataPremiumCurrency)
@@ -362,7 +362,7 @@ REFERENCES TypesParties (value);
 ALTER TABLE PortfolioBondData ADD CONSTRAINT FK_PortfolioBondData_CreditCurveId FOREIGN KEY(CreditCurveId)
 REFERENCES TypesParties (value);
 ALTER TABLE PortfolioBondData ADD CONSTRAINT FK_PortfolioBondData_SecurityId FOREIGN KEY(SecurityId)
-REFERENCES CurveConfigurationSecurities (CurveId);
+REFERENCES TypesSecurityCurves (value);
 -- ALTER TABLE PortfolioBondData ADD CONSTRAINT FK_PortfolioBondData_Calendar FOREIGN KEY(Calendar)
 -- REFERENCES TypesCalendar (value);
 
@@ -647,6 +647,6 @@ REFERENCES PortfolioTrades (Id);
 ALTER TABLE PortfolioEquityForwardData ADD CONSTRAINT FK_PortfolioEquityForwardData_LongShort FOREIGN KEY(LongShort)
 REFERENCES TypesLongShort (value);
 ALTER TABLE PortfolioEquityForwardData ADD CONSTRAINT FK_PortfolioEquityForwardData_Name FOREIGN KEY(Name)
-REFERENCES CurveConfigurationEquityCurves (CurveId);
+REFERENCES TypesEquityCurves (value);
 ALTER TABLE PortfolioEquityForwardData ADD CONSTRAINT FK_PortfolioEquityForwardData_Currency FOREIGN KEY(Currency)
 REFERENCES TypesCurrencyCode (value);
