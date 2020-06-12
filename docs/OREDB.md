@@ -16,22 +16,10 @@ b) have relational intgrity where possible
 Following sql scripts define the tables:
 - MdatTables.sql: all marketdata related tables (marketdata, fixingdata and covariancedata)
 - NettingTables.sql: all tables for nettingset definitions
-- OreParametersTables.sql: all tables for the ore parameter definitions
 - PortfolioTables.sql: all tables for the portfolio definitions
-- PricingengineTables.sql: all tables for the prixing engine definitions
-- ResultsTables.sql: all tables for ORE results.
-- SensitivityanalysisTables.sql: all tables for the sensitivity analysis definitions
-- SimulationTables.sql: all tables for the simulation definitions
-- StresstestTables.sql: all tables for the stresstest definitions
-- TodaysmarketTables.sql: all tables for the todaysmarket definitions
-- TypesTables.sql: all tables for the referenced types.
-- ConventionsTables.sql: all tables for the convention definitions
-- CurveConfigurationTables.sql: all tables for the curve configuration definitions
-
-For filling the TodaysmarketCurveSpec Table (which is required as a relational reference of curve configuration fields to curve specs) there are trigger definitions on the TodaysmarketTables that define a curve spec for each supported database:
-- TodaysmarketTableTriggerMSSQL.sql
-- TodaysmarketTableTriggerMYSQL.sql
-
+- ResultsTables.sql: all tables for ORE results
+- TypesTables.sql: all tables for the referenced types
+- ConfigTables.sql: the OreConfiguration table holding all the XML configs for calculating results
 For details see the [SchemaSpy generated documentation](schemaDoc/index.html)
 
 ### XMLselectionViews
