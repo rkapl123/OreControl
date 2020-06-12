@@ -1,13 +1,6 @@
 use ORE;
 
--- replacement for CurveConfig Tables being referenced in Prtfolio Tables
-CREATE TABLE TypesDefaultCurves (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesDefaultCurves PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-insert into TypesDefaultCurves select CurveId from CurveConfigurationDefaultCurves;
+-- replacement for CurveConfig Tables being referenced in Portfolio Tables
 
 CREATE TABLE TypesEquityCurves (
 	value varchar(20) NOT NULL,
@@ -39,9 +32,28 @@ ALTER TABLE PortfolioBondData DROP CONSTRAINT FK_PortfolioBondData_SecurityId;
 ALTER TABLE PortfolioBondData ADD CONSTRAINT FK_PortfolioBondData_SecurityId FOREIGN KEY(SecurityId)
 REFERENCES TypesSecurityCurves (value);
 
--- might not be in the previous table defs..
+-- is not in the table defs..
+ALTER TABLE PortfolioCreditDefaultSwapData ALTER COLUMN CreditCurveId varchar(30);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
-REFERENCES TypesDefaultCurves (value);
+REFERENCES TypesParties (value);
 
+ALTER TABLE PortfolioIndexCreditDefaultSwapData ALTER COLUMN CreditCurveId varchar(30);
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
-REFERENCES TypesDefaultCurves (value);
+REFERENCES TypesParties (value);
+
+-- new configuration table:
+CREATE TABLE TypesConfigurationTypes (
+	value varchar(20) NOT NULL,
+CONSTRAINT PK_TypesConfigurationTypes PRIMARY KEY CLUSTERED (
+	value ASC
+));
+
+CREATE TABLE OreConfigurations (
+	ConfigurationId varchar(30) NOT NULL,
+	ConfigurationType varchar(20) NOT NULL,
+	ConfigurationData varchar(MAX) NOT NULL
+CONSTRAINT PK_OreConfigurations PRIMARY KEY CLUSTERED (
+	ConfigurationId ASC
+));
+ALTER TABLE OreConfigurations ADD CONSTRAINT FK_OreConfigurations_ConfigurationType FOREIGN KEY(ConfigurationType)
+REFERENCES TypesConfigurationTypes (value);

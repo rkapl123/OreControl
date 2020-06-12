@@ -1,23 +1,5 @@
 use ORE;
 
-CREATE TABLE TypesDefaultCurves (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesDefaultCurves PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesEquityCurves (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesEquityCurves PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesSecurityCurves (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesSecurityCurves PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
 CREATE TABLE TypesAmortizationType (
 	value varchar(30) NOT NULL,
 CONSTRAINT PK_TypesAmortizationType PRIMARY KEY CLUSTERED (
@@ -42,21 +24,29 @@ CONSTRAINT PK_TypesCalendar PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesCalibrationTypeType (
+CREATE TABLE TypesCapFloor (
+	value varchar(5)  NOT NULL,
+CONSTRAINT PK_TypesCapFloor PRIMARY KEY CLUSTERED (
+	value ASC
+));
+
+CREATE TABLE TypesConfigurationTypes (
+	value varchar(30) NOT NULL,
+CONSTRAINT PK_TypesConfigurationTypes PRIMARY KEY CLUSTERED (
+	value ASC
+));
+insert into TypesConfigurationTypes values('orestart');
+insert into TypesConfigurationTypes values('todaysmarket');
+insert into TypesConfigurationTypes values('curveconfig');
+insert into TypesConfigurationTypes values('conventions');
+insert into TypesConfigurationTypes values('simulation');
+insert into TypesConfigurationTypes values('sensitivity');
+insert into TypesConfigurationTypes values('pricingengine');
+insert into TypesConfigurationTypes values('stresstest');
+
+CREATE TABLE TypesCsaType (
 	value varchar(10)  NOT NULL,
-CONSTRAINT PK_TypesCalibrationTypeType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesCdsType (
-	value varchar(20)  NOT NULL,
-CONSTRAINT PK_TypesCdsType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesCompounding (
-	value varchar(30)  NOT NULL,
-CONSTRAINT PK_TypesCompounding PRIMARY KEY CLUSTERED (
+CONSTRAINT PK_TypesCsaType PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
@@ -72,15 +62,9 @@ CONSTRAINT PK_TypesCurrencyPair PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesCurveType (
-	value varchar(20)  NOT NULL,
-CONSTRAINT PK_TypesCurveType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesCsaType (
-	value varchar(10)  NOT NULL,
-CONSTRAINT PK_TypesCsaType PRIMARY KEY CLUSTERED (
+CREATE TABLE TypesDateRule (
+	value varchar(20) NOT NULL,
+CONSTRAINT PK_TypesDateRule PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
@@ -90,57 +74,9 @@ CONSTRAINT PK_TypesDayCounter PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesDefaultCurveType (
+CREATE TABLE TypesEquityCurves (
 	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesDefaultCurveType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesDateRule (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesDateRule PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesDimensionType (
-	value varchar(5) NOT NULL,
-CONSTRAINT PK_TypesDimensionType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesDiscretizationType (
-	value varchar(10) NOT NULL,
-CONSTRAINT PK_TypesDiscretizationType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesEquityType (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesEquityType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesExtrapolationType (
-	value varchar(10) NOT NULL,
-CONSTRAINT PK_TypesExtrapolationType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesFrequencyType (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesFrequencyType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesFactors (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesFactors PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesIndexName (
-	value varchar(30) NOT NULL,
-CONSTRAINT PK_TypesIndexName PRIMARY KEY CLUSTERED (
+CONSTRAINT PK_TypesEquityCurves PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
@@ -150,21 +86,9 @@ CONSTRAINT PK_TypesIndependentAmountType PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesInflationType (
-	value varchar(2) NOT NULL,
-CONSTRAINT PK_TypesInflationType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesInterpolationVariableType (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesInterpolationVariableType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesInterpolationMethodType (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesInterpolationMethodType PRIMARY KEY CLUSTERED (
+CREATE TABLE TypesIndexName (
+	value varchar(30) NOT NULL,
+CONSTRAINT PK_TypesIndexName PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
@@ -180,15 +104,15 @@ CONSTRAINT PK_TypesLongShort PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesOptionStyle (
-	value varchar(10) NOT NULL,
-CONSTRAINT PK_TypesOptionStyle PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
 CREATE TABLE TypesOptionSettlement (
 	value varchar(10) NOT NULL,
 CONSTRAINT PK_TypesOptionSettlement PRIMARY KEY CLUSTERED (
+	value ASC
+));
+
+CREATE TABLE TypesOptionStyle (
+	value varchar(10) NOT NULL,
+CONSTRAINT PK_TypesOptionStyle PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
@@ -204,57 +128,15 @@ CONSTRAINT PK_TypesOreTradeType PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesParamTypeType (
-	value varchar(10) NOT NULL,
-CONSTRAINT PK_TypesParamTypeType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
 CREATE TABLE TypesParties (
 	value varchar(30) NOT NULL,
 CONSTRAINT PK_TypesParties PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesSegmentType (
-	value varchar(15) NOT NULL,
-CONSTRAINT PK_TypesSegmentType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesSegmentTypeType (
-	value varchar(30) NOT NULL,
-CONSTRAINT PK_TypesSegmentTypeType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesSequenceType (
-	value varchar(30) NOT NULL,
-CONSTRAINT PK_TypesSequenceType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesShiftType (
-	value varchar(8) NOT NULL,
-CONSTRAINT PK_TypesShiftType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesSubPeriodsCouponType (
+CREATE TABLE TypesSecurityCurves (
 	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesSubPeriodsCouponType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesTimeDecayType (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesTimeDecayType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesTradeActionType (
-	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesTradeActionType PRIMARY KEY CLUSTERED (
+CONSTRAINT PK_TypesSecurityCurves PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
@@ -264,20 +146,8 @@ CONSTRAINT PK_TypesTradeActionOwner PRIMARY KEY CLUSTERED (
 	value ASC
 ));
 
-CREATE TABLE TypesVolatilityType (
+CREATE TABLE TypesTradeActionType (
 	value varchar(20) NOT NULL,
-CONSTRAINT PK_TypesVolatilityType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesVolatilityTypeType (
-	value varchar(10) NOT NULL,
-CONSTRAINT PK_TypesVolatilityReversionTypeType PRIMARY KEY CLUSTERED (
-	value ASC
-));
-
-CREATE TABLE TypesYcInterpolation (
-	value varchar(10) NOT NULL,
-CONSTRAINT PK_TypesYcInterpolation PRIMARY KEY CLUSTERED (
+CONSTRAINT PK_TypesTradeActionType PRIMARY KEY CLUSTERED (
 	value ASC
 ));

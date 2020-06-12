@@ -87,7 +87,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END CPILegData,
-				CASE WHEN ld.LegType = 'YY' THEN 
+				CASE WHEN ld.LegType = 'YY' THEN
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
@@ -97,8 +97,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				FOR XML PATH (''), TYPE) END YYLegData
 			FROM PortfolioLegData ld WHERE ld.TradeId = t.id
 			FOR XML PATH ('LegData'), TYPE)
-		FROM PortfolioSwapData sd WHERE sd.TradeId = t.id
-		FOR XML PATH (''), TYPE) SwapData,
+		FOR XML PATH ('SwapData'), TYPE),
 		(SELECT
 			(SELECT sd.OptionDataLongShort LongShort, sd.OptionDataOptionType OptionType, sd.OptionDataStyle Style, sd.OptionDataSettlement Settlement, sd.OptionDataPayOffAtExpiry PayOffAtExpiry,
 				(SELECT sd.OptionDataPremiumAmount Amount, sd.OptionDataPremiumCurrency Currency, sd.OptionDataPremiumPayDate [Date]

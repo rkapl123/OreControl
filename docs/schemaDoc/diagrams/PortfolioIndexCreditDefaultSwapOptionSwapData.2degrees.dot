@@ -1,5 +1,5 @@
 // dot 2.38 on Windows 10 10.0
-// SchemaSpy rev Unknown
+// SchemaSpy rev 6.0.0-rc2.40
 digraph "twoDegreesRelationshipsDiagram" {
   graph [
     rankdir="RL"
@@ -20,33 +20,25 @@ digraph "twoDegreesRelationshipsDiagram" {
   edge [
     arrowsize="0.8"
   ];
-  "ConventionsCDS":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsCDS":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsCrossCurrencyBasis":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsDeposit":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsDeposit":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsFX":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsFX":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsFX":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.ConventionsInflationSwap":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.ConventionsInflationSwap":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsOIS":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsTenorBasisSwap":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsTenorBasisSwap":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsTenorBasisTwoSwap":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsZero":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsZero":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationBaseCorrelation":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationCapFloorVolatilities":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationCapFloorVolatilities":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationDefaultCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationDefaultCurves":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationInflationCapFloorPriceSurfaces":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationInflationCurves":"elipses":w -> "dbo.ConventionsInflationSwap":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationInflationCurves":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "CurveConfigurationYieldCurves":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.NettingSet":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "NettingSet":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBaskets":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBaskets":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBaskets":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBaskets":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBondData":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBondData":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioBondData":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=teeodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesLongShort":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesOptionType":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesOptionSettlement":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.TypesOptionStyle":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCommodityOptionData":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=teeodot];
+  "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioCreditDefaultSwapData":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=teeodot];
@@ -67,6 +59,7 @@ digraph "twoDegreesRelationshipsDiagram" {
   "PortfolioFxOptionData":"elipses":w -> "dbo.TypesOptionStyle":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioFxOptionData":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioFxOptionData":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=teeodot];
+  "PortfolioIndexCreditDefaultSwapData":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioIndexCreditDefaultSwapData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioIndexCreditDefaultSwapData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioIndexCreditDefaultSwapData":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=teeodot];
@@ -78,18 +71,17 @@ digraph "twoDegreesRelationshipsDiagram" {
   "dbo.PortfolioIndexCreditDefaultSwapOptionData":"OptionDataSettlement":w -> "dbo.TypesOptionSettlement":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioIndexCreditDefaultSwapOptionData":"OptionDataStyle":w -> "dbo.TypesOptionStyle":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioIndexCreditDefaultSwapOptionData":"TradeId":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
+  "PortfolioIndexCreditDefaultSwapOptionSwapData":"CreditCurveId":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioIndexCreditDefaultSwapOptionSwapData":"PaysAtDefaultTime":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioIndexCreditDefaultSwapOptionSwapData":"SettlesAccrual":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioIndexCreditDefaultSwapOptionSwapData":"TradeId":w -> "dbo.PortfolioIndexCreditDefaultSwapOptionData":"TradeId":e [arrowhead=none dir=back arrowtail=teeodot];
   "PortfolioLegAmortizations":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioLegData":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -104,201 +96,54 @@ digraph "twoDegreesRelationshipsDiagram" {
   "PortfolioSwaptionData":"elipses":w -> "dbo.TypesOptionSettlement":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioSwaptionData":"elipses":w -> "dbo.TypesOptionStyle":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "PortfolioSwaptionData":"elipses":w -> "dbo.PortfolioTrades":"elipses":e [arrowhead=none dir=back arrowtail=teeodot];
+  "PortfolioTrades":"elipses":w -> "dbo.TypesParties":"value":e [arrowhead=none dir=back arrowtail=crowodot];
   "dbo.PortfolioTrades":"elipses":w -> "dbo.NettingSet":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelEquityModels":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelEquityModels":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelEquityModels":"elipses":w -> "dbo.SimulationMarket":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelForeignExchangeModels":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelForeignExchangeModels":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelForeignExchangeModels":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelForeignExchangeModels":"elipses":w -> "dbo.SimulationMarket":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInflationIndexModels":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInflationIndexModels":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInflationIndexModels":"elipses":w -> "dbo.SimulationMarket":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInflationIndexModels":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInterestRateModels":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInterestRateModels":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInterestRateModels":"elipses":w -> "dbo.SimulationMarket":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "SimulationCrossAssetModelInterestRateModels":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesCurrencyCode":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "dbo.SimulationMarket":"elipses":w -> "dbo.TypesBool":"value":e [arrowhead=none dir=back arrowtail=crowodot];
-  "ConventionsCDS" [
+  "NettingSet" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsCDS</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>NettingSet</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">58 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    URL="ConventionsCDS.html"
-    tooltip="ConventionsCDS"
+    URL="NettingSet.html"
+    tooltip="NettingSet"
   ];
-  "ConventionsCrossCurrencyBasis" [
+  "PortfolioBaskets" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsCrossCurrencyBasis</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioBaskets</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    URL="ConventionsCrossCurrencyBasis.html"
-    tooltip="ConventionsCrossCurrencyBasis"
+    URL="PortfolioBaskets.html"
+    tooltip="PortfolioBaskets"
   ];
-  "ConventionsDeposit" [
+  "PortfolioBondData" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsDeposit</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioBondData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 6</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">25 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    URL="ConventionsDeposit.html"
-    tooltip="ConventionsDeposit"
+    URL="PortfolioBondData.html"
+    tooltip="PortfolioBondData"
   ];
-  "ConventionsFX" [
+  "PortfolioCommodityOptionData" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsFX</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioCommodityOptionData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 9</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    URL="ConventionsFX.html"
-    tooltip="ConventionsFX"
-  ];
-  "dbo.ConventionsInflationSwap" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.ConventionsInflationSwap</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR>
-    </TABLE>>
-    tooltip="dbo.ConventionsInflationSwap"
-  ];
-  "ConventionsOIS" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsOIS</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">6 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="ConventionsOIS.html"
-    tooltip="ConventionsOIS"
-  ];
-  "ConventionsTenorBasisSwap" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsTenorBasisSwap</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">6 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="ConventionsTenorBasisSwap.html"
-    tooltip="ConventionsTenorBasisSwap"
-  ];
-  "ConventionsTenorBasisTwoSwap" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsTenorBasisTwoSwap</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 10</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="ConventionsTenorBasisTwoSwap.html"
-    tooltip="ConventionsTenorBasisTwoSwap"
-  ];
-  "ConventionsZero" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>ConventionsZero</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 8</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">5 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="ConventionsZero.html"
-    tooltip="ConventionsZero"
-  ];
-  "CurveConfigurationBaseCorrelation" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationBaseCorrelation</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="CurveConfigurationBaseCorrelation.html"
-    tooltip="CurveConfigurationBaseCorrelation"
-  ];
-  "CurveConfigurationCapFloorVolatilities" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationCapFloorVolatilities</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="CurveConfigurationCapFloorVolatilities.html"
-    tooltip="CurveConfigurationCapFloorVolatilities"
-  ];
-  "CurveConfigurationDefaultCurves" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationDefaultCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 8</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="CurveConfigurationDefaultCurves.html"
-    tooltip="CurveConfigurationDefaultCurves"
-  ];
-  "CurveConfigurationInflationCapFloorPriceSurfaces" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationInflationCapFloorPriceSurfaces</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="CurveConfigurationInflationCapFloorPriceSurfaces.html"
-    tooltip="CurveConfigurationInflationCapFloorPriceSurfaces"
-  ];
-  "CurveConfigurationInflationCurves" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationInflationCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 7</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="CurveConfigurationInflationCurves.html"
-    tooltip="CurveConfigurationInflationCurves"
-  ];
-  "CurveConfigurationYieldCurves" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>CurveConfigurationYieldCurves</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 6</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">30 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="CurveConfigurationYieldCurves.html"
-    tooltip="CurveConfigurationYieldCurves"
-  ];
-  "dbo.NettingSet" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.NettingSet</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">3 &gt;</TD></TR>
-    </TABLE>>
-    tooltip="dbo.NettingSet"
+    URL="PortfolioCommodityOptionData.html"
+    tooltip="PortfolioCommodityOptionData"
   ];
   "PortfolioCreditDefaultSwapData" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioCreditDefaultSwapData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="PortfolioCreditDefaultSwapData.html"
     tooltip="PortfolioCreditDefaultSwapData"
@@ -308,7 +153,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioEquityOptionData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 9</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">10 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 9</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">11 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="PortfolioEquityOptionData.html"
     tooltip="PortfolioEquityOptionData"
@@ -328,7 +173,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioIndexCreditDefaultSwapData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="PortfolioIndexCreditDefaultSwapData.html"
     tooltip="PortfolioIndexCreditDefaultSwapData"
@@ -348,13 +193,13 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="4"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioIndexCreditDefaultSwapOptionSwapData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="TradeId" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">TradeId</TD></TR></TABLE></TD><TD PORT="TradeId.type" ALIGN="LEFT">varchar[180]</TD></TR>
-      <TR><TD PORT="CreditCurveId" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">CreditCurveId</TD></TR></TABLE></TD><TD PORT="CreditCurveId.type" ALIGN="LEFT">varchar[20]</TD></TR>
+      <TR><TD PORT="CreditCurveId" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">CreditCurveId</TD></TR></TABLE></TD><TD PORT="CreditCurveId.type" ALIGN="LEFT">varchar[30]</TD></TR>
       <TR><TD PORT="SettlesAccrual" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">SettlesAccrual</TD></TR></TABLE></TD><TD PORT="SettlesAccrual.type" ALIGN="LEFT">varchar[5]</TD></TR>
       <TR><TD PORT="PaysAtDefaultTime" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="..\docs\schemaDoc/images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">PaysAtDefaultTime</TD></TR></TABLE></TD><TD PORT="PaysAtDefaultTime.type" ALIGN="LEFT">varchar[5]</TD></TR>
       <TR><TD PORT="ProtectionStart" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">ProtectionStart</TD></TR></TABLE></TD><TD PORT="ProtectionStart.type" ALIGN="LEFT">date[6]</TD></TR>
       <TR><TD PORT="UpfrontDate" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">UpfrontDate</TD></TR></TABLE></TD><TD PORT="UpfrontDate.type" ALIGN="LEFT">date[6]</TD></TR>
       <TR><TD PORT="UpfrontFee" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="283" HEIGHT="16">UpfrontFee</TD></TR></TABLE></TD><TD PORT="UpfrontFee.type" ALIGN="LEFT">decimal[20,3]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 &gt;</TD></TR>
     </TABLE>>
     URL="PortfolioIndexCreditDefaultSwapOptionSwapData.html"
     tooltip="PortfolioIndexCreditDefaultSwapOptionSwapData"
@@ -374,7 +219,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.PortfolioLegData</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 21</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">6 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 13</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.PortfolioLegData"
   ];
@@ -383,7 +228,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioScheduleDataRules</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">125 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">138 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
     URL="PortfolioScheduleDataRules.html"
     tooltip="PortfolioScheduleDataRules"
@@ -398,70 +243,22 @@ digraph "twoDegreesRelationshipsDiagram" {
     URL="PortfolioSwaptionData.html"
     tooltip="PortfolioSwaptionData"
   ];
-  "dbo.PortfolioTrades" [
+  "PortfolioTrades" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.PortfolioTrades</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>PortfolioTrades</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">19 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">113 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
     </TABLE>>
-    tooltip="dbo.PortfolioTrades"
-  ];
-  "SimulationCrossAssetModelEquityModels" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>SimulationCrossAssetModelEquityModels</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="SimulationCrossAssetModelEquityModels.html"
-    tooltip="SimulationCrossAssetModelEquityModels"
-  ];
-  "SimulationCrossAssetModelForeignExchangeModels" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>SimulationCrossAssetModelForeignExchangeModels</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 6</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">48 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="SimulationCrossAssetModelForeignExchangeModels.html"
-    tooltip="SimulationCrossAssetModelForeignExchangeModels"
-  ];
-  "SimulationCrossAssetModelInflationIndexModels" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>SimulationCrossAssetModelInflationIndexModels</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 10</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="SimulationCrossAssetModelInflationIndexModels.html"
-    tooltip="SimulationCrossAssetModelInflationIndexModels"
-  ];
-  "SimulationCrossAssetModelInterestRateModels" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>SimulationCrossAssetModelInterestRateModels</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 9</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">50 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="SimulationCrossAssetModelInterestRateModels.html"
-    tooltip="SimulationCrossAssetModelInterestRateModels"
-  ];
-  "dbo.SimulationMarket" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.SimulationMarket</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 16</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">32 &gt;</TD></TR>
-    </TABLE>>
-    tooltip="dbo.SimulationMarket"
+    URL="PortfolioTrades.html"
+    tooltip="PortfolioTrades"
   ];
   "dbo.TypesBool" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesBool</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">66 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">26 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TypesBool"
   ];
@@ -470,7 +267,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesCurrencyCode</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">53 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">27 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TypesCurrencyCode"
   ];
@@ -479,7 +276,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesLongShort</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">6 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">9 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TypesLongShort"
   ];
@@ -488,7 +285,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesOptionSettlement</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">5 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TypesOptionSettlement"
   ];
@@ -497,7 +294,7 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesOptionStyle</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">5 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TypesOptionStyle"
   ];
@@ -506,8 +303,17 @@ digraph "twoDegreesRelationshipsDiagram" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesOptionType</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">5 &gt;</TD></TR>
     </TABLE>>
     tooltip="dbo.TypesOptionType"
+  ];
+  "dbo.TypesParties" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>dbo.TypesParties</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">10 &gt;</TD></TR>
+    </TABLE>>
+    tooltip="dbo.TypesParties"
   ];
 }

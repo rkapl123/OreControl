@@ -1,5 +1,5 @@
 // dot 2.38 on Windows 10 10.0
-// SchemaSpy rev Unknown
+// SchemaSpy rev 6.0.0-rc2.40
 digraph "TypesIndependentAmountType" {
   graph [
     rankdir="RL"

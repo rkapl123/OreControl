@@ -206,8 +206,6 @@ drop table CurveConfigurationEquityCurves
 go
 drop table CurveConfigurationEquityVolatilities
 go
-drop table CurveConfigurationFXSpots
-go
 drop table CurveConfigurationFXVolatilities
 go
 drop table CurveConfigurationInflationCapFloorPriceSurfaces
@@ -225,6 +223,8 @@ go
 drop table CurveConfigurationYieldCurveSegments
 go
 drop table CurveConfigurationYieldCurves
+go
+drop table CurveConfigurationFXSpots
 go
 drop table TodaysMarketCurveSpecs
 go
@@ -265,41 +265,19 @@ go
 drop table PricingEngineProducts
 go
 -- TypesTables.sql
-drop table TypesAmortizationType
-go
-drop table TypesBool
-go
-drop table TypesBusinessDayConvention
-go
-drop table TypesCalendar
-go
 drop table TypesCalibrationTypeType
 go
 drop table TypesCdsType
 go
 drop table TypesCompounding
 go
-drop table TypesCsaType
-go
-drop table TypesCurrencyCode
-go
-drop table TypesCurrencyPair
-go
 drop table TypesCurveType
-go
-drop table TypesDateRule
-go
-drop table TypesDayCounter
-go
-drop table TypesDefaultCurves
 go
 drop table TypesDefaultCurveType
 go
 drop table TypesDimensionType
 go
 drop table TypesDiscretizationType
-go
-drop table TypesEquityCurves
 go
 drop table TypesEquityType
 go
@@ -309,33 +287,13 @@ drop table TypesFactors
 go
 drop table TypesFrequencyType
 go
-drop table TypesIndependentAmountType
-go
-drop table TypesIndexName
-go
 drop table TypesInflationType
 go
 drop table TypesInterpolationMethodType
 go
 drop table TypesInterpolationVariableType
 go
-drop table TypesLegType
-go
-drop table TypesLongShort
-go
-drop table TypesOptionSettlement
-go
-drop table TypesOptionStyle
-go
-drop table TypesOptionType
-go
-drop table TypesOreTradeType
-go
 drop table TypesParamTypeType
-go
-drop table TypesParties
-go
-drop table TypesSecurityCurves
 go
 drop table TypesSegmentType
 go
@@ -349,13 +307,13 @@ drop table TypesSubPeriodsCouponType
 go
 drop table TypesTimeDecayType
 go
-drop table TypesTradeActionOwner
-go
-drop table TypesTradeActionType
-go
 drop table TypesVolatilityType
 go
 drop table TypesVolatilityTypeType
 go
 drop table TypesYcInterpolation
+go
+
+-- simplify Portfolio Tables: drop SwapData
+drop table PortfolioSwapData
 go

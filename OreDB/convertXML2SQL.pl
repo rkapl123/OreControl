@@ -14,7 +14,7 @@ use XML::LibXML; use Data::Dumper;
 use Scalar::Util qw(looks_like_number);
 
 # set this to your ORE Root folder
-my $oreRoot = ($ARGV[0] ? $ARGV[0] : '../../Engine');
+my $oreRoot = ($ARGV[0] ? $ARGV[0] : 'C:\dev\ORE\master');
 # set this to the folder where configuration files are located
 my $configDir = ($ARGV[1] ? $ARGV[1] : "$oreRoot/Examples/Input");
 # set this to the xsd schema definitions (should be the ones from the ORE Engine)
@@ -36,45 +36,21 @@ my %parties;
 
 # process conventions data
 if (-e $configDir.'/conventions.xml') {
-	print "processing conventions.xml\n";
-	open SQLOUT, ">Data/conventions.sql";
+	open SQLOUT, ">Data/configTableconventions.sql";
 	print SQLOUT "use ORE;\n\n";
-	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/conventions.xml', no_blanks => 1);
-	my @firstlevel=$xmldata->firstChild->childNodes;
-	foreach my $record (sort @firstlevel) {
-		if (ref($record) eq "XML::LibXML::Element") {
-			my $tableName = $record->nodeName;
-			$record->setAttribute("GroupingId", $GroupingId);
-			print SQLOUT createInsert($record, "Conventions", $tableName);
-		}
-	}
+	print "processing conventions.xml\n";
+	my $xmlcontent = getXMLData($configDir.'/conventions.xml');
+	print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$GroupingId."conventions','conventions','".$GroupingId." Description','".$xmlcontent."');\n";
 	close SQLOUT;
 }
 
 # process pricingengine data
 if (-e $configDir.'/pricingengine.xml') {
-	open SQLOUT, ">Data/pricingengine.sql";
+	open SQLOUT, ">Data/configTablepricingengine.sql";
 	print SQLOUT "use ORE;\n\n";
-	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/pricingengine.xml', no_blanks => 1);
 	print "processing pricingengine.xml\n";
-	my @firstlevel = $xmldata->firstChild->childNodes;
-	foreach my $record (@firstlevel) {
-		if (ref($record) eq "XML::LibXML::Element") {
-			$record->setAttribute("GroupingId", $GroupingId);
-			print SQLOUT createInsert($record, "PricingEngine", "Products");
-			my $typeAtt = $record->getAttribute("type");
-			my @subrecordData = $record->findnodes('EngineParameters/Parameter');
-			foreach my $subrecord (@subrecordData) {
-				$subrecord->setAttribute("type", $typeAtt);
-				print SQLOUT createInsert($subrecord, "PricingEngine", "EngineParameters");
-			}
-			my @subrecordData = $record->findnodes('ModelParameters/Parameter');
-			foreach my $subrecord (@subrecordData) {
-				$subrecord->setAttribute("type", $typeAtt);
-				print SQLOUT createInsert($subrecord, "PricingEngine", "ModelParameters");
-			}
-		}
-	}
+	my $xmlcontent = getXMLData($configDir.'/pricingengine.xml');
+	print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$GroupingId."pricingengine','pricingengine','".$GroupingId." Description','".$xmlcontent."');\n";
 	close SQLOUT;
 }
 
@@ -98,7 +74,7 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 			#		<xs:enumeration value="Y"/>
 			my @subrecordData = $record->firstChild->childNodes;
 			foreach my $subrecord (@subrecordData) {
-				print SQLOUT createInsert($subrecord, "Types", $tableName, 1);
+				print SQLOUT createInsert($subrecord, "Types", $tableName, 1) if $tableName =~ /AmortizationType|Bool|BusinessDayConvention|CapFloor|Calendar|CsaType|CurrencyCode|DateRule|DayCounter|EquityCurves|IndependentAmountType|IndexName|LegType|LongShort|OptionSettlement|OptionStyle|OptionType|OreTradeType|Parties|SecurityCurves|TradeActionOwner|TradeActionType/i;
 			}
 		}
 	}
@@ -115,80 +91,6 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 			# <xs:simpleType name="csaType">
 			#   <xs:restriction base="xs:string">
 			#     <xs:enumeration value="Bilateral"/>
-			my @subrecordData = $record->firstChild->childNodes;
-			foreach my $subrecord (@subrecordData) {
-				print SQLOUT createInsert($subrecord, "Types", $tableName, 1);
-			}
-		}
-	}
-	
-	my $xmldata= XML::LibXML->load_xml(location => $xsdDir.'/simulation.xsd', no_blanks => 1);
-	print "processing ore types in simulation.xsd\n";
-	#<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	#	<xs:simpleType name="csaType">
-	#	...
-	my @firstlevel = $xmldata->firstChild->childNodes;
-	foreach my $record (@firstlevel) {
-		if (ref($record) eq "XML::LibXML::Element" && $record->nodeName eq "xs:simpleType" && $record->getAttribute("name") ne "correlationValue" && $record->getAttribute("name") ne "default" && $record->getAttribute("name") ne "reversionTypeType") {
-			my $tableName = $record->getAttribute("name");
-			my @subrecordData = $record->firstChild->childNodes;
-			foreach my $subrecord (@subrecordData) {
-				print SQLOUT createInsert($subrecord, "Types", $tableName, 1);
-			}
-		}
-	}
-	
-	my $xmldata= XML::LibXML->load_xml(location => $xsdDir.'/curveconfig.xsd', no_blanks => 1);
-	print "processing ore types in curveconfigtypes.xsd\n";
-	#<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	  # <xs:complexType name="segmentsType">
-		# <xs:choice minOccurs="1" maxOccurs="unbounded">
-		  # <xs:element type="directSegmentType" name="Direct"/>
-		  # <xs:element type="simpleSegmentType" name="Simple"/>
-		  # <xs:element type="aoisSegmentType" name="AverageOIS"/>
-		  # <xs:element type="tenorBasisSegmentType" name="TenorBasis"/>
-		  # <xs:element type="crossCurrencySegmentType" name="CrossCurrency"/>
-		  # <xs:element type="zeroSpreadType" name="ZeroSpread"/>
-		# </xs:choice>
-	  # </xs:complexType>
-	my @firstlevel = $xmldata->firstChild->findnodes('xs:complexType/xs:choice/xs:element');
-	foreach my $record (@firstlevel) {
-		if (ref($record) eq "XML::LibXML::Element") {
-			$record->removeAttribute("type");
-			$record->setAttribute("value",$record->getAttribute("name"));
-			$record->removeAttribute("name");
-			print SQLOUT createInsert($record, "Types", "SegmentType", 1);
-		}
-	}
-	# <xs:simpleType name="simpleSegmentTypeType">
-		# <xs:restriction base="xs:string">
-		  # <xs:enumeration value="Deposit"/>
-		  # <xs:enumeration value="FRA"/>
-		  # <xs:enumeration value="Future"/>
-		  # <xs:enumeration value="OIS"/>
-		  # <xs:enumeration value="Swap"/>
-		# </xs:restriction>
-	  # </xs:simpleType>
-	my @firstlevel = $xmldata->firstChild->findnodes('xs:simpleType');
-	foreach my $record (@firstlevel) {
-		if ($record->getAttribute("name") =~ /TypeType$/ || $record->getAttribute("name") =~ /CurveType$/) {
-			# <xs:simpleType name="simpleSegmentTypeType">
-			#   <xs:restriction base="xs:string">
-			#     <xs:enumeration value="Deposit"/>
-			# .........
-			my @subrecordData = $record->firstChild->childNodes;
-			foreach my $subrecord (@subrecordData) {
-				print SQLOUT createInsert($subrecord, "Types", "SegmentTypeType", 1);
-			}
-		}
-	}
-	foreach my $record (@firstlevel) {
-		my $tableName = $record->getAttribute("name");
-		if ($tableName =~ /defaultCurveType$/) {
-			# <xs:simpleType name="defaultCurveType">
-			#   <xs:restriction base="xs:string">
-			#     <xs:enumeration value="SpreadCDS"/>
-			# .........
 			my @subrecordData = $record->firstChild->childNodes;
 			foreach my $subrecord (@subrecordData) {
 				print SQLOUT createInsert($subrecord, "Types", $tableName, 1);
@@ -214,149 +116,33 @@ if (-e $xsdDir.'/ore_types.xsd' && -e $xsdDir.'/curveconfig.xsd') {
 
 # process todaysmarket data
 if (-e $configDir.'/todaysmarket.xml') {
-	open SQLOUT, ">Data/todaysmarket.sql";
+	open SQLOUT, ">Data/configTabletodaysmarket.sql";
 	print SQLOUT "use ORE;\n\n";
-	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/todaysmarket.xml', no_blanks => 1);
 	print "processing todaysmarket.xml\n";
-	my @firstlevel = $xmldata->firstChild->childNodes;
-	foreach my $record (@firstlevel) {
-		if (ref($record) eq "XML::LibXML::Element") {
-			my $tableId = $record->getAttribute("id");
-			my $tableName = $record->nodeName;
-			if ($tableName eq "Configuration") {
-				my $ConfigurationTypeRecord = XML::LibXML::Element->new("ConfigurationTypes");
-				$ConfigurationTypeRecord->setAttribute("id",$tableId);
-				print SQLOUT createInsert($ConfigurationTypeRecord, "TodaysMarket", "ConfigurationTypes", 1);
-				$record->setAttribute("GroupingId",$GroupingId);
-#				DONT DO THIS, as it causes problems with XML generation: 
-# 				# enter the configuration id for a block in case there is none set explicitly
-#				foreach my $block ("DiscountingCurvesId","YieldCurvesId","IndexForwardingCurvesId","SwapIndexCurvesId","ZeroInflationIndexCurvesId","YYInflationIndexCurvesId","FxSpotsId","FxVolatilitiesId","SwaptionVolatilitiesId","CapFloorVolatilitiesId","CDSVolatilitiesId","DefaultCurvesId","InflationCapFloorPriceSurfacesId","EquityCurvesId","EquityVolatilitiesId","SecuritiesId","BaseCorrelationsId") {
-#					$record->setAttribute($block,$tableId) if !$record->findnodes($block);
-#				}
-				print SQLOUT createInsert($record, "TodaysMarket", $tableName, 1);
-			} elsif ($tableName eq "DefaultCurves") {
-				my @subrecordData = $record->childNodes;
-				foreach my $subrecord (@subrecordData) {
-					if (ref($subrecord) eq "XML::LibXML::Element") {
-						$subrecord->setAttribute("id", $tableId);
-						print SQLOUT createInsert($subrecord, "TodaysMarket", $tableName, 1);
-						# sidestep: store parties for reference type "TypesParties" from DefautCurve/name entries.
-						my $partynode = 'XML::LibXML::Element'->new('value');
-						$partynode->appendText($subrecord->getAttribute("name"));
-						$parties{$subrecord->getAttribute("name")} = $partynode;
-					}
-				}
-			} else {
-				my @subrecordData = $record->childNodes;
-				foreach my $subrecord (@subrecordData) {
-					if (ref($subrecord) eq "XML::LibXML::Element") {
-						$subrecord->setAttribute("id", $tableId);
-						print SQLOUT createInsert($subrecord, "TodaysMarket", $tableName, 1);
-					}
-				}
-			}
-		}
-	}
+	my $xmlcontent = getXMLData($configDir.'/todaysmarket.xml');
+	print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$GroupingId."todaysmarket','todaysmarket','".$GroupingId." Description','".$xmlcontent."');\n";
 	close SQLOUT;
 }
 
 # process curveconfig data
 if (-e $configDir.'/curveconfig.xml') {
-	open SQLOUT, ">Data/curveconfig.sql";
+	open SQLOUT, ">Data/configTablecurveconfig.sql";
 	print SQLOUT "use ORE;\n\n";
-	my $xmldata= XML::LibXML->load_xml(location => $configDir.'/curveconfig.xml', no_blanks => 1);
 	print "processing curveconfig.xml\n";
-	my @firstlevel = $xmldata->firstChild->childNodes;
-	foreach my $record (@firstlevel) {
-		my $tableName = $record->nodeName;
-		my @subelemData = $record->childNodes;
-		foreach my $tblrecord (@subelemData) {
-			# subtables of record
-			if ($tblrecord->nodeName !~ /^InflationCurve$/ && ref($tblrecord) eq "XML::LibXML::Element") {
-				# first the configuration curve to let childs relate
-				$tblrecord->setAttribute("GroupingId",$GroupingId);
-				$tblrecord->setAttribute("DividendInterpolationVariable", $tblrecord->findvalue('DividendInterpolation/InterpolationVariable'));
-				$tblrecord->setAttribute("DividendInterpolationMethod", $tblrecord->findvalue('DividendInterpolation/InterpolationMethod'));
-				print SQLOUT createInsert($tblrecord, "CurveConfiguration", $tableName);
-				my $curveid = $tblrecord->findvalue('CurveId');
-				my @subrecordData = $tblrecord->findnodes('Segments/*');
-				my $SegmentSequenceNo = 0;
-				foreach my $subrecord (@subrecordData) {
-					$subrecord->setAttribute("SegmentsType",$subrecord->nodeName);
-					$subrecord->setAttribute("CurveId", $curveid);
-					$subrecord->setAttribute("Seq",$SegmentSequenceNo);
-					print SQLOUT createInsert($subrecord, "CurveConfiguration", "YieldCurveSegments");
-					my $segtype = $subrecord->findvalue("Type");
-					my @subsubrecordData = $subrecord->findnodes('Quotes/Quote');
-					my $SequenceNo = 0;
-					foreach my $subsubrecord (@subsubrecordData) {
-						$subsubrecord->setAttribute("Seq",$SequenceNo);
-						$subsubrecord->setAttribute("SeqSegment",$SegmentSequenceNo);
-						$subsubrecord->setAttribute("CurveId", $curveid);
-						print SQLOUT createInsert($subsubrecord, "CurveConfiguration", "Quotes");
-						$SequenceNo++;
-					}
-					my @subsubrecordData = $subrecord->findnodes('Quotes/CompositeQuote');
-					$SequenceNo = 0;
-					foreach my $subsubrecord (@subsubrecordData) {
-						$subsubrecord->setAttribute("Seq",$SequenceNo);
-						$subsubrecord->setAttribute("SeqSegment",$SegmentSequenceNo);
-						$subsubrecord->setAttribute("CurveId", $curveid);
-						print SQLOUT createInsert($subsubrecord, "CurveConfiguration", "CompositeQuotes");
-						$SequenceNo++;
-					}
-					$SegmentSequenceNo++;
-				}
-				# for quotes are not contained in a segment
-				if (!@subrecordData) {
-					my @subrecordData = $tblrecord->findnodes('Quotes/Quote');
-					my $SequenceNo = 0;
-					foreach my $subrecord (@subrecordData) {
-						$subrecord->setAttribute("Seq",$SequenceNo);
-						$subrecord->setAttribute("CurveId", $curveid);
-						$subrecord->setAttribute("SeqSegment",0); # always need a value here even for Quotes of Curves that have no segment node
-						print SQLOUT createInsert($subrecord, "CurveConfiguration", "Quotes");
-						$SequenceNo++;
-					}
-				}
-			}
-			if ($tblrecord->nodeName =~ /^InflationCurve$/ && ref($tblrecord) eq "XML::LibXML::Element") {
-				# first the configuration curve to let childs relate
-				$tblrecord->setAttribute("SeasonalityBaseDate", $tblrecord->findvalue('Seasonality/BaseDate'));
-				$tblrecord->setAttribute("SeasonalityFrequency", $tblrecord->findvalue('Seasonality/Frequency'));
-				$tblrecord->setAttribute("GroupingId",$GroupingId);
-				# numeric as char -> false, numeric as date (8 digit numbers) ->true)
-				print SQLOUT createInsert($tblrecord, "CurveConfiguration", $tableName,0,1);
-				my $curveid = $tblrecord->findvalue('CurveId');
-				my @subrecordData = $tblrecord->findnodes('Quotes/Quote');
-				my $SequenceNo = 0;
-				foreach my $subrecord (@subrecordData) {
-					$subrecord->setAttribute("Seq",$SequenceNo);
-					$subrecord->setAttribute("CurveId", $curveid);
-					$subrecord->setAttribute("SeqSegment",0); # dummy SeqSegment because of referential integrity
-					print SQLOUT createInsert($subrecord, "CurveConfiguration", "Quotes");
-					$SequenceNo++;
-				}
-				my @subrecordData = $tblrecord->findnodes('Seasonality/Factors/Factor');
-				foreach my $subrecord (@subrecordData) {
-					$subrecord->setAttribute("CurveId", $curveid);
-					print SQLOUT createInsert($subrecord, "CurveConfiguration", "SeasonalityFactors");
-				}
-			}
-		}
-	}
+	my $xmlcontent = getXMLData($configDir.'/curveconfig.xml');
+	print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$GroupingId."curveconfig','curveconfig','".$GroupingId." Description','".$xmlcontent."');\n";
 	close SQLOUT;
 }
 
 ###############################################################################################################################
 # Now convert the analyses input folder
 #
-unlink "Data/ore.sql";
+unlink "Data/configTableore.sql";
 unlink "Data/netting.sql";
-unlink "Data/simulation.sql";
+unlink "Data/configTablesimulation.sql";
 unlink "Data/portfolio.sql";
-unlink "Data/sensitivity.sql";
-unlink "Data/stresstest.sql";
+unlink "Data/configTablesensitivity.sql";
+unlink "Data/configTablestresstest.sql";
 unlink "Data/ore_typesParties.sql";
 
 # given analyses/portfolio data input Dir;
@@ -365,7 +151,7 @@ if ($inputDir) {
 	doInputXMLs ($inputDir,$GroupingId,$GroupingId,$GroupingId,$GroupingId,$GroupingId,"");
 } else {
 	# example inputs...
-	for my $i (1 .. 30) {
+	for my $i (1 .. 32) {
 		$GroupingId = "Example_$i";
 		doInputXMLs("$oreRoot/Examples/Example_$i/Input","Example_$i","Example_$i","Example_$i","Example_$i","Example_$i",$i)
 	}
@@ -385,7 +171,7 @@ my $ScheduleId;
 
 sub doInputXMLs {
 	my ($xmlInputDir,$SimulationId,$OreConfigId,$NettingSetGrouping,$SensitivityAnalysisId,$StresstestGroupingId,$UniqueIdPrefix) = @_;
-	
+	print "_________________________\n entering $xmlInputDir\n";
 	# process portfolio data
 	if (-e $xmlInputDir.'/portfolio.xml') {
 		open SQLOUT, ">>Data/portfolio.sql";
@@ -419,7 +205,7 @@ sub doInputXMLs {
 
 				# add Create initial TradeGrouping from given GroupingId ...
 				my $GroupingIdEl = XML::LibXML::Element->new("TradeGroupingIds");
-				$GroupingIdEl->setAttribute("TradeId", $TradeId);
+				$GroupingIdEl->setAttribute("TradeId", $UniqueIdPrefix.$TradeId);
 				$GroupingIdEl->setAttribute("GroupingId", $GroupingId);
 				print SQLOUT createInsert($GroupingIdEl, "Portfolio", "TradeGroupingIds");
 
@@ -473,38 +259,14 @@ sub doInputXMLs {
 		close SQLOUT;
 	}
 
-	# process ORE.xml data
+	# process ORE.xml config
 	if (-e $xmlInputDir.'/ore.xml') {
-		open SQLOUT, ">>Data/ore.sql";
+		open SQLOUT, ">>Data/configTableore.sql";
 		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
-		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/ore.xml', no_blanks => 1);
 		print "processing ore.xml\n";
-		print SQLOUT "INSERT OreParametersConfigs (id,Description) VALUES ('".$OreConfigId."','".$OreConfigId." Description');\n";
-		my @firstlevel = $xmldata->firstChild->childNodes;
-		foreach my $record (@firstlevel) {
-			if (ref($record) eq "XML::LibXML::Element") {
-				my $tableName = $record->nodeName;
-				my @subrecordData = $record->childNodes;
-				foreach my $subrecord (@subrecordData) {
-					if ($tableName ne 'Analytics' && ref($subrecord) eq "XML::LibXML::Element") {
-						$subrecord->setAttribute("OreConfigId", $OreConfigId);
-						print SQLOUT createInsert($subrecord, "OreParameters", $tableName, 1);
-					} else {
-						if (ref($subrecord) eq "XML::LibXML::Element") {
-							my $type = $subrecord->getAttribute("type");
-							my @subsubrecordData = $subrecord->childNodes;
-							foreach my $subsubrecord (@subsubrecordData) {
-								if (ref($subsubrecord) eq "XML::LibXML::Element") {
-									$subsubrecord->setAttribute("type", $type);
-									$subsubrecord->setAttribute("OreConfigId", $OreConfigId);
-									print SQLOUT createInsert($subsubrecord, "OreParameters", $tableName, 1);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		my $xmlcontent = getXMLData($xmlInputDir.'/ore.xml');
+		print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$OreConfigId."orestart','orestart','".$OreConfigId." Description','".$xmlcontent."');\n";
+		close SQLOUT;
 	}
 
 	# process nettingsetdefinitions data
@@ -544,275 +306,61 @@ sub doInputXMLs {
 		close SQLOUT2;
 	}
 
-	# process simulation data
+	# process simulation config
 	if (-e $xmlInputDir.'/simulation.xml') {
-		open SQLOUT, ">>Data/simulation.sql";
+		open SQLOUT, ">>Data/configTablesimulation.sql";
 		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 1 || !$UniqueIdPrefix);
-		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/simulation.xml', no_blanks => 1);
 		print "processing simulation.xml\n";
-		# first market (primary element)
-		my $record = ${$xmldata->firstChild->find('Market')}[0];
-		$record->setAttribute("Id", $SimulationId);
-		$record->setAttribute("SimulationDescription", $SimulationId." Description");
-		$record->setAttribute("YieldCurvesConfigurationTenors", $record->findvalue("YieldCurves/Configuration/Tenors"));
-		$record->setAttribute("YieldCurvesConfigurationInterpolation", $record->findvalue("YieldCurves/Configuration/Interpolation"));
-		$record->setAttribute("YieldCurvesConfigurationExtrapolation", $record->findvalue("YieldCurves/Configuration/Extrapolation"));
-		$record->setAttribute("DefaultCurvesTenors", $record->findvalue("DefaultCurves/Tenors"));
-		$record->setAttribute("DefaultCurvesSimulateSurvivalProbabilities", $record->findvalue("DefaultCurves/SimulateSurvivalProbabilities"));
-		$record->setAttribute("EquitiesDividendTenors", $record->findvalue("Equities/DividendTenors"));
-		$record->setAttribute("EquitiesForecastTenors", $record->findvalue("Equities/ForecastTenors"));
-		$record->setAttribute("EquitiesSimulateDividendYield", $record->findvalue("Equities/SimulateDividendYield"));
-		$record->setAttribute("EquitiesSimulateEquityForecastCurve", $record->findvalue("Equities/SimulateEquityForecastCurve"));
-		$record->setAttribute("SwaptionVolatilitiesSimulate", $record->findvalue("SwaptionVolatilities/Simulate"));
-		$record->setAttribute("SwaptionVolatilitiesReactionToTimeDecay", $record->findvalue("SwaptionVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("SwaptionVolatilitiesExpiries", $record->findvalue("SwaptionVolatilities/Expiries"));
-		$record->setAttribute("SwaptionVolatilitiesTerms", $record->findvalue("SwaptionVolatilities/Terms"));
-		$record->setAttribute("SwaptionVolatilitiesCubeSimulateATMOnly", $record->findvalue("SwaptionVolatilities/Cube/SimulateATMOnly"));
-		$record->setAttribute("SwaptionVolatilitiesCubeStrikeSpreads", $record->findvalue("SwaptionVolatilities/Cube/StrikeSpreads"));
-		$record->setAttribute("CapFloorVolatilitiesSimulate", $record->findvalue("CapFloorVolatilities/Simulate"));
-		$record->setAttribute("CapFloorVolatilitiesReactionToTimeDecay", $record->findvalue("CapFloorVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("CapFloorVolatilitiesExpiries", $record->findvalue("CapFloorVolatilities/Expiries"));
-		$record->setAttribute("CapFloorVolatilitiesStrikes", $record->findvalue("CapFloorVolatilities/Strikes"));
-		$record->setAttribute("CDSVolatilitiesSimulate", $record->findvalue("CDSVolatilities/Simulate"));
-		$record->setAttribute("CDSVolatilitiesReactionToTimeDecay", $record->findvalue("CDSVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("CDSVolatilitiesExpiries", $record->findvalue("CDSVolatilities/Expiries"));
-		$record->setAttribute("FxVolatilitiesSimulate", $record->findvalue("FxVolatilities/Simulate"));
-		$record->setAttribute("FxVolatilitiesReactionToTimeDecay", $record->findvalue("FxVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("FxVolatilitiesExpiries", $record->findvalue("FxVolatilities/Expiries"));
-		$record->setAttribute("FxVolatilitiesSurfaceMoneyness", $record->findvalue("FxVolatilities/SurfaceMoneyness"));
-		$record->setAttribute("EquityVolatilitiesSimulate", $record->findvalue("EquityVolatilities/Simulate"));
-		$record->setAttribute("EquityVolatilitiesReactionToTimeDecay", $record->findvalue("EquityVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("EquityVolatilitiesExpiries", $record->findvalue("EquityVolatilities/Expiries"));
-		$record->setAttribute("EquityVolatilitiesSurfaceSimulateATMOnly", $record->findvalue("EquityVolatilities/Surface/SimulateATMOnly"));
-		$record->setAttribute("EquityVolatilitiesSurfaceMoneyness", $record->findvalue("EquityVolatilities/Surface/Moneyness"));
-		$record->setAttribute("YYInflationIndexCurvesTenors", $record->findvalue("YYInflationIndexCurves/Tenors"));
-		$record->setAttribute("CpiCapFloorVolatilitiesSimulate", $record->findvalue("CpiCapFloorVolatilities/Simulate"));
-		$record->setAttribute("CpiCapFloorVolatilitiesReactionToTimeDecay", $record->findvalue("CpiCapFloorVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("CpiCapFloorVolatilitiesExpiries", $record->findvalue("CpiCapFloorVolatilities/Expiries"));
-		$record->setAttribute("CpiCapFloorVolatilitiesStrikes", $record->findvalue("CpiCapFloorVolatilities/Strikes"));
-		$record->setAttribute("YYCapFloorVolatilitiesSimulate", $record->findvalue("YYCapFloorVolatilities/Simulate"));
-		$record->setAttribute("YYCapFloorVolatilitiesReactionToTimeDecay", $record->findvalue("YYCapFloorVolatilities/ReactionToTimeDecay"));
-		$record->setAttribute("YYCapFloorVolatilitiesExpiries", $record->findvalue("YYCapFloorVolatilities/Expiries"));
-		$record->setAttribute("YYCapFloorVolatilitiesStrikes", $record->findvalue("YYCapFloorVolatilities/Strikes"));
-		$record->setAttribute("BaseCorrelationsSimulate", $record->findvalue("BaseCorrelations/Simulate"));
-		$record->setAttribute("BaseCorrelationsDetachmentPoints", $record->findvalue("BaseCorrelations/DetachmentPoints"));
-		$record->setAttribute("BaseCorrelationsTerms", $record->findvalue("BaseCorrelations/Terms"));
-		print SQLOUT createInsert($record, "Simulation", "Market");
-		my @subrecord = $record->findnodes('FxRates/CurrencyPairs/CurrencyPair');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", "FxRatesCurrencyPairs");
-		}
-		@subrecord = $record->findnodes('Indices/Index');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", "Indices");
-		}
-		@subrecord = $record->findnodes('SwapIndices/SwapIndex');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'SwapIndices');
-		}
-		@subrecord = $record->findnodes('DefaultCurves/Names/Name');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'DefaultCurvesNames');
-		}
-		@subrecord = $record->findnodes('Equities/Names/Name');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'EquitiesNames');
-		}
-		@subrecord = $record->findnodes('SwaptionVolatilities/Currencies/Currency');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'SwaptionVolatilitiesCurrencies');
-		}
-		@subrecord = $record->findnodes('CapFloorVolatilities/Currencies/Currency');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'CapFloorVolatilitiesCurrencies');
-		}
-		@subrecord = $record->findnodes('FxVolatilities/CurrencyPairs/CurrencyPair');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'FxVolatilitiesCurrencyPairs');
-		}
-		@subrecord = $record->findnodes('EquityVolatilities/Names/Name');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'EquityVolatilitiesEquityNames');
-		}
-		@subrecord = $record->findnodes('BenchmarkCurves/BenchmarkCurve');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'BenchmarkCurves');
-		}
-		@subrecord = $record->findnodes('Securities/Security');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'Securities');
-		}
-		@subrecord = $record->findnodes('AggregationScenarioDataCurrencies/Currency');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'AggregationScenarioDataCurrencies');
-		}
-		@subrecord = $record->findnodes('Currencies/Currency');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'Currencies');
-		}
-		@subrecord = $record->findnodes('AggregationScenarioDataIndices/Index');
-		foreach my $subrecord (@subrecord) {
-			$subrecord->setAttribute("SimulationId", $SimulationId);
-			print SQLOUT createInsert($subrecord, "SimulationMarket", 'AggregationScenarioDataIndices');
-		}
-
-		# rest of simulation
-		my @firstlevel = $xmldata->firstChild->childNodes;
-		foreach my $record (@firstlevel) {
-			if (ref($record) eq "XML::LibXML::Element" && $record->nodeName ne 'Market') {
-				my $table = $record->nodeName;
-				$record->setAttribute("SimulationId", $SimulationId);
-				# get rid of that node:       <xs:element type="xs:string" name="Scenario"/> <!-- FIXME: remove this -->
-				$record->find('Scenario')->[0]->unbindNode() if ($table eq 'Parameters' and $record->find('Scenario'));
-				print SQLOUT createInsert($record, "Simulation", $table);
-				if ($table eq "CrossAssetModel") {
-					@subrecord = $record->findnodes('Currencies/Currency');
-					foreach my $subrecord (@subrecord) {
-						$subrecord->setAttribute("SimulationId", $SimulationId);
-						print SQLOUT createInsert($subrecord, "Simulation$table", 'Currencies');
-					}
-					@subrecord = $record->findnodes('Equities/Equity');
-					foreach my $subrecord (@subrecord) {
-						$subrecord->setAttribute("SimulationId", $SimulationId);
-						print SQLOUT createInsert($subrecord, "Simulation$table", 'Equities');
-					}
-					@subrecord = $record->findnodes('InstantaneousCorrelations/Correlation');
-					foreach my $subrecord (@subrecord) {
-						$subrecord->setAttribute("SimulationId", $SimulationId);
-						print SQLOUT createInsert($subrecord, "Simulation$table", 'InstantaneousCorrelations');
-					}
-					@subrecord = $record->findnodes('InterestRateModels/LGM');
-					foreach my $subrecord (@subrecord) {
-						$subrecord->setAttribute("VolatilityCalibrate", $subrecord->findvalue("Volatility/Calibrate"));
-						$subrecord->setAttribute("VolatilityVolatilityType", $subrecord->findvalue("Volatility/VolatilityType"));
-						$subrecord->setAttribute("VolatilityParamType", $subrecord->findvalue("Volatility/ParamType"));
-						$subrecord->setAttribute("VolatilityTimeGrid", $subrecord->findvalue("Volatility/TimeGrid"));
-						$subrecord->setAttribute("VolatilityInitialValue", $subrecord->findvalue("Volatility/InitialValue"));
-						$subrecord->setAttribute("ReversionCalibrate", $subrecord->findvalue("Reversion/Calibrate"));
-						$subrecord->setAttribute("ReversionReversionType", $subrecord->findvalue("Reversion/ReversionType"));
-						$subrecord->setAttribute("ReversionParamType", $subrecord->findvalue("Reversion/ParamType"));
-						$subrecord->setAttribute("ReversionTimeGrid", $subrecord->findvalue("Reversion/TimeGrid"));
-						$subrecord->setAttribute("ReversionInitialValue", $subrecord->findvalue("Reversion/InitialValue"));
-						$subrecord->setAttribute("CalibrationSwaptionsExpiries", $subrecord->findvalue("CalibrationSwaptions/Expiries"));
-						$subrecord->setAttribute("CalibrationSwaptionsTerms", $subrecord->findvalue("CalibrationSwaptions/Terms"));
-						$subrecord->setAttribute("CalibrationSwaptionsStrikes", $subrecord->findvalue("CalibrationSwaptions/Strikes"));
-						$subrecord->setAttribute("ParameterTransformationShiftHorizon", $subrecord->findvalue("ParameterTransformation/ShiftHorizon"));
-						$subrecord->setAttribute("ParameterTransformationScaling", $subrecord->findvalue("ParameterTransformation/Scaling"));
-						$subrecord->setAttribute("SimulationId", $SimulationId);
-						print SQLOUT createInsert($subrecord, "Simulation$table", 'InterestRateModels');
-					}
-					@subrecord = $record->findnodes('ForeignExchangeModels/CrossCcyLGM');
-					foreach my $subrecord (@subrecord) {
-						$subrecord->setAttribute("SigmaCalibrate", $subrecord->findvalue("Sigma/Calibrate"));
-						$subrecord->setAttribute("SigmaParamType", $subrecord->findvalue("Sigma/ParamType"));
-						$subrecord->setAttribute("SigmaTimeGrid", $subrecord->findvalue("Sigma/TimeGrid"));
-						$subrecord->setAttribute("SigmaInitialValue", $subrecord->findvalue("Sigma/InitialValue"));
-						$subrecord->setAttribute("CalibrationOptionsExpiries", $subrecord->findvalue("CalibrationOptions/Expiries"));
-						$subrecord->setAttribute("CalibrationOptionsStrikes", $subrecord->findvalue("CalibrationOptions/Strikes"));
-						$subrecord->setAttribute("SimulationId", $SimulationId);
-						print SQLOUT createInsert($subrecord, "Simulation$table", 'ForeignExchangeModels');
-					}
-					@subrecord = $record->findnodes('EquityModels/CrossAssetLGM');
-					foreach my $subrecord (@subrecord) {
-						$subrecord->setAttribute("SigmaCalibrate", $subrecord->findvalue("Sigma/Calibrate"));
-						$subrecord->setAttribute("SigmaParamType", $subrecord->findvalue("Sigma/ParamType"));
-						$subrecord->setAttribute("SigmaTimeGrid", $subrecord->findvalue("Sigma/TimeGrid"));
-						$subrecord->setAttribute("SigmaInitialValue", $subrecord->findvalue("Sigma/InitialValue"));
-						$subrecord->setAttribute("CalibrationOptionsExpiries", $subrecord->findvalue("CalibrationOptions/Expiries"));
-						$subrecord->setAttribute("CalibrationOptionsStrikes", $subrecord->findvalue("CalibrationOptions/Strikes"));
-						$subrecord->setAttribute("SimulationId", $SimulationId);
-						print SQLOUT createInsert($subrecord, "Simulation$table", 'EquityModels');
-					}
-				}
-			}
-		}
+		my $xmlcontent = getXMLData($xmlInputDir.'/simulation.xml');
+		print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$OreConfigId."simulation','simulation','".$OreConfigId." Description','".$xmlcontent."');\n";
 		close SQLOUT;
 	}
 	
-	# process sensitivity data
+	# process sensitivity config
 	if (-e $xmlInputDir.'/sensitivity.xml') {
-		open SQLOUT, ">>Data/sensitivity.sql";
+		open SQLOUT, ">>Data/configTablesensitivity.sql";
 		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has sensitivity.xml
-		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/sensitivity.xml', no_blanks => 1);
 		print "processing sensitivity.xml\n";
-		my $record = $xmldata->firstChild;
-		$record->setAttribute("Id", $SensitivityAnalysisId);
-		print SQLOUT createInsert($record, "Sensitivityanalysis", "");
-		my @firstlevel = $xmldata->firstChild->childNodes;
-		foreach $record (@firstlevel) {
-			my @subelemData = $record->childNodes;
-			foreach my $subrecord (@subelemData) {
-				if (ref($subrecord) eq "XML::LibXML::Element") {
-					my $tableName = $subrecord->nodeName;
-					$tableName = "CrossGammaFilter" if $record->nodeName eq "CrossGammaFilter";
-					$subrecord->setAttribute("AnalysisId", $SensitivityAnalysisId);
-					print SQLOUT createInsert($subrecord, "Sensitivityanalysis", $tableName);
-				}
-			}
-		}
+		my $xmlcontent = getXMLData($xmlInputDir.'/sensitivity.xml');
+		print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$OreConfigId."sensitivity','sensitivity','".$OreConfigId." Description','".$xmlcontent."');\n";
 		close SQLOUT;
 	}
 	
-	# process stresstest data
+	# process stresstest config
 	if (-e $xmlInputDir.'/stresstest.xml') {
-		open SQLOUT, ">>Data/stresstest.sql";
+		open SQLOUT, ">>Data/configTablestresstest.sql";
 		print SQLOUT "use ORE;\n\n" if ($UniqueIdPrefix == 15 || !$UniqueIdPrefix); # example 15 has stresstest.xml
-		my $xmldata= XML::LibXML->load_xml(location => $xmlInputDir.'/stresstest.xml', no_blanks => 1);
 		print "processing stresstest.xml\n";
-		my @firstlevel = $xmldata->firstChild->childNodes;
-		foreach my $record (@firstlevel) {
-			if (ref($record) eq "XML::LibXML::Element") {
-				my $StresstestId = $UniqueIdPrefix.$record->getAttribute("id");
-				# leave attribute lowercase, otherwise we'd have two ids (Id and id)
-				$record->setAttribute("id", $StresstestId);
-				$record->setAttribute("GroupingId", $StresstestGroupingId);
-				print SQLOUT createInsert($record, "Stresstest", "");
-				my @subelemData = $record->childNodes;
-				foreach my $subrecord (@subelemData) {
-					if (ref($subrecord) eq "XML::LibXML::Element") {
-						my @subsubelemData = $subrecord->childNodes;
-						foreach my $subsubrecord (@subsubelemData) {
-							if (ref($subsubrecord) eq "XML::LibXML::Element") {
-								my $tableName = $subsubrecord->nodeName;
-								$subsubrecord->setAttribute("StresstestId", $StresstestId);
-								my $ccy = $subsubrecord->getAttribute("ccy");
-								print SQLOUT createInsert($subsubrecord, "Stresstest", $tableName);
-								my @subsubsubelemData = $subsubrecord->findnodes("Shifts/Shift");
-								foreach my $subsubsubrecord (@subsubsubelemData) {
-									$subsubsubrecord->setAttribute("StresstestId", $StresstestId);
-									$subsubsubrecord->setAttribute("ccy", $ccy);
-									$subsubsubrecord->setAttribute("term", "default") if !$subsubsubrecord->getAttribute("term");
-									$subsubsubrecord->setAttribute("expiry", "default") if !$subsubsubrecord->getAttribute("expiry");
-									print SQLOUT createInsert($subsubsubrecord, "Stresstest", "SwaptionShift");
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		my $xmlcontent = getXMLData($xmlInputDir.'/stresstest.xml');
+		print SQLOUT "INSERT OreConfigurations (ConfigurationId,ConfigurationType,Description,ConfigurationData) VALUES ('".$OreConfigId."stresstest','stresstest','".$OreConfigId." Description','".$xmlcontent."');\n";
 		close SQLOUT;
 	}
 }
 
+sub getXMLData() {
+	my ($xmlfilepath) = @_;
+	my $wholeXMLFILE;
+	open (XMLFILE, "<$xmlfilepath");
+	{
+		local $/=undef;
+		$wholeXMLFILE = <XMLFILE>;
+		close XMLFILE;
+	}
+	# get rid of CR LF and blanks between elements
+	$wholeXMLFILE =~ s/>\s*?</></g;
+	# last CRLF as well..
+	$wholeXMLFILE =~ s/>\s+$/>/;
+	# quote quotes in SQL ..
+	$wholeXMLFILE =~ s/'/''/g;
+	return $wholeXMLFILE;
+}
+
 sub convertTradeTypeData() {
 	my ($TradeType, $record, $UniqueIdPrefix, $TradeId, $DBTradeType) = @_;
-	
+	print "TradeType: $TradeType\n";
 	# $TradeType Data
 	$TradeType =~ s/SyntheticCDO/CDO/;
+	$TradeType =~ s/EquitySwap/Swap/;
 	# Common Data (goes into main data table)
 	my $subrecord = ${$record->findnodes($TradeType."Data")}[0];
 	$subrecord->setAttribute("TradeId", $UniqueIdPrefix.$TradeId);
@@ -830,10 +378,18 @@ sub convertTradeTypeData() {
 	$parties{$Partyrecord[0]->textContent} = $Partyrecord[0] if $Partyrecord[0];
 
 	# sidestep: store parties for reference type "TypesParties" from CreditCurveId entries.
-	my @Partyrecord = $record->findnodes('CreditCurveId');
-	$parties{$Partyrecord[0]->textContent} = $Partyrecord[0]  if $Partyrecord[0];
+	@Partyrecord = $record->findnodes('CreditCurveId');
+	$parties{$Partyrecord[0]->textContent} = $Partyrecord[0] if $Partyrecord[0];
 
-	print SQLOUT createInsert($subrecord, "Portfolio", ($DBTradeType ? $DBTradeType : $TradeType)."Data",0,1);
+	# sidestep: store parties for reference type "TypesParties" from IssuerId entries.
+	@Partyrecord = $subrecord->findnodes('IssuerId');
+	$parties{$Partyrecord[0]->textContent} = $Partyrecord[0] if $Partyrecord[0];
+
+	# sidestep: store parties for reference type "TypesParties" from CreditCurveId entries.
+	@Partyrecord = $subrecord->findnodes('CreditCurveId');
+	$parties{$Partyrecord[0]->textContent} = $Partyrecord[0] if $Partyrecord[0];
+	
+	print SQLOUT createInsert($subrecord, "Portfolio", ($DBTradeType ? $DBTradeType : $TradeType)."Data",0,1) if $TradeType ne "Swap";
 	# Exercise Data (Dates as nodes, Fees and Prices optional but parallel!)
 	my @subsubrecords = $subrecord->findnodes("OptionData/ExerciseDates/ExerciseDate");
 	my $i = 1;

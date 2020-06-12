@@ -112,7 +112,7 @@ REFERENCES PortfolioTrades (Id);
 CREATE TABLE PortfolioCreditDefaultSwapData (
 	TradeId varchar(180) not null,
 	IssuerId varchar(30) not null,
-	CreditCurveId varchar(20) not null,
+	CreditCurveId varchar(30) not null,
 	SettlesAccrual varchar(5),
 	PaysAtDefaultTime varchar(5),
 	ProtectionStart date,
@@ -126,7 +126,7 @@ REFERENCES PortfolioTrades (Id);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_IssuerId FOREIGN KEY(IssuerId)
 REFERENCES TypesParties (value);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
-REFERENCES TypesDefaultCurves (value);
+REFERENCES TypesParties (value);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_SettlesAccrual FOREIGN KEY(SettlesAccrual)
 REFERENCES TypesBool (value);
 ALTER TABLE PortfolioCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioCreditDefaultSwapData_PaysAtDefaultTime FOREIGN KEY(PaysAtDefaultTime)
@@ -135,7 +135,7 @@ REFERENCES TypesBool (value);
 
 CREATE TABLE PortfolioIndexCreditDefaultSwapData (
 	TradeId varchar(180) not null,
-	CreditCurveId varchar(20) not null,
+	CreditCurveId varchar(30) not null,
 	SettlesAccrual varchar(5),
 	PaysAtDefaultTime varchar(5),
 	ProtectionStart date,
@@ -147,7 +147,7 @@ CONSTRAINT PK_PortfolioIndexCreditDefaultSwapData PRIMARY KEY CLUSTERED (
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_TradeId FOREIGN KEY(TradeId)
 REFERENCES PortfolioTrades (Id);
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
-REFERENCES TypesDefaultCurves (value);
+REFERENCES TypesParties (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_SettlesAccrual FOREIGN KEY(SettlesAccrual)
 REFERENCES TypesBool (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_PaysAtDefaultTime FOREIGN KEY(PaysAtDefaultTime)
@@ -189,7 +189,7 @@ REFERENCES TypesCurrencyCode (value);
 --  refers to PortfolioIndexCreditDefaultSwapOptionData as part of a IndexCreditDefaultSwapOption
 CREATE TABLE PortfolioIndexCreditDefaultSwapOptionSwapData (
 	TradeId varchar(180) not null,
-	CreditCurveId varchar(20) not null,
+	CreditCurveId varchar(30) not null,
 	SettlesAccrual varchar(5),
 	PaysAtDefaultTime varchar(5),
 	ProtectionStart date,
@@ -200,8 +200,8 @@ CONSTRAINT PK_PortfolioIndexCreditDefaultSwapOptionSwapData PRIMARY KEY CLUSTERE
 ));
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_TradeId FOREIGN KEY(TradeId)
 REFERENCES PortfolioIndexCreditDefaultSwapOptionData (TradeId);
-ALTER TABLE PortfolioIndexCreditDefaultSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
-REFERENCES TypesDefaultCurves (value);
+ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_CreditCurveId FOREIGN KEY(CreditCurveId)
+REFERENCES TypesParties (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_SettlesAccrual FOREIGN KEY(SettlesAccrual)
 REFERENCES TypesBool (value);
 ALTER TABLE PortfolioIndexCreditDefaultSwapOptionSwapData ADD CONSTRAINT FK_PortfolioIndexCreditDefaultSwapOptionSwapData_PaysAtDefTime FOREIGN KEY(PaysAtDefaultTime)
@@ -212,7 +212,7 @@ CREATE TABLE PortfolioBaskets (
 	TradeId varchar(180) not null,
 	SeqId int not null,
 	IssuerId varchar(30),
-	CreditCurveId varchar(20),
+	CreditCurveId varchar(30),
 	Notional decimal(18,3),
 	Currency varchar(7),
 CONSTRAINT PK_PortfolioBaskets PRIMARY KEY CLUSTERED (
@@ -222,6 +222,8 @@ CONSTRAINT PK_PortfolioBaskets PRIMARY KEY CLUSTERED (
 ALTER TABLE PortfolioBaskets ADD CONSTRAINT FK_PortfolioBaskets_TradeId FOREIGN KEY(TradeId)
 REFERENCES PortfolioTrades (Id);
 ALTER TABLE PortfolioBaskets ADD CONSTRAINT FK_PortfolioBaskets_IssuerId FOREIGN KEY(IssuerId)
+REFERENCES TypesParties (value);
+ALTER TABLE PortfolioBaskets ADD CONSTRAINT FK_PortfolioBaskets_CreditCurveId FOREIGN KEY(CreditCurveId)
 REFERENCES TypesParties (value);
 ALTER TABLE PortfolioBaskets ADD CONSTRAINT FK_PortfolioBaskets_Currency FOREIGN KEY(Currency)
 REFERENCES TypesCurrencyCode (value);
@@ -650,3 +652,98 @@ ALTER TABLE PortfolioEquityForwardData ADD CONSTRAINT FK_PortfolioEquityForwardD
 REFERENCES TypesEquityCurves (value);
 ALTER TABLE PortfolioEquityForwardData ADD CONSTRAINT FK_PortfolioEquityForwardData_Currency FOREIGN KEY(Currency)
 REFERENCES TypesCurrencyCode (value);
+
+
+CREATE TABLE PortfolioCommodityForwardData (
+	TradeId varchar(180) not null,
+	Position varchar(5),
+	Maturity date,
+	Name varchar(20),
+	Currency varchar(7),
+	Strike decimal(18,10),
+	Quantity decimal(18,3),
+CONSTRAINT PK_PortfolioCommodityForwardData PRIMARY KEY CLUSTERED (
+	TradeId ASC
+));
+ALTER TABLE PortfolioCommodityForwardData ADD CONSTRAINT FK_PortfolioCommodityForwardData_TradeId FOREIGN KEY(TradeId)
+REFERENCES PortfolioTrades (Id);
+ALTER TABLE PortfolioCommodityForwardData ADD CONSTRAINT FK_PortfolioCommodityForwardData_Position FOREIGN KEY(Position)
+REFERENCES TypesLongShort (value);
+ALTER TABLE PortfolioCommodityForwardData ADD CONSTRAINT FK_PortfolioCommodityForwardData_Name FOREIGN KEY(Name)
+REFERENCES TypesEquityCurves (value);
+ALTER TABLE PortfolioCommodityForwardData ADD CONSTRAINT FK_PortfolioCommodityForwardData_Currency FOREIGN KEY(Currency)
+REFERENCES TypesCurrencyCode (value);
+
+CREATE TABLE PortfolioCommodityOptionData (
+	TradeId varchar(180) not null,
+	Name varchar(20),
+	Currency varchar(7),
+	Strike decimal(18,3),
+	Quantity decimal(18,3),
+	OptionDataLongShort varchar(5),
+	OptionDataOptionType varchar(10),
+	OptionDataStyle varchar(10),
+	OptionDataSettlement varchar(10),
+	OptionDataPayOffAtExpiry varchar(5),
+	OptionDataPremiumAmount decimal(18,3),
+	OptionDataPremiumCurrency varchar(7),
+	OptionDataPremiumPayDate date,
+CONSTRAINT PK_PortfolioCommodityOptionData PRIMARY KEY CLUSTERED (
+	TradeId ASC
+));
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_TradeId FOREIGN KEY(TradeId)
+REFERENCES PortfolioTrades (Id);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_Name FOREIGN KEY(Name)
+REFERENCES TypesEquityCurves (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_Currency FOREIGN KEY(Currency)
+REFERENCES TypesCurrencyCode (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_OptionDataPremiumCurrency FOREIGN KEY(OptionDataPremiumCurrency)
+REFERENCES TypesCurrencyCode (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_OptionDataLongShort FOREIGN KEY(OptionDataLongShort)
+REFERENCES TypesLongShort (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_OptionDataOptionType FOREIGN KEY(OptionDataOptionType)
+REFERENCES TypesOptionType (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_OptionDataStyle FOREIGN KEY(OptionDataStyle)
+REFERENCES TypesOptionStyle (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_OptionDataSettlement FOREIGN KEY(OptionDataSettlement)
+REFERENCES TypesOptionSettlement (value);
+ALTER TABLE PortfolioCommodityOptionData ADD CONSTRAINT FK_PortfolioCommodityOptionData_OptionDataPayOffAtExpiry FOREIGN KEY(OptionDataPayOffAtExpiry)
+REFERENCES TypesBool (value);
+
+CREATE TABLE PortfolioCPICapFloorData (
+	TradeId varchar(180) not null,
+	LongShort varchar(5) not null,
+	Currency varchar(7) not null,
+	CapFloor varchar(5) not null,
+	Notional decimal(18,3) not null,
+	StartDate date not null,
+	MaturityDate date not null,
+	IndexName varchar(30) not null,
+	ObservationLag varchar(5) not null,
+	BaseCPI decimal(18,3) not null,
+	Strike decimal(18,3) not null,
+	FixCalendar varchar(20) not null,
+	PayCalendar varchar(20) not null,
+	FixConvention varchar(20) not null,
+	PayConvention varchar(20) not null,
+CONSTRAINT PK_PortfolioCPICapFloorData PRIMARY KEY CLUSTERED (
+	TradeId ASC
+));
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_TradeId FOREIGN KEY(TradeId)
+REFERENCES PortfolioTrades (Id);
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_LongShort FOREIGN KEY(LongShort)
+REFERENCES TypesLongShort (value);
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_Currency FOREIGN KEY(Currency)
+REFERENCES TypesCurrencyCode (value);
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_CapFloor FOREIGN KEY(CapFloor)
+REFERENCES TypesCapFloor (value);
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_IndexName FOREIGN KEY(IndexName)
+REFERENCES TypesIndexName (value);
+-- ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_FixCalendar FOREIGN KEY(FixCalendar)
+-- REFERENCES TypesCalendar (value);
+-- ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_PayCalendar FOREIGN KEY(PayCalendar)
+-- REFERENCES TypesCalendar (value);
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_FixConvention FOREIGN KEY(FixConvention)
+REFERENCES TypesBusinessDayConvention (value);
+ALTER TABLE PortfolioCPICapFloorData ADD CONSTRAINT FK_PortfolioCPICapFloorData_PayConvention FOREIGN KEY(PayConvention)
+REFERENCES TypesBusinessDayConvention (value);

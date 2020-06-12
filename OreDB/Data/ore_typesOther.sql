@@ -95,24 +95,6 @@ SELECT concat(t1.value,t2.value) currencypair
   WHERE t1.value <> t2.value
   ORDER BY currencypair;
 
--- create factors from currency pairs and currency Codes (BEFORE inserting 'default' !!!)
-INSERT INTO TypesFactors
-SELECT concat('IR:',t1.value)
-  FROM TypesCurrencyCode t1
-  ORDER BY value;
-
-INSERT INTO TypesFactors
-SELECT concat('FX:',t1.value,t2.value) currencypair
-  FROM TypesCurrencyCode t1, TypesCurrencyCode t2
-  WHERE t1.value <> t2.value
-  ORDER BY currencypair;
-
-INSERT INTO TypesFactors
-SELECT concat('INF:',t1.value)
-  FROM TypesIndexName t1
-  WHERE t1.value not like '%-%'
-  ORDER BY value;
-  
 -- other inserts into Types tables
 INSERT INTO TypesCurrencyCode (value) VALUES ('default');
 INSERT INTO TypesCurrencyPair (value) VALUES ('default');
@@ -157,8 +139,10 @@ INSERT TypesOptionSettlement (value) VALUES ('Cash');
 INSERT TypesOptionSettlement (value) VALUES ('Physical');
 INSERT TypesOptionType (value) VALUES ('Call');
 INSERT TypesOptionType (value) VALUES ('Put');
-INSERT TypesDiscretizationType (value) VALUES ('Euler');
-INSERT TypesShiftType (value) VALUES ('Absolute');
-INSERT TypesShiftType (value) VALUES ('Relative');
-INSERT TypesSegmentTypeType (value) VALUES ('Average OIS');
-INSERT TypesCurveType (value) VALUES ('EquityForecast');
+
+INSERT TypesEquityCurves (value) VALUES ('Lufthansa');
+INSERT TypesEquityCurves (value) VALUES ('SP5');
+INSERT TypesEquityCurves (value) VALUES ('COMDTY_GOLD_USD');
+INSERT TypesEquityCurves (value) VALUES ('COMDTY_WTI_USD');
+
+INSERT TypesSecurityCurves (value) VALUES ('SECURITY_1');
