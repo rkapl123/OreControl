@@ -20,10 +20,12 @@ Following sql scripts define the tables:
 - ResultsTables.sql: all tables for ORE results
 - TypesTables.sql: all tables for the referenced types
 - ConfigTables.sql: the OreConfiguration table holding all the XML configs for calculating results
-For details see the [SchemaSpy generated documentation](schemaDoc/index.html)
+
+
+For more details see the [SchemaSpy generated documentation](schemaDoc/index.html)
 
 ### XMLselectionViews
-These are MS SQL Server XML query Views to extract the data into usable xml text. The logic of this extraction is detailed in [https://rkapl123.github.io/SQLServerXML.html](https://rkapl123.github.io/SQLServerXML.html)
+These are MS SQL Server XML query Views to extract the data from the Portfolio and nettingset tables into usable xml text. The logic of this extraction is detailed in [https://rkapl123.github.io/SQLServerXML.html](https://rkapl123.github.io/SQLServerXML.html)
 
 ## SQL DML script generation
 
