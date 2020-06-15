@@ -7,7 +7,7 @@ std::string TreeizeRelD::createXML(const pt::ptree &ptTree, std::string &resultS
         pt::xml_parser::write_xml_element(oss, pt::ptree::key_type(), ptTree, -1, settings);
         resultString = oss.str();
     } catch (std::exception ex) {
-        return std::string("(writeTable): ").append(ex.what());
+        return std::string("(createXML): ").append(ex.what());
     }
     return "";
 }
@@ -18,7 +18,7 @@ std::string TreeizeRelD::createJson(const pt::ptree &ptTree, std::string &result
         pt::json_parser::write_json(oss, ptTree);        
         resultString = oss.str();
     } catch (std::exception ex) {
-        return std::string("(writeTable): ").append(ex.what());
+        return std::string("(createJson): ").append(ex.what());
     }
     return "";
 }
