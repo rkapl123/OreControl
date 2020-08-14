@@ -1,4 +1,36 @@
-#include <treeizereld/treeizereld.hpp>
+#include <treeizereld.hpp>
+
+std::string TreeizeRelD::writeTreeAndCreateXML(const std::vector<std::vector<std::string>>& control,
+    const std::vector<std::vector<std::vector<std::string>>>& data) {
+
+    pt::ptree propTree;
+    std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
+    if (returnStr != "") {
+        throw(returnStr);
+    }
+    std::string resultStr;
+    returnStr = TreeizeRelD::createXML(propTree, resultStr);
+    if (returnStr != "") {
+        throw(returnStr);
+    }
+    return resultStr;
+}
+
+std::string TreeizeRelD::writeTreeAndCreateJSON(const std::vector<std::vector<std::string>>& control,
+    const std::vector<std::vector<std::vector<std::string>>>& data) {
+
+    pt::ptree propTree;
+    std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
+    if (returnStr != "") {
+        throw(returnStr);
+    }
+    std::string resultStr;
+    returnStr = TreeizeRelD::createJson(propTree, resultStr);
+    if (returnStr != "") {
+        throw(returnStr);
+    }
+    return resultStr;
+}
 
 std::string TreeizeRelD::createXML(const pt::ptree &ptTree, std::string &resultString) {
     std::ostringstream oss;
@@ -15,7 +47,7 @@ std::string TreeizeRelD::createXML(const pt::ptree &ptTree, std::string &resultS
 std::string TreeizeRelD::createJson(const pt::ptree &ptTree, std::string &resultString) {
     std::ostringstream oss;
     try {
-        pt::json_parser::write_json(oss, ptTree);        
+        pt::json_parser::write_json(oss, ptTree, false);        
         resultString = oss.str();
     } catch (std::exception ex) {
         return std::string("(createJson): ").append(ex.what());

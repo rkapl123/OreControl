@@ -100,10 +100,6 @@ namespace OreService
             }
         }
 
-        // Mainfunktion hat zwei Aufgaben:
-        // 1) mit arg -e zum alternativen Aufruf des Bondbootsrap.exe um den "connection string" (user/password für Verbindung to SAP, user=Providername, passwd=Connectionstring) 
-        // im Konfigurationsfile zu verschlüsseln.
-        // 2) zum Starten des Services
         static void Main(string[] args)
         {
             ServiceBase.Run(new OreService());

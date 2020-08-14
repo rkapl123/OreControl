@@ -35,15 +35,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="treeizereld\treeizereld.cpp" />
+    <ClCompile Include="treeizereld.cpp" />
+    <ClCompile Include="treeize_wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="treeizereld\treeizereld.hpp" />
+    <ClInclude Include="treeizereld.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TreeizeSwig.i" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>TreeizeRelD</ProjectName>
     <ProjectGuid>{69B19B76-A089-4F8E-A10B-58F607A96214}</ProjectGuid>
     <RootNamespace>TreeizeRelD</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="..\OreMgr.props" />
@@ -84,13 +89,13 @@
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -194,6 +199,9 @@
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)SwigWrapper -o treeize_wrapper.cpp $(ProjectDir)TreeizeSwig.i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -239,6 +247,9 @@
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)SwigWrapper -o treeize_wrapper.cpp $(ProjectDir)TreeizeSwig.i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

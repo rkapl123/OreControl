@@ -19,6 +19,41 @@ using boost::unit_test::test_suite;
 #include <boost/config/auto_link.hpp>
 #endif
 
+BOOST_AUTO_TEST_CASE(writeXML1)
+{
+    // control table:                                   parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec
+    std::vector<std::vector<std::string>> control = { {"root",      "",              "a",        "",         "rec" },
+                                                      {"root.rec",  "",              "",         "a",        "b" } };
+    // table data[1] has child relation to table data[0] via FK/PK "a"
+    std::vector<std::vector<std::vector<std::string>>> data = { { {"a",     "b","c.d" },
+                                                                {  "dataA1","", "dataCD1" },
+                                                                {  "dataA2","", "dataCD2" } },
+                                                                { {"b.<xmlattr>.attr","b",     "a" },
+                                                                {  "attB1",           "dataB1","dataA1" },
+                                                                {  "attB2",           "dataB2","dataA1" },
+                                                                {  "attB3",           "dataB3","dataA2" },
+                                                                {  "attB4",           "dataB4","dataA2" }, } };
+    BOOST_TEST(TreeizeRelD::writeTreeAndCreateXML(control, data) == "<root><rec><a>dataA1</a><b attr=\"attB1\">dataB1</b><b attr=\"attB2\">dataB2</b><c><d>dataCD1</d></c></rec><rec><a>dataA2</a><b attr=\"attB3\">dataB3</b><b attr=\"attB4\">dataB4</b><c><d>dataCD2</d></c></rec></root>");
+}
+
+BOOST_AUTO_TEST_CASE(writeJSON1)
+{
+    // control table:                                   parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec
+    std::vector<std::vector<std::string>> control = { {"root",      "",              "a",        "",         "rec" },
+                                                      {"root.rec",  "",              "",         "a",        "b" } };
+    // table data[1] has child relation to table data[0] via FK/PK "a"
+    std::vector<std::vector<std::vector<std::string>>> data = { { {"a",     "b","c.d" },
+                                                                {  "dataA1","", "dataCD1" },
+                                                                {  "dataA2","", "dataCD2" } },
+                                                                { {"bat","b",     "a" },
+                                                                {  "attB1",           "dataB1","dataA1" },
+                                                                {  "attB2",           "dataB2","dataA1" },
+                                                                {  "attB3",           "dataB3","dataA2" },
+                                                                {  "attB4",           "dataB4","dataA2" }, } };
+    // avoided attribute creation as this is not allowed in JSON, attributes are normal children...
+BOOST_TEST(TreeizeRelD::writeTreeAndCreateJSON(control, data) == "{\"root\":{\"rec\":{\"a\":\"dataA1\",\"bat\":\"attB1\",\"b\":\"dataB1\",\"b\":\"dataB2\",\"c\":{\"d\":\"dataCD1\"}},\"rec\":{\"a\":\"dataA2\",\"bat\":\"attB3\",\"b\":\"dataB3\",\"b\":\"dataB4\",\"c\":{\"d\":\"dataCD2\"}}}}\n");
+}
+
 BOOST_AUTO_TEST_CASE(writeTree1)
 {
     // control table:                                   parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec

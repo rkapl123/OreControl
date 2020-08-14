@@ -9,8 +9,8 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("ORE Addin")>
-<Assembly: AssemblyDescription("Add-in for managing ORE and ORE-DB from Excel")>
-<Assembly: AssemblyCompany("https://rkapl123.github.io/OreAddin/")>
+<Assembly: AssemblyDescription("Add-in for managing ORE invocations and ORE-DB Definitions from Excel. Features: call ORE via Shell/Files or Task/Pipe; get ORE input data via OREDB or Files; edit ORE input data from OREDB (only full xml configs) or Files.")>
+<Assembly: AssemblyCompany("https://rkapl123.github.io/OreControl/OREAddin.html")>
 <Assembly: AssemblyProduct("")>
 <Assembly: AssemblyCopyright("Copyright ©  2017, GNU GPL v3.0")>
 <Assembly: AssemblyTrademark("")>

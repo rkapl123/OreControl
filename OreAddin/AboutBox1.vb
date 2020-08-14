@@ -4,8 +4,9 @@
         Dim sModuleInfo As String = vbNullString
         For Each tModule As ProcessModule In Process.GetCurrentProcess().Modules
             Dim sModule As String = tModule.FileName
-            If sModule.ToUpper.Contains("OREADDIN-ADDIN-PACKED.XLL") Or sModule.ToUpper.Contains("OREADDIN-ADDIN64-PACKED.XLL") Then
+            If sModule.ToUpper.Contains("OREADDIN") Then
                 sModuleInfo = FileDateTime(sModule).ToString()
+                Exit For
             End If
         Next
 

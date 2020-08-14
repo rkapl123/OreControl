@@ -15,6 +15,17 @@
 
 namespace pt = boost::property_tree;
 namespace TreeizeRelD {
+
+    // create flat XML (without indentation and whitespace) from tables given in table data (header and data) and table control (relations and tags)
+    // throws error message in case of problems
+    std::string writeTreeAndCreateXML(const std::vector<std::vector<std::string>>& control,
+        const std::vector<std::vector<std::vector<std::string>>>& data);
+
+    // create flat (not indented) Json from tables given in table data (header and data) and table control (relations and tags)
+    // throws error message in case of problems
+    std::string writeTreeAndCreateJSON(const std::vector<std::vector<std::string>>& control,
+        const std::vector<std::vector<std::vector<std::string>>>& data);
+
     // create flat XML (without indentation and whitespace) from ptTree
     std::string createXML(const pt::ptree &ptTree, std::string &resultString);
 
