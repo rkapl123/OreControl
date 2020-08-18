@@ -10,3 +10,4 @@ sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select Id,':',XMLdata from Sens
 sqlcmd -S LENOVO-PC -d ORE -E -Q "set nocount on;select GroupingId,':',XMLdata from StresstestSelection" -y0 -o stresstest.xml
 sqlcmd -S LENOVO-PC -r1 -E -i alterExistingTables.sql 2>> migration.log
 sqlcmd -S LENOVO-PC -r1 -E -i dropConfigTables.sql 2>> migration.log
+sqlcmd -S LENOVO-PC -r1 -E -i alterPortfolioSelection.sql 2>> migration.log
