@@ -7,7 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TreeizeRelD", "TreeizeRelD.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TreeizeRelDTestSuite", "test\TreeizeRelDTestSuite.vcxproj", "{87DD6B48-D3E0-4C2D-A984-0E41259A9D3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwigWrapper", "SwigWrapper\SwigWrapper.csproj", "{CF347A40-3AD6-4574-921E-2421CE6739C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeizeRelDCsharp", "TreeizeRelDCsharp\TreeizeRelDCsharp.csproj", "{CF347A40-3AD6-4574-921E-2421CE6739C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69B19B76-A089-4F8E-A10B-58F607A96214} = {69B19B76-A089-4F8E-A10B-58F607A96214}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

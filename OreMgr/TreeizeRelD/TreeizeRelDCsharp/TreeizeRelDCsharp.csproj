@@ -48,11 +48,5 @@
     <Compile Include="TreeizeSwig.cs" />
     <Compile Include="TreeizeSwigPINVOKE.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TreeizeRelD.vcxproj">
-      <Project>{69b19b76-a089-4f8e-a10b-58f607a96214}</Project>
-      <Name>TreeizeRelD</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
