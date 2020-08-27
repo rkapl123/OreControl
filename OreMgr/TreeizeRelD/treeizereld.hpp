@@ -1,7 +1,4 @@
 #pragma once
-#ifdef BOOST_MSVC
-#  include <treeizereld/auto_link.hpp>
-#endif
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
@@ -26,17 +23,17 @@ namespace TreeizeRelD {
     std::string writeTreeAndCreateJSON(const std::vector<std::vector<std::string>>& control,
         const std::vector<std::vector<std::vector<std::string>>>& data);
 
-    // create flat XML (without indentation and whitespace) from ptTree
-    std::string createXML(const pt::ptree &ptTree, std::string &resultString);
-
-    // create Json from ptTree
-    std::string createJson(const pt::ptree &ptTree, std::string &resultString);
-
     // write a relation tree of tables given in table data (header and data) and table control (relations and tags) 
     // into property tree ptTree
     std::string writeTree(const std::vector<std::vector<std::string>> &control,
         const std::vector<std::vector<std::vector<std::string>>> &data,
         pt::ptree &ptTree);
+
+    // create flat XML (without indentation and whitespace) from previously (with writeTree) created ptTree
+    std::string createXML(const pt::ptree& ptTree, std::string& resultString);
+
+    // create Json from previously (with writeTree) created  ptTree
+    std::string createJson(const pt::ptree& ptTree, std::string& resultString);
 
     // helper function to retrieve info from definition Row in control table to the elements of the row
     void getRelInfo(const std::vector<std::string> &defRow,

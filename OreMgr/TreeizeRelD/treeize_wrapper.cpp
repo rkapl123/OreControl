@@ -243,7 +243,7 @@ static void SWIGUNUSED SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpExcepti
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_TreeizeSwig(
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_TreeizeRelD(
                                                 SWIG_CSharpExceptionCallback_t applicationCallback,
                                                 SWIG_CSharpExceptionCallback_t arithmeticCallback,
                                                 SWIG_CSharpExceptionCallback_t divideByZeroCallback, 
@@ -271,7 +271,7 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_TreeizeSwig(
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionArgumentCallbacks_TreeizeSwig(
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionArgumentCallbacks_TreeizeRelD(
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentCallback,
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentNullCallback,
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentOutOfRangeCallback) {
@@ -289,7 +289,7 @@ static SWIG_CSharpStringHelperCallback SWIG_csharp_string_callback = NULL;
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_TreeizeSwig(SWIG_CSharpStringHelperCallback callback) {
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_TreeizeRelD(SWIG_CSharpStringHelperCallback callback) {
   SWIG_csharp_string_callback = callback;
 }
 
@@ -579,6 +579,97 @@ SWIGINTERN void std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Reverse__SWIG_1(s
         std::reverse(self->begin()+index, self->begin()+index+count);
       }
 SWIGINTERN void std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__SetRange(std::vector< std::vector< std::string > > *self,int index,std::vector< std::vector< std::string > > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
+SWIGINTERN std::vector< std::vector< std::vector< std::string > > > *new_std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg___SWIG_2(int capacity){
+        std::vector< std::vector< std::vector< std::string > > >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< std::vector< std::vector< std::string > > >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN std::vector< std::vector< std::string > > std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__getitemcopy(std::vector< std::vector< std::vector< std::string > > > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN std::vector< std::vector< std::string > > const &std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__getitem(std::vector< std::vector< std::vector< std::string > > > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__setitem(std::vector< std::vector< std::vector< std::string > > > *self,int index,std::vector< std::vector< std::string > > const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__AddRange(std::vector< std::vector< std::vector< std::string > > > *self,std::vector< std::vector< std::vector< std::string > > > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< std::vector< std::vector< std::string > > > *std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__GetRange(std::vector< std::vector< std::vector< std::string > > > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< std::vector< std::vector< std::string > > >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Insert(std::vector< std::vector< std::vector< std::string > > > *self,int index,std::vector< std::vector< std::string > > const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__InsertRange(std::vector< std::vector< std::vector< std::string > > > *self,int index,std::vector< std::vector< std::vector< std::string > > > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__RemoveAt(std::vector< std::vector< std::vector< std::string > > > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__RemoveRange(std::vector< std::vector< std::vector< std::string > > > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< std::vector< std::vector< std::string > > > *std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Repeat(std::vector< std::vector< std::string > > const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< std::vector< std::vector< std::string > > >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Reverse__SWIG_0(std::vector< std::vector< std::vector< std::string > > > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Reverse__SWIG_1(std::vector< std::vector< std::vector< std::string > > > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__SetRange(std::vector< std::vector< std::vector< std::string > > > *self,int index,std::vector< std::vector< std::vector< std::string > > > const &values){
         if (index < 0)
           throw std::out_of_range("index");
         if (index+values.size() > self->size())
@@ -1470,6 +1561,386 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_StrTable(void * jarg1) {
   std::vector< std::vector< std::string > > *arg1 = (std::vector< std::vector< std::string > > *) 0 ;
   
   arg1 = (std::vector< std::vector< std::string > > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_Clear(void * jarg1) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_Add(void * jarg1, void * jarg2) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  std::vector< std::vector< std::string > > *arg2 = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (std::vector< std::vector< std::string > > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::string > > const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((std::vector< std::vector< std::string > > const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_StrTableCollection_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  std::vector< std::vector< std::vector< std::string > > >::size_type result;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  result = ((std::vector< std::vector< std::vector< std::string > > > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_StrTableCollection_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  std::vector< std::vector< std::vector< std::string > > >::size_type result;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  result = ((std::vector< std::vector< std::vector< std::string > > > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  std::vector< std::vector< std::vector< std::string > > >::size_type arg2 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (std::vector< std::vector< std::vector< std::string > > >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_StrTableCollection__SWIG_0() {
+  void * jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *result = 0 ;
+  
+  result = (std::vector< std::vector< std::vector< std::string > > > *)new std::vector< std::vector< std::vector< std::string > > >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_StrTableCollection__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = 0 ;
+  std::vector< std::vector< std::vector< std::string > > > *result = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::vector< std::string > > > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< std::vector< std::vector< std::string > > > *)new std::vector< std::vector< std::vector< std::string > > >((std::vector< std::vector< std::vector< std::string > > > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_StrTableCollection__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< std::vector< std::vector< std::string > > > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< std::vector< std::vector< std::string > > > *)new_std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_StrTableCollection_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::string > > result;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new std::vector< std::vector< std::string > >((const std::vector< std::vector< std::string > > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_StrTableCollection_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::string > > *result = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< std::vector< std::string > > *) &std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::string > > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< std::vector< std::string > > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::string > > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__setitem(arg1,arg2,(std::vector< std::vector< std::string > > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_AddRange(void * jarg1, void * jarg2) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  std::vector< std::vector< std::vector< std::string > > > *arg2 = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (std::vector< std::vector< std::vector< std::string > > > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::vector< std::string > > > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__AddRange(arg1,(std::vector< std::vector< std::vector< std::string > > > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_StrTableCollection_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< std::vector< std::vector< std::string > > > *result = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< std::vector< std::vector< std::string > > > *)std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::string > > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< std::vector< std::string > > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::string > > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Insert(arg1,arg2,(std::vector< std::vector< std::string > > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::vector< std::string > > > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< std::vector< std::vector< std::string > > > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::vector< std::string > > > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__InsertRange(arg1,arg2,(std::vector< std::vector< std::vector< std::string > > > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_StrTableCollection_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< std::vector< std::string > > *arg1 = 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::vector< std::string > > > *result = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::string > > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::string > > const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< std::vector< std::vector< std::string > > > *)std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Repeat((std::vector< std::vector< std::string > > const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_Reverse__SWIG_0(void * jarg1) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_StrTableCollection_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  int arg2 ;
+  std::vector< std::vector< std::vector< std::string > > > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< std::vector< std::vector< std::string > > > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::vector< std::string > > > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg__SetRange(arg1,arg2,(std::vector< std::vector< std::vector< std::string > > > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_StrTableCollection(void * jarg1) {
+  std::vector< std::vector< std::vector< std::string > > > *arg1 = (std::vector< std::vector< std::vector< std::string > > > *) 0 ;
+  
+  arg1 = (std::vector< std::vector< std::vector< std::string > > > *)jarg1; 
   delete arg1;
 }
 

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-class TreeizeSwigPINVOKE {
+class TreeizeRelDPINVOKE {
 
   protected class SWIGExceptionHelper {
 
@@ -32,8 +32,8 @@ class TreeizeSwigPINVOKE {
     static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
     static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
 
-    [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="SWIGRegisterExceptionCallbacks_TreeizeSwig")]
-    public static extern void SWIGRegisterExceptionCallbacks_TreeizeSwig(
+    [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="SWIGRegisterExceptionCallbacks_TreeizeRelD")]
+    public static extern void SWIGRegisterExceptionCallbacks_TreeizeRelD(
                                 ExceptionDelegate applicationDelegate,
                                 ExceptionDelegate arithmeticDelegate,
                                 ExceptionDelegate divideByZeroDelegate, 
@@ -46,8 +46,8 @@ class TreeizeSwigPINVOKE {
                                 ExceptionDelegate overflowDelegate, 
                                 ExceptionDelegate systemExceptionDelegate);
 
-    [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_TreeizeSwig")]
-    public static extern void SWIGRegisterExceptionCallbacksArgument_TreeizeSwig(
+    [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_TreeizeRelD")]
+    public static extern void SWIGRegisterExceptionCallbacksArgument_TreeizeRelD(
                                 ExceptionArgumentDelegate argumentDelegate,
                                 ExceptionArgumentDelegate argumentNullDelegate,
                                 ExceptionArgumentDelegate argumentOutOfRangeDelegate);
@@ -101,7 +101,7 @@ class TreeizeSwigPINVOKE {
     }
 
     static SWIGExceptionHelper() {
-      SWIGRegisterExceptionCallbacks_TreeizeSwig(
+      SWIGRegisterExceptionCallbacks_TreeizeRelD(
                                 applicationDelegate,
                                 arithmeticDelegate,
                                 divideByZeroDelegate,
@@ -114,7 +114,7 @@ class TreeizeSwigPINVOKE {
                                 overflowDelegate,
                                 systemDelegate);
 
-      SWIGRegisterExceptionCallbacksArgument_TreeizeSwig(
+      SWIGRegisterExceptionCallbacksArgument_TreeizeRelD(
                                 argumentDelegate,
                                 argumentNullDelegate,
                                 argumentOutOfRangeDelegate);
@@ -142,7 +142,7 @@ class TreeizeSwigPINVOKE {
       if (pendingException != null)
         throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
       pendingException = e;
-      lock(typeof(TreeizeSwigPINVOKE)) {
+      lock(typeof(TreeizeRelDPINVOKE)) {
         numExceptionsPending++;
       }
     }
@@ -153,7 +153,7 @@ class TreeizeSwigPINVOKE {
         if (pendingException != null) {
           e = pendingException;
           pendingException = null;
-          lock(typeof(TreeizeSwigPINVOKE)) {
+          lock(typeof(TreeizeRelDPINVOKE)) {
             numExceptionsPending--;
           }
         }
@@ -168,172 +168,238 @@ class TreeizeSwigPINVOKE {
     public delegate string SWIGStringDelegate(string message);
     static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 
-    [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="SWIGRegisterStringCallback_TreeizeSwig")]
-    public static extern void SWIGRegisterStringCallback_TreeizeSwig(SWIGStringDelegate stringDelegate);
+    [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="SWIGRegisterStringCallback_TreeizeRelD")]
+    public static extern void SWIGRegisterStringCallback_TreeizeRelD(SWIGStringDelegate stringDelegate);
 
     static string CreateString(string cString) {
       return cString;
     }
 
     static SWIGStringHelper() {
-      SWIGRegisterStringCallback_TreeizeSwig(stringDelegate);
+      SWIGRegisterStringCallback_TreeizeRelD(stringDelegate);
     }
   }
 
   static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
 
 
-  static TreeizeSwigPINVOKE() {
+  static TreeizeRelDPINVOKE() {
   }
 
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_writeTreeAndCreateXML")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_writeTreeAndCreateXML")]
   public static extern string writeTreeAndCreateXML(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_writeTreeAndCreateJSON")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_writeTreeAndCreateJSON")]
   public static extern string writeTreeAndCreateJSON(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Clear")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Clear")]
   public static extern void StrVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Add")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Add")]
   public static extern void StrVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_size")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_size")]
   public static extern uint StrVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_capacity")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_capacity")]
   public static extern uint StrVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_reserve")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_reserve")]
   public static extern void StrVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_new_StrVector__SWIG_0")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrVector__SWIG_0")]
   public static extern global::System.IntPtr new_StrVector__SWIG_0();
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_new_StrVector__SWIG_1")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrVector__SWIG_1")]
   public static extern global::System.IntPtr new_StrVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_new_StrVector__SWIG_2")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrVector__SWIG_2")]
   public static extern global::System.IntPtr new_StrVector__SWIG_2(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_getitemcopy")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_getitemcopy")]
   public static extern string StrVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_getitem")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_getitem")]
   public static extern string StrVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_setitem")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_setitem")]
   public static extern void StrVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_AddRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_AddRange")]
   public static extern void StrVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_GetRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_GetRange")]
   public static extern global::System.IntPtr StrVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Insert")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Insert")]
   public static extern void StrVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_InsertRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_InsertRange")]
   public static extern void StrVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_RemoveAt")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_RemoveAt")]
   public static extern void StrVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_RemoveRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_RemoveRange")]
   public static extern void StrVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Repeat")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Repeat")]
   public static extern global::System.IntPtr StrVector_Repeat(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Reverse__SWIG_0")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Reverse__SWIG_0")]
   public static extern void StrVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Reverse__SWIG_1")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Reverse__SWIG_1")]
   public static extern void StrVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_SetRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_SetRange")]
   public static extern void StrVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Contains")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Contains")]
   public static extern bool StrVector_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_IndexOf")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_IndexOf")]
   public static extern int StrVector_IndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_LastIndexOf")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_LastIndexOf")]
   public static extern int StrVector_LastIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrVector_Remove")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Remove")]
   public static extern bool StrVector_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_delete_StrVector")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_delete_StrVector")]
   public static extern void delete_StrVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_Clear")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_Clear")]
   public static extern void StrTable_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_Add")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_Add")]
   public static extern void StrTable_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_size")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_size")]
   public static extern uint StrTable_size(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_capacity")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_capacity")]
   public static extern uint StrTable_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_reserve")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_reserve")]
   public static extern void StrTable_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_new_StrTable__SWIG_0")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrTable__SWIG_0")]
   public static extern global::System.IntPtr new_StrTable__SWIG_0();
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_new_StrTable__SWIG_1")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrTable__SWIG_1")]
   public static extern global::System.IntPtr new_StrTable__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_new_StrTable__SWIG_2")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrTable__SWIG_2")]
   public static extern global::System.IntPtr new_StrTable__SWIG_2(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_getitemcopy")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_getitemcopy")]
   public static extern global::System.IntPtr StrTable_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_getitem")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_getitem")]
   public static extern global::System.IntPtr StrTable_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_setitem")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_setitem")]
   public static extern void StrTable_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_AddRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_AddRange")]
   public static extern void StrTable_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_GetRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_GetRange")]
   public static extern global::System.IntPtr StrTable_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_Insert")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_Insert")]
   public static extern void StrTable_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_InsertRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_InsertRange")]
   public static extern void StrTable_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_RemoveAt")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_RemoveAt")]
   public static extern void StrTable_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_RemoveRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_RemoveRange")]
   public static extern void StrTable_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_Repeat")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_Repeat")]
   public static extern global::System.IntPtr StrTable_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_Reverse__SWIG_0")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_Reverse__SWIG_0")]
   public static extern void StrTable_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_Reverse__SWIG_1")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_Reverse__SWIG_1")]
   public static extern void StrTable_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_StrTable_SetRange")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTable_SetRange")]
   public static extern void StrTable_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("TreeizeSwig", EntryPoint="CSharp_delete_StrTable")]
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_delete_StrTable")]
   public static extern void delete_StrTable(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_Clear")]
+  public static extern void StrTableCollection_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_Add")]
+  public static extern void StrTableCollection_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_size")]
+  public static extern uint StrTableCollection_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_capacity")]
+  public static extern uint StrTableCollection_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_reserve")]
+  public static extern void StrTableCollection_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrTableCollection__SWIG_0")]
+  public static extern global::System.IntPtr new_StrTableCollection__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrTableCollection__SWIG_1")]
+  public static extern global::System.IntPtr new_StrTableCollection__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_new_StrTableCollection__SWIG_2")]
+  public static extern global::System.IntPtr new_StrTableCollection__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_getitemcopy")]
+  public static extern global::System.IntPtr StrTableCollection_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_getitem")]
+  public static extern global::System.IntPtr StrTableCollection_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_setitem")]
+  public static extern void StrTableCollection_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_AddRange")]
+  public static extern void StrTableCollection_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_GetRange")]
+  public static extern global::System.IntPtr StrTableCollection_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_Insert")]
+  public static extern void StrTableCollection_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_InsertRange")]
+  public static extern void StrTableCollection_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_RemoveAt")]
+  public static extern void StrTableCollection_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_RemoveRange")]
+  public static extern void StrTableCollection_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_Repeat")]
+  public static extern global::System.IntPtr StrTableCollection_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_Reverse__SWIG_0")]
+  public static extern void StrTableCollection_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_Reverse__SWIG_1")]
+  public static extern void StrTableCollection_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrTableCollection_SetRange")]
+  public static extern void StrTableCollection_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_delete_StrTableCollection")]
+  public static extern void delete_StrTableCollection(global::System.Runtime.InteropServices.HandleRef jarg1);
 }

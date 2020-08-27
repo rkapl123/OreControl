@@ -1,5 +1,5 @@
 #define BOOST_TEST_MODULE TreeizeRelDTest
-#include <treeizeRelD/TreeizeRelD.hpp>
+#include <TreeizeRelD.hpp>
 using namespace std;
 
 // Boost.Test

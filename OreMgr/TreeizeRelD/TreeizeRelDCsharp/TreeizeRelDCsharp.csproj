@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,10 +44,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StrTable.cs" />
+    <Compile Include="StrTableCollection.cs" />
     <Compile Include="StrVector.cs" />
-    <Compile Include="SWIGTYPE_p_std__vectorT_std__vectorT_std__vectorT_std__string_t_t_t.cs" />
-    <Compile Include="TreeizeSwig.cs" />
-    <Compile Include="TreeizeSwigPINVOKE.cs" />
+    <Compile Include="TreeizeRelD.cs" />
+    <Compile Include="TreeizeRelDPINVOKE.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

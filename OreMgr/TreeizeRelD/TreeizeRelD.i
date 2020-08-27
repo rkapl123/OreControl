@@ -1,4 +1,4 @@
-%module TreeizeSwig
+%module TreeizeRelD
 %include stl.i
 namespace boost {
 namespace property_tree {
@@ -28,5 +28,6 @@ namespace property_tree {
 namespace std {
     %template(StrVector) vector<string>;
     %template(StrTable) vector<vector<string>>;
+    %template(StrTableCollection) vector<vector<vector<string>>>;
 }
 

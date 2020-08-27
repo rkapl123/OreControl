@@ -1,2 +1,2 @@
-..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir .\SwigWrapper TreeizeSwig.i -o treeize_wrapper.cpp
+..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir .\TreeizeRelDCsharp -o treeize_wrapper.cpp TreeizeRelD.i 
 pause

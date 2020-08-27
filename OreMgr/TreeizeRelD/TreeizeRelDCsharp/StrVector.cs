@@ -33,7 +33,7 @@ public class StrVector : global::System.IDisposable, global::System.Collections.
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          TreeizeSwigPINVOKE.delete_StrVector(swigCPtr);
+          TreeizeRelDPINVOKE.delete_StrVector(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
@@ -200,130 +200,130 @@ public class StrVector : global::System.IDisposable, global::System.Collections.
   }
 
   public void Clear() {
-    TreeizeSwigPINVOKE.StrVector_Clear(swigCPtr);
+    TreeizeRelDPINVOKE.StrVector_Clear(swigCPtr);
   }
 
   public void Add(string x) {
-    TreeizeSwigPINVOKE.StrVector_Add(swigCPtr, x);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_Add(swigCPtr, x);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   private uint size() {
-    uint ret = TreeizeSwigPINVOKE.StrVector_size(swigCPtr);
+    uint ret = TreeizeRelDPINVOKE.StrVector_size(swigCPtr);
     return ret;
   }
 
   private uint capacity() {
-    uint ret = TreeizeSwigPINVOKE.StrVector_capacity(swigCPtr);
+    uint ret = TreeizeRelDPINVOKE.StrVector_capacity(swigCPtr);
     return ret;
   }
 
   private void reserve(uint n) {
-    TreeizeSwigPINVOKE.StrVector_reserve(swigCPtr, n);
+    TreeizeRelDPINVOKE.StrVector_reserve(swigCPtr, n);
   }
 
-  public StrVector() : this(TreeizeSwigPINVOKE.new_StrVector__SWIG_0(), true) {
+  public StrVector() : this(TreeizeRelDPINVOKE.new_StrVector__SWIG_0(), true) {
   }
 
-  public StrVector(StrVector other) : this(TreeizeSwigPINVOKE.new_StrVector__SWIG_1(StrVector.getCPtr(other)), true) {
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+  public StrVector(StrVector other) : this(TreeizeRelDPINVOKE.new_StrVector__SWIG_1(StrVector.getCPtr(other)), true) {
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public StrVector(int capacity) : this(TreeizeSwigPINVOKE.new_StrVector__SWIG_2(capacity), true) {
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+  public StrVector(int capacity) : this(TreeizeRelDPINVOKE.new_StrVector__SWIG_2(capacity), true) {
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   private string getitemcopy(int index) {
-    string ret = TreeizeSwigPINVOKE.StrVector_getitemcopy(swigCPtr, index);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    string ret = TreeizeRelDPINVOKE.StrVector_getitemcopy(swigCPtr, index);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   private string getitem(int index) {
-    string ret = TreeizeSwigPINVOKE.StrVector_getitem(swigCPtr, index);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    string ret = TreeizeRelDPINVOKE.StrVector_getitem(swigCPtr, index);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   private void setitem(int index, string val) {
-    TreeizeSwigPINVOKE.StrVector_setitem(swigCPtr, index, val);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_setitem(swigCPtr, index, val);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void AddRange(StrVector values) {
-    TreeizeSwigPINVOKE.StrVector_AddRange(swigCPtr, StrVector.getCPtr(values));
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_AddRange(swigCPtr, StrVector.getCPtr(values));
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public StrVector GetRange(int index, int count) {
-    global::System.IntPtr cPtr = TreeizeSwigPINVOKE.StrVector_GetRange(swigCPtr, index, count);
+    global::System.IntPtr cPtr = TreeizeRelDPINVOKE.StrVector_GetRange(swigCPtr, index, count);
     StrVector ret = (cPtr == global::System.IntPtr.Zero) ? null : new StrVector(cPtr, true);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void Insert(int index, string x) {
-    TreeizeSwigPINVOKE.StrVector_Insert(swigCPtr, index, x);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_Insert(swigCPtr, index, x);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void InsertRange(int index, StrVector values) {
-    TreeizeSwigPINVOKE.StrVector_InsertRange(swigCPtr, index, StrVector.getCPtr(values));
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_InsertRange(swigCPtr, index, StrVector.getCPtr(values));
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RemoveAt(int index) {
-    TreeizeSwigPINVOKE.StrVector_RemoveAt(swigCPtr, index);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_RemoveAt(swigCPtr, index);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RemoveRange(int index, int count) {
-    TreeizeSwigPINVOKE.StrVector_RemoveRange(swigCPtr, index, count);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_RemoveRange(swigCPtr, index, count);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static StrVector Repeat(string value, int count) {
-    global::System.IntPtr cPtr = TreeizeSwigPINVOKE.StrVector_Repeat(value, count);
+    global::System.IntPtr cPtr = TreeizeRelDPINVOKE.StrVector_Repeat(value, count);
     StrVector ret = (cPtr == global::System.IntPtr.Zero) ? null : new StrVector(cPtr, true);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void Reverse() {
-    TreeizeSwigPINVOKE.StrVector_Reverse__SWIG_0(swigCPtr);
+    TreeizeRelDPINVOKE.StrVector_Reverse__SWIG_0(swigCPtr);
   }
 
   public void Reverse(int index, int count) {
-    TreeizeSwigPINVOKE.StrVector_Reverse__SWIG_1(swigCPtr, index, count);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_Reverse__SWIG_1(swigCPtr, index, count);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void SetRange(int index, StrVector values) {
-    TreeizeSwigPINVOKE.StrVector_SetRange(swigCPtr, index, StrVector.getCPtr(values));
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    TreeizeRelDPINVOKE.StrVector_SetRange(swigCPtr, index, StrVector.getCPtr(values));
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool Contains(string value) {
-    bool ret = TreeizeSwigPINVOKE.StrVector_Contains(swigCPtr, value);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    bool ret = TreeizeRelDPINVOKE.StrVector_Contains(swigCPtr, value);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public int IndexOf(string value) {
-    int ret = TreeizeSwigPINVOKE.StrVector_IndexOf(swigCPtr, value);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    int ret = TreeizeRelDPINVOKE.StrVector_IndexOf(swigCPtr, value);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public int LastIndexOf(string value) {
-    int ret = TreeizeSwigPINVOKE.StrVector_LastIndexOf(swigCPtr, value);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    int ret = TreeizeRelDPINVOKE.StrVector_LastIndexOf(swigCPtr, value);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Remove(string value) {
-    bool ret = TreeizeSwigPINVOKE.StrVector_Remove(swigCPtr, value);
-    if (TreeizeSwigPINVOKE.SWIGPendingException.Pending) throw TreeizeSwigPINVOKE.SWIGPendingException.Retrieve();
+    bool ret = TreeizeRelDPINVOKE.StrVector_Remove(swigCPtr, value);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

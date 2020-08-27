@@ -9,22 +9,22 @@
 //------------------------------------------------------------------------------
 
 
-public class StrTable : global::System.IDisposable, global::System.Collections.IEnumerable
-    , global::System.Collections.Generic.IEnumerable<StrVector>
+public class StrTableCollection : global::System.IDisposable, global::System.Collections.IEnumerable
+    , global::System.Collections.Generic.IEnumerable<StrTable>
  {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
-  internal StrTable(global::System.IntPtr cPtr, bool cMemoryOwn) {
+  internal StrTableCollection(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StrTable obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StrTableCollection obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~StrTable() {
+  ~StrTableCollection() {
     Dispose();
   }
 
@@ -33,7 +33,7 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          TreeizeRelDPINVOKE.delete_StrTable(swigCPtr);
+          TreeizeRelDPINVOKE.delete_StrTableCollection(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
@@ -41,10 +41,10 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
     }
   }
 
-  public StrTable(global::System.Collections.ICollection c) : this() {
+  public StrTableCollection(global::System.Collections.ICollection c) : this() {
     if (c == null)
       throw new global::System.ArgumentNullException("c");
-    foreach (StrVector element in c) {
+    foreach (StrTable element in c) {
       this.Add(element);
     }
   }
@@ -61,7 +61,7 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
     }
   }
 
-  public StrVector this[int index]  {
+  public StrTable this[int index]  {
     get {
       return getitem(index);
     }
@@ -93,17 +93,17 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
     }
   }
 
-  public void CopyTo(StrVector[] array)
+  public void CopyTo(StrTable[] array)
   {
     CopyTo(0, array, 0, this.Count);
   }
 
-  public void CopyTo(StrVector[] array, int arrayIndex)
+  public void CopyTo(StrTable[] array, int arrayIndex)
   {
     CopyTo(0, array, arrayIndex, this.Count);
   }
 
-  public void CopyTo(int index, StrVector[] array, int arrayIndex, int count)
+  public void CopyTo(int index, StrTable[] array, int arrayIndex, int count)
   {
     if (array == null)
       throw new global::System.ArgumentNullException("array");
@@ -121,16 +121,16 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
       array.SetValue(getitemcopy(index+i), arrayIndex+i);
   }
 
-  global::System.Collections.Generic.IEnumerator<StrVector> global::System.Collections.Generic.IEnumerable<StrVector>.GetEnumerator() {
-    return new StrTableEnumerator(this);
+  global::System.Collections.Generic.IEnumerator<StrTable> global::System.Collections.Generic.IEnumerable<StrTable>.GetEnumerator() {
+    return new StrTableCollectionEnumerator(this);
   }
 
   global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator() {
-    return new StrTableEnumerator(this);
+    return new StrTableCollectionEnumerator(this);
   }
 
-  public StrTableEnumerator GetEnumerator() {
-    return new StrTableEnumerator(this);
+  public StrTableCollectionEnumerator GetEnumerator() {
+    return new StrTableCollectionEnumerator(this);
   }
 
   // Type-safe enumerator
@@ -138,15 +138,15 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
   /// whenever the collection is modified. This has been done for changes in the size of the
   /// collection but not when one of the elements of the collection is modified as it is a bit
   /// tricky to detect unmanaged code that modifies the collection under our feet.
-  public sealed class StrTableEnumerator : global::System.Collections.IEnumerator
-    , global::System.Collections.Generic.IEnumerator<StrVector>
+  public sealed class StrTableCollectionEnumerator : global::System.Collections.IEnumerator
+    , global::System.Collections.Generic.IEnumerator<StrTable>
   {
-    private StrTable collectionRef;
+    private StrTableCollection collectionRef;
     private int currentIndex;
     private object currentObject;
     private int currentSize;
 
-    public StrTableEnumerator(StrTable collection) {
+    public StrTableCollectionEnumerator(StrTableCollection collection) {
       collectionRef = collection;
       currentIndex = -1;
       currentObject = null;
@@ -154,7 +154,7 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
     }
 
     // Type-safe iterator Current
-    public StrVector Current {
+    public StrTable Current {
       get {
         if (currentIndex == -1)
           throw new global::System.InvalidOperationException("Enumeration not started.");
@@ -162,7 +162,7 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
           throw new global::System.InvalidOperationException("Enumeration finished.");
         if (currentObject == null)
           throw new global::System.InvalidOperationException("Collection modified.");
-        return (StrVector)currentObject;
+        return (StrTable)currentObject;
       }
     }
 
@@ -200,106 +200,106 @@ public class StrTable : global::System.IDisposable, global::System.Collections.I
   }
 
   public void Clear() {
-    TreeizeRelDPINVOKE.StrTable_Clear(swigCPtr);
+    TreeizeRelDPINVOKE.StrTableCollection_Clear(swigCPtr);
   }
 
-  public void Add(StrVector x) {
-    TreeizeRelDPINVOKE.StrTable_Add(swigCPtr, StrVector.getCPtr(x));
+  public void Add(StrTable x) {
+    TreeizeRelDPINVOKE.StrTableCollection_Add(swigCPtr, StrTable.getCPtr(x));
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   private uint size() {
-    uint ret = TreeizeRelDPINVOKE.StrTable_size(swigCPtr);
+    uint ret = TreeizeRelDPINVOKE.StrTableCollection_size(swigCPtr);
     return ret;
   }
 
   private uint capacity() {
-    uint ret = TreeizeRelDPINVOKE.StrTable_capacity(swigCPtr);
+    uint ret = TreeizeRelDPINVOKE.StrTableCollection_capacity(swigCPtr);
     return ret;
   }
 
   private void reserve(uint n) {
-    TreeizeRelDPINVOKE.StrTable_reserve(swigCPtr, n);
+    TreeizeRelDPINVOKE.StrTableCollection_reserve(swigCPtr, n);
   }
 
-  public StrTable() : this(TreeizeRelDPINVOKE.new_StrTable__SWIG_0(), true) {
+  public StrTableCollection() : this(TreeizeRelDPINVOKE.new_StrTableCollection__SWIG_0(), true) {
   }
 
-  public StrTable(StrTable other) : this(TreeizeRelDPINVOKE.new_StrTable__SWIG_1(StrTable.getCPtr(other)), true) {
+  public StrTableCollection(StrTableCollection other) : this(TreeizeRelDPINVOKE.new_StrTableCollection__SWIG_1(StrTableCollection.getCPtr(other)), true) {
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public StrTable(int capacity) : this(TreeizeRelDPINVOKE.new_StrTable__SWIG_2(capacity), true) {
+  public StrTableCollection(int capacity) : this(TreeizeRelDPINVOKE.new_StrTableCollection__SWIG_2(capacity), true) {
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  private StrVector getitemcopy(int index) {
-    StrVector ret = new StrVector(TreeizeRelDPINVOKE.StrTable_getitemcopy(swigCPtr, index), true);
-    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  private StrVector getitem(int index) {
-    StrVector ret = new StrVector(TreeizeRelDPINVOKE.StrTable_getitem(swigCPtr, index), false);
+  private StrTable getitemcopy(int index) {
+    StrTable ret = new StrTable(TreeizeRelDPINVOKE.StrTableCollection_getitemcopy(swigCPtr, index), true);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  private void setitem(int index, StrVector val) {
-    TreeizeRelDPINVOKE.StrTable_setitem(swigCPtr, index, StrVector.getCPtr(val));
-    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void AddRange(StrTable values) {
-    TreeizeRelDPINVOKE.StrTable_AddRange(swigCPtr, StrTable.getCPtr(values));
-    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public StrTable GetRange(int index, int count) {
-    global::System.IntPtr cPtr = TreeizeRelDPINVOKE.StrTable_GetRange(swigCPtr, index, count);
-    StrTable ret = (cPtr == global::System.IntPtr.Zero) ? null : new StrTable(cPtr, true);
+  private StrTable getitem(int index) {
+    StrTable ret = new StrTable(TreeizeRelDPINVOKE.StrTableCollection_getitem(swigCPtr, index), false);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void Insert(int index, StrVector x) {
-    TreeizeRelDPINVOKE.StrTable_Insert(swigCPtr, index, StrVector.getCPtr(x));
+  private void setitem(int index, StrTable val) {
+    TreeizeRelDPINVOKE.StrTableCollection_setitem(swigCPtr, index, StrTable.getCPtr(val));
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void InsertRange(int index, StrTable values) {
-    TreeizeRelDPINVOKE.StrTable_InsertRange(swigCPtr, index, StrTable.getCPtr(values));
+  public void AddRange(StrTableCollection values) {
+    TreeizeRelDPINVOKE.StrTableCollection_AddRange(swigCPtr, StrTableCollection.getCPtr(values));
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public StrTableCollection GetRange(int index, int count) {
+    global::System.IntPtr cPtr = TreeizeRelDPINVOKE.StrTableCollection_GetRange(swigCPtr, index, count);
+    StrTableCollection ret = (cPtr == global::System.IntPtr.Zero) ? null : new StrTableCollection(cPtr, true);
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void Insert(int index, StrTable x) {
+    TreeizeRelDPINVOKE.StrTableCollection_Insert(swigCPtr, index, StrTable.getCPtr(x));
+    if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void InsertRange(int index, StrTableCollection values) {
+    TreeizeRelDPINVOKE.StrTableCollection_InsertRange(swigCPtr, index, StrTableCollection.getCPtr(values));
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RemoveAt(int index) {
-    TreeizeRelDPINVOKE.StrTable_RemoveAt(swigCPtr, index);
+    TreeizeRelDPINVOKE.StrTableCollection_RemoveAt(swigCPtr, index);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RemoveRange(int index, int count) {
-    TreeizeRelDPINVOKE.StrTable_RemoveRange(swigCPtr, index, count);
+    TreeizeRelDPINVOKE.StrTableCollection_RemoveRange(swigCPtr, index, count);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static StrTable Repeat(StrVector value, int count) {
-    global::System.IntPtr cPtr = TreeizeRelDPINVOKE.StrTable_Repeat(StrVector.getCPtr(value), count);
-    StrTable ret = (cPtr == global::System.IntPtr.Zero) ? null : new StrTable(cPtr, true);
+  public static StrTableCollection Repeat(StrTable value, int count) {
+    global::System.IntPtr cPtr = TreeizeRelDPINVOKE.StrTableCollection_Repeat(StrTable.getCPtr(value), count);
+    StrTableCollection ret = (cPtr == global::System.IntPtr.Zero) ? null : new StrTableCollection(cPtr, true);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void Reverse() {
-    TreeizeRelDPINVOKE.StrTable_Reverse__SWIG_0(swigCPtr);
+    TreeizeRelDPINVOKE.StrTableCollection_Reverse__SWIG_0(swigCPtr);
   }
 
   public void Reverse(int index, int count) {
-    TreeizeRelDPINVOKE.StrTable_Reverse__SWIG_1(swigCPtr, index, count);
+    TreeizeRelDPINVOKE.StrTableCollection_Reverse__SWIG_1(swigCPtr, index, count);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetRange(int index, StrTable values) {
-    TreeizeRelDPINVOKE.StrTable_SetRange(swigCPtr, index, StrTable.getCPtr(values));
+  public void SetRange(int index, StrTableCollection values) {
+    TreeizeRelDPINVOKE.StrTableCollection_SetRange(swigCPtr, index, StrTableCollection.getCPtr(values));
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
   }
 
