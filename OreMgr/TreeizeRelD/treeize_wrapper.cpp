@@ -681,10 +681,11 @@ SWIGINTERN void std_vector_Sl_std_vector_Sl_std_vector_Sl_std_string_Sg__Sg__Sg_
 extern "C" {
 #endif
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_writeTreeAndCreateXML(void * jarg1, void * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_writeTreeAndCreateXML(void * jarg1, void * jarg2, int * jarg3) {
   char * jresult ;
   std::vector< std::vector< std::string > > *arg1 = 0 ;
   std::vector< std::vector< std::vector< std::string > > > *arg2 = 0 ;
+  int *arg3 = (int *) 0 ;
   std::string result;
   
   arg1 = (std::vector< std::vector< std::string > > *)jarg1;
@@ -697,16 +698,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_writeTreeAndCreateXML(void * jarg1, void * 
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::vector< std::string > > > const & type is null", 0);
     return 0;
   } 
-  result = TreeizeRelD::writeTreeAndCreateXML((std::vector< std::vector< std::string > > const &)*arg1,(std::vector< std::vector< std::vector< std::string > > > const &)*arg2);
+  arg3 = (int *)jarg3; 
+  result = TreeizeRelD::writeTreeAndCreateXML((std::vector< std::vector< std::string > > const &)*arg1,(std::vector< std::vector< std::vector< std::string > > > const &)*arg2,arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_writeTreeAndCreateJSON(void * jarg1, void * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_writeTreeAndCreateJSON(void * jarg1, void * jarg2, int * jarg3) {
   char * jresult ;
   std::vector< std::vector< std::string > > *arg1 = 0 ;
   std::vector< std::vector< std::vector< std::string > > > *arg2 = 0 ;
+  int *arg3 = (int *) 0 ;
   std::string result;
   
   arg1 = (std::vector< std::vector< std::string > > *)jarg1;
@@ -719,7 +722,8 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_writeTreeAndCreateJSON(void * jarg1, void *
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::vector< std::vector< std::string > > > const & type is null", 0);
     return 0;
   } 
-  result = TreeizeRelD::writeTreeAndCreateJSON((std::vector< std::vector< std::string > > const &)*arg1,(std::vector< std::vector< std::vector< std::string > > > const &)*arg2);
+  arg3 = (int *)jarg3; 
+  result = TreeizeRelD::writeTreeAndCreateJSON((std::vector< std::vector< std::string > > const &)*arg1,(std::vector< std::vector< std::vector< std::string > > > const &)*arg2,arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }

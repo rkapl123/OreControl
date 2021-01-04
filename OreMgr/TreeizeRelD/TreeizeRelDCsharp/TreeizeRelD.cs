@@ -10,14 +10,14 @@
 
 
 public class TreeizeRelD {
-  public static string writeTreeAndCreateXML(StrTable control, StrTableCollection data) {
-    string ret = TreeizeRelDPINVOKE.writeTreeAndCreateXML(StrTable.getCPtr(control), StrTableCollection.getCPtr(data));
+  public static string writeTreeAndCreateXML(StrTable control, StrTableCollection data, ref int result) {
+    string ret = TreeizeRelDPINVOKE.writeTreeAndCreateXML(StrTable.getCPtr(control), StrTableCollection.getCPtr(data), ref result);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string writeTreeAndCreateJSON(StrTable control, StrTableCollection data) {
-    string ret = TreeizeRelDPINVOKE.writeTreeAndCreateJSON(StrTable.getCPtr(control), StrTableCollection.getCPtr(data));
+  public static string writeTreeAndCreateJSON(StrTable control, StrTableCollection data, ref int result) {
+    string ret = TreeizeRelDPINVOKE.writeTreeAndCreateJSON(StrTable.getCPtr(control), StrTableCollection.getCPtr(data), ref result);
     if (TreeizeRelDPINVOKE.SWIGPendingException.Pending) throw TreeizeRelDPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

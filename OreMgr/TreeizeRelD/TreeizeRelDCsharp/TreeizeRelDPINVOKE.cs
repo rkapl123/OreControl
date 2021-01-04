@@ -188,10 +188,10 @@ class TreeizeRelDPINVOKE {
 
 
   [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_writeTreeAndCreateXML")]
-  public static extern string writeTreeAndCreateXML(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern string writeTreeAndCreateXML(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, ref int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_writeTreeAndCreateJSON")]
-  public static extern string writeTreeAndCreateJSON(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern string writeTreeAndCreateJSON(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, ref int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("TreeizeRelD", EntryPoint="CSharp_StrVector_Clear")]
   public static extern void StrVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);

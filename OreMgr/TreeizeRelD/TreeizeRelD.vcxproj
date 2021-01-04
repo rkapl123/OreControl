@@ -42,7 +42,12 @@
     <ClInclude Include="treeizereld.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TreeizeSwig.i" />
+    <None Include="TreeizeSwig.i">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>TreeizeRelD</ProjectName>
@@ -77,13 +82,13 @@
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -154,6 +159,30 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">TreeizeRelD-$(qlCompilerTag)-x64-mt-s</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TreeizeRelD-$(qlCompilerTag)-mt</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TreeizeRelD-$(qlCompilerTag)-x64-mt</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -300,10 +329,11 @@
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
     <PreBuildEvent>
-      <Command> $(ProjectDir)\..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)\TreeizeRelDCsharp -o $(ProjectDir)\treeize_wrapper.cpp  $(ProjectDir)\TreeizeSwig.i </Command>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)TreeizeRelDCsharp -o treeize_wrapper.cpp $(ProjectDir)TreeizeRelD.i</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>swig prerun</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -349,10 +379,11 @@
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
     <PreBuildEvent>
-      <Command> $(ProjectDir)\..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)\TreeizeRelDCsharp -o $(ProjectDir)\treeize_wrapper.cpp  $(ProjectDir)\TreeizeSwig.i </Command>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)TreeizeRelDCsharp -o treeize_wrapper.cpp $(ProjectDir)TreeizeRelD.i</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>swig prerun</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
@@ -399,6 +430,9 @@
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)TreeizeRelDCsharp -o treeize_wrapper.cpp $(ProjectDir)TreeizeRelD.i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">
     <ClCompile>
@@ -444,6 +478,9 @@
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)TreeizeRelDCsharp -o treeize_wrapper.cpp $(ProjectDir)TreeizeRelD.i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
     <ClCompile>
@@ -487,6 +524,9 @@
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)TreeizeRelDCsharp -o treeize_wrapper.cpp $(ProjectDir)TreeizeRelD.i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">
     <ClCompile>
@@ -530,6 +570,9 @@
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\..\..\swigwin\swig.exe -v -csharp -c++ -outdir $(ProjectDir)TreeizeRelDCsharp -o treeize_wrapper.cpp $(ProjectDir)TreeizeRelD.i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

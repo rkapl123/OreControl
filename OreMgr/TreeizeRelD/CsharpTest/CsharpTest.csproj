@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -73,7 +74,14 @@
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>if EXIST $(ProjectDir)..\lib\TreeizeRelD--x64-mt.dll copy $(ProjectDir)..\lib\TreeizeRelD--x64-mt.dll $(TargetDir)TreeizeRelD.dll
-if EXIST $(ProjectDir)..\lib\TreeizeRelD--x32-mt.dll copy $(ProjectDir)..\lib\TreeizeRelD--x32-mt.dll $(TargetDir)TreeizeRelD.dll</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if EXIST $(ProjectDir)..\lib\TreeizeRelD--x64-mt.dll copy $(ProjectDir)..\lib\TreeizeRelD--x64-mt.dll $(TargetDir)TreeizeRelD.dll
+if EXIST $(ProjectDir)..\lib\TreeizeRelD--x32-mt.dll copy $(ProjectDir)..\lib\TreeizeRelD--x32-mt.dll $(TargetDir)TreeizeRelD.dll
+if EXIST $(ProjectDir)..\lib\TreeizeRelD--x64-mt-gd.dll copy $(ProjectDir)..\lib\TreeizeRelD--x64-mt-gd.dll $(TargetDir)TreeizeRelD.dll
+if EXIST $(ProjectDir)..\lib\TreeizeRelD--x32-mt-gd.dll copy $(ProjectDir)..\lib\TreeizeRelD--x32-mt-gd.dll $(TargetDir)TreeizeRelD.dll
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

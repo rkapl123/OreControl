@@ -3,6 +3,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/ptr_container/ptr_map.hpp>
 #include <boost/log/common.hpp>
 #include <boost/log/sources/logger.hpp>
 #include <boost/foreach.hpp>
@@ -10,18 +11,19 @@
 #include <map>
 #include <exception>
 
+
 namespace pt = boost::property_tree;
 namespace TreeizeRelD {
 
-    // create flat XML (without indentation and whitespace) from tables given in table data (header and data) and table control (relations and tags)
-    // throws error message in case of problems
+    // returns a flat XML (without indentationand whitespace) created from tables given in table collection data(headerand data) using table control for definition(relations and tags).
+    // result = 1 in case of problems(the error message / exception is returned instead of the XML)
     std::string writeTreeAndCreateXML(const std::vector<std::vector<std::string>>& control,
-        const std::vector<std::vector<std::vector<std::string>>>& data);
+        const std::vector<std::vector<std::vector<std::string>>>& data, int *result);
 
-    // create flat (not indented) Json from tables given in table data (header and data) and table control (relations and tags)
-    // throws error message in case of problems
+    // returns a flat JSON (without indentationand whitespace) created from tables given in table collection data(headerand data) using table control for definition(relations and tags).
+    // result = 1 in case of problems(the error message / exception is returned instead of the JSON)
     std::string writeTreeAndCreateJSON(const std::vector<std::vector<std::string>>& control,
-        const std::vector<std::vector<std::vector<std::string>>>& data);
+        const std::vector<std::vector<std::vector<std::string>>>& data, int *result);
 
     // write a relation tree of tables given in table data (header and data) and table control (relations and tags) 
     // into property tree ptTree
@@ -30,13 +32,13 @@ namespace TreeizeRelD {
         pt::ptree &ptTree);
 
     // create flat XML (without indentation and whitespace) from previously (with writeTree) created ptTree
-    std::string createXML(const pt::ptree& ptTree, std::string& resultString);
+    std::string createXML(pt::ptree &ptTree, std::string& resultString);
 
     // create Json from previously (with writeTree) created  ptTree
-    std::string createJson(const pt::ptree& ptTree, std::string& resultString);
+    std::string createJson(pt::ptree &ptTree, std::string& resultString);
 
     // helper function to retrieve info from definition Row in control table to the elements of the row
-    void getRelInfo(const std::vector<std::string> &defRow,
+    void getRelationInfo(const std::vector<std::string> &defRow,
         std::string &parentNode, std::string &subnodeOfParent,
         std::string &primaryKey, std::string &foreignKey, std::string &rootElemRec);
 
