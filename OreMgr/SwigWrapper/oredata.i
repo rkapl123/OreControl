@@ -1,4 +1,0 @@
-namespace ore {
-namespace data {
-}
-}

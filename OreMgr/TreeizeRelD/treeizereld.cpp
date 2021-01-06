@@ -1,56 +1,57 @@
 #include <treeizereld.hpp>
 #include <iostream>
 
-// not in header or we get in trouble with SWIG wrapper generation
+// lookup for parent Table Tree REFERENCES (therefore ptr_map), key = row's foreign key into parent (= parent's primary key). For the root table this is "/"
+// Reason: boost property tree doesn't have the possibility to iterate through entries spanning the tree.
 typedef boost::ptr_map<std::string, pt::ptree> treeMap;
-// global 
-std::map<std::string, treeMap> parentTableTreeLU;
+std::map<std::string, treeMap> parentTableTrees;
 
 // create flat XML (without indentation and whitespace) from tables given in table data (header and data) and table control (relations and tags)
 // throws error message in case of problems
 std::string TreeizeRelD::writeTreeAndCreateXML(const std::vector<std::vector<std::string>>& control,
-    const std::vector<std::vector<std::vector<std::string>>>& data, int *result) {
-
+    const std::vector<std::vector<std::vector<std::string>>>& data, int *result) 
+{
+    std::string resultString;
     pt::ptree propTree;
     std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
+    *result = 0;
     if (returnStr != "") {
         *result = 1;
         return returnStr;
     }
-    std::string resultString;
     std::cout << "createXML..\n";
     returnStr = TreeizeRelD::createXML(propTree, resultString);
     if (returnStr != "") {
         *result = 1;
         return returnStr;
     }
-    *result = 0;
     return resultString;
 }
 
 // create flat (not indented) Json from tables given in table data (header and data) and table control (relations and tags)
 // throws error message in case of problems
 std::string TreeizeRelD::writeTreeAndCreateJSON(const std::vector<std::vector<std::string>>& control,
-    const std::vector<std::vector<std::vector<std::string>>>& data, int *result) {
-
+    const std::vector<std::vector<std::vector<std::string>>>& data, int *result) 
+{
+    std::string resultString;
     pt::ptree propTree;
     std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
+    *result = 0;
     if (returnStr != "") {
         *result = 1;
         return returnStr;
     }
-    std::string resultString;
     returnStr = TreeizeRelD::createJson(propTree, resultString);
     if (returnStr != "") {
         *result = 1;
         return returnStr;
     }
-    *result = 0;
     return resultString;
 }
 
 // create flat XML (without indentation and whitespace) from previously (with writeTree) created ptTree
-std::string TreeizeRelD::createXML(pt::ptree &ptTree, std::string &resultString) {
+std::string TreeizeRelD::createXML(pt::ptree &ptTree, std::string &resultString) 
+{
     std::ostringstream oss;
     try {
         pt::xml_writer_settings<pt::ptree::key_type> settings(' ', 0);
@@ -64,7 +65,8 @@ std::string TreeizeRelD::createXML(pt::ptree &ptTree, std::string &resultString)
 }
 
 // create Json from previously (with writeTree) created  ptTree
-std::string TreeizeRelD::createJson(pt::ptree &ptTree, std::string &resultString) {
+std::string TreeizeRelD::createJson(pt::ptree &ptTree, std::string &resultString) 
+{
     std::ostringstream oss;
     try {
         pt::json_parser::write_json(oss, ptTree, false);        
@@ -75,43 +77,45 @@ std::string TreeizeRelD::createJson(pt::ptree &ptTree, std::string &resultString
     return "";
 }
 
-// write a relation tree of tables given in table data (header and data) and table control (relations and tags) 
+// write a relation property tree of all tables given in data (first row table header, rest: table data) using definitions from control (relation information and nodes) 
 // into property tree ptTree
 std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &control,
                    const std::vector<std::vector<std::vector<std::string>>> &data,
-                   pt::ptree &ptTree) {
+                   pt::ptree &ptTree)
+{
 
-    std::map<std::string, pt::ptree> tables;
-    std::map<std::string, std::string> primKeys;
-    std::map<std::string, std::string> rootNodes;
-    std::map<std::string, std::string> subNodes;
-    std::map<std::string, bool> parentRecordEmpty;
+    std::map<std::string, pt::ptree> tables; // tree representation of all records grouped by their foreign key (key of map). this is created by function writeTable
+    std::map<std::string, std::string> primKeys; // primary keys lookup (having the parentnode name + the own root element recordnode name as lookup values)
+    std::map<std::string, std::string> rootNodes; // root node lookup (same key as primary keys lookup)
+    std::map<std::string, std::string> subNodes; // subnode lookup (same key as primary keys lookup)
+    std::map<std::string, bool> parentRecordEmpty; // lookup map of flags whether subrecord node (placeholder!) in parent record node was left empty (needs to be removed in the end)
 
+    // sanity checks on control table
     if (control.size() != data.size()) { return "(writeTree): control table rows need to be same as amount of data tables passed !"; }
     if (control[0].size() != 5) { return "(writeTree): control table columns need to be 5 !"; }
     
     // first pass: write all tables separately into tableDic, containing record nodes with row data in it
-    std::string parentNode; std::string subnodeOfParent; 
-    std::string primaryKey; std::string foreignKey; std::string rootElemRec;
-    // get control information from control table 
-    for (size_t i = 0; i < control.size(); i++) {
-        // fetch table's relation info into parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec 
-        getRelationInfo(control[i], parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec);
+    // relation and node info variables, see getRelationInfo for details
+    std::string parentNode; std::string subnodeOfParent; std::string primaryKeyName; std::string foreignKeyName; std::string rootElemRec;
+    
+    for (size_t i = 0; i < control.size(); i++) { // get control information for each table 
+        // fetch table's control information into relation and node info variables
+        getRelationInfo(control[i], parentNode, subnodeOfParent, primaryKeyName, foreignKeyName, rootElemRec);
         // minimum requirements: parentNode and rootElemRec must exist
         if (parentNode == "") { return "(writeTree): parentNode (control table column 1) must not be empty !"; }
         if (rootElemRec == "") { return "(writeTree): rootElemRec (control table column 5) must not be empty !"; }
-        // check for special case when rootElemRec is primary key->forbidden !!
-        if (rootElemRec == primaryKey) { return "(writeTree): rootElemRec must not be identical to primary key (would lead to mixed content elements) !"; }
+        // check for special case when rootElemRec is primary key, which is forbidden as it leads to mixed content elements !!
+        if (rootElemRec == primaryKeyName) { return "(writeTree): rootElemRec must not be identical to primary key (would lead to mixed content elements) !"; }
         // construct lookup key from sub table's parent node, optionally subnode of parent where subtable is to be placed and root element of record in subtable
         std::string tableLookup = parentNode + (subnodeOfParent != "" ? "." + subnodeOfParent : "") + "." + rootElemRec;
         // (FK) map of ptree segments (for each common FK collect all records, if no FK given, just collect records under "/" -> root table)
         pt::ptree ptFKTable;
-        std::string errmsg = writeTable(ptFKTable, data[i], foreignKey, rootElemRec);
+        std::string errmsg = writeTable(ptFKTable, data[i], foreignKeyName, rootElemRec);
         if (errmsg != "") { return errmsg; }
         // add ptree representation of subtable to tables lookup
         tables[tableLookup] = ptFKTable;
         // add primary key to primary keys lookup (having the parentnode name + the own root element recordnode name as lookup values)
-        primKeys[tableLookup] = primaryKey;
+        primKeys[tableLookup] = primaryKeyName;
         // add parentnode name to rootnodes lookup (having the parentnode name + the own root element recordnode name as lookup values)
         rootNodes[tableLookup] = parentNode;
         // add subnode (if existing) to subnode lookup dictionary. insert "." in front to add to the rootNodes path in lookupNode
@@ -119,16 +123,16 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
     }
     
     // second pass: collect constructed nodes. assumption: parent tables are inserted BEFORE subtables
-    for (size_t i = 0; i < control.size(); i++) {
-        getRelationInfo(control[i], parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec);
+    for (size_t i = 0; i < control.size(); i++) { // get control information for each table 
+        getRelationInfo(control[i], parentNode, subnodeOfParent, primaryKeyName, foreignKeyName, rootElemRec);
         std::string subRootNode = parentNode + (subnodeOfParent != "" ? "." + subnodeOfParent : "");
         std::string tableLookup = subRootNode + "." + rootElemRec;
-        // simply add records if no foreignkey name exists (usually the top (root) table)
-        if (foreignKey == "") {
+        // simply add records if no foreign key name exists (usually the top (root) table)
+        if (foreignKeyName == "") {
             for (std::pair<std::string, pt::ptree> && keyPair : tables[tableLookup]) {
                 // add foreign key collection of table to final tree (ptTree.add_child) and add returned reference to this added collection in parent Table Tree lookup [keyPair.first = rows foreign key] 
                 // Reason: boost property tree doesn't have the possibility to iterate through entries spanning the tree.
-                parentTableTreeLU[subRootNode].insert(keyPair.first, &ptTree.add_child(subRootNode, keyPair.second));
+                parentTableTrees[subRootNode].insert(keyPair.first, &ptTree.add_child(subRootNode, keyPair.second));
             }
         } else {
             // check whether any parent records (root nodes) could be found (if not, indicates an error)
@@ -150,7 +154,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                 bool foundPrimaryKey = false;
 
                 // iterate through all parent key record collections referred to by subtables parentNode (rootnode + optional subnode)
-                for (treeMap::value_type && parentKeysPair : parentTableTreeLU.find(lookupNode)->second) {
+                for (treeMap::value_type && parentKeysPair : parentTableTrees.find(lookupNode)->second) {
                     // iterate through all records (ptrees) in key collection
                     for (pt::ptree::iterator parentRecPair = parentKeysPair.second->begin(); parentRecPair != parentKeysPair.second->end(); ++parentRecPair) {
                         // important here: assign a reference to parentRecPtree (pointer!), otherwise a copy is created!
@@ -181,7 +185,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                                     pt::ptree::iterator FKplaceholder = parentRecPtree.to_iterator(parentRecPair->second.find(subnodeFRec));
                                     parentRecPtree.insert(FKplaceholder, foreignRecordset.begin(), foreignRecordset.end());
                                     // pass reference to inserted tree for parentTableTree lookup
-                                    parentTableTreeLU[subRootNode].insert(rowsFK, &parentRecPair->second.get_child(subnodeFRec));
+                                    parentTableTrees[subRootNode].insert(rowsFK, &parentRecPair->second.get_child(subnodeFRec));
                                     parentRecPtree.erase(FKplaceholder);
                                 }
                                 catch (std::exception ex) {
@@ -191,9 +195,10 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                             }
                             else {
                                 // pass reference to inserted tree for parentTableTree lookup
-                                parentTableTreeLU[subRootNode].insert(rowsFK, &parentRecPtree.put_child(subnodeOfParent, foreignRecordset));
+                                parentTableTrees[subRootNode].insert(rowsFK, &parentRecPtree.put_child(subnodeOfParent, foreignRecordset));
                             }
-                            break; 
+                            // don't leave loop here as there might be empty parent subtable records (placeholders) afterwards, which wouldn't get removed then.
+                            //break; 
                         }
                     }
                 }
@@ -205,7 +210,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                 }
             }
             // after inserting all foreign key collections in parent, remove any left (empty) foreign key placeholders in parent records
-            for (treeMap::value_type&& parentKeysPair : parentTableTreeLU.find(lookupNode)->second) {
+            for (treeMap::value_type&& parentKeysPair : parentTableTrees.find(lookupNode)->second) {
                 // iterate through all records (ptrees) in key collection
                 for (pt::ptree::iterator parentRecPair = parentKeysPair.second->begin(); parentRecPair != parentKeysPair.second->end(); ++parentRecPair) {
                     pt::ptree parentsPKNode = parentRecPair->second.get_child(primKeys[parentNode]);
@@ -223,34 +228,36 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
     return "";
 }
 
-// helper function to retrieve relation information from definition Row (given in defRow) in control table:
-// parent node of table .. parentNode, 
-// subnodeOfParent .. (optional) subnode of parent where subtable is to be placed, 
-// primaryKey .. primary key of table, 
-// foreignKey .. foreign key (only in sub tables), 
-// rootElemRec ..root element of records
+// helper function to retrieve relation and node information from definition Row (given in defRow) in control table:
+// parentNode .. parent node name of table data (records, being placed inside rootElemRec nodes),
+// subnodeOfParent .. optional subnode name inside parent where table data is to be placed (otherwise records are placed directly under parentNode), 
+// primaryKeyName .. primary key name of table, 
+// foreignKeyName .. foreign key name (only in sub tables), 
+// rootElemRec ..root element node name of records
 void TreeizeRelD::getRelationInfo(const std::vector<std::string> &defRow,
     std::string &parentNode, std::string &subnodeOfParent,
-    std::string &primaryKey, std::string &foreignKey, std::string &rootElemRec) {
+    std::string &primaryKeyName, std::string & foreignKeyName, std::string &rootElemRec) 
+{
     parentNode = defRow[0];
     subnodeOfParent = defRow[1];
-    primaryKey = defRow[2];
-    foreignKey = defRow[3];
+    primaryKeyName = defRow[2];
+    foreignKeyName = defRow[3];
     rootElemRec = defRow[4];
 }
 
-// write a subtable given in table into property tree ptTable
-// if foreignKey is given, matches of foreignKey with header fields (first row of table) 
+// write a subtable given in table into property tree ptFKTable
+// if foreignKeyName is given (non empty), matches of foreignKeyName with a header field (first row of table) 
 // are used to group all data with the same foreign key beneath that foreign key value
 std::string TreeizeRelD::writeTable(pt::ptree &ptFKTable, const std::vector<std::vector<std::string>> &table,
-    std::string foreignKey, std::string rootElemRec) {
+    std::string foreignKeyName, std::string rootElemRec) 
+{
     // iterate data rows, first row is header
     for (size_t i = 1; i < table.size(); i++) {
         // tree of the record in the (sub) table
         pt::ptree ptRecord;
         // produce the record, getting primary key / foreign key values along the way
         std::string rowsFK;
-        std::string errmsg = writeRecord(ptRecord, table[i], table[0], foreignKey, rowsFK);
+        std::string errmsg = writeRecord(ptRecord, table[i], table[0], foreignKeyName, rowsFK);
         if (errmsg != "") { return errmsg; }
         // if foreign key was not found (being in a parent table), use "/" to create foreign key "less" records
         std::string rowsFKExt = (rowsFK == "" ? "/" : rowsFK);
@@ -280,8 +287,8 @@ std::string TreeizeRelD::writeTable(pt::ptree &ptFKTable, const std::vector<std:
 // if foreignKey matches a header field, the corresponding value is returned in rowsFK 
 // and the column value is ignored for inclusion in the property tree
 std::string TreeizeRelD::writeRecord(pt::ptree &ptRecord, const std::vector<std::string> &recordRow,
-    const std::vector<std::string> &header, std::string foreignKey, std::string &rowsFK) {
-
+    const std::vector<std::string> &header, std::string foreignKey, std::string &rowsFK) 
+{
     rowsFK = "";
     // traverse columns of record
     for (size_t i = 0; i < recordRow.size(); i++) {
