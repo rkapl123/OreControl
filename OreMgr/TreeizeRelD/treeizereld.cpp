@@ -1,17 +1,13 @@
 #include <treeizereld.hpp>
 #include <iostream>
 
-// lookup for parent Table Tree REFERENCES (therefore ptr_map), key = row's foreign key into parent (= parent's primary key). For the root table this is "/"
-// Reason: boost property tree doesn't have the possibility to iterate through entries spanning the tree.
-typedef boost::ptr_map<std::string, pt::ptree> treeMap;
-std::map<std::string, treeMap> parentTableTrees;
-
 // create flat XML (without indentation and whitespace) from tables given in table data (header and data) and table control (relations and tags)
 // throws error message in case of problems
 std::string TreeizeRelD::writeTreeAndCreateXML(const std::vector<std::vector<std::string>>& control,
     const std::vector<std::vector<std::vector<std::string>>>& data, int *result) 
 {
     std::string resultString;
+
     pt::ptree propTree;
     std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
     *result = 0;
@@ -19,7 +15,6 @@ std::string TreeizeRelD::writeTreeAndCreateXML(const std::vector<std::vector<std
         *result = 1;
         return returnStr;
     }
-    std::cout << "createXML..\n";
     returnStr = TreeizeRelD::createXML(propTree, resultString);
     if (returnStr != "") {
         *result = 1;
@@ -34,7 +29,7 @@ std::string TreeizeRelD::writeTreeAndCreateJSON(const std::vector<std::vector<st
     const std::vector<std::vector<std::vector<std::string>>>& data, int *result) 
 {
     std::string resultString;
-    pt::ptree propTree;
+    pt::ptree& propTree = pt::ptree();
     std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
     *result = 0;
     if (returnStr != "") {
@@ -50,7 +45,7 @@ std::string TreeizeRelD::writeTreeAndCreateJSON(const std::vector<std::vector<st
 }
 
 // create flat XML (without indentation and whitespace) from previously (with writeTree) created ptTree
-std::string TreeizeRelD::createXML(pt::ptree &ptTree, std::string &resultString) 
+std::string TreeizeRelD::createXML(pt::ptree & ptTree, std::string &resultString) 
 {
     std::ostringstream oss;
     try {
@@ -65,7 +60,7 @@ std::string TreeizeRelD::createXML(pt::ptree &ptTree, std::string &resultString)
 }
 
 // create Json from previously (with writeTree) created  ptTree
-std::string TreeizeRelD::createJson(pt::ptree &ptTree, std::string &resultString) 
+std::string TreeizeRelD::createJson(pt::ptree & ptTree, std::string &resultString) 
 {
     std::ostringstream oss;
     try {
@@ -81,9 +76,12 @@ std::string TreeizeRelD::createJson(pt::ptree &ptTree, std::string &resultString
 // into property tree ptTree
 std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &control,
                    const std::vector<std::vector<std::vector<std::string>>> &data,
-                   pt::ptree &ptTree)
+                   pt::ptree & ptTree)
 {
-
+    // lookup for parent Table Tree REFERENCES, key = row's foreign key into parent (= parent's primary key). For the root table this is "/"
+    // Reason: boost property tree doesn't have the possibility to iterate through entries spanning the tree.
+    typedef std::map<std::string, pt::ptree*> treeMap;
+    std::map<std::string, treeMap> parentTableTrees;
     std::map<std::string, pt::ptree> tables; // tree representation of all records grouped by their foreign key (key of map). this is created by function writeTable
     std::map<std::string, std::string> primKeys; // primary keys lookup (having the parentnode name + the own root element recordnode name as lookup values)
     std::map<std::string, std::string> rootNodes; // root node lookup (same key as primary keys lookup)
@@ -132,7 +130,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
             for (std::pair<std::string, pt::ptree> && keyPair : tables[tableLookup]) {
                 // add foreign key collection of table to final tree (ptTree.add_child) and add returned reference to this added collection in parent Table Tree lookup [keyPair.first = rows foreign key] 
                 // Reason: boost property tree doesn't have the possibility to iterate through entries spanning the tree.
-                parentTableTrees[subRootNode].insert(keyPair.first, &ptTree.add_child(subRootNode, keyPair.second));
+                parentTableTrees[subRootNode].insert(std::make_pair(keyPair.first, &ptTree.add_child(subRootNode, keyPair.second)));
             }
         } else {
             // check whether any parent records (root nodes) could be found (if not, indicates an error)
@@ -154,7 +152,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                 bool foundPrimaryKey = false;
 
                 // iterate through all parent key record collections referred to by subtables parentNode (rootnode + optional subnode)
-                for (treeMap::value_type && parentKeysPair : parentTableTrees.find(lookupNode)->second) {
+                for (std::pair<std::string, pt::ptree*> && parentKeysPair : parentTableTrees.find(lookupNode)->second) {
                     // iterate through all records (ptrees) in key collection
                     for (pt::ptree::iterator parentRecPair = parentKeysPair.second->begin(); parentRecPair != parentKeysPair.second->end(); ++parentRecPair) {
                         // important here: assign a reference to parentRecPtree (pointer!), otherwise a copy is created!
@@ -185,7 +183,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                                     pt::ptree::iterator FKplaceholder = parentRecPtree.to_iterator(parentRecPair->second.find(subnodeFRec));
                                     parentRecPtree.insert(FKplaceholder, foreignRecordset.begin(), foreignRecordset.end());
                                     // pass reference to inserted tree for parentTableTree lookup
-                                    parentTableTrees[subRootNode].insert(rowsFK, &parentRecPair->second.get_child(subnodeFRec));
+                                    parentTableTrees[subRootNode].insert(std::make_pair(rowsFK, &parentRecPair->second.get_child(subnodeFRec)));
                                     parentRecPtree.erase(FKplaceholder);
                                 }
                                 catch (std::exception ex) {
@@ -195,22 +193,20 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                             }
                             else {
                                 // pass reference to inserted tree for parentTableTree lookup
-                                parentTableTrees[subRootNode].insert(rowsFK, &parentRecPtree.put_child(subnodeOfParent, foreignRecordset));
+                                parentTableTrees[subRootNode].insert(std::make_pair(rowsFK, &parentRecPtree.put_child(subnodeOfParent, foreignRecordset)));
                             }
                             // don't leave loop here as there might be empty parent subtable records (placeholders) afterwards, which wouldn't get removed then.
                             //break; 
                         }
                     }
                 }
-                // add reference to inserted tree to rowsFK collection in parent Table Tree lookup [key = rows foreign key] 
-                
                 // after having iterated all records of parent tables, check if no primary key has been found
                 if (!foundPrimaryKey) {
                     return "(writeTree): couldn't find any record in parent to insert record with foreign key '" + rowsFK  + "' into !";
                 }
             }
             // after inserting all foreign key collections in parent, remove any left (empty) foreign key placeholders in parent records
-            for (treeMap::value_type&& parentKeysPair : parentTableTrees.find(lookupNode)->second) {
+            for (std::pair<std::string, pt::ptree*> && parentKeysPair : parentTableTrees.find(lookupNode)->second) {
                 // iterate through all records (ptrees) in key collection
                 for (pt::ptree::iterator parentRecPair = parentKeysPair.second->begin(); parentRecPair != parentKeysPair.second->end(); ++parentRecPair) {
                     pt::ptree parentsPKNode = parentRecPair->second.get_child(primKeys[parentNode]);

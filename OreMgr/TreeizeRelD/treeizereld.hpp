@@ -29,13 +29,13 @@ namespace TreeizeRelD {
     // into property tree ptTree
     std::string writeTree(const std::vector<std::vector<std::string>> &control,
         const std::vector<std::vector<std::vector<std::string>>> &data,
-        pt::ptree &ptTree);
+        pt::ptree& ptTree);
 
     // create flat XML (without indentation and whitespace) from previously (with writeTree) created ptTree
-    std::string createXML(pt::ptree &ptTree, std::string& resultString);
+    std::string createXML(pt::ptree & ptTree, std::string& resultString);
 
     // create Json from previously (with writeTree) created  ptTree
-    std::string createJson(pt::ptree &ptTree, std::string& resultString);
+    std::string createJson(pt::ptree & ptTree, std::string& resultString);
 
     // helper function to retrieve info from definition Row in control table to the elements of the row
     void getRelationInfo(const std::vector<std::string> &defRow,
