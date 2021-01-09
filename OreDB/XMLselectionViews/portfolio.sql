@@ -74,7 +74,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				FOR XML PATH (''), TYPE) END FloatingLegData,
 				CASE WHEN ld.LegType = 'Cashflow' THEN 
 				(SELECT 
-					(SELECT c.StartDate [@Date], c.Amount [data()]
+					(SELECT c.StartDate [@date], c.Amount [data()]
 					FROM PortfolioCashflowDataCashflow c WHERE c.LegDataId = ld.Id ORDER by SeqId
 					FOR XML PATH ('Amount'), TYPE) Cashflow
 				FOR XML PATH (''), TYPE) END CashflowData,
@@ -87,7 +87,7 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 					li.CPILegBaseCPI BaseCPI, li.CPILegObservationLag ObservationLag, li.CPILegInterpolated Interpolated
 				FROM PortfolioLegData li WHERE li.Id = ld.Id
 				FOR XML PATH (''), TYPE) END CPILegData,
-				CASE WHEN ld.LegType = 'YY' THEN
+				CASE WHEN ld.LegType = 'YY' THEN 
 				(SELECT
 					li.YYLegIndexName [Index], li.YYLegFixingDays FixingDays, li.YYLegObservationLag ObservationLag, li.YYLegInterpolated Interpolated,
 					(SELECT r.StartDate [@startDate], r.Rate [data()]
@@ -97,7 +97,8 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 				FOR XML PATH (''), TYPE) END YYLegData
 			FROM PortfolioLegData ld WHERE ld.TradeId = t.id
 			FOR XML PATH ('LegData'), TYPE)
-		FOR XML PATH ('SwapData'), TYPE),
+		FROM PortfolioTrades sd WHERE sd.id = t.id
+		FOR XML PATH (''), TYPE) SwapData,
 		(SELECT
 			(SELECT sd.OptionDataLongShort LongShort, sd.OptionDataOptionType OptionType, sd.OptionDataStyle Style, sd.OptionDataSettlement Settlement, sd.OptionDataPayOffAtExpiry PayOffAtExpiry,
 				(SELECT sd.OptionDataPremiumAmount Amount, sd.OptionDataPremiumCurrency Currency, sd.OptionDataPremiumPayDate [Date]
@@ -180,6 +181,9 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 		(SELECT fd.ValueDate, fd.BoughtCurrency, fd.BoughtAmount, fd.SoldCurrency, fd.SoldAmount
 		FROM PortfolioFxForwardData fd WHERE fd.TradeId = t.id
 		FOR XML PATH (''), TYPE) FxForwardData,
+		(SELECT fd.NearDate, fd.NearBoughtCurrency, fd.NearBoughtAmount, fd.NearSoldCurrency, fd.NearSoldAmount, fd.FarDate, fd.FarBoughtAmount, fd.FarSoldAmount
+		FROM PortfolioFxSwapData fd WHERE fd.TradeId = t.id
+		FOR XML PATH (''), TYPE) FxSwapData,
 		(SELECT
 			(SELECT fo.OptionDataLongShort LongShort, fo.OptionDataOptionType OptionType, fo.OptionDataStyle Style, fo.OptionDataSettlement Settlement, fo.OptionDataPayOffAtExpiry PayOffAtExpiry,
 				(SELECT fo.OptionDataPremiumAmount Amount, fo.OptionDataPremiumCurrency Currency, fo.OptionDataPremiumPayDate [Date]
@@ -574,3 +578,4 @@ SELECT DISTINCT pgo.GroupingId, (SELECT
 	FOR XML PATH ('Trade'), TYPE)
 FOR XML PATH ('Portfolio')) XMLData
 FROM PortfolioTradeGroupingIds pgo
+GO

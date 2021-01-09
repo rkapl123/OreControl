@@ -20,6 +20,7 @@ call %runscript% Tables\ConfigTables.sql
 if "%databasetype%" == "MSSQL" (
 	call %runscript% XMLselectionViews\netting.sql
 	call %runscript% XMLselectionViews\portfolio.sql
+        call %runscript% Tables\MdatMarketDataDefView.sql
 )
 
 call %runscript% Data\ore_types.sql

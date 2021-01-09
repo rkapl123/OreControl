@@ -597,6 +597,27 @@ ALTER TABLE PortfolioFxForwardData ADD CONSTRAINT FK_PortfolioFxForwardData_Sold
 REFERENCES TypesCurrencyCode (value);
 
 
+CREATE TABLE PortfolioFxSwapData (
+	TradeId varchar(180) not null,
+	NearDate date,
+	NearBoughtCurrency varchar(7),
+	NearBoughtAmount decimal(18,3),
+	NearSoldCurrency varchar(7),
+	NearSoldAmount decimal(18,3),
+	FarDate date,
+	FarSoldAmount decimal(18,3),
+	FarBoughtAmount decimal(18,3)
+CONSTRAINT PK_PortfolioFxSwapData PRIMARY KEY CLUSTERED (
+	TradeId ASC
+));
+ALTER TABLE PortfolioFxSwapData ADD CONSTRAINT FK_PortfolioFxSwapData_TradeId FOREIGN KEY(TradeId)
+REFERENCES PortfolioTrades (Id);
+ALTER TABLE PortfolioFxSwapData ADD CONSTRAINT FK_PortfolioFxSwapData_NearBoughtCurrency FOREIGN KEY(NearBoughtCurrency)
+REFERENCES TypesCurrencyCode (value);
+ALTER TABLE PortfolioFxSwapData ADD CONSTRAINT FK_PortfolioFxSwapData_NearSoldCurrency FOREIGN KEY(NearSoldCurrency)
+REFERENCES TypesCurrencyCode (value);
+
+
 CREATE TABLE PortfolioCapFloorData (
 	TradeId varchar(180) not null,
 	LongShort varchar(7),

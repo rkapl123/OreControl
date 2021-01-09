@@ -106,3 +106,8 @@ OREDB
 SwigWrapper
 /OreAddin/*.xlsm
 /OreMgr/TreeizeRelD/nestedRelTree.xml
+/OreService/Win32
+/OreService/bin
+/OreService/obj
+/OreService/SetUnmanagedCodeDebugging.docx
+TestResults

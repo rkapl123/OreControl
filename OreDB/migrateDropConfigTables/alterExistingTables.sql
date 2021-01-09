@@ -57,3 +57,7 @@ CONSTRAINT PK_OreConfigurations PRIMARY KEY CLUSTERED (
 ));
 ALTER TABLE OreConfigurations ADD CONSTRAINT FK_OreConfigurations_ConfigurationType FOREIGN KEY(ConfigurationType)
 REFERENCES TypesConfigurationTypes (value);
+ALTER TABLE [dbo].ResultsFlows ADD AccrualStartDate datetime NULL;
+ALTER TABLE [dbo].ResultsFlows ADD AccrualEndDate datetime NULL;
+ALTER TABLE [dbo].ResultsFlows ADD AccruedAmount [decimal](18, 4) NULL;
+ALTER TABLE [dbo].ResultsNPV ADD NotionalCurrency varchar(3) NULL;

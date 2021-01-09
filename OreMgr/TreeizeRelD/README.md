@@ -1,6 +1,4 @@
-# ORE Mgr
-
-## TreeizeRelD (Treeize Relational Data)
+# TreeizeRelD (Treeize Relational Data)
 
 TreeizeRelD was inspired by a javascript tool to treeize data (into JSON): [https://github.com/kwhitley/treeize](https://github.com/kwhitley/treeize) and is implemented using boost::property_tree.
 
@@ -32,7 +30,7 @@ For each table passed in data (data table), a row with parentNode, subnodeOfPare
 The data has to contain a header row, which denotes the path information of the desired structure using boost property tree notation (subtags are separated with dots, XML attributes are denoted using <xmlattr>.name). 
 XML Attribute notation is not allowed for `writeTreeAndCreateJSON` (leads to an exception being thrown)
 
-### Following XML representation of a simple 2 table nested structure is created with the control and data tables below:
+## Following XML representation of a simple 2 table nested structure is created with the control and data tables below:
 
 ```xml
 <root>
@@ -55,12 +53,12 @@ XML Attribute notation is not allowed for `writeTreeAndCreateJSON` (leads to an 
 </root>
 ```
 
-#### control table
+### control table
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
 root||a||rec|
 root.rec|||a|b|
 
-#### data tables
+### data tables
 table data[1] has child relation to table data[0] via FK/PK "a"
 
 - data[0]:
@@ -75,7 +73,7 @@ attB2|dataB2|dataA1|
 attB3|dataB3|dataA2|
 attB4|dataB4|dataA2|
 
-### Following XML representation of a 2 table nested structure with subrecords being placed under subnodes is created with the control and data tables below:
+## Following XML representation of a 2 table nested structure with subrecords being placed under subnodes is created with the control and data tables below:
 
 ```xml
 <root>
@@ -106,12 +104,12 @@ attB4|dataB4|dataA2|
 </root>
 ```
 
-#### control table
+### control table
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
 root||a||rec|
 root.rec|sub.subsub||a|b|
 
-#### data tables
+### data tables
 table data[1] has child relation to table data[0] via FK/PK "a"
 
 - data[0]:
@@ -127,7 +125,7 @@ attB3|dataB3|dataA2|
 attB4|dataB4|dataA2|
 
 
-### Following XML representation of a 3 table nested structure with subrecords being placed under subnodes is created with the control and data tables below:
+## Following XML representation of a 3 table nested structure with subrecords being placed under subnodes is created with the control and data tables below:
 
 ```xml
 <root>
@@ -174,13 +172,13 @@ attB4|dataB4|dataA2|
 </root>
 ```
 
-#### control table
+### control table
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
 root||a||rec|
 root.rec|sub|b|a|bRec|
 root.rec.sub.bRec|subsub||b|s|
 
-#### data tables
+### data tables
 subtable data[1] (being in node sub) has child relation to table data[0] via FK/PK "a"
 
 - data[0]:
@@ -204,3 +202,39 @@ s3|dataB2|
 s4|dataB2|
 s5|dataB2|
 s6|dataB3|
+
+
+## Example of C++ invocation from Testcases:
+
+```c++
+#include <TreeizeRelD.hpp>
+
+    // control table:                                   parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec
+    std::vector<std::vector<std::string>> control = { {"root",      "",              "a",        "",         "rec" },
+                                                      {"root.rec",  "sub",              "b",         "a",        "bRec" },
+                                                      {"root.rec.sub.bRec",  "subsub",              "",         "b",        "s" } };
+    // table data[1] has relation to table data[0] via FK/PK "a"
+    // table data[2] has relation to table data[1] via FK/PK "b"
+    std::vector<std::vector<std::vector<std::string>>> data = { { {"a",     "sub.bRec","c.d"},
+                                                                {  "dataA1","", "dataCD1"},
+                                                                {  "dataA2","", "dataCD2"}, },
+                                                                { {"b.<xmlattr>.attr","b",     "a",    "subsub.s"},
+                                                                {  "attB1",           "dataB1","dataA1", ""},
+                                                                {  "attB2",           "dataB2","dataA1", ""},
+                                                                {  "attB3",           "dataB3","dataA2", ""},
+                                                                {  "attB4",           "dataB4","dataA2", ""}, },
+                                                                { {"s","b"},
+                                                                {  "s1",           "dataB1" },
+                                                                {  "s2",           "dataB1" },
+                                                                {  "s3",           "dataB2" },
+                                                                {  "s4",           "dataB2" },
+                                                                {  "s5",           "dataB2" },
+                                                                {  "s6",           "dataB3" }, } };
+    int result;
+    std::string resultString = TreeizeRelD::writeTreeAndCreateXML(control, data, &result);
+    if (result == 0) {
+        cout << resultString;
+    } else {
+        cout << "Error: " << resultString;
+    }
+```
