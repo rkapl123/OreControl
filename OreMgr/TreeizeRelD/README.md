@@ -208,6 +208,7 @@ s6|dataB3|
 
 ```c++
 #include <TreeizeRelD.hpp>
+#include <iostream>
 
     // control table:                                   parentNode, subnodeOfParent, primaryKey, foreignKey, rootElemRec
     std::vector<std::vector<std::string>> control = { {"root",      "",              "a",        "",         "rec" },

@@ -7,7 +7,6 @@ std::string TreeizeRelD::writeTreeAndCreateXML(const std::vector<std::vector<std
     const std::vector<std::vector<std::vector<std::string>>>& data, int *result) 
 {
     std::string resultString;
-
     pt::ptree propTree;
     std::string returnStr = TreeizeRelD::writeTree(control, data, propTree);
     *result = 0;
@@ -123,6 +122,7 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
     // second pass: collect constructed nodes. assumption: parent tables are inserted BEFORE subtables
     for (size_t i = 0; i < control.size(); i++) { // get control information for each table 
         getRelationInfo(control[i], parentNode, subnodeOfParent, primaryKeyName, foreignKeyName, rootElemRec);
+        // construct lookup key for table's lookup information created in first pass
         std::string subRootNode = parentNode + (subnodeOfParent != "" ? "." + subnodeOfParent : "");
         std::string tableLookup = subRootNode + "." + rootElemRec;
         // simply add records if no foreign key name exists (usually the top (root) table)
@@ -135,11 +135,17 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
         } else {
             // check whether any parent records (root nodes) could be found (if not, indicates an error)
             std::string lookupNode = rootNodes[parentNode] + subNodes[parentNode];
+            if (rootNodes[parentNode] == "") {
+                return "(writeTree): no root node found in previous definitions for row with parentNode " + parentNode + " (parentNode needs to match the combination of rootNode (optional), subnodeOfParent and rootElemRec of parent table) !";
+            }
             if (!ptTree.get_child_optional(lookupNode)) {
-                return "(writeTree): no given rootnode of parent " + lookupNode + " was found in tree, check parentNodes header columns !";
+                return "(writeTree): no given rootnode of parent (parentNode=" + rootNodes[parentNode] + ", subNode=" + subNodes[parentNode] + ") was found in tree, check parentNodes header columns or definition row with parentNode " + parentNode + " !";
             }
             if (primKeys[parentNode] == "") {
-                return "(writeTree): no primary key of parent " + lookupNode + " given, check primaryKey column there !";
+                return "(writeTree): no primary key name in parent definition (parentNode=" + rootNodes[parentNode] + ", subNode=" + subNodes[parentNode] + ") given, check primaryKey column there !";
+            }
+            if (primKeys[parentNode] != foreignKeyName) {
+                return "(writeTree): primary key name in parent definition (parentNode=" + rootNodes[parentNode] + ", subNode=" + subNodes[parentNode] + ") not equal to foreignKeyName of definition row with parentNode " + parentNode + " !";
             }
             // property path of record including subnode: if there should be intermediate subnode(s) in the parent, insert them before root element of record
             std::string subnodeFRec = (subnodeOfParent == "" ? rootElemRec : subnodeOfParent + "." + rootElemRec);
@@ -168,6 +174,9 @@ std::string TreeizeRelD::writeTree(const std::vector<std::vector<std::string>> &
                             return "(writeTree): given subnode + root record element " + subnodeFRec + " was not found in header of parent table with parentnode " + rootNodes[parentNode] + " !";
                         }
                         std::string primKey = parentsPKNode.get_value<std::string>("");
+                        if (primKey == "") {
+                            return "(writeTree): primary key not found in parent table for table with rootNode " + parentNode + " (maybe a wrong header field name) !";
+                        }
                         // only initialize parentRecordEmpty items once
                         if (parentRecordEmpty.find(parentNode + primKey) == parentRecordEmpty.end()) {
                             parentRecordEmpty[parentNode + primKey] = true;
