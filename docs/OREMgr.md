@@ -58,25 +58,25 @@ XML Attribute notation is not allowed for `writeTreeAndCreateJSON` (leads to an 
 #### control table  
 
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
-root||a||rec|
-root.rec|||a|b|
+|root||a||rec|
+|root.rec|||a|b|
 
 #### data tables
 table data[1] has child relation to table data[0] via FK/PK "a"
 
 - data[0]:  
 
-a|b|c.d|
-dataA1||dataCD1|
-dataA2||dataCD2|
+|a|b|c.d|
+|dataA1||dataCD1|
+|dataA2||dataCD2|
 
 - data[1]:  
 
-b.<xmlattr>.attr|b|a|
-attB1|dataB1|dataA1|
-attB2|dataB2|dataA1|
-attB3|dataB3|dataA2|
-attB4|dataB4|dataA2|
+|b.<xmlattr>.attr|b|a|
+|attB1|dataB1|dataA1|
+|attB2|dataB2|dataA1|
+|attB3|dataB3|dataA2|
+|attB4|dataB4|dataA2|
 
 ### Following XML representation of a 2 table nested structure with subrecords being placed under subnodes is created with the control and data tables below:
 
@@ -112,25 +112,25 @@ attB4|dataB4|dataA2|
 #### control table  
 
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
-root||a||rec|
-root.rec|sub.subsub||a|b|
+|root||a||rec|
+|root.rec|sub.subsub||a|b|
 
 #### data tables
 table data[1] has child relation to table data[0] via FK/PK "a"
 
 - data[0]:  
 
-a|sub.subsub.b|c.d|
-dataA1||dataCD1|
-dataA2||dataCD2|
+|a|sub.subsub.b|c.d|
+|dataA1||dataCD1|
+|dataA2||dataCD2|
 
 - data[1]:  
 
-b.<xmlattr>.attr|b|a|
-attB1|dataB1|dataA1|
-attB2|dataB2|dataA1|
-attB3|dataB3|dataA2|
-attB4|dataB4|dataA2|
+|b.<xmlattr>.attr|b|a|
+|attB1|dataB1|dataA1|
+|attB2|dataB2|dataA1|
+|attB3|dataB3|dataA2|
+|attB4|dataB4|dataA2|
 
 
 ### Following XML representation of a 3 table nested structure with subrecords being placed under subnodes is created with the control and data tables below:
@@ -183,9 +183,9 @@ attB4|dataB4|dataA2|
 #### control table  
 
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
-root||a||rec|
-root.rec|sub|b|a|bRec|
-root.rec.sub.bRec|subsub||b|s|
+|root||a||rec|
+|root.rec|sub|b|a|bRec|
+|root.rec.sub.bRec|subsub||b|s|
 
 #### data tables  
 
@@ -193,25 +193,25 @@ subtable data[1] (being in node sub) has child relation to table data[0] via FK/
 
 - data[0]:  
 
-a|sub.bRec|c.d|
-dataA1||dataCD1|
-dataA2||dataCD2|
+|a|sub.bRec|c.d|
+|dataA1||dataCD1|
+|dataA2||dataCD2|
 
 subtable data[2] (being in node subsub) has child relation to table data[2] via FK/PK "b"
 - data[1]:  
 
-b.<xmlattr>.attr|b|a|subsub.s|
-attB1|dataB1|dataA1||
-attB2|dataB2|dataA1||
-attB3|dataB3|dataA2||
-attB4|dataB4|dataA2||
+|b.<xmlattr>.attr|b|a|subsub.s|
+|attB1|dataB1|dataA1||
+|attB2|dataB2|dataA1||
+|attB3|dataB3|dataA2||
+|attB4|dataB4|dataA2||
 
 - data[2]:  
 
-s|b|
-s1|dataB1|
-s2|dataB1|
-s3|dataB2|
-s4|dataB2|
-s5|dataB2|
-s6|dataB3|
+|s|b|
+|s1|dataB1|
+|s2|dataB1|
+|s3|dataB2|
+|s4|dataB2|
+|s5|dataB2|
+|s6|dataB3|
