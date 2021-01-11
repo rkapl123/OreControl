@@ -58,6 +58,7 @@ XML Attribute notation is not allowed for `writeTreeAndCreateJSON` (leads to an 
 #### control table  
 
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
+|---|---|---|---|---|
 |root||a||rec|
 |root.rec|||a|b|
 
@@ -67,12 +68,14 @@ table data[1] has child relation to table data[0] via FK/PK "a"
 - data[0]:  
 
 |a|b|c.d|
+|---|---|---|
 |dataA1||dataCD1|
 |dataA2||dataCD2|
 
 - data[1]:  
 
 |b.<xmlattr>.attr|b|a|
+|---|---|---|
 |attB1|dataB1|dataA1|
 |attB2|dataB2|dataA1|
 |attB3|dataB3|dataA2|
@@ -112,6 +115,7 @@ table data[1] has child relation to table data[0] via FK/PK "a"
 #### control table  
 
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
+|---|---|---|---|---|
 |root||a||rec|
 |root.rec|sub.subsub||a|b|
 
@@ -121,12 +125,14 @@ table data[1] has child relation to table data[0] via FK/PK "a"
 - data[0]:  
 
 |a|sub.subsub.b|c.d|
+|---|---|---|
 |dataA1||dataCD1|
 |dataA2||dataCD2|
 
 - data[1]:  
 
 |b.<xmlattr>.attr|b|a|
+|---|---|---|
 |attB1|dataB1|dataA1|
 |attB2|dataB2|dataA1|
 |attB3|dataB3|dataA2|
@@ -183,6 +189,7 @@ table data[1] has child relation to table data[0] via FK/PK "a"
 #### control table  
 
 |parentNode|subnodeOfParent|primaryKey|foreignKey|rootElemRec|
+|---|---|---|---|---|
 |root||a||rec|
 |root.rec|sub|b|a|bRec|
 |root.rec.sub.bRec|subsub||b|s|
@@ -194,6 +201,7 @@ subtable data[1] (being in node sub) has child relation to table data[0] via FK/
 - data[0]:  
 
 |a|sub.bRec|c.d|
+|---|---|---|
 |dataA1||dataCD1|
 |dataA2||dataCD2|
 
@@ -201,6 +209,7 @@ subtable data[2] (being in node subsub) has child relation to table data[2] via 
 - data[1]:  
 
 |b.<xmlattr>.attr|b|a|subsub.s|
+|---|---|---|---|
 |attB1|dataB1|dataA1||
 |attB2|dataB2|dataA1||
 |attB3|dataB3|dataA2||
@@ -209,6 +218,7 @@ subtable data[2] (being in node subsub) has child relation to table data[2] via 
 - data[2]:  
 
 |s|b|
+|---|---|
 |s1|dataB1|
 |s2|dataB1|
 |s3|dataB2|
