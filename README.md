@@ -9,4 +9,4 @@ Tools for easier implementation of Opensource Risk Engine (ORE, http://www.opens
 * A background service (OreService, using OreMgr)
 * A .NET library (OreMgr) including a SWIG wrapper to ORE and a XML Building Utility (TreeizeRelD/TreeizeRelDCsharp)
 
-Currently in development, details see [https://rkapl123.github.io/OreControl](https://rkapl123.github.io/OreControl)
+Currently in development (usable only [OreDB](https://github.com/rkapl123/OreControl/tree/master/OreDB) and [TreeizeRelD](https://github.com/rkapl123/OreControl/tree/master/OreMgr/TreeizeRelD), for details of the architecture see [https://rkapl123.github.io/OreControl](https://rkapl123.github.io/OreControl)
