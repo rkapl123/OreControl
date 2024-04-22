@@ -6,7 +6,7 @@ AS
 SELECT DISTINCT ns.GroupingId,
 	(SELECT
 		(SELECT *, 
-			(SELECT Bilateral,CSACurrency,IndexName,ThresholdPay,ThresholdReceive,MinimumTransferAmountPay,MinimumTransferAmountReceive,
+			(SELECT Bilateral,CSACurrency,IndexName [Index],ThresholdPay,ThresholdReceive,MinimumTransferAmountPay,MinimumTransferAmountReceive,
 				(SELECT IndependentAmountHeld,IndependentAmountType
 				FROM NettingCSADetails c WHERE c.NettingSetId = n.NettingSetId
 				FOR XML PATH (''), TYPE) IndependentAmount,

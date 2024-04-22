@@ -2,11 +2,9 @@
 
 # ORE Control
 
-Tools for easier implementation of Opensource Risk Engine (ORE, http://www.opensourcerisk.org/)
+Tools for easier usage of Opensource Risk Engine (ORE, http://www.opensourcerisk.org/)
 
-* easy starting from Excel (OreAddin in conjunction with OreMgr),
+* starting from Excel (OreAddin),
 * loading ORE data from a Database (OreDB),
-* A background service (OreService, using OreMgr)
-* A .NET library (OreMgr) including a SWIG wrapper to ORE and a XML Building Utility (TreeizeRelD/TreeizeRelDCsharp)
 
-Currently in development, details see [https://rkapl123.github.io/OreControl](https://rkapl123.github.io/OreControl)
+OreAddin is currently in development, details see [https://rkapl123.github.io/OreControl](https://rkapl123.github.io/OreControl)

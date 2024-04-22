@@ -49,7 +49,7 @@ Module ORETaskInvocation
             Dim posWSseparator = InStr(resname, "!")
             If posWSseparator > 0 Then resname = resname.Substring(posWSseparator)
 
-            ' first get data from RdotNet engine
+            ' first get data from ORE
             Dim resultData As Object = Nothing
             Dim columnNames As Object = Nothing
             Dim rowNames As Object = Nothing

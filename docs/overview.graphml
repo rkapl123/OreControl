@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
-  <!--Created by yEd 3.20-->
+  <!--Created by yEd 3.23.2-->
   <key attr.name="Beschreibung" attr.type="string" for="graph" id="d0"/>
   <key for="port" id="d1" yfiles.type="portgraphics"/>
   <key for="port" id="d2" yfiles.type="portgeometry"/>
@@ -113,7 +113,7 @@ XVA Reports<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><
     <node id="n8">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="43.0" width="259.0" x="281.0" y="426.200496673584"/>
+          <y:Geometry height="43.0" width="259.0" x="281.0" y="439.068998336792"/>
           <y:Fill color="#E9E9E9" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="239.46484375" x="9.767578125" xml:space="preserve" y="4.798828125">Interactive Visualisation:
@@ -147,7 +147,7 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
     <node id="n11">
       <data key="d6">
         <y:SVGNode>
-          <y:Geometry height="43.0" width="60.26350021362305" x="306.8682498931885" y="366.068998336792"/>
+          <y:Geometry height="43.0" width="60.26350021362305" x="306.8682498931885" y="377.068998336792"/>
           <y:Fill color="#CCCCFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="50.669921875" x="4.796789169311523" xml:space="preserve" y="12.1494140625">ORE-DB<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -161,40 +161,7 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
     <node id="n12">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="25.0" width="406.0" x="134.0" y="315.4375"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="243.390625" x="81.3046875" xml:space="preserve" y="3.1494140625">OreMgr (using TreeizeRelD and ORE-SWIG)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-          <y:Shape type="rectangle"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n13">
-      <data key="d6">
-        <y:ShapeNode>
-          <y:Geometry height="30.0" width="117.0" x="423.0" y="372.006498336792"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="100.041015625" x="8.4794921875" xml:space="preserve" y="5.6494140625">Excel / OREAddin<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-          <y:Shape type="rectangle"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n14">
-      <data key="d6">
-        <y:ShapeNode>
-          <y:Geometry height="30.0" width="103.75" x="134.0" y="372.568998336792"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="70.017578125" x="16.8662109375" xml:space="preserve" y="5.6494140625">OREService<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-          <y:Shape type="rectangle"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n15">
-      <data key="d6">
-        <y:ShapeNode>
-          <y:Geometry height="20.0" width="96.0" x="144.5" y="497.700496673584"/>
+          <y:Geometry height="20.0" width="96.0" x="144.5" y="462.068998336792"/>
           <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="37.36328125" x="29.318359375" xml:space="preserve" y="0.6494140625">output<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -202,10 +169,10 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n16">
+    <node id="n13">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.0" width="96.0" x="144.5" y="477.700496673584"/>
+          <y:Geometry height="20.0" width="96.0" x="144.5" y="442.068998336792"/>
           <y:Fill color="#CCFFFF" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="30.021484375" x="32.9892578125" xml:space="preserve" y="0.6494140625">input<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -213,10 +180,10 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n17">
+    <node id="n14">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.0" width="96.0" x="144.5" y="457.700496673584"/>
+          <y:Geometry height="20.0" width="96.0" x="144.5" y="422.068998336792"/>
           <y:Fill color="#E9E9E9" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="91.369140625" x="2.3154296875" xml:space="preserve" y="0.6494140625">ORE processing<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -224,13 +191,13 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n18">
+    <node id="n15">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.0" width="96.0" x="144.5" y="437.700496673584"/>
+          <y:Geometry height="25.0" width="406.0" x="134.0" y="315.4375"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="72.021484375" x="11.9892578125" xml:space="preserve" y="0.6494140625">ORE Control<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="100.041015625" x="152.9794921875" xml:space="preserve" y="3.1494140625">Excel / OREAddin<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -280,7 +247,7 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
         </y:GenericEdge>
       </data>
     </edge>
-    <edge id="e5" source="n5" target="n12">
+    <edge id="e5" source="n5" target="n15">
       <data key="d10">
         <y:GenericEdge configuration="com.yworks.edge.framed">
           <y:Path sx="0.0" sy="21.5" tx="0.0" ty="0.0"/>
@@ -289,34 +256,16 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
         </y:GenericEdge>
       </data>
     </edge>
-    <edge id="e6" source="n6" target="n12">
+    <edge id="e6" source="n6" target="n15">
       <data key="d10">
         <y:GenericEdge configuration="com.yworks.edge.framed">
-          <y:Path sx="1.1368683772161603E-13" sy="17.141902923583984" tx="144.50000000000009" ty="-12.5234375"/>
+          <y:Path sx="1.1368683772161603E-13" sy="17.141902923583984" tx="144.5000000000001" ty="-12.5234375"/>
           <y:LineStyle color="#000000" type="line" width="3.0"/>
           <y:Arrows source="none" target="standard"/>
         </y:GenericEdge>
       </data>
     </edge>
-    <edge id="e7" source="n13" target="n12">
-      <data key="d10">
-        <y:GenericEdge configuration="com.yworks.edge.framed">
-          <y:Path sx="1.6599999999999682" sy="-14.983060836791992" tx="146.15999999999997" ty="12.51953125"/>
-          <y:LineStyle color="#000000" type="line" width="3.0"/>
-          <y:Arrows source="standard" target="standard"/>
-        </y:GenericEdge>
-      </data>
-    </edge>
-    <edge id="e8" source="n11" target="n14">
-      <data key="d10">
-        <y:GenericEdge configuration="com.yworks.edge.framed">
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="3.0"/>
-          <y:Arrows source="standard" target="standard"/>
-        </y:GenericEdge>
-      </data>
-    </edge>
-    <edge id="e9" source="n12" target="n10">
+    <edge id="e7" source="n15" target="n10">
       <data key="d10">
         <y:GenericEdge configuration="com.yworks.edge.framed">
           <y:Path sx="-139.1474733394561" sy="-6.4375" tx="5.3525266605439015" ty="0.0"/>
@@ -325,24 +274,22 @@ Evolution of Exposure and NPV distributions<y:LabelModel><y:SmartNodeLabelModel 
         </y:GenericEdge>
       </data>
     </edge>
-    <edge id="e10" source="n12" target="n14">
-      <data key="d10">
-        <y:GenericEdge configuration="com.yworks.edge.framed">
-          <y:Path sx="-139.00000000000006" sy="3.020833333333334" tx="12.125" ty="-14.967435836791992">
-            <y:Point x="197.99999999999994" y="351.77994791666663"/>
-            <y:Point x="198.0" y="351.77994791666663"/>
-          </y:Path>
-          <y:LineStyle color="#000000" type="line" width="3.0"/>
-          <y:Arrows source="standard" target="standard"/>
-        </y:GenericEdge>
-      </data>
-    </edge>
-    <edge id="e11" source="n13" target="n11">
+    <edge id="e8" source="n15" target="n11">
       <data key="d10">
         <y:GenericEdge configuration="com.yworks.edge.framed">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="3.0"/>
           <y:Arrows source="standard" target="standard"/>
+        </y:GenericEdge>
+      </data>
+    </edge>
+    <edge id="e9" source="n15" target="n8">
+      <data key="d9"/>
+      <data key="d10">
+        <y:GenericEdge configuration="com.yworks.edge.framed">
+          <y:Path sx="145.0" sy="0.0" tx="71.5" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="3.0"/>
+          <y:Arrows source="none" target="standard"/>
         </y:GenericEdge>
       </data>
     </edge>

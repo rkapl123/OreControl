@@ -1,7 +1,7 @@
 use ORE;
 
 CREATE TABLE ResultsFlows (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeID varchar(40) not null,
 	TradeType varchar(30) not null,
@@ -21,7 +21,7 @@ CREATE TABLE ResultsFlows (
 );
 
 CREATE TABLE ResultsNPV (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeID varchar(40) not null,
 	TradeType varchar(30) not null,
@@ -38,7 +38,7 @@ CREATE TABLE ResultsNPV (
 );
 
 CREATE TABLE ResultsCurves (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	Tenor varchar(10) null,
 	HorizonDate datetime null,
@@ -47,7 +47,7 @@ CREATE TABLE ResultsCurves (
 );
 
 CREATE TABLE ResultsXVA (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeID varchar(40) null,
 	NettingSetId varchar(30) null,
@@ -71,7 +71,7 @@ CREATE TABLE ResultsXVA (
 );
 
 CREATE TABLE ResultsColVA (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	NettingSetId varchar(30) null,
 	HorizonDate datetime null,
@@ -84,7 +84,7 @@ CREATE TABLE ResultsColVA (
 );
 
 CREATE TABLE ResultsExposureNettingSet (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	NettingSetId varchar(30) null,
 	HorizonDate datetime null,
@@ -98,7 +98,7 @@ CREATE TABLE ResultsExposureNettingSet (
 );
 
 CREATE TABLE ResultsExposureTrade (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeID varchar(40) null,
 	HorizonDate datetime null,
@@ -113,7 +113,7 @@ CREATE TABLE ResultsExposureTrade (
 );
 
 CREATE TABLE ResultsCube (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	NetOrRaw varchar(3) null,
 	ID varchar(40) null,
@@ -126,7 +126,7 @@ CREATE TABLE ResultsCube (
 );
 
 CREATE TABLE ResultsStresstest (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeId varchar(40) null,
 	ScenarioLabel varchar(20) null,
@@ -136,18 +136,20 @@ CREATE TABLE ResultsStresstest (
 );
 
 CREATE TABLE ResultsSensitivity (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeId varchar(40) null,
-	Factor varchar(30) null,
-	ShiftSize decimal(18,4) null,
+	Factor1 varchar(50) null,
+	ShiftSize1 decimal(18,4) null,
+	Factor2 varchar(50) null,
+	ShiftSize2 decimal(18,4) null,
 	BaseNPV decimal(18,4) null,
 	DeltaTimesShift decimal(18,4) null,
 	GammaTimesShiftSquare decimal(18,4) null
 );
 
 CREATE TABLE ResultsScenario (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TradeId varchar(40) null,
 	Factor varchar(30) null,
@@ -157,20 +159,8 @@ CREATE TABLE ResultsScenario (
 	Difference decimal(18,4) null
 );
 
-CREATE TABLE ResultsCrossGamma (
-	AnalysisID varchar(30) not null,
-	AnalysisDate datetime not null,
-	TradeId varchar(40) null,
-	Factor1 varchar(20) null,
-	ShiftSize1 decimal(18,4) null,
-	Factor2 varchar(20) null,
-	ShiftSize2 decimal(18,4) null,
-	BaseNPV decimal(18,4) null,
-	CrossGammaTimesShiftSquare decimal(18,4) null
-);
-
 CREATE TABLE ResultsDimEvolution (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	TimeStep int null,
 	HorizonDate datetime null,
@@ -182,7 +172,7 @@ CREATE TABLE ResultsDimEvolution (
 );
 
 CREATE TABLE ResultsDimRegression (
-	AnalysisID varchar(30) not null,
+	AnalysisID varchar(50) not null,
 	AnalysisDate datetime not null,
 	Sample int null,
 	RegressorName varchar(30) null,

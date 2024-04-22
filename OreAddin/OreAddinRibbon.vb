@@ -104,9 +104,9 @@ Public Class OREAddinRibbon
             "<group id='OREAddinGroup' label='General settings'>" +
               "<dropDown id='scriptDropDown' label='OREdefinition:' sizeString='12345678901234567890' getItemCount='GetItemCount' getItemID='GetItemID' getItemLabel='GetItemLabel' onAction='selectItem'/>" +
               "<buttonGroup id='buttonGroup'>" +
-              "<toggleButton id='shell' label='run via Shell' onAction='toggleButton' getImage='getImage' getPressed='getPressed' tag='1' screentip='toggles whether to run ORE via Shell/Files in Batchmode' supertip='toggles whether to run R script via Shell/Files' />" +
-              "<toggleButton id='task' label='run via Task' onAction='toggleButton' getImage='getImage' getPressed='getPressed' tag='2' screentip='toggles whether to run ORE via Task/Pipe in Onlinemode' supertip='toggles whether to run R script via RdotNet' />" +
-              "</buttonGroup><toggleButton id='debug' label='debug script' onAction='toggleButton' getImage='getImage' getPressed='getPressed' tag='3' screentip='toggles whether to debug R script' supertip='toggles whether to debug R script (leave cmd shell open)' />" +
+              "<toggleButton id='shell' label='run via Shell' onAction='toggleButton' getImage='getImage' getPressed='getPressed' tag='1' screentip='toggles whether to run ORE via Shell/Files in Batchmode' supertip='toggles whether to run ORE via Shell/Files' />" +
+              "<toggleButton id='task' label='run via Task' onAction='toggleButton' getImage='getImage' getPressed='getPressed' tag='2' screentip='toggles whether to run ORE via Task/Pipe in Onlinemode' supertip='toggles whether to run ORE via InMemory Task' />" +
+              "</buttonGroup><toggleButton id='debug' label='debug script' onAction='toggleButton' getImage='getImage' getPressed='getPressed' tag='3' screentip='toggles whether to debug ORE run' supertip='toggles whether to debug ORE run (leave cmd shell open)' />" +
               "" +
               "<dialogBoxLauncher><button id='dialog' label='About OREAddin' onAction='showAbout' tag='3' screentip='Show Aboutbox and refresh OREdefinitions from current Workbook'/></dialogBoxLauncher></group>" +
               "<group id='OREscriptsGroup' label='Run ORE-Jobs defined in WB/sheet names'>"
