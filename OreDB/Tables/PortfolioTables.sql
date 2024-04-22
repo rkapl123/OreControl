@@ -1,5 +1,15 @@
 use ORE;
 
+CREATE TABLE dbo.PortfolioPartiesGroupingIds (
+	PartiesId varchar(30) NOT NULL,
+	GroupingId varchar(70) NOT NULL,
+ CONSTRAINT PK_PortfolioPartiesGroupingIds PRIMARY KEY CLUSTERED (
+	PartiesId ASC,
+	GroupingId ASC
+));
+ALTER TABLE PortfolioPartiesGroupingIds ADD CONSTRAINT FK_PortfolioPartiesGroupingIds_PartiesId FOREIGN KEY(PartiesId)
+REFERENCES TypesParties (value);
+
 CREATE TABLE PortfolioTrades (
 	Id varchar(180) not null,
 	TradeType varchar(30),
@@ -16,7 +26,6 @@ REFERENCES TypesParties (value);
 ALTER TABLE PortfolioTrades ADD CONSTRAINT FK_PortfolioTrades_EnvelopeNettingSetId FOREIGN KEY(EnvelopeNettingSetId)
 REFERENCES NettingSet (NettingSetId);
 
-
 CREATE TABLE PortfolioTradeGroupingIds (
 	TradeId varchar(180) not null,
 	GroupingId varchar(70) not null,
@@ -24,7 +33,8 @@ CONSTRAINT PK_PortfolioTradeGroupingIds PRIMARY KEY CLUSTERED (
 	TradeId ASC,
 	GroupingId ASC
 ));
-
+ALTER TABLE PortfolioTradeGroupingIds ADD CONSTRAINT FK_PortfolioTradeGroupingIds_TradeId FOREIGN KEY(TradeId)
+REFERENCES PortfolioTrades (Id);
 
 CREATE TABLE PortfolioTradeActions (
 	Id int not null,
@@ -84,15 +94,6 @@ CONSTRAINT PK_PortfolioScheduleDataDates PRIMARY KEY CLUSTERED (
 ));
 -- ALTER TABLE PortfolioScheduleDataDates ADD CONSTRAINT FK_PortfolioScheduleDataDates_Calendar FOREIGN KEY(Calendar)
 -- REFERENCES TypesCalendar (value);
-
-
-CREATE TABLE PortfolioSwapData (
-	TradeId varchar(180) not null,
-CONSTRAINT PK_PortfolioSwapData PRIMARY KEY CLUSTERED (
-	TradeId ASC
-));
-ALTER TABLE PortfolioSwapData ADD CONSTRAINT FK_PortfolioSwapData_TradeId FOREIGN KEY(TradeId)
-REFERENCES PortfolioTrades (Id);
 
 
 CREATE TABLE PortfolioCDOData (

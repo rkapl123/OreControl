@@ -2,9 +2,9 @@
 
 # ORE Control
 
-Tools for easier usage of Opensource Risk Engine (ORE, http://www.opensourcerisk.org/)
+Tools for easier implementation of Opensource Risk Engine (ORE, http://www.opensourcerisk.org/)
 
-* starting from Excel (OreAddin),
+* easy starting from Excel (OreAddin in conjunction with OreMgr),
 * loading ORE data from a Database (OreDB),
 
 OreAddin is currently in development, details see [https://rkapl123.github.io/OreControl](https://rkapl123.github.io/OreControl)
