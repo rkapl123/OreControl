@@ -1,5 +1,18 @@
 use ORE;
 
+CREATE TABLE MdatVendorDefinitions(
+	TickerId int NOT NULL,
+	VendorName varchar(10) NOT NULL,
+	VendorTicker varchar(100) NULL,
+	VendorField1 varchar(50) NULL,
+	VendorField2 varchar(50) NULL,
+	OverridesFieldId varchar(50) NULL,
+	OverridesValue varchar(50) NULL,
+ CONSTRAINT PK_MdatVendorDefinitions PRIMARY KEY CLUSTERED 
+(
+	TickerId ASC
+));
+
 CREATE TABLE MdatMarketDataDefinitions (
 	QuoteId int not null,
 	Quote varchar(100) not null,
@@ -37,7 +50,7 @@ CREATE TABLE MdatMarketDataDefinitions (
 	StrikeRate decimal(18,6),
 	CorrFactType varchar(10),
 	CorrFactMonth varchar(10),
-	VendorTicker varchar(100),
+	TickerId int NULL,
 CONSTRAINT PK_MarketDataDefinitions PRIMARY KEY CLUSTERED
 (
 	QuoteId ASC
@@ -50,6 +63,8 @@ ALTER TABLE MdatMarketDataDefinitions ADD CONSTRAINT FK_MdatMarketDataDefinition
 REFERENCES TypesCurrencyCode (value);
 ALTER TABLE MdatMarketDataDefinitions ADD CONSTRAINT FK_MdatMarketDataDefinitions_FlatCurrency FOREIGN KEY(FlatCurrency)
 REFERENCES TypesCurrencyCode (value);
+ALTER TABLE MdatMarketDataDefinitions ADD CONSTRAINT FK_MdatMdatVendorDefinitionsTickerId FOREIGN KEY(TickerId)
+REFERENCES MdatVendorDefinitions (TickerId);
 CREATE UNIQUE INDEX IX_MdatMarketDataDefinitions_Quote ON MdatMarketDataDefinitions (Quote); 
 
 CREATE TABLE MdatMarketData (
@@ -76,7 +91,7 @@ CREATE TABLE MdatFixingDataDefinitions (
 	Tenor varchar(10),
 	Name varchar(10),
 	FixingIndex varchar(200),
-	VendorTicker varchar(100),
+	TickerId int NULL,
 CONSTRAINT PK_MdatFixingDataDefinitions PRIMARY KEY CLUSTERED 
 (
 	IndexId ASC
@@ -87,6 +102,8 @@ ALTER TABLE MdatFixingDataDefinitions ADD CONSTRAINT FK_MdatFixingDataDefinition
 REFERENCES TypesCurrencyCode (value);
 ALTER TABLE MdatFixingDataDefinitions ADD CONSTRAINT FK_MdatFixingDataDefinitions_DomesticCurrency FOREIGN KEY(DomesticCurrency)
 REFERENCES TypesCurrencyCode (value);
+ALTER TABLE MdatFixingDataDefinitions ADD CONSTRAINT FK_MdatFdatVendorDefinitionsTickerId FOREIGN KEY(TickerId)
+REFERENCES MdatVendorDefinitions (TickerId);
 
 
 CREATE TABLE MdatFixingData (

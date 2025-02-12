@@ -1,10 +1,13 @@
-USE [ORE]
-GO
-CREATE VIEW [dbo].[MdatMarketDataDef]
+USE ORE;
+
+CREATE VIEW MdatMarketDataDef
 AS
 select m.QuoteDate, m.QuoteId, d.Quote, m.QuoteValue
-FROM ORE.dbo.MdatMarketData m 
-INNER JOIN ORE.dbo.MdatMarketDataDefinitions d on m.QuoteID = d.QuoteID
+FROM MdatMarketData m 
+INNER JOIN MdatMarketDataDefinitions d on m.QuoteID = d.QuoteID;
 
-
-GO
+CREATE VIEW MdatFixingDataDef
+AS
+select f.FixingDate, f.IndexId, d.FixingIndex, f.IndexValue
+FROM MdatFixingData f
+INNER JOIN MdatFixingDataDefinitions d on f.IndexId = d.IndexId;

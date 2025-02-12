@@ -5,16 +5,17 @@ ORE DB is
 - perl scripts to transform xml configuration files from given folders (if no arguments are given then the examples are transformed) and marketdata/fixingdata into sql Data Manipulation Language (DML) scripts.
 - the perl scripts and the (generated) SQL DDL/DML scripts are executed with windows cmd-shell scripts.
 - currently MS SQL Server and MYSQL are supported (= were tested). The proof-of-concept database extraction/ORE running is only possible with MS SQL Server as it supports XML-creation for SQL Queries.
+- a python script MDataORE.py to fetch market data from Reuters (LSEG) and/or Bloomberg desktop API. When using this, beware that licensing conditions on market data is very strict both with LSEG and Bloomberg, so make sure the collected data never leaves your desktop (install a desktop database) and you write display applications (as defined by exchange rules).
 
 ## SQL DDL scripts
 
 ### Tables
 The main rationale was to  
 a) follow the structure set up by the xml schemata  
-b) have relational intgrity where possible  
+b) have relational integrity where possible  
 
 Following sql scripts define the tables:
-- MdatTables.sql: all marketdata related tables (marketdata, fixingdata and covariancedata)
+- MdatTables.sql: all marketdata related tables (marketdata, fixingdata and covariancedata, including a control table to collect marketdata with MDataORE.py)
 - NettingTables.sql: all tables for nettingset definitions
 - PortfolioTables.sql: all tables for the portfolio definitions
 - ResultsTables.sql: all tables for ORE results
@@ -90,3 +91,31 @@ The output of runOREDBScripts.cmd is logged to SQL.log
 As a proof of the concept, the script runXMLOutput.cmd fetches the Database-stored data for example 2 (Sensitivityanalysis and Stresstest from example 15) and writes it into respective xml files in folder OREDB. Subsequently ORE is started with the ore.xml parametrization and the extracted files.
 
 The final OREControl suite would pass the XML strings in-memory to a modified ORE-App (using SWIG) and retrieve the results in-memory, too.
+
+
+## python market data fetching script MDataORE.py
+
+To utilize the MDataORE.py script, you need to 
+- install pandas, sqlalchemy, refinitiv-data and blpapi (`python -m pip install --index-url=https://blpapi.bloomberg.com/repository/releases/python/simple/ blpapi`) in your python environment.
+- fill the table MdatVendorDefinitions with your desired Tickers/RICs and fields (when using Bloomberg you can also define a field override and its value along).
+
+An example might be following entries, the first being a Bloomberg Ticker for EURUSD Forwards, having an override defined to get the outright quotation instead of pips. The second is an USD Swaption and the third is an Fx Option, both retrieved using Reuters (LSEG).
+
+If both VendorField1 and VendorField2 are defined, the average is taken of the two fields (e.g. BID/ASK), if only one is defined, then this field will be taken.
+
+|TickerId|VendorName|VendorTicker|VendorField1|VendorField2|OverridesFieldId|OverridesValue|
+|---|---|---|---|---|---|---|
+|1|BLOOMBERG|EURUSD3M BGN Curncy|PX_BID|PX_ASK|FWD_CURVE_QUOTE_FORMAT|OUTRIGHT|
+|2|REUTERS|USD10Y10Y3LATM=|BID|NULL|NULL|
+|3|REUTERS|EUR1MO=R|PRIMACT_1|NULL|NULL|
+
+After defining the Tickers/RICs, you have to configure the LSEG connection, for this you need to create a key for the "Side-by-Side Web API" using the LSEG Workspace App "APPKEY". Follow the instructions there and paste the created key into the file refinitiv-data.config.json. For Bloomberg no further configuration is needed, only an opened terminal is required (this makes a BLP API 'delivery point' available on localhost).
+
+Then configure your database connection, there are two connection strings that are available, one for production and one for test environment. The test environment is selected if the script is being executed in a path containing Test. Otherwise production is assumed and the data is written into both test and production environment. The DBconn variable defines the production database, DBconnTest defines the test database.
+
+```python
+DBconn = 'mssql+pyodbc://someDBServerName/Marktdaten?driver=SQL+Server'
+DBconnTest = 'mssql+pyodbc://someDBServerNameTest/Marktdaten?driver=SQL+Server'
+```
+
+You can also configure this in a separate MDataORE.config file which is read/executed initially (if it is found).

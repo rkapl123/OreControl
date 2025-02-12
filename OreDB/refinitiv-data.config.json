@@ -1,0 +1,23 @@
+{
+    "logs": {
+        "level": "debug",
+        "transports": {
+            "console": {
+                "enabled": false
+            },
+            "file": {
+                "enabled": false,
+                "name": "refinitiv-data-lib.log"
+            }
+        }
+    },
+    "sessions": {
+        "default": "desktop.workspace",
+        "desktop": {
+            "workspace": {
+                "signon_control": true,
+                "app-key": "<insert_your_app-key_here>"
+            }
+        }
+    }
+}
