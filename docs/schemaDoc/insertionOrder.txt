@@ -1,3 +1,4 @@
+MdatFixingDataDefinitions
 MdatFixingData
 MdatMarketData
 OreConfigurations
@@ -17,11 +18,9 @@ PortfolioSwapData
 NettingEligibleCollateralsCurrencies
 NettingSet
 PortfolioLegAmortizations
-MdatFixingDataDefinitions
 PortfolioFxForwardData
 PortfolioTradeActions
 PortfolioTrades
-MdatMarketDataDefinitions
 PortfolioBaskets
 PortfolioBondData
 PortfolioCommodityForwardData
@@ -30,6 +29,7 @@ PortfolioForwardRateAgreementData
 PortfolioIndexCreditDefaultSwapData
 PortfolioIndexCreditDefaultSwapOptionSwapData
 PortfolioScheduleDataRules
+MdatMarketDataDefinitions
 NettingCSADetails
 PortfolioCreditDefaultSwapData
 PortfolioCPICapFloorData
@@ -40,6 +40,7 @@ PortfolioEquityOptionData
 PortfolioFxOptionData
 PortfolioLegData
 MdatCovarianceData
+MdatVendorDefinitions
 PortfolioScheduleDataDates
 PortfolioTradeGroupingIds
 ResultsColVA

@@ -25,8 +25,18 @@
             <column ascending="true" name="FixingDate"/>
          </index>
       </table>
+      <table catalog="ORE" name="MdatFixingDataDef" numRows="0" remarks="" schema="dbo" type="VIEW" viewSql="CREATE VIEW [dbo].[MdatFixingDataDef]&#13;&#10;AS&#13;&#10;select f.FixingDate, f.IndexId, d.FixingIndex, f.IndexValue&#13;&#10;FROM ORE.dbo.MdatFixingData f&#13;&#10;INNER JOIN ORE.dbo.MdatFixingDataDefinitions d on f.IndexId = d.IndexId&#13;&#10;">
+         <column autoUpdated="false" digits="3" id="0" name="FixingDate" nullable="false" remarks="" size="16" type="datetime"/>
+         <column autoUpdated="false" digits="0" id="1" name="IndexId" nullable="false" remarks="" size="4" type="int">
+            <parent catalog="ORE" column="IndexId" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="dbo" table="MdatFixingDataDefinitions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="FixingIndex" nullable="true" remarks="" size="200" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="IndexValue" nullable="false" remarks="" size="20" type="decimal"/>
+      </table>
       <table catalog="ORE" name="MdatFixingDataDefinitions" numRows="0" remarks="" schema="dbo" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="IndexId" nullable="false" remarks="" size="4" type="int"/>
+         <column autoUpdated="false" digits="0" id="0" name="IndexId" nullable="false" remarks="" size="4" type="int">
+            <child catalog="ORE" column="IndexId" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="dbo" table="MdatFixingDataDef"/>
+         </column>
          <column autoUpdated="false" digits="0" id="1" name="Currency" nullable="true" remarks="" size="7" type="varchar">
             <parent catalog="ORE" column="value" foreignKey="FK_MdatFixingDataDefinitions_Currency" implied="false" onDeleteCascade="false" schema="dbo" table="TypesCurrencyCode"/>
          </column>
@@ -42,7 +52,9 @@
          <column autoUpdated="false" digits="0" id="7" name="Tenor" nullable="true" remarks="" size="10" type="varchar"/>
          <column autoUpdated="false" digits="0" id="8" name="Name" nullable="true" remarks="" size="10" type="varchar"/>
          <column autoUpdated="false" digits="0" id="9" name="FixingIndex" nullable="true" remarks="" size="200" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="10" name="VendorTicker" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="TickerId" nullable="true" remarks="" size="4" type="int">
+            <parent catalog="ORE" column="TickerId" foreignKey="FK_MdatFdatVendorDefinitionsTickerId" implied="false" onDeleteCascade="false" schema="dbo" table="MdatVendorDefinitions"/>
+         </column>
          <primaryKey column="IndexId" sequenceNumberInPK="1"/>
          <index name="PK_MdatFixingDataDefinitions" unique="true">
             <column ascending="true" name="IndexId"/>
@@ -106,13 +118,28 @@
          <column autoUpdated="false" digits="6" id="33" name="StrikeRate" nullable="true" remarks="" size="20" type="decimal"/>
          <column autoUpdated="false" digits="0" id="34" name="CorrFactType" nullable="true" remarks="" size="10" type="varchar"/>
          <column autoUpdated="false" digits="0" id="35" name="CorrFactMonth" nullable="true" remarks="" size="10" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="36" name="VendorTicker" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="36" name="TickerId" nullable="true" remarks="" size="4" type="int">
+            <parent catalog="ORE" column="TickerId" foreignKey="FK_MdatMdatVendorDefinitionsTickerId" implied="false" onDeleteCascade="false" schema="dbo" table="MdatVendorDefinitions"/>
+         </column>
          <primaryKey column="QuoteId" sequenceNumberInPK="1"/>
          <index name="PK_MarketDataDefinitions" unique="true">
             <column ascending="true" name="QuoteId"/>
          </index>
          <index name="IX_MdatMarketDataDefinitions_Quote" unique="true">
             <column ascending="true" name="Quote"/>
+         </index>
+      </table>
+      <table catalog="ORE" name="MdatVendorDefinitions" numRows="0" remarks="" schema="dbo" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="TickerId" nullable="false" remarks="" size="4" type="int"/>
+         <column autoUpdated="false" digits="0" id="1" name="VendorName" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="VendorTicker" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="VendorField1" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="VendorField2" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="OverridesFieldId" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="OverridesValue" nullable="true" remarks="" size="50" type="varchar"/>
+         <primaryKey column="TickerId" sequenceNumberInPK="1"/>
+         <index name="PK_MdatVendorDefinitions" unique="true">
+            <column ascending="true" name="TickerId"/>
          </index>
       </table>
       <table catalog="ORE" name="NettingCSADetails" numRows="58" remarks="" schema="dbo" type="TABLE">

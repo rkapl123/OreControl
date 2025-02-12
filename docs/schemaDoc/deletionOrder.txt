@@ -38,6 +38,7 @@ ResultsCrossGamma
 ResultsColVA
 PortfolioTradeGroupingIds
 PortfolioScheduleDataDates
+MdatVendorDefinitions
 MdatCovarianceData
 PortfolioLegData
 PortfolioFxOptionData
@@ -48,6 +49,7 @@ PortfolioSwaptionData
 PortfolioCPICapFloorData
 PortfolioCreditDefaultSwapData
 NettingCSADetails
+MdatMarketDataDefinitions
 PortfolioScheduleDataRules
 PortfolioIndexCreditDefaultSwapOptionSwapData
 PortfolioIndexCreditDefaultSwapData
@@ -56,11 +58,9 @@ PortfolioEquityForwardData
 PortfolioCommodityForwardData
 PortfolioBondData
 PortfolioBaskets
-MdatMarketDataDefinitions
 PortfolioTrades
 PortfolioTradeActions
 PortfolioFxForwardData
-MdatFixingDataDefinitions
 PortfolioLegAmortizations
 NettingSet
 NettingEligibleCollateralsCurrencies
@@ -80,3 +80,4 @@ PortfolioCapFloorData
 OreConfigurations
 MdatMarketData
 MdatFixingData
+MdatFixingDataDefinitions

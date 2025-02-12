@@ -106,8 +106,8 @@ If both VendorField1 and VendorField2 are defined, the average is taken of the t
 |TickerId|VendorName|VendorTicker|VendorField1|VendorField2|OverridesFieldId|OverridesValue|
 |---|---|---|---|---|---|---|
 |1|BLOOMBERG|EURUSD3M BGN Curncy|PX_BID|PX_ASK|FWD_CURVE_QUOTE_FORMAT|OUTRIGHT|
-|2|REUTERS|USD10Y10Y3LATM=|BID|NULL|NULL|
-|3|REUTERS|EUR1MO=R|PRIMACT_1|NULL|NULL|
+|2|REUTERS|USD10Y10Y3LATM=|BID|NULL|NULL|NULL|
+|3|REUTERS|EUR1MO=R|PRIMACT_1|NULL|NULL|NULL|
 
 After defining the Tickers/RICs, you have to configure the LSEG connection, for this you need to create a key for the "Side-by-Side Web API" using the LSEG Workspace App "APPKEY". Follow the instructions there and paste the created key into the file refinitiv-data.config.json. For Bloomberg no further configuration is needed, only an opened terminal is required (this makes a BLP API 'delivery point' available on localhost).
 
@@ -119,3 +119,36 @@ DBconnTest = 'mssql+pyodbc://someDBServerNameTest/Marktdaten?driver=SQL+Server'
 ```
 
 You can also configure this in a separate MDataORE.config file which is read/executed initially (if it is found).
+
+To migrate from the previous database setup you can use following migration script:
+
+```sql
+USE ORE;
+
+CREATE TABLE MdatVendorDefinitions(
+	TickerId int NOT NULL,
+	VendorName varchar(10) NOT NULL,
+	VendorTicker varchar(100) NULL,
+	VendorField1 varchar(50) NULL,
+	VendorField2 varchar(50) NULL,
+	OverridesFieldId varchar(50) NULL,
+	OverridesValue varchar(50) NULL
+ CONSTRAINT PK_MdatVendorDefinitions PRIMARY KEY CLUSTERED 
+(
+	TickerId ASC
+));
+
+ALTER TABLE MdatMarketDataDefinitions DROP COLUMN VendorTicker;
+ALTER TABLE MdatMarketDataDefinitions ADD TickerId int;
+ALTER TABLE MdatFixingDataDefinitions DROP COLUMN VendorTicker;
+ALTER TABLE MdatFixingDataDefinitions ADD TickerId int;
+
+ALTER TABLE MdatMarketDataDefinitions
+ADD CONSTRAINT FK_MdatMdatVendorDefinitionsTickerId
+FOREIGN KEY (TickerId) REFERENCES MdatVendorDefinitions(TickerId);
+
+ALTER TABLE MdatFixingDataDefinitions
+ADD CONSTRAINT FK_MdatFdatVendorDefinitionsTickerId
+FOREIGN KEY (TickerId) REFERENCES MdatVendorDefinitions(TickerId);
+
+```

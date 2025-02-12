@@ -750,9 +750,9 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="VendorTicker">VendorTicker</span></td>
-				 <td>varchar</td>
-				 <td>100</td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="TickerId">TickerId</span></td>
+				 <td>int</td>
+				 <td>4</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
 				 <td>null</td>
@@ -762,6 +762,14 @@
 				 </td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
+				   <tr>
+					<td title="MdatMarketDataDefinitions.TickerId references dbo.MdatVendorDefinitions.TickerId via FK_MdatMdatVendorDefinitionsTickerId">
+						<a href='../../dbo/tables/MdatVendorDefinitions.html'>MdatVendorDefinitions</a><span class='relatedKey'>.TickerId</span>
+					</td>
+					<td class="constraint detail">
+						FK_MdatMdatVendorDefinitionsTickerId <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
 				  </table>					 
 				 </td>
 				 <td></td>
@@ -833,31 +841,33 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="MdatMarketDataDefinitions.html" title="MdatMarketDataDefinitions" alt="" coords="307,5,668,1160">
-<area shape="rect" id="node2" title="dbo.TypesCurrencyCode" alt="" coords="5,175,263,263">
+<area shape="rect" id="node1" href="MdatMarketDataDefinitions.html" title="MdatMarketDataDefinitions" alt="" coords="324,5,685,1160">
+<area shape="rect" id="node2" title="dbo.TypesCurrencyCode" alt="" coords="14,175,271,263">
+<area shape="rect" id="node3" title="dbo.MdatVendorDefinitions" alt="" coords="5,1069,280,1157">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/MdatMarketDataDefinitions.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" title="dbo.MdatFixingDataDefinitions" alt="" coords="354,5,653,93">
-<area shape="rect" id="node2" title="dbo.TypesCurrencyCode" alt="" coords="5,1812,263,1900">
-<area shape="rect" id="node3" href="MdatMarketDataDefinitions.html" title="MdatMarketDataDefinitions" alt="" coords="323,111,684,1265">
-<area shape="rect" id="node4" href="NettingCSADetails.html" title="NettingCSADetails" alt="" coords="397,1283,609,1371">
-<area shape="rect" id="node5" href="NettingEligibleCollateralsCurrencies.html" title="NettingEligibleCollateralsCurrencies" alt="" coords="333,1388,674,1476">
-<area shape="rect" id="node6" href="PortfolioBaskets.html" title="PortfolioBaskets" alt="" coords="404,1493,603,1581">
-<area shape="rect" id="node7" href="PortfolioCommodityForwardData.html" title="PortfolioCommodityForwardData" alt="" coords="349,1599,658,1687">
-<area shape="rect" id="node8" href="PortfolioCommodityOptionData.html" title="PortfolioCommodityOptionData" alt="" coords="353,1704,653,1792">
-<area shape="rect" id="node9" href="PortfolioCPICapFloorData.html" title="PortfolioCPICapFloorData" alt="" coords="371,1809,635,1897">
-<area shape="rect" id="node10" href="PortfolioEquityForwardData.html" title="PortfolioEquityForwardData" alt="" coords="365,1915,641,2003">
-<area shape="rect" id="node11" href="PortfolioEquityOptionData.html" title="PortfolioEquityOptionData" alt="" coords="371,2020,636,2108">
-<area shape="rect" id="node12" href="PortfolioForwardRateAgreementData.html" title="PortfolioForwardRateAgreementData" alt="" coords="333,2125,674,2213">
-<area shape="rect" id="node13" href="PortfolioFxForwardData.html" title="PortfolioFxForwardData" alt="" coords="379,2231,628,2319">
-<area shape="rect" id="node14" href="PortfolioFxOptionData.html" title="PortfolioFxOptionData" alt="" coords="384,2336,623,2424">
-<area shape="rect" id="node15" href="PortfolioIndexCreditDefaultSwapOptionData.html" title="PortfolioIndexCreditDefaultSwapOptionData" alt="" coords="307,2441,700,2529">
-<area shape="rect" id="node16" href="PortfolioLegData.html" title="PortfolioLegData" alt="" coords="403,2547,604,2635">
-<area shape="rect" id="node17" href="PortfolioSwaptionData.html" title="PortfolioSwaptionData" alt="" coords="384,2652,623,2740">
+<area shape="rect" id="node2" title="dbo.TypesCurrencyCode" alt="" coords="14,916,271,1004">
+<area shape="rect" id="node3" title="dbo.MdatFixingDataDefinitions" alt="" coords="371,2717,670,2805">
+<area shape="rect" id="node4" title="dbo.MdatVendorDefinitions" alt="" coords="5,2665,280,2753">
+<area shape="rect" id="node5" href="MdatMarketDataDefinitions.html" title="MdatMarketDataDefinitions" alt="" coords="340,1545,701,2700">
+<area shape="rect" id="node6" href="NettingCSADetails.html" title="NettingCSADetails" alt="" coords="415,71,627,159">
+<area shape="rect" id="node7" href="NettingEligibleCollateralsCurrencies.html" title="NettingEligibleCollateralsCurrencies" alt="" coords="350,176,691,264">
+<area shape="rect" id="node8" href="PortfolioBaskets.html" title="PortfolioBaskets" alt="" coords="421,281,620,369">
+<area shape="rect" id="node9" href="PortfolioCommodityForwardData.html" title="PortfolioCommodityForwardData" alt="" coords="366,387,675,475">
+<area shape="rect" id="node10" href="PortfolioCommodityOptionData.html" title="PortfolioCommodityOptionData" alt="" coords="371,492,671,580">
+<area shape="rect" id="node11" href="PortfolioCPICapFloorData.html" title="PortfolioCPICapFloorData" alt="" coords="389,597,653,685">
+<area shape="rect" id="node12" href="PortfolioEquityForwardData.html" title="PortfolioEquityForwardData" alt="" coords="383,703,659,791">
+<area shape="rect" id="node13" href="PortfolioEquityOptionData.html" title="PortfolioEquityOptionData" alt="" coords="388,808,653,896">
+<area shape="rect" id="node14" href="PortfolioForwardRateAgreementData.html" title="PortfolioForwardRateAgreementData" alt="" coords="350,913,691,1001">
+<area shape="rect" id="node15" href="PortfolioFxForwardData.html" title="PortfolioFxForwardData" alt="" coords="396,1019,645,1107">
+<area shape="rect" id="node16" href="PortfolioFxOptionData.html" title="PortfolioFxOptionData" alt="" coords="401,1124,640,1212">
+<area shape="rect" id="node17" href="PortfolioIndexCreditDefaultSwapOptionData.html" title="PortfolioIndexCreditDefaultSwapOptionData" alt="" coords="324,1229,717,1317">
+<area shape="rect" id="node18" href="PortfolioLegData.html" title="PortfolioLegData" alt="" coords="420,1335,621,1423">
+<area shape="rect" id="node19" href="PortfolioSwaptionData.html" title="PortfolioSwaptionData" alt="" coords="401,1440,640,1528">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/MdatMarketDataDefinitions.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
